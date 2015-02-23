@@ -12,6 +12,11 @@
 		CD7731191A9AEB53006155F0 /* FrameDataBinaryEncoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7731181A9AEB53006155F0 /* FrameDataBinaryEncoderTests.m */; };
 		CD79FA9E1A9B11EE008DE994 /* HexConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79FA9D1A9B11EE008DE994 /* HexConverter.m */; };
 		CD79FAA01A9B1205008DE994 /* HexConverterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79FA9F1A9B1205008DE994 /* HexConverterTests.m */; };
+		CD79FAA31A9B1B47008DE994 /* NibbleBitReverser.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79FAA21A9B1B47008DE994 /* NibbleBitReverser.m */; };
+		CD79FAA51A9B1B5D008DE994 /* NibbleBitReverserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79FAA41A9B1B5D008DE994 /* NibbleBitReverserTests.m */; };
+		CD79FAAA1A9B1F65008DE994 /* BitHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79FAA91A9B1F65008DE994 /* BitHelpers.m */; };
+		CD79FAAD1A9BD62C008DE994 /* NibbleSwitcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79FAAC1A9BD62C008DE994 /* NibbleSwitcher.m */; };
+		CD79FAAF1A9BD643008DE994 /* NibbleSwitcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79FAAE1A9BD643008DE994 /* NibbleSwitcherTests.m */; };
 		CDA1F7351A9AF2120011B4B5 /* BitPacker.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA1F7321A9AF2120011B4B5 /* BitPacker.m */; };
 		CDA1F7361A9AF2120011B4B5 /* FrameDataBinaryEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA1F7341A9AF2120011B4B5 /* FrameDataBinaryEncoder.m */; };
 		CDA1F73B1A9AF3680011B4B5 /* CodingTable.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA1F73A1A9AF3680011B4B5 /* CodingTable.m */; };
@@ -20,7 +25,6 @@
 		CDBF22E01A99C917001E25AB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBF22DF1A99C917001E25AB /* ViewController.m */; };
 		CDBF22E21A99C917001E25AB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBF22E11A99C917001E25AB /* Images.xcassets */; };
 		CDBF22E51A99C917001E25AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDBF22E31A99C917001E25AB /* Main.storyboard */; };
-		CDBF22F11A99C917001E25AB /* BlueWizardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBF22F01A99C917001E25AB /* BlueWizardTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +46,14 @@
 		CD79FA9C1A9B11EE008DE994 /* HexConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexConverter.h; sourceTree = "<group>"; };
 		CD79FA9D1A9B11EE008DE994 /* HexConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexConverter.m; sourceTree = "<group>"; };
 		CD79FA9F1A9B1205008DE994 /* HexConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexConverterTests.m; sourceTree = "<group>"; };
+		CD79FAA11A9B1B47008DE994 /* NibbleBitReverser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NibbleBitReverser.h; sourceTree = "<group>"; };
+		CD79FAA21A9B1B47008DE994 /* NibbleBitReverser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NibbleBitReverser.m; sourceTree = "<group>"; };
+		CD79FAA41A9B1B5D008DE994 /* NibbleBitReverserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NibbleBitReverserTests.m; sourceTree = "<group>"; };
+		CD79FAA81A9B1F65008DE994 /* BitHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitHelpers.h; sourceTree = "<group>"; };
+		CD79FAA91A9B1F65008DE994 /* BitHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitHelpers.m; sourceTree = "<group>"; };
+		CD79FAAB1A9BD62C008DE994 /* NibbleSwitcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NibbleSwitcher.h; sourceTree = "<group>"; };
+		CD79FAAC1A9BD62C008DE994 /* NibbleSwitcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NibbleSwitcher.m; sourceTree = "<group>"; };
+		CD79FAAE1A9BD643008DE994 /* NibbleSwitcherTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NibbleSwitcherTests.m; sourceTree = "<group>"; };
 		CDA1F7311A9AF2120011B4B5 /* BitPacker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitPacker.h; sourceTree = "<group>"; };
 		CDA1F7321A9AF2120011B4B5 /* BitPacker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitPacker.m; sourceTree = "<group>"; };
 		CDA1F7331A9AF2120011B4B5 /* FrameDataBinaryEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameDataBinaryEncoder.h; sourceTree = "<group>"; };
@@ -59,7 +71,6 @@
 		CDBF22E41A99C917001E25AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CDBF22EA1A99C917001E25AB /* BlueWizardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlueWizardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBF22EF1A99C917001E25AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CDBF22F01A99C917001E25AB /* BlueWizardTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueWizardTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +129,12 @@
 				CDA1F7341A9AF2120011B4B5 /* FrameDataBinaryEncoder.m */,
 				CD79FA9C1A9B11EE008DE994 /* HexConverter.h */,
 				CD79FA9D1A9B11EE008DE994 /* HexConverter.m */,
+				CD79FAA11A9B1B47008DE994 /* NibbleBitReverser.h */,
+				CD79FAA21A9B1B47008DE994 /* NibbleBitReverser.m */,
+				CD79FAA81A9B1F65008DE994 /* BitHelpers.h */,
+				CD79FAA91A9B1F65008DE994 /* BitHelpers.m */,
+				CD79FAAB1A9BD62C008DE994 /* NibbleSwitcher.h */,
+				CD79FAAC1A9BD62C008DE994 /* NibbleSwitcher.m */,
 			);
 			name = BitPacker;
 			sourceTree = "<group>";
@@ -170,10 +187,11 @@
 			isa = PBXGroup;
 			children = (
 				CD7731161A9AEB04006155F0 /* BitPackerTests.m */,
-				CDBF22F01A99C917001E25AB /* BlueWizardTests.m */,
 				CD7731181A9AEB53006155F0 /* FrameDataBinaryEncoderTests.m */,
 				CD79FA9F1A9B1205008DE994 /* HexConverterTests.m */,
 				CDBF22EE1A99C917001E25AB /* Supporting Files */,
+				CD79FAA41A9B1B5D008DE994 /* NibbleBitReverserTests.m */,
+				CD79FAAE1A9BD643008DE994 /* NibbleSwitcherTests.m */,
 			);
 			path = BlueWizardTests;
 			sourceTree = "<group>";
@@ -328,9 +346,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD79FAAD1A9BD62C008DE994 /* NibbleSwitcher.m in Sources */,
 				CDA1F7361A9AF2120011B4B5 /* FrameDataBinaryEncoder.m in Sources */,
 				CDBF22E01A99C917001E25AB /* ViewController.m in Sources */,
+				CD79FAA31A9B1B47008DE994 /* NibbleBitReverser.m in Sources */,
 				CDBF22DD1A99C917001E25AB /* main.m in Sources */,
+				CD79FAAA1A9B1F65008DE994 /* BitHelpers.m in Sources */,
 				CDBF22DB1A99C917001E25AB /* AppDelegate.m in Sources */,
 				CDA1F73B1A9AF3680011B4B5 /* CodingTable.m in Sources */,
 				CDA1F7351A9AF2120011B4B5 /* BitPacker.m in Sources */,
@@ -343,8 +364,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD7731191A9AEB53006155F0 /* FrameDataBinaryEncoderTests.m in Sources */,
-				CDBF22F11A99C917001E25AB /* BlueWizardTests.m in Sources */,
+				CD79FAA51A9B1B5D008DE994 /* NibbleBitReverserTests.m in Sources */,
 				CD79FAA01A9B1205008DE994 /* HexConverterTests.m in Sources */,
+				CD79FAAF1A9BD643008DE994 /* NibbleSwitcherTests.m in Sources */,
 				CD7731171A9AEB04006155F0 /* BitPackerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

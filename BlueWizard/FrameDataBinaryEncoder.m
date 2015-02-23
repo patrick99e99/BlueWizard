@@ -1,5 +1,6 @@
 #import "FrameDataBinaryEncoder.h"
 #import "CodingTable.h"
+#import "BitHelpers.h"
 
 @implementation FrameDataBinaryEncoder
 
@@ -13,7 +14,9 @@
         [[CodingTable parameters] enumerateObjectsUsingBlock:^(NSString *parameter, NSUInteger idx, BOOL *stop) {
             NSNumber *value = [frame objectForKey:parameter];
             if (value) {
-                NSString *binaryValue = [self valueToBinary:value bits:[bits objectAtIndex:idx]];
+                NSString *binaryValue = [BitHelpers valueToBinary:[value unsignedIntegerValue]
+                                                             bits:[[bits objectAtIndex:idx] unsignedIntegerValue]];
+
                 binary = [binary stringByAppendingString:binaryValue];
             } else { *stop = YES; }
         }];
@@ -21,17 +24,6 @@
     }
     return [self nibblesFrom:binary];
 }
-
-+(NSString *)valueToBinary:(NSNumber *)value bits:(NSNumber *)bits {
-    NSString *binary = @"";
-    NSUInteger x = [value unsignedIntegerValue];
-    do {
-        binary = [[NSString stringWithFormat: @"%lu", x&1] stringByAppendingString:binary];
-    } while (x >>= 1);
-    
-    return [self leftZeroPadded:binary bits:[bits unsignedIntegerValue]];
-}
-
 +(NSArray *)nibblesFrom:(NSString *)binary {
     NSMutableArray *nibbles = [NSMutableArray arrayWithCapacity:[binary length] / 4];
     while ([binary length] >= 4) {
@@ -40,13 +32,6 @@
         [nibbles addObject:nibble];
     }
     return [nibbles copy];
-}
-
-+(NSString *)leftZeroPadded:(NSString *)binary bits:(NSUInteger)bits {
-    while ([binary length] < bits) {
-        binary = [NSString stringWithFormat:@"0%@", binary];
-    }
-    return binary;
 }
 
 @end
