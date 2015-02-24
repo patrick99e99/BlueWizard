@@ -24,4 +24,5 @@
     NSArray *expected = @[ @"90", @"4d", @"66", @"66", @"18", @"50", @"b4", @"5a", @"0a", @"a6", @"d5", @"5b", @"6b", @"e5", @"6a", @"54", @"71", @"8a", @"e5", @"c0" ];
     XCTAssertEqualObjects(subject, expected);
 }
+
 @end

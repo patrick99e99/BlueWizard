@@ -19,9 +19,7 @@
 }
 
 +(NSUInteger)reversedValueFor:(NSString *)byte {
-    int value;
-    sscanf([byte UTF8String], "%x", &value);
-    
+    NSUInteger value = [BitHelpers byteToValue:byte];
     NSString *binary = [BitHelpers valueToBinary:value bits:4];
     NSString *reversed = @"";
     const char *cString = [binary cStringUsingEncoding:NSUTF8StringEncoding];
@@ -30,7 +28,7 @@
         reversed = [reversed stringByAppendingString:[NSString stringWithFormat:@"%c", cString[i]]];
     }
     
-    return [BitHelpers valueForNibble:reversed];
+    return [BitHelpers valueForBinary:reversed];
 }
 
 @end

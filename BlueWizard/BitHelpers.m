@@ -18,13 +18,20 @@
     return binary;
 }
 
-+(NSUInteger)valueForNibble:(NSString *)nibble {
++(NSUInteger)valueForBinary:(NSString *)binary {
     NSUInteger value = 0;
-    const char *cString = [nibble cStringUsingEncoding:NSUTF8StringEncoding];
+    const char *cString = [binary cStringUsingEncoding:NSUTF8StringEncoding];
     
-    for (int i = 3; i >= 0; i--) {
-        if (cString[i] == '1') value += (1 << abs(i - 3));
+    int length = (int)[binary length] - 1;
+    for (int i = length; i >= 0; i--) {
+        if (cString[i] == '1') value += (1 << abs(i - length));
     }
+    return value;
+}
+
++(NSUInteger)byteToValue:(NSString *)byte {
+    int value;
+    sscanf([byte UTF8String], "%x", &value);
     return value;
 }
 

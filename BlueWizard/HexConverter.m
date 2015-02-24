@@ -6,7 +6,7 @@
 +(NSArray *)process:(NSArray *)nibbles {
     NSMutableArray *hex = [NSMutableArray arrayWithCapacity:[nibbles count]];
     for (NSString *nibble in nibbles) {
-        NSUInteger value = [BitHelpers valueForNibble:nibble];
+        NSUInteger value = [BitHelpers valueForBinary:nibble];
         [hex addObject:[NSString stringWithFormat:@"%x", (unsigned int)value]];
     }
     return [self inGroupsOfTwo:hex];

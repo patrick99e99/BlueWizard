@@ -17,6 +17,8 @@
 		CD79FAAA1A9B1F65008DE994 /* BitHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79FAA91A9B1F65008DE994 /* BitHelpers.m */; };
 		CD79FAAD1A9BD62C008DE994 /* NibbleSwitcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79FAAC1A9BD62C008DE994 /* NibbleSwitcher.m */; };
 		CD79FAAF1A9BD643008DE994 /* NibbleSwitcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79FAAE1A9BD643008DE994 /* NibbleSwitcherTests.m */; };
+		CD79FAB21A9C5677008DE994 /* HexByteBinaryEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79FAB11A9C5677008DE994 /* HexByteBinaryEncoder.m */; };
+		CD79FAB41A9C56E1008DE994 /* HexByteBinaryEncoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79FAB31A9C56E1008DE994 /* HexByteBinaryEncoderTests.m */; };
 		CDA1F7351A9AF2120011B4B5 /* BitPacker.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA1F7321A9AF2120011B4B5 /* BitPacker.m */; };
 		CDA1F7361A9AF2120011B4B5 /* FrameDataBinaryEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA1F7341A9AF2120011B4B5 /* FrameDataBinaryEncoder.m */; };
 		CDA1F73B1A9AF3680011B4B5 /* CodingTable.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA1F73A1A9AF3680011B4B5 /* CodingTable.m */; };
@@ -54,6 +56,9 @@
 		CD79FAAB1A9BD62C008DE994 /* NibbleSwitcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NibbleSwitcher.h; sourceTree = "<group>"; };
 		CD79FAAC1A9BD62C008DE994 /* NibbleSwitcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NibbleSwitcher.m; sourceTree = "<group>"; };
 		CD79FAAE1A9BD643008DE994 /* NibbleSwitcherTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NibbleSwitcherTests.m; sourceTree = "<group>"; };
+		CD79FAB01A9C5677008DE994 /* HexByteBinaryEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexByteBinaryEncoder.h; sourceTree = "<group>"; };
+		CD79FAB11A9C5677008DE994 /* HexByteBinaryEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexByteBinaryEncoder.m; sourceTree = "<group>"; };
+		CD79FAB31A9C56E1008DE994 /* HexByteBinaryEncoderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexByteBinaryEncoderTests.m; sourceTree = "<group>"; };
 		CDA1F7311A9AF2120011B4B5 /* BitPacker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitPacker.h; sourceTree = "<group>"; };
 		CDA1F7321A9AF2120011B4B5 /* BitPacker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitPacker.m; sourceTree = "<group>"; };
 		CDA1F7331A9AF2120011B4B5 /* FrameDataBinaryEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameDataBinaryEncoder.h; sourceTree = "<group>"; };
@@ -123,16 +128,18 @@
 		CDA1F7381A9AF21E0011B4B5 /* BitPacker */ = {
 			isa = PBXGroup;
 			children = (
+				CD79FAA81A9B1F65008DE994 /* BitHelpers.h */,
+				CD79FAA91A9B1F65008DE994 /* BitHelpers.m */,
 				CDA1F7311A9AF2120011B4B5 /* BitPacker.h */,
 				CDA1F7321A9AF2120011B4B5 /* BitPacker.m */,
 				CDA1F7331A9AF2120011B4B5 /* FrameDataBinaryEncoder.h */,
 				CDA1F7341A9AF2120011B4B5 /* FrameDataBinaryEncoder.m */,
+				CD79FAB01A9C5677008DE994 /* HexByteBinaryEncoder.h */,
+				CD79FAB11A9C5677008DE994 /* HexByteBinaryEncoder.m */,
 				CD79FA9C1A9B11EE008DE994 /* HexConverter.h */,
 				CD79FA9D1A9B11EE008DE994 /* HexConverter.m */,
 				CD79FAA11A9B1B47008DE994 /* NibbleBitReverser.h */,
 				CD79FAA21A9B1B47008DE994 /* NibbleBitReverser.m */,
-				CD79FAA81A9B1F65008DE994 /* BitHelpers.h */,
-				CD79FAA91A9B1F65008DE994 /* BitHelpers.m */,
 				CD79FAAB1A9BD62C008DE994 /* NibbleSwitcher.h */,
 				CD79FAAC1A9BD62C008DE994 /* NibbleSwitcher.m */,
 			);
@@ -188,10 +195,11 @@
 			children = (
 				CD7731161A9AEB04006155F0 /* BitPackerTests.m */,
 				CD7731181A9AEB53006155F0 /* FrameDataBinaryEncoderTests.m */,
+				CD79FAB31A9C56E1008DE994 /* HexByteBinaryEncoderTests.m */,
 				CD79FA9F1A9B1205008DE994 /* HexConverterTests.m */,
-				CDBF22EE1A99C917001E25AB /* Supporting Files */,
 				CD79FAA41A9B1B5D008DE994 /* NibbleBitReverserTests.m */,
 				CD79FAAE1A9BD643008DE994 /* NibbleSwitcherTests.m */,
+				CDBF22EE1A99C917001E25AB /* Supporting Files */,
 			);
 			path = BlueWizardTests;
 			sourceTree = "<group>";
@@ -349,6 +357,7 @@
 				CD79FAAD1A9BD62C008DE994 /* NibbleSwitcher.m in Sources */,
 				CDA1F7361A9AF2120011B4B5 /* FrameDataBinaryEncoder.m in Sources */,
 				CDBF22E01A99C917001E25AB /* ViewController.m in Sources */,
+				CD79FAB21A9C5677008DE994 /* HexByteBinaryEncoder.m in Sources */,
 				CD79FAA31A9B1B47008DE994 /* NibbleBitReverser.m in Sources */,
 				CDBF22DD1A99C917001E25AB /* main.m in Sources */,
 				CD79FAAA1A9B1F65008DE994 /* BitHelpers.m in Sources */,
@@ -368,6 +377,7 @@
 				CD79FAA01A9B1205008DE994 /* HexConverterTests.m in Sources */,
 				CD79FAAF1A9BD643008DE994 /* NibbleSwitcherTests.m in Sources */,
 				CD7731171A9AEB04006155F0 /* BitPackerTests.m in Sources */,
+				CD79FAB41A9C56E1008DE994 /* HexByteBinaryEncoderTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

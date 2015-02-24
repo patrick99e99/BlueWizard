@@ -41,4 +41,8 @@
     XCTAssertEqualObjects([BitPacker pack:frameData], byteStream);
 }
 
+-(void)testItUnpacksAByteStreamIntoFrameData {
+    XCTAssertEqualObjects([BitPacker unpack:byteStream options:nil], frameData);
+}
+
 @end
