@@ -11,6 +11,7 @@
 		CD563B5E1AA16872001880B6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD563B5B1AA16872001880B6 /* AudioToolbox.framework */; };
 		CD563B5F1AA16872001880B6 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD563B5C1AA16872001880B6 /* AudioUnit.framework */; };
 		CD563B601AA16872001880B6 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD563B5D1AA16872001880B6 /* CoreAudio.framework */; };
+		CD563B621AA24A54001880B6 /* blue_wizard.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD563B611AA24A54001880B6 /* blue_wizard.lpc */; };
 		CD7731171A9AEB04006155F0 /* BitPackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7731161A9AEB04006155F0 /* BitPackerTests.m */; };
 		CD7731191A9AEB53006155F0 /* FrameDataBinaryEncoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7731181A9AEB53006155F0 /* FrameDataBinaryEncoderTests.m */; };
 		CD79FA9E1A9B11EE008DE994 /* HexConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79FA9D1A9B11EE008DE994 /* HexConverter.m */; };
@@ -65,6 +66,7 @@
 		CD563B5B1AA16872001880B6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		CD563B5C1AA16872001880B6 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		CD563B5D1AA16872001880B6 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		CD563B611AA24A54001880B6 /* blue_wizard.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = blue_wizard.lpc; sourceTree = "<group>"; };
 		CD7731161A9AEB04006155F0 /* BitPackerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitPackerTests.m; sourceTree = "<group>"; };
 		CD7731181A9AEB53006155F0 /* FrameDataBinaryEncoderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrameDataBinaryEncoderTests.m; sourceTree = "<group>"; };
 		CD79FA9C1A9B11EE008DE994 /* HexConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexConverter.h; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				CDFC57EB1AA0CD4200457C13 /* welcome_blue_valkrie.lpc */,
 				CDFC57EC1AA0CD4200457C13 /* welcome-to-treasure.lpc */,
 				CDFC57ED1AA0CD4200457C13 /* welcome.lpc */,
+				CD563B611AA24A54001880B6 /* blue_wizard.lpc */,
 			);
 			name = lpc;
 			path = /Users/patrick/coding/objective_c/BlueWizard/BlueWizard/lpc;
@@ -399,6 +402,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD563B621AA24A54001880B6 /* blue_wizard.lpc in Resources */,
 				CDFC57F61AA0CD4200457C13 /* welcome.lpc in Resources */,
 				CDFC57EE1AA0CD4200457C13 /* dont_shoot_food.lpc in Resources */,
 				CDBF22E21A99C917001E25AB /* Images.xcassets in Resources */,

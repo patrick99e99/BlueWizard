@@ -10,7 +10,7 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    [self.speechSynthesizer speak:@"welcome_blue_valkrie"];
+    [self.speechSynthesizer speak:@"blue_wizard"];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
