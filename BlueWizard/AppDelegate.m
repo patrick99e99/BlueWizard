@@ -1,25 +1,34 @@
-//
-//  AppDelegate.m
-//  BlueWizard
-//
-//  Created by Patrick Collins on 2/22/15.
-//  Copyright (c) 2015 Patrick Collins. All rights reserved.
-//
-
 #import "AppDelegate.h"
+#import "SpeechSynthesizer.h"
+#import "Sampler.h"
 
 @interface AppDelegate ()
-
+@property (nonatomic, strong) SpeechSynthesizer *speechSynthesizer;
+@property (nonatomic, strong) Sampler *sampler;
 @end
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
+    [self.speechSynthesizer speak:@"welcome_blue_valkrie"];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
-    // Insert code here to tear down your application
+    [self.speechSynthesizer stop];
+}
+
+-(SpeechSynthesizer *)speechSynthesizer {
+    if (!_speechSynthesizer) {
+        _speechSynthesizer = [[SpeechSynthesizer alloc] initWithSampler:self.sampler];
+    }
+    return _speechSynthesizer;
+}
+
+-(Sampler *)sampler {
+    if (!_sampler) {
+        _sampler = [[Sampler alloc] init];
+    }
+    return _sampler;
 }
 
 @end

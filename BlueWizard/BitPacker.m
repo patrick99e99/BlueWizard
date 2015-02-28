@@ -42,8 +42,8 @@
             [frame setObject:[NSNumber numberWithUnsignedInteger:value] forKey:parameter];
             
             if ([self frameHasNoGain:frame] ||
-                [self frameIsUnvoiced:frame] ||
-                [self frameIsRepeated:frame]) *stop = YES;
+                [self frameIsUnvoicedAndComplete:frame] ||
+                [self frameIsRepeatedAndComplete:frame]) *stop = YES;
         }];
 
         [frames addObject:frame];
@@ -55,12 +55,12 @@
     return ![[frame objectForKey:kParameterGain] unsignedIntegerValue];
 }
 
-+(BOOL)frameIsUnvoiced:(NSDictionary *)frame {
++(BOOL)frameIsUnvoicedAndComplete:(NSDictionary *)frame {
     return ![[frame objectForKey:kParameterPitch] unsignedIntegerValue] &&
             [self frameHasExactKeys:[self unvoicedKeys] frame:frame];
 }
 
-+(BOOL)frameIsRepeated:(NSDictionary *)frame {
++(BOOL)frameIsRepeatedAndComplete:(NSDictionary *)frame {
     return [[frame objectForKey:kParameterRepeat] unsignedIntegerValue] == 1 &&
             [self frameHasExactKeys:[self repeatKeys] frame:frame];
 }
