@@ -2,7 +2,8 @@
 @class Sampler;
 @interface SpeechSynthesizer : NSObject
 
--(instancetype)initWithSampler:(Sampler *)sampler;
+-(instancetype)initWithSampleRate:(NSUInteger)sampleRate sampler:(Sampler *)sampler;
+-(NSUInteger)sampleRate;
 -(void)speak:(NSString *)speechID;
 -(void)stop;
 

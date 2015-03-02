@@ -41,9 +41,9 @@
     unsigned int frames = _tms5220->m_fifo_count;
     int buffer[frames];
     _tms5220->process(buffer, frames);
-    
+    float scale = 1.0f / (1 << 15);
     for (int i = 0; i < frames; i++) {
-        [samples addObject:[NSNumber numberWithInt:buffer[i]]];
+        [samples addObject:[NSNumber numberWithFloat:buffer[i] * scale]];
     }
 }
 

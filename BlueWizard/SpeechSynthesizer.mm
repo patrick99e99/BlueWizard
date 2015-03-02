@@ -6,35 +6,35 @@
 
 @property (nonatomic, strong) NSDictionary *speechTable;
 @property (nonatomic, weak) Sampler *sampler;
+@property (nonatomic) NSUInteger sampleRate;
 
 @end
 
 @implementation SpeechSynthesizer
 
--(instancetype)initWithSampler:(Sampler *)sampler {
+-(instancetype)initWithSampleRate:(NSUInteger)sampleRate sampler:(Sampler *)sampler {
     if (self = [super init]) {
-        self.sampler = sampler;
+        self.sampleRate = sampleRate;
+        self.sampler    = sampler;
         [self loadLPC];
     }
     return self;
 }
 
 -(void)speak:(NSString *)speechID {
-    NSUInteger sampleRate = [self sampleRate];
+    __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        TMS5220Processor *processor = [[TMS5220Processor alloc] initWithSampleRate:sampleRate];
+        TMS5220Processor *processor = [[TMS5220Processor alloc] initWithSampleRate:weakSelf.sampleRate];
  
-        NSArray *samples = [processor processLPC:[self speechDataWithStartAndStopCommandsFor:speechID]];
+        NSArray *samples = [processor processLPC:[weakSelf speechDataWithStartAndStopCommandsFor:speechID]];
         
-        [self.sampler stream:samples sampleRate:[self sampleRate]];
+        [weakSelf.sampler stream:samples sampleRate:weakSelf.sampleRate];
     });
 }
 
 -(void)stop {
     [self.sampler stop];
 }
-
--(NSUInteger)sampleRate { return 8000; }
 
 -(NSArray *)speechDataWithStartAndStopCommandsFor:(NSString *)speechID {
     NSMutableArray *speechData = [[self.speechTable objectForKey:speechID] mutableCopy];

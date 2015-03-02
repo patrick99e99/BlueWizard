@@ -1,11 +1,14 @@
 #import "Sampler.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "AudioHelpers.h"
 
 typedef struct SamplerPlayer
 {
     AudioUnit outputUnit;
     NSUInteger index;
+    NSUInteger counter;
     NSUInteger numberOfSamples;
+    NSUInteger sampleRate;
     __unsafe_unretained Sampler *sampler;
 } SamplerPlayer;
 
@@ -31,11 +34,14 @@ OSStatus CallbackRenderProc(void *inRefCon,
     }
     
     for (int i = 0; i < inNumberFrames; i++) {
-        UInt16 sample = [[player->sampler.samples objectAtIndex:player->index] intValue];
+        SInt16 sample = [[player->sampler.samples objectAtIndex:player->index] floatValue] * (1 << 15);
         
-        ((UInt16 *)ioData->mBuffers[0].mData)[i] = sample;
+        ((SInt16 *)ioData->mBuffers[0].mData)[i] = sample;
         
-        player->index += 1;
+        if ((player->sampleRate == 8000 && !(player->counter % 6)) || player->sampleRate == 48000) {
+            player->index += 1;
+        }
+        player->counter += 1;
     }
     
     return noErr;
@@ -56,37 +62,18 @@ OSStatus CallbackRenderProc(void *inRefCon,
 
     self.samples = samples;
     
-    player = (SamplerPlayer){0};
-    player.sampler = self;
+    player                 = (SamplerPlayer){0};
+    player.sampler         = self;
+    player.sampleRate      = sampleRate;
     player.numberOfSamples = [self.samples count];
-        
-    CreateAndConnectOutputUnit(&player);
+    
+    [self createAndConnectOutputUnitWithSampleRate:48000];
 
-    CheckError (AudioOutputUnitStart(player.outputUnit), "Couldn't start output unit");
+    CheckError(AudioOutputUnitStart(player.outputUnit), "Couldn't start output unit");
 }
 
-static void CheckError(OSStatus error, const char *operation)
-{
-    if (error == noErr) return;
-    
-    char str[20];
-    // see if it appears to be a 4-char-code
-    *(UInt32 *)(str + 1) = CFSwapInt32HostToBig(error);
-    if (isprint(str[1]) && isprint(str[2]) && isprint(str[3]) && isprint(str[4])) {
-        str[0] = str[5] = '\'';
-        str[6] = '\0';
-    } else
-        // no, format it as an integer
-        sprintf(str, "%d", (int)error);
-    
-    fprintf(stderr, "Error: %s (%s)\n", operation, str);
-    
-    exit(1);
-}
-
-void CreateAndConnectOutputUnit (SamplerPlayer *player) {
-    
-    AudioComponentDescription outputcd = {0}; // 10.6 version
+-(void)createAndConnectOutputUnitWithSampleRate:(NSUInteger)sampleRate {
+    AudioComponentDescription outputcd = {0};
     outputcd.componentType = kAudioUnitType_Output;
     outputcd.componentSubType = kAudioUnitSubType_DefaultOutput;
     outputcd.componentManufacturer = kAudioUnitManufacturer_Apple;
@@ -97,14 +84,14 @@ void CreateAndConnectOutputUnit (SamplerPlayer *player) {
         printf ("can't get output unit");
         exit (-1);
     }
-    AudioComponentInstanceNew(comp, &player->outputUnit);
+    AudioComponentInstanceNew(comp, &player.outputUnit);
     
     // register render callback
     AURenderCallbackStruct input;
     input.inputProc = CallbackRenderProc;
-    input.inputProcRefCon = player;
+    input.inputProcRefCon = &player;
     
-    CheckError(AudioUnitSetProperty(player->outputUnit,
+    CheckError(AudioUnitSetProperty(player.outputUnit,
                                     kAudioUnitProperty_SetRenderCallback,
                                     kAudioUnitScope_Input,
                                     0,
@@ -113,25 +100,25 @@ void CreateAndConnectOutputUnit (SamplerPlayer *player) {
                "AudioUnitSetProperty failed");
     
     AudioStreamBasicDescription asbd;
-    asbd.mSampleRate = 8000.0;
+    asbd.mSampleRate = sampleRate;
     asbd.mFormatID = kAudioFormatLinearPCM;
-    asbd.mFormatFlags = kAudioFormatFlagIsSignedInteger;//kAudioFormatFlagsNativeEndian | kAudioFormatFlagIsNonMixable;
+    asbd.mFormatFlags = kAudioFormatFlagIsSignedInteger;
     asbd.mFramesPerPacket = 1;
     asbd.mChannelsPerFrame = 1;
     asbd.mBitsPerChannel = 16;
     asbd.mBytesPerPacket = 2;
     asbd.mBytesPerFrame = 2;
     
-    OSStatus err;
     
-    err = AudioUnitSetProperty(player->outputUnit,
+    CheckError(AudioUnitSetProperty(player.outputUnit,
                                kAudioUnitProperty_StreamFormat,
                                kAudioUnitScope_Input,
                                0,
                                &asbd,
-                               sizeof(asbd));
+                               sizeof(asbd)),
+                "Couldn't set description for stream");
     
-    CheckError (AudioUnitInitialize(player->outputUnit),
+    CheckError(AudioUnitInitialize(player.outputUnit),
                 "Couldn't initialize output unit");
     
 }
