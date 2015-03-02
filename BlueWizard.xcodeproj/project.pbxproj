@@ -13,6 +13,8 @@
 		CD563B601AA16872001880B6 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD563B5D1AA16872001880B6 /* CoreAudio.framework */; };
 		CD563B621AA24A54001880B6 /* blue_wizard.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD563B611AA24A54001880B6 /* blue_wizard.lpc */; };
 		CD563B651AA2A1DF001880B6 /* Input.m in Sources */ = {isa = PBXBuildFile; fileRef = CD563B641AA2A1DF001880B6 /* Input.m */; };
+		CD7626971AA43673001E0A9E /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD7626961AA43673001E0A9E /* Media.xcassets */; };
+		CD76269A1AA43ABB001E0A9E /* HammingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7626991AA43ABB001E0A9E /* HammingWindow.m */; };
 		CD7731171A9AEB04006155F0 /* BitPackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7731161A9AEB04006155F0 /* BitPackerTests.m */; };
 		CD7731191A9AEB53006155F0 /* FrameDataBinaryEncoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7731181A9AEB53006155F0 /* FrameDataBinaryEncoderTests.m */; };
 		CD773DE11AA3DFCC004091CC /* Output.m in Sources */ = {isa = PBXBuildFile; fileRef = CD773DE01AA3DFCC004091CC /* Output.m */; };
@@ -37,7 +39,6 @@
 		CDBF22DB1A99C917001E25AB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBF22DA1A99C917001E25AB /* AppDelegate.m */; };
 		CDBF22DD1A99C917001E25AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBF22DC1A99C917001E25AB /* main.m */; };
 		CDBF22E01A99C917001E25AB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBF22DF1A99C917001E25AB /* ViewController.m */; };
-		CDBF22E21A99C917001E25AB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBF22E11A99C917001E25AB /* Images.xcassets */; };
 		CDBF22E51A99C917001E25AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDBF22E31A99C917001E25AB /* Main.storyboard */; };
 		CDFC57EE1AA0CD4200457C13 /* dont_shoot_food.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CDFC57E51AA0CD4200457C13 /* dont_shoot_food.lpc */; };
 		CDFC57EF1AA0CD4200457C13 /* good_choice_kid.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CDFC57E61AA0CD4200457C13 /* good_choice_kid.lpc */; };
@@ -70,6 +71,9 @@
 		CD563B611AA24A54001880B6 /* blue_wizard.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = blue_wizard.lpc; sourceTree = "<group>"; };
 		CD563B631AA2A1DF001880B6 /* Input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Input.h; sourceTree = "<group>"; };
 		CD563B641AA2A1DF001880B6 /* Input.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Input.m; sourceTree = "<group>"; };
+		CD7626961AA43673001E0A9E /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		CD7626981AA43ABB001E0A9E /* HammingWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HammingWindow.h; sourceTree = "<group>"; };
+		CD7626991AA43ABB001E0A9E /* HammingWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HammingWindow.m; sourceTree = "<group>"; };
 		CD7731161A9AEB04006155F0 /* BitPackerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitPackerTests.m; sourceTree = "<group>"; };
 		CD7731181A9AEB53006155F0 /* FrameDataBinaryEncoderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrameDataBinaryEncoderTests.m; sourceTree = "<group>"; };
 		CD773DDE1AA3CBAD004091CC /* AudioHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioHelpers.h; sourceTree = "<group>"; };
@@ -114,7 +118,6 @@
 		CDBF22DC1A99C917001E25AB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CDBF22DE1A99C917001E25AB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		CDBF22DF1A99C917001E25AB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		CDBF22E11A99C917001E25AB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CDBF22E41A99C917001E25AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CDBF22EA1A99C917001E25AB /* BlueWizardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlueWizardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBF22EF1A99C917001E25AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -196,6 +199,7 @@
 		CDA1F7371A9AF2170011B4B5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CD773DDE1AA3CBAD004091CC /* AudioHelpers.h */,
 				CD79FABE1A9D2A1C008DE994 /* SpeechSynthesizer.h */,
 				CD79FABF1A9D2A1C008DE994 /* SpeechSynthesizer.mm */,
 				CD79FAC01A9D2A1C008DE994 /* TMS5220Processor.h */,
@@ -209,9 +213,10 @@
 				CD99A7AD1AA155FD003BC67E /* Sampler.mm */,
 				CD563B631AA2A1DF001880B6 /* Input.h */,
 				CD563B641AA2A1DF001880B6 /* Input.m */,
-				CD773DDE1AA3CBAD004091CC /* AudioHelpers.h */,
 				CD773DDF1AA3DFCC004091CC /* Output.h */,
 				CD773DE01AA3DFCC004091CC /* Output.m */,
+				CD7626981AA43ABB001E0A9E /* HammingWindow.h */,
+				CD7626991AA43ABB001E0A9E /* HammingWindow.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -267,9 +272,9 @@
 				CDBF22DA1A99C917001E25AB /* AppDelegate.m */,
 				CDBF22DE1A99C917001E25AB /* ViewController.h */,
 				CDBF22DF1A99C917001E25AB /* ViewController.m */,
-				CDBF22E11A99C917001E25AB /* Images.xcassets */,
 				CDBF22E31A99C917001E25AB /* Main.storyboard */,
 				CDBF22D71A99C917001E25AB /* Supporting Files */,
+				CD7626961AA43673001E0A9E /* Media.xcassets */,
 			);
 			path = BlueWizard;
 			sourceTree = "<group>";
@@ -416,12 +421,12 @@
 				CD563B621AA24A54001880B6 /* blue_wizard.lpc in Resources */,
 				CDFC57F61AA0CD4200457C13 /* welcome.lpc in Resources */,
 				CDFC57EE1AA0CD4200457C13 /* dont_shoot_food.lpc in Resources */,
-				CDBF22E21A99C917001E25AB /* Images.xcassets in Resources */,
 				CDFC57EF1AA0CD4200457C13 /* good_choice_kid.lpc in Resources */,
 				CDFC57F41AA0CD4200457C13 /* welcome_blue_valkrie.lpc in Resources */,
 				CDFC57F11AA0CD4200457C13 /* skate_or_die.lpc in Resources */,
 				CDFC57F21AA0CD4200457C13 /* traps_make_walls_disappear.lpc in Resources */,
 				CDBF22E51A99C917001E25AB /* Main.storyboard in Resources */,
+				CD7626971AA43673001E0A9E /* Media.xcassets in Resources */,
 				CD79FABD1A9D2A0A008DE994 /* tms5220.txt in Resources */,
 				CDFC57F01AA0CD4200457C13 /* save_keys_to_open_doors.lpc in Resources */,
 				CDFC57F31AA0CD4200457C13 /* valkrie_is_it.lpc in Resources */,
@@ -479,6 +484,7 @@
 				CD79FAAD1A9BD62C008DE994 /* NibbleSwitcher.m in Sources */,
 				CDA1F7361A9AF2120011B4B5 /* FrameDataBinaryEncoder.m in Sources */,
 				CDBF22E01A99C917001E25AB /* ViewController.m in Sources */,
+				CD76269A1AA43ABB001E0A9E /* HammingWindow.m in Sources */,
 				CD99A7AE1AA155FD003BC67E /* Sampler.mm in Sources */,
 				CD79FAB21A9C5677008DE994 /* HexByteBinaryEncoder.m in Sources */,
 				CD563B651AA2A1DF001880B6 /* Input.m in Sources */,
