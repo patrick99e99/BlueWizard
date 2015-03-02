@@ -18,5 +18,8 @@ static NSString * const kParameterK10    = @"k10";
 
 +(NSArray *)bits;
 +(NSArray *)parameters;
++(NSArray *)pitch;
++(NSArray *)rms;
+-(NSArray *)kBinFor:(NSUInteger)k;
 
 @end
