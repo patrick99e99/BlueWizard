@@ -3,17 +3,6 @@
 #import "Sampler.h"
 #import "AudioHelpers.h"
 
-#define kInputFileLocation	CFSTR("/Users/patrick/Desktop/booberry.aif")
-
-typedef struct MyAudioConverterSettings
-{
-    AudioStreamBasicDescription outputFormat; // output file's data stream description
-    
-    ExtAudioFileRef				inputFile; // reference to your input file
-    AudioFileID					outputFile; // reference to your output file
-    
-} MyAudioConverterSettings;
-
 @interface Input ()
 @property (nonatomic, copy) NSURL *url;
 @property (nonatomic, weak) Sampler *sampler;
