@@ -5,7 +5,7 @@
 @implementation FrameDataBinaryEncoder
 
 +(NSArray *)process:(NSArray *)frameData {
-    NSArray *bits = [CodingTable bits];
+    int *bits = [CodingTable bits];
 
     __block NSString *binary = @"";
 
@@ -15,7 +15,7 @@
             NSNumber *value = [frame objectForKey:parameter];
             if (value) {
                 NSString *binaryValue = [BitHelpers valueToBinary:[value unsignedIntegerValue]
-                                                             bits:[[bits objectAtIndex:idx] unsignedIntegerValue]];
+                                                             bits:bits[idx]];
 
                 binary = [binary stringByAppendingString:binaryValue];
             } else { *stop = YES; }

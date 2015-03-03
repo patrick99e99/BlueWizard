@@ -28,9 +28,8 @@
     
     byteStream = @"09,d4,66,66,81,05,4b,a5,a0,6a,5d,b5,b6,5e,a6,45,17,a8,5e,0c";
     
-    id classMock = OCMClassMock([CodingTable class]);
-    NSArray *bits = @[ @4, @1, @5, @5, @5, @4, @4, @4, @4, @4, @3, @3, @3 ];
-    OCMStub([classMock bits]).andReturn(bits);
+    int *bits = [CodingTable bits];
+    bits[2] = 5;
 }
 
 -(void)tearDown {

@@ -22,9 +22,9 @@
       @{ kParameterGain: @13, kParameterRepeat: @0, kParameterPitch: @12, kParameterK1: @22, kParameterK2: @17, kParameterK3: @7, kParameterK4: @4, kParameterK5: @0, kParameterK6: @10, kParameterK7: @11, kParameterK8: @6, kParameterK9: @4, kParameterK10: @3 },
       @{ kParameterGain: @0 }
     ];
-    id classMock = OCMClassMock([CodingTable class]);
-    NSArray *bits = @[ @4, @1, @5, @5, @5, @4, @4, @4, @4, @4, @3, @3, @3 ];
-    OCMStub([classMock bits]).andReturn(bits);
+
+    int *bits = [CodingTable bits];
+    bits[2] = 5;
 
     subject = [FrameDataBinaryEncoder process:frameData];
 }

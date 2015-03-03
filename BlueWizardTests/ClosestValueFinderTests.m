@@ -1,6 +1,7 @@
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
 #import "ClosestValueFinder.h"
+#import "CodingTable.h"
 
 @interface ClosestValueFinderTests : XCTestCase
 
@@ -8,6 +9,7 @@
 
 @implementation ClosestValueFinderTests {
     NSNumber *subject;
+    NSInteger subj;
 }
 
 -(void)setUp {
@@ -19,25 +21,22 @@
 }
 
 -(void)testItFindsTheClosestIndexGivenAnActualValueAndAListOfValues {
-    subject = [ClosestValueFinder indexOrTranslatedValueFor:@1.25f values:@[@1, @2] translate:NO];
-    XCTAssertEqualObjects(subject, @0);
+    NSUInteger size = 2;
+
+    float floats[] = {1.0f, 2.0f};
+    subj = [ClosestValueFinder indexFor:1.25f floats:floats size:size];
+    XCTAssertEqual(subj, 0);
+
+    subj = [ClosestValueFinder indexFor:1.75f floats:floats size:size];
+    XCTAssertEqual(subj, 1);
+
+    floats[0] = 5.0f;
+    floats[1] = 6.0f;
+    subj = [ClosestValueFinder indexFor:-1.0f floats:floats size:size];
+    XCTAssertEqual(subj, 0);
     
-    subject = [ClosestValueFinder indexOrTranslatedValueFor:@1.75f values:@[@1, @2] translate:NO];
-    XCTAssertEqualObjects(subject, @1);
-
-    subject = [ClosestValueFinder indexOrTranslatedValueFor:@-1 values:@[@5, @6] translate:NO];
-    XCTAssertEqualObjects(subject, @0);
-
-    subject = [ClosestValueFinder indexOrTranslatedValueFor:@8 values:@[@5, @6] translate:NO];
-    XCTAssertEqualObjects(subject, @1);
-}
-
--(void)testItReturnsTheTranslation {
-    subject = [ClosestValueFinder indexOrTranslatedValueFor:@50 values:@[@100, @200] translate:YES];
-    XCTAssertEqualObjects(subject, @100);
-
-    subject = [ClosestValueFinder indexOrTranslatedValueFor:@250 values:@[@100, @200] translate:YES];
-    XCTAssertEqualObjects(subject, @200);
+    subj = [ClosestValueFinder indexFor:8.0f floats:floats size:size];
+    XCTAssertEqual(subj, 1);
 }
 
 @end

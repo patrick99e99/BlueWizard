@@ -1,7 +1,8 @@
 #import <Foundation/Foundation.h>
 
+@class Buffer;
 @interface HammingWindow : NSObject
 
-+(NSArray *)process:(NSArray *)buffer;
++(void)processBuffer:(Buffer *)buffer;
 
 @end

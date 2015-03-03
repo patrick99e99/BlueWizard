@@ -29,15 +29,16 @@
 +(NSArray *)frameDataFor:(NSString *)binary {
     NSMutableArray *frames = [NSMutableArray arrayWithCapacity:[binary length]];
     
+    int *bits = [CodingTable bits];
     __block NSString *binaryString = binary;
     while ([binaryString length]) {
         NSMutableDictionary *frame = [NSMutableDictionary dictionaryWithCapacity:13];
         [[CodingTable parameters] enumerateObjectsUsingBlock:^(NSString *parameter, NSUInteger idx, BOOL *stop) {
-            NSUInteger bits = [[[CodingTable bits] objectAtIndex:idx] integerValue];
-            NSUInteger length = [binary length];
-            NSUInteger shift  = length < bits ? (bits - length) : 0;
-            NSUInteger value  = [BitHelpers valueForBinary:[binaryString substringToIndex:bits]] << shift;
-            binaryString = [binaryString substringFromIndex:bits];
+            NSUInteger parameterBits = bits[idx];
+            NSUInteger length        = [binary length];
+            NSUInteger shift         = length < parameterBits ? (parameterBits - length) : 0;
+            NSUInteger value         = [BitHelpers valueForBinary:[binaryString substringToIndex:parameterBits]] << shift;
+            binaryString = [binaryString substringFromIndex:parameterBits];
             
             [frame setObject:[NSNumber numberWithUnsignedInteger:value] forKey:parameter];
             

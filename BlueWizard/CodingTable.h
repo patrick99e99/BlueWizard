@@ -16,10 +16,13 @@ static NSString * const kParameterK10    = @"k10";
 
 @interface CodingTable : NSObject
 
-+(NSArray *)bits;
 +(NSArray *)parameters;
-+(NSArray *)pitch;
-+(NSArray *)rms;
--(NSArray *)kBinFor:(NSUInteger)k;
++(int *)bits;
++(int *)pitch;
++(int *)rms;
++(float *)kBinFor:(NSUInteger)k;
++(NSUInteger)pitchSize;
++(NSUInteger)rmsSize;
++(NSUInteger)kSizeFor:(NSUInteger)k;
 
 @end
