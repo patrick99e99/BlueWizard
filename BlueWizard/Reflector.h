@@ -4,5 +4,7 @@
 
 -(BOOL)isVoiced;
 -(BOOL)isUnvoiced;
+-(NSUInteger)rms;
+-(float *)ks;
 
 @end

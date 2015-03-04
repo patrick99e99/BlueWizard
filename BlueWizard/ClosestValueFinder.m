@@ -2,16 +2,6 @@
 
 @implementation ClosestValueFinder
 
-+(float)translatedFloatFor:(float)actual floats:(float *)floats size:(NSUInteger)size {
-    NSUInteger index = [self indexFor:actual floats:floats size:size];
-    return floats[index];
-}
-
-+(int)translatedIntFor:(int)actual ints:(int *)ints size:(NSUInteger)size {
-    NSUInteger index = [self indexFor:actual ints:ints size:size];
-    return ints[index];
-}
-
 +(NSUInteger)indexFor:(float)actual floats:(float *)floats size:(NSUInteger)size {
     if (actual < floats[0]) return 0;
     

@@ -22,6 +22,8 @@
 		CD7626A81AA5A6CD001E0A9E /* Buffer.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7626A71AA5A6CD001E0A9E /* Buffer.m */; };
 		CD7626AB1AA66A04001E0A9E /* PreEmphasizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7626AA1AA66A04001E0A9E /* PreEmphasizer.m */; };
 		CD7626AD1AA66AA4001E0A9E /* BufferTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7626AC1AA66AA4001E0A9E /* BufferTests.m */; };
+		CD7626B51AA6A770001E0A9E /* FrameData.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7626B41AA6A770001E0A9E /* FrameData.m */; };
+		CD7626B71AA6A7B5001E0A9E /* FrameDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7626B61AA6A7B5001E0A9E /* FrameDataTests.m */; };
 		CD7731171A9AEB04006155F0 /* BitPackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7731161A9AEB04006155F0 /* BitPackerTests.m */; };
 		CD7731191A9AEB53006155F0 /* FrameDataBinaryEncoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7731181A9AEB53006155F0 /* FrameDataBinaryEncoderTests.m */; };
 		CD773DE11AA3DFCC004091CC /* Output.m in Sources */ = {isa = PBXBuildFile; fileRef = CD773DE01AA3DFCC004091CC /* Output.m */; };
@@ -93,6 +95,9 @@
 		CD7626A91AA66A04001E0A9E /* PreEmphasizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreEmphasizer.h; sourceTree = "<group>"; };
 		CD7626AA1AA66A04001E0A9E /* PreEmphasizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreEmphasizer.m; sourceTree = "<group>"; };
 		CD7626AC1AA66AA4001E0A9E /* BufferTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BufferTests.m; sourceTree = "<group>"; };
+		CD7626B31AA6A770001E0A9E /* FrameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameData.h; sourceTree = "<group>"; };
+		CD7626B41AA6A770001E0A9E /* FrameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrameData.m; sourceTree = "<group>"; };
+		CD7626B61AA6A7B5001E0A9E /* FrameDataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrameDataTests.m; sourceTree = "<group>"; };
 		CD7731161A9AEB04006155F0 /* BitPackerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitPackerTests.m; sourceTree = "<group>"; };
 		CD7731181A9AEB53006155F0 /* FrameDataBinaryEncoderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrameDataBinaryEncoderTests.m; sourceTree = "<group>"; };
 		CD773DDE1AA3CBAD004091CC /* AudioHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioHelpers.h; sourceTree = "<group>"; };
@@ -246,6 +251,8 @@
 				CD7626A71AA5A6CD001E0A9E /* Buffer.m */,
 				CD7626A91AA66A04001E0A9E /* PreEmphasizer.h */,
 				CD7626AA1AA66A04001E0A9E /* PreEmphasizer.m */,
+				CD7626B31AA6A770001E0A9E /* FrameData.h */,
+				CD7626B41AA6A770001E0A9E /* FrameData.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -329,6 +336,7 @@
 				CDBF22EE1A99C917001E25AB /* Supporting Files */,
 				CD76269E1AA45500001E0A9E /* ClosestValueFinderTests.m */,
 				CD7626AC1AA66AA4001E0A9E /* BufferTests.m */,
+				CD7626B61AA6A7B5001E0A9E /* FrameDataTests.m */,
 			);
 			path = BlueWizardTests;
 			sourceTree = "<group>";
@@ -531,6 +539,7 @@
 				CD99A7AB1AA0EEAF003BC67E /* TestSampleData.m in Sources */,
 				CD79FAC31A9D2A1C008DE994 /* TMS5220Processor.mm in Sources */,
 				CD79FABC1A9D2A0A008DE994 /* tms5220.cpp in Sources */,
+				CD7626B51AA6A770001E0A9E /* FrameData.m in Sources */,
 				CD773DE11AA3DFCC004091CC /* Output.m in Sources */,
 				CDA1F73B1A9AF3680011B4B5 /* CodingTable.m in Sources */,
 				CDA1F7351A9AF2120011B4B5 /* BitPacker.m in Sources */,
@@ -550,6 +559,7 @@
 				CD7731171A9AEB04006155F0 /* BitPackerTests.m in Sources */,
 				CD7626AD1AA66AA4001E0A9E /* BufferTests.m in Sources */,
 				CD79FAB41A9C56E1008DE994 /* HexByteBinaryEncoderTests.m in Sources */,
+				CD7626B71AA6A7B5001E0A9E /* FrameDataTests.m in Sources */,
 				CD76269F1AA45500001E0A9E /* ClosestValueFinderTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

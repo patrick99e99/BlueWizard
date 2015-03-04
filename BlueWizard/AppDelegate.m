@@ -15,6 +15,15 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     [self.speechSynthesizer speak:@"blue_wizard"];
+//    [self openFileBrowser];
+//    
+//    NSMutableArray *samples = [NSMutableArray array];
+//    for (NSNumber *num in [TestSampleData samples]) {
+//        float f = ((float)[num intValue]) / (1 << 15);
+//        [samples addObject:[NSNumber numberWithFloat:f]];
+//    }
+//    [Output save:samples];
+//    [self.sampler stream:[i samples] sampleRate:48000];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
