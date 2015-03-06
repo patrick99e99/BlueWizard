@@ -2,10 +2,12 @@
 #import <AppKit/AppKit.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "AudioHelpers.h"
+#import "Buffer.h"
+#import "UserSettings.h"
 
 @implementation Output
 
-+(void)save:(NSArray *)buffer {
++(void)save:(Buffer *)buffer {
     NSSavePanel *save = [NSSavePanel savePanel];
     
     NSInteger result = [save runModal];
@@ -15,10 +17,10 @@
     }
 }
 
-+(void)createAIFFileFrom:(NSArray *)buffer URL:(NSURL *)URL {
++(void)createAIFFileFrom:(Buffer *)buffer URL:(NSURL *)URL {
     AudioStreamBasicDescription asbd = {0};
     
-    asbd.mSampleRate = 48000.0f;
+    asbd.mSampleRate = [[[UserSettings sharedInstance] exportSampleRate] floatValue];
     asbd.mFormatID = kAudioFormatLinearPCM;
     asbd.mFormatFlags = kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsBigEndian;
     asbd.mFramesPerPacket = 1;
@@ -34,25 +36,23 @@
                                       &file),
                "AudioFileCreateWithURL failed");
 
-    int inputSamples = (int)[buffer count];
-    UInt32 outputSamples = (UInt32)inputSamples * 6;
+    UInt32 outputSamples = (UInt32)buffer.size * 6;
     AudioBufferList ioData = {0};
     ioData.mNumberBuffers = 1;
     ioData.mBuffers[0].mNumberChannels = 1;
     ioData.mBuffers[0].mDataByteSize = asbd.mBytesPerPacket * outputSamples;
     ioData.mBuffers[0].mData = malloc(ioData.mBuffers[0].mDataByteSize);
     
+    float ratio = buffer.sampleRate / asbd.mSampleRate;
     NSUInteger scale = (1 << 15);
-    NSUInteger index = 0;
     NSUInteger i = 0;
-    while (i < inputSamples) {
-        SInt16 sample = (SInt16)([[buffer objectAtIndex:i] floatValue] * scale);
+    NSUInteger index = 0;
+    while (index < buffer.size) {
+        SInt16 sample = buffer.samples[index] * scale;
         sample = CFSwapInt16HostToBig(sample);
-        ((SInt16 *)ioData.mBuffers[0].mData)[index] = sample;
-        index += 1;
-        if (!(index % 6)) {
-            i += 1;
-        }
+        ((SInt16 *)ioData.mBuffers[0].mData)[i] = sample;
+        i += 1;
+        index = floor(i * ratio);
     }
     
     CheckError(AudioFileWritePackets(file,
