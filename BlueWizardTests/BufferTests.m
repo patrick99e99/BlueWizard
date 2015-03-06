@@ -13,7 +13,7 @@
 -(void)setUp {
     [super setUp];
     float samples[] = { 2.0f, 3.0f, 4.0f };
-    subject = [[Buffer alloc] initWithSamples:samples size:3];
+    subject = [[Buffer alloc] initWithSamples:samples size:3 sampleRate:8000];
 }
 
 -(void)tearDown {
@@ -32,6 +32,10 @@
 
 -(void)testItKnowsItsEnergy {
     XCTAssertEqual([subject energy], 29.0f);
+}
+
+-(void)testItKnowsItsSampleRate {
+    XCTAssertEqual([subject sampleRate], 8000);
 }
 
 @end
