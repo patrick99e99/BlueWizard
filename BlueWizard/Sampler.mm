@@ -1,14 +1,27 @@
 #import "Sampler.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import "AudioHelpers.h"
+#import "Buffer.h"
+#import "SamplerDelegate.h"
+
+@interface Sampler ()
+
+@property (nonatomic) NSUInteger sampleRate;
+@property (nonatomic, weak) id<SamplerDelegate>delegate;
+@property (nonatomic) BOOL streaming;
+
+-(void)didFinishStreaming:(Buffer *)buffer;
+
+@end
+
+static NSUInteger const sampleRate = 48000;
 
 typedef struct SamplerPlayer
 {
     AudioUnit outputUnit;
-    NSUInteger index;
     NSUInteger counter;
-    NSUInteger numberOfSamples;
-    NSUInteger sampleRate;
+    float ratio;
+    Buffer *buffer;
     __unsafe_unretained Sampler *sampler;
 } SamplerPlayer;
 
@@ -25,54 +38,55 @@ OSStatus CallbackRenderProc(void *inRefCon,
                             const AudioTimeStamp *inTimeStamp,
                             UInt32 inBusNumber,
                             UInt32 inNumberFrames,
-                            AudioBufferList * ioData)
-{
+                            AudioBufferList * ioData) {
     struct SamplerPlayer *player = (struct SamplerPlayer *)inRefCon;
-    
-    if (player->numberOfSamples <= player->index) {
-        [player->sampler performSelectorOnMainThread:@selector(stop) withObject:nil waitUntilDone:NO];
-    }
-    
+
+    if (!player->sampler.streaming) return noErr;
+
     for (int i = 0; i < inNumberFrames; i++) {
-        SInt16 sample = [[player->sampler.samples objectAtIndex:player->index] floatValue] * (1 << 15);
-        
+        NSUInteger index = floor(player->counter / player->ratio);
+        SInt16 sample = player->buffer.samples[index] * (1 << 15);
         ((SInt16 *)ioData->mBuffers[0].mData)[i] = sample;
-        
-        if ((player->sampleRate == 8000 && !(player->counter % 6)) || player->sampleRate == 48000) {
-            player->index += 1;
+
+        if (index == player->buffer.size - 1) {
+            [player->sampler performSelectorOnMainThread:@selector(didFinishStreaming:)
+                                              withObject:player->buffer
+                                           waitUntilDone:NO];
+            break;
+        } else {
+            player->counter += 1;
         }
-        player->counter += 1;
     }
     
     return noErr;
 }
 
-@interface Sampler ()
-
-@property (nonatomic, copy) NSArray *samples;
-
-@end
-
 @implementation Sampler {
     SamplerPlayer player;
 }
 
--(void)stream:(NSArray *)samples sampleRate:(NSUInteger)sampleRate {
-    [self stop];
+-(instancetype)initWithDelegate:(id<SamplerDelegate>)delegate {
+    if (self = [super init]) {
+        self.delegate = delegate;
+    }
+    return self;
+}
 
-    self.samples = samples;
+-(void)stream:(Buffer *)buffer {
+    [self stop];
+    self.streaming = YES;
     
-    player                 = (SamplerPlayer){0};
-    player.sampler         = self;
-    player.sampleRate      = sampleRate;
-    player.numberOfSamples = [self.samples count];
-    
-    [self createAndConnectOutputUnitWithSampleRate:48000];
+    player         = {0};
+    player.ratio   = (float)sampleRate / buffer.sampleRate;
+    player.buffer  = buffer;
+    player.sampler = self;
+
+    [self createAndConnectOutputUnit];
 
     CheckError(AudioOutputUnitStart(player.outputUnit), "Couldn't start output unit");
 }
 
--(void)createAndConnectOutputUnitWithSampleRate:(NSUInteger)sampleRate {
+-(void)createAndConnectOutputUnit {
     AudioComponentDescription outputcd = {0};
     outputcd.componentType = kAudioUnitType_Output;
     outputcd.componentSubType = kAudioUnitSubType_DefaultOutput;
@@ -84,13 +98,14 @@ OSStatus CallbackRenderProc(void *inRefCon,
         printf ("can't get output unit");
         exit (-1);
     }
+
     AudioComponentInstanceNew(comp, &player.outputUnit);
     
     // register render callback
     AURenderCallbackStruct input;
     input.inputProc = CallbackRenderProc;
     input.inputProcRefCon = &player;
-    
+
     CheckError(AudioUnitSetProperty(player.outputUnit,
                                     kAudioUnitProperty_SetRenderCallback,
                                     kAudioUnitScope_Input,
@@ -98,7 +113,7 @@ OSStatus CallbackRenderProc(void *inRefCon,
                                     &input,
                                     sizeof(input)),
                "AudioUnitSetProperty failed");
-    
+
     AudioStreamBasicDescription asbd;
     asbd.mSampleRate = sampleRate;
     asbd.mFormatID = kAudioFormatLinearPCM;
@@ -108,7 +123,6 @@ OSStatus CallbackRenderProc(void *inRefCon,
     asbd.mBitsPerChannel = 16;
     asbd.mBytesPerPacket = 2;
     asbd.mBytesPerFrame = 2;
-    
     
     CheckError(AudioUnitSetProperty(player.outputUnit,
                                kAudioUnitProperty_StreamFormat,
@@ -120,10 +134,16 @@ OSStatus CallbackRenderProc(void *inRefCon,
     
     CheckError(AudioUnitInitialize(player.outputUnit),
                 "Couldn't initialize output unit");
-    
+}
+
+-(void)didFinishStreaming:(Buffer *)buffer {
+    [self stop];
+    [self.delegate didFinishStreaming:buffer];
 }
 
 -(void)stop {
+    if (!self.streaming) return;
+    self.streaming = NO;
     AudioOutputUnitStop(player.outputUnit);
     AudioUnitUninitialize(player.outputUnit);
     AudioComponentInstanceDispose(player.outputUnit);
