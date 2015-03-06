@@ -1,8 +1,9 @@
 #import <Foundation/Foundation.h>
 
-@class Sampler;
+@class Buffer;
 @interface Input : NSObject
 
--(instancetype)initWithSampler:(Sampler *)sampler URL:(NSURL *)url;
+-(instancetype)initWithURL:(NSURL *)URL;
+-(Buffer *)buffer;
 
 @end
