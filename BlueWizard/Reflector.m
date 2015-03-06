@@ -2,7 +2,6 @@
 
 @interface Reflector ()
 @property (nonatomic) float *ks;
-@property (nonatomic) NSUInteger rms;
 @end
 
 @implementation Reflector

@@ -2,9 +2,11 @@
 
 @interface Reflector : NSObject
 
+@property (nonatomic) NSUInteger rms;
+
++(instancetype)translateCoefficients:(float *)r numberOfSamples:(NSUInteger)numberOfSamples;
 -(BOOL)isVoiced;
 -(BOOL)isUnvoiced;
--(NSUInteger)rms;
 -(float *)ks;
 
 @end
