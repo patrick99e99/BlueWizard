@@ -24,6 +24,12 @@
 		CD7626AD1AA66AA4001E0A9E /* BufferTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7626AC1AA66AA4001E0A9E /* BufferTests.m */; };
 		CD7626B51AA6A770001E0A9E /* FrameData.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7626B41AA6A770001E0A9E /* FrameData.m */; };
 		CD7626B71AA6A7B5001E0A9E /* FrameDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7626B61AA6A7B5001E0A9E /* FrameDataTests.m */; };
+		CD7626BA1AA6FB7B001E0A9E /* UserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7626B91AA6FB7B001E0A9E /* UserSettings.m */; };
+		CD7626BD1AA6FF44001E0A9E /* Segmenter.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7626BC1AA6FF44001E0A9E /* Segmenter.m */; };
+		CD7626BF1AA7052E001E0A9E /* SegmenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7626BE1AA7052E001E0A9E /* SegmenterTests.m */; };
+		CD7626C21AA85FB0001E0A9E /* RMSNormalizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7626C11AA85FB0001E0A9E /* RMSNormalizer.m */; };
+		CD7626C41AA860F0001E0A9E /* RMSNormalizerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7626C31AA860F0001E0A9E /* RMSNormalizerTests.m */; };
+		CD7626C71AA90D9E001E0A9E /* Processor.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7626C61AA90D9E001E0A9E /* Processor.m */; };
 		CD7731171A9AEB04006155F0 /* BitPackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7731161A9AEB04006155F0 /* BitPackerTests.m */; };
 		CD7731191A9AEB53006155F0 /* FrameDataBinaryEncoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7731181A9AEB53006155F0 /* FrameDataBinaryEncoderTests.m */; };
 		CD773DE11AA3DFCC004091CC /* Output.m in Sources */ = {isa = PBXBuildFile; fileRef = CD773DE01AA3DFCC004091CC /* Output.m */; };
@@ -38,8 +44,8 @@
 		CD79FAB41A9C56E1008DE994 /* HexByteBinaryEncoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79FAB31A9C56E1008DE994 /* HexByteBinaryEncoderTests.m */; };
 		CD79FABC1A9D2A0A008DE994 /* tms5220.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD79FAB81A9D2A0A008DE994 /* tms5220.cpp */; };
 		CD79FABD1A9D2A0A008DE994 /* tms5220.txt in Resources */ = {isa = PBXBuildFile; fileRef = CD79FABA1A9D2A0A008DE994 /* tms5220.txt */; };
-		CD79FAC21A9D2A1C008DE994 /* SpeechSynthesizer.mm in Sources */ = {isa = PBXBuildFile; fileRef = CD79FABF1A9D2A1C008DE994 /* SpeechSynthesizer.mm */; };
-		CD79FAC31A9D2A1C008DE994 /* TMS5220Processor.mm in Sources */ = {isa = PBXBuildFile; fileRef = CD79FAC11A9D2A1C008DE994 /* TMS5220Processor.mm */; };
+		CD79FAC21A9D2A1C008DE994 /* SpeechDataReader.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79FABF1A9D2A1C008DE994 /* SpeechDataReader.m */; };
+		CD79FAC31A9D2A1C008DE994 /* SpeechSynthesizer.mm in Sources */ = {isa = PBXBuildFile; fileRef = CD79FAC11A9D2A1C008DE994 /* SpeechSynthesizer.mm */; };
 		CD99A7AB1AA0EEAF003BC67E /* TestSampleData.m in Sources */ = {isa = PBXBuildFile; fileRef = CD99A7AA1AA0EEAF003BC67E /* TestSampleData.m */; };
 		CD99A7AE1AA155FD003BC67E /* Sampler.mm in Sources */ = {isa = PBXBuildFile; fileRef = CD99A7AD1AA155FD003BC67E /* Sampler.mm */; };
 		CDA1F7351A9AF2120011B4B5 /* BitPacker.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA1F7321A9AF2120011B4B5 /* BitPacker.m */; };
@@ -98,6 +104,17 @@
 		CD7626B31AA6A770001E0A9E /* FrameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameData.h; sourceTree = "<group>"; };
 		CD7626B41AA6A770001E0A9E /* FrameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrameData.m; sourceTree = "<group>"; };
 		CD7626B61AA6A7B5001E0A9E /* FrameDataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrameDataTests.m; sourceTree = "<group>"; };
+		CD7626B81AA6FB7B001E0A9E /* UserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettings.h; sourceTree = "<group>"; };
+		CD7626B91AA6FB7B001E0A9E /* UserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettings.m; sourceTree = "<group>"; };
+		CD7626BB1AA6FF44001E0A9E /* Segmenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Segmenter.h; sourceTree = "<group>"; };
+		CD7626BC1AA6FF44001E0A9E /* Segmenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Segmenter.m; sourceTree = "<group>"; };
+		CD7626BE1AA7052E001E0A9E /* SegmenterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmenterTests.m; sourceTree = "<group>"; };
+		CD7626C01AA85FB0001E0A9E /* RMSNormalizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMSNormalizer.h; sourceTree = "<group>"; };
+		CD7626C11AA85FB0001E0A9E /* RMSNormalizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSNormalizer.m; sourceTree = "<group>"; };
+		CD7626C31AA860F0001E0A9E /* RMSNormalizerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMSNormalizerTests.m; sourceTree = "<group>"; };
+		CD7626C51AA90D9E001E0A9E /* Processor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Processor.h; sourceTree = "<group>"; };
+		CD7626C61AA90D9E001E0A9E /* Processor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Processor.m; sourceTree = "<group>"; };
+		CD7626C81AAA22D5001E0A9E /* SamplerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SamplerDelegate.h; sourceTree = "<group>"; };
 		CD7731161A9AEB04006155F0 /* BitPackerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitPackerTests.m; sourceTree = "<group>"; };
 		CD7731181A9AEB53006155F0 /* FrameDataBinaryEncoderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrameDataBinaryEncoderTests.m; sourceTree = "<group>"; };
 		CD773DDE1AA3CBAD004091CC /* AudioHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioHelpers.h; sourceTree = "<group>"; };
@@ -121,10 +138,10 @@
 		CD79FAB81A9D2A0A008DE994 /* tms5220.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tms5220.cpp; sourceTree = "<group>"; };
 		CD79FAB91A9D2A0A008DE994 /* tms5220.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tms5220.h; sourceTree = "<group>"; };
 		CD79FABA1A9D2A0A008DE994 /* tms5220.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tms5220.txt; sourceTree = "<group>"; };
-		CD79FABE1A9D2A1C008DE994 /* SpeechSynthesizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechSynthesizer.h; sourceTree = "<group>"; };
-		CD79FABF1A9D2A1C008DE994 /* SpeechSynthesizer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SpeechSynthesizer.mm; sourceTree = "<group>"; };
-		CD79FAC01A9D2A1C008DE994 /* TMS5220Processor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMS5220Processor.h; sourceTree = "<group>"; };
-		CD79FAC11A9D2A1C008DE994 /* TMS5220Processor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TMS5220Processor.mm; sourceTree = "<group>"; };
+		CD79FABE1A9D2A1C008DE994 /* SpeechDataReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechDataReader.h; sourceTree = "<group>"; };
+		CD79FABF1A9D2A1C008DE994 /* SpeechDataReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechDataReader.m; sourceTree = "<group>"; };
+		CD79FAC01A9D2A1C008DE994 /* SpeechSynthesizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechSynthesizer.h; sourceTree = "<group>"; };
+		CD79FAC11A9D2A1C008DE994 /* SpeechSynthesizer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SpeechSynthesizer.mm; sourceTree = "<group>"; };
 		CD99A7A91AA0EEAF003BC67E /* TestSampleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSampleData.h; sourceTree = "<group>"; };
 		CD99A7AA1AA0EEAF003BC67E /* TestSampleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSampleData.m; sourceTree = "<group>"; };
 		CD99A7AC1AA155FD003BC67E /* Sampler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sampler.h; sourceTree = "<group>"; };
@@ -199,6 +216,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CD7626C91AAA2310001E0A9E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CD7626C81AAA22D5001E0A9E /* SamplerDelegate.h */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		CD79FAB51A9D2A0A008DE994 /* lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,35 +249,44 @@
 			isa = PBXGroup;
 			children = (
 				CD773DDE1AA3CBAD004091CC /* AudioHelpers.h */,
-				CD79FABE1A9D2A1C008DE994 /* SpeechSynthesizer.h */,
-				CD79FABF1A9D2A1C008DE994 /* SpeechSynthesizer.mm */,
-				CD79FAC01A9D2A1C008DE994 /* TMS5220Processor.h */,
-				CD79FAC11A9D2A1C008DE994 /* TMS5220Processor.mm */,
+				CD7626A01AA51275001E0A9E /* Autocorrelator.h */,
+				CD7626A11AA51275001E0A9E /* Autocorrelator.m */,
 				CDA1F7381A9AF21E0011B4B5 /* BitPacker */,
+				CD7626A61AA5A6CD001E0A9E /* Buffer.h */,
+				CD7626A71AA5A6CD001E0A9E /* Buffer.m */,
+				CD76269B1AA454E8001E0A9E /* ClosestValueFinder.h */,
+				CD76269C1AA454E8001E0A9E /* ClosestValueFinder.m */,
 				CDA1F7391A9AF3680011B4B5 /* CodingTable.h */,
 				CDA1F73A1A9AF3680011B4B5 /* CodingTable.m */,
-				CD99A7A91AA0EEAF003BC67E /* TestSampleData.h */,
-				CD99A7AA1AA0EEAF003BC67E /* TestSampleData.m */,
-				CD99A7AC1AA155FD003BC67E /* Sampler.h */,
-				CD99A7AD1AA155FD003BC67E /* Sampler.mm */,
+				CD7626B31AA6A770001E0A9E /* FrameData.h */,
+				CD7626B41AA6A770001E0A9E /* FrameData.m */,
+				CD7626981AA43ABB001E0A9E /* HammingWindow.h */,
+				CD7626991AA43ABB001E0A9E /* HammingWindow.m */,
 				CD563B631AA2A1DF001880B6 /* Input.h */,
 				CD563B641AA2A1DF001880B6 /* Input.m */,
 				CD773DDF1AA3DFCC004091CC /* Output.h */,
 				CD773DE01AA3DFCC004091CC /* Output.m */,
-				CD7626981AA43ABB001E0A9E /* HammingWindow.h */,
-				CD7626991AA43ABB001E0A9E /* HammingWindow.m */,
-				CD76269B1AA454E8001E0A9E /* ClosestValueFinder.h */,
-				CD76269C1AA454E8001E0A9E /* ClosestValueFinder.m */,
-				CD7626A01AA51275001E0A9E /* Autocorrelator.h */,
-				CD7626A11AA51275001E0A9E /* Autocorrelator.m */,
-				CD7626A31AA51593001E0A9E /* Reflector.h */,
-				CD7626A41AA51593001E0A9E /* Reflector.m */,
-				CD7626A61AA5A6CD001E0A9E /* Buffer.h */,
-				CD7626A71AA5A6CD001E0A9E /* Buffer.m */,
 				CD7626A91AA66A04001E0A9E /* PreEmphasizer.h */,
 				CD7626AA1AA66A04001E0A9E /* PreEmphasizer.m */,
-				CD7626B31AA6A770001E0A9E /* FrameData.h */,
-				CD7626B41AA6A770001E0A9E /* FrameData.m */,
+				CD7626C51AA90D9E001E0A9E /* Processor.h */,
+				CD7626C61AA90D9E001E0A9E /* Processor.m */,
+				CD7626C91AAA2310001E0A9E /* Protocols */,
+				CD7626A31AA51593001E0A9E /* Reflector.h */,
+				CD7626A41AA51593001E0A9E /* Reflector.m */,
+				CD7626C01AA85FB0001E0A9E /* RMSNormalizer.h */,
+				CD7626C11AA85FB0001E0A9E /* RMSNormalizer.m */,
+				CD99A7AC1AA155FD003BC67E /* Sampler.h */,
+				CD99A7AD1AA155FD003BC67E /* Sampler.mm */,
+				CD7626BB1AA6FF44001E0A9E /* Segmenter.h */,
+				CD7626BC1AA6FF44001E0A9E /* Segmenter.m */,
+				CD79FABE1A9D2A1C008DE994 /* SpeechDataReader.h */,
+				CD79FABF1A9D2A1C008DE994 /* SpeechDataReader.m */,
+				CD79FAC01A9D2A1C008DE994 /* SpeechSynthesizer.h */,
+				CD79FAC11A9D2A1C008DE994 /* SpeechSynthesizer.mm */,
+				CD99A7A91AA0EEAF003BC67E /* TestSampleData.h */,
+				CD99A7AA1AA0EEAF003BC67E /* TestSampleData.m */,
+				CD7626B81AA6FB7B001E0A9E /* UserSettings.h */,
+				CD7626B91AA6FB7B001E0A9E /* UserSettings.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -337,6 +371,8 @@
 				CD76269E1AA45500001E0A9E /* ClosestValueFinderTests.m */,
 				CD7626AC1AA66AA4001E0A9E /* BufferTests.m */,
 				CD7626B61AA6A7B5001E0A9E /* FrameDataTests.m */,
+				CD7626BE1AA7052E001E0A9E /* SegmenterTests.m */,
+				CD7626C31AA860F0001E0A9E /* RMSNormalizerTests.m */,
 			);
 			path = BlueWizardTests;
 			sourceTree = "<group>";
@@ -527,18 +563,22 @@
 				CD76269A1AA43ABB001E0A9E /* HammingWindow.m in Sources */,
 				CD7626A21AA51275001E0A9E /* Autocorrelator.m in Sources */,
 				CD99A7AE1AA155FD003BC67E /* Sampler.mm in Sources */,
+				CD7626C21AA85FB0001E0A9E /* RMSNormalizer.m in Sources */,
 				CD79FAB21A9C5677008DE994 /* HexByteBinaryEncoder.m in Sources */,
 				CD563B651AA2A1DF001880B6 /* Input.m in Sources */,
 				CD7626AB1AA66A04001E0A9E /* PreEmphasizer.m in Sources */,
 				CD79FAA31A9B1B47008DE994 /* NibbleBitReverser.m in Sources */,
+				CD7626BD1AA6FF44001E0A9E /* Segmenter.m in Sources */,
 				CDBF22DD1A99C917001E25AB /* main.m in Sources */,
 				CD79FAAA1A9B1F65008DE994 /* BitHelpers.m in Sources */,
-				CD79FAC21A9D2A1C008DE994 /* SpeechSynthesizer.mm in Sources */,
+				CD79FAC21A9D2A1C008DE994 /* SpeechDataReader.m in Sources */,
+				CD7626C71AA90D9E001E0A9E /* Processor.m in Sources */,
 				CDBF22DB1A99C917001E25AB /* AppDelegate.m in Sources */,
 				CD7626A51AA51593001E0A9E /* Reflector.m in Sources */,
 				CD99A7AB1AA0EEAF003BC67E /* TestSampleData.m in Sources */,
-				CD79FAC31A9D2A1C008DE994 /* TMS5220Processor.mm in Sources */,
+				CD79FAC31A9D2A1C008DE994 /* SpeechSynthesizer.mm in Sources */,
 				CD79FABC1A9D2A0A008DE994 /* tms5220.cpp in Sources */,
+				CD7626BA1AA6FB7B001E0A9E /* UserSettings.m in Sources */,
 				CD7626B51AA6A770001E0A9E /* FrameData.m in Sources */,
 				CD773DE11AA3DFCC004091CC /* Output.m in Sources */,
 				CDA1F73B1A9AF3680011B4B5 /* CodingTable.m in Sources */,
@@ -552,6 +592,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD7626C41AA860F0001E0A9E /* RMSNormalizerTests.m in Sources */,
 				CD7731191A9AEB53006155F0 /* FrameDataBinaryEncoderTests.m in Sources */,
 				CD79FAA51A9B1B5D008DE994 /* NibbleBitReverserTests.m in Sources */,
 				CD79FAA01A9B1205008DE994 /* HexConverterTests.m in Sources */,
@@ -560,6 +601,7 @@
 				CD7626AD1AA66AA4001E0A9E /* BufferTests.m in Sources */,
 				CD79FAB41A9C56E1008DE994 /* HexByteBinaryEncoderTests.m in Sources */,
 				CD7626B71AA6A7B5001E0A9E /* FrameDataTests.m in Sources */,
+				CD7626BF1AA7052E001E0A9E /* SegmenterTests.m in Sources */,
 				CD76269F1AA45500001E0A9E /* ClosestValueFinderTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

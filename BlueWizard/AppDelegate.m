@@ -4,6 +4,9 @@
 #import "Input.h"
 #import "Output.h"
 #import "TestSampleData.h"
+#import "Processor.h"
+#import "SpeechDataReader.h"
+#import "SpeechSynthesizer.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) SpeechSynthesizer *speechSynthesizer;
@@ -14,7 +17,9 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    [self.speechSynthesizer speak:@"blue_wizard"];
+    NSArray *speechData = [SpeechDataReader speechDataFromFile:@"blue_wizard"];
+    Buffer *buffer = [SpeechSynthesizer processSpeechData:speechData];
+    [self.sampler stream:buffer];
 //    [self openFileBrowser];
 //    
 //    NSMutableArray *samples = [NSMutableArray array];
@@ -24,22 +29,16 @@
 //    }
 //    [Output save:samples];
 //    [self.sampler stream:[i samples] sampleRate:48000];
+//    [self openFileBrowser];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
-    [self.speechSynthesizer stop];
-}
-
--(SpeechSynthesizer *)speechSynthesizer {
-    if (!_speechSynthesizer) {
-        _speechSynthesizer = [[SpeechSynthesizer alloc] initWithSampleRate:8000 sampler:self.sampler];
-    }
-    return _speechSynthesizer;
+    [self.sampler stop];
 }
 
 -(Sampler *)sampler {
     if (!_sampler) {
-        _sampler = [[Sampler alloc] init];
+        _sampler = [[Sampler alloc] initWithDelegate:self];
     }
     return _sampler;
 }
@@ -50,10 +49,17 @@
     [dialog setCanChooseDirectories:YES];
     
     if ([dialog runModal] == NSModalResponseOK) {
-        for (NSURL* url in [dialog URLs]) {
-            self.input = [[Input alloc] initWithSampler:self.sampler URL:url];
+        for (NSURL* URL in [dialog URLs]) {
+            self.input = [[Input alloc] initWithURL:URL];
+            [Processor process:self.input.buffer];
         }
     }
+}
+
+# pragma mark - SamplerDelegate
+
+-(void)didFinishStreaming:(Buffer *)buffer {
+    [self.sampler stream:buffer];
 }
 
 @end
