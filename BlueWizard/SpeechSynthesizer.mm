@@ -1,82 +1,93 @@
 #import "SpeechSynthesizer.h"
-#import "TMS5220Processor.h"
-#import "Sampler.h"
+#import "Buffer.h"
+#import "UserSettings.h"
+#import "tms5220.h"
 
 @interface SpeechSynthesizer ()
-
-@property (nonatomic, strong) NSDictionary *speechTable;
-@property (nonatomic, weak) Sampler *sampler;
+@property (nonatomic, getter = isSpeaking) BOOL speaking;
 @property (nonatomic) NSUInteger sampleRate;
-
+@property (nonatomic) NSUInteger index;
 @end
 
-@implementation SpeechSynthesizer
+@implementation SpeechSynthesizer {
+    tms5220_device *_tms5220;
+}
 
--(instancetype)initWithSampleRate:(NSUInteger)sampleRate sampler:(Sampler *)sampler {
++(Buffer *)processSpeechData:(NSArray *)lpc {
+    return [[[self alloc] init] processSpeechData:lpc];
+}
+
+-(instancetype)init {
     if (self = [super init]) {
-        self.sampleRate = sampleRate;
-        self.sampler    = sampler;
-        [self loadLPC];
+        NSUInteger sampleRate = [[[UserSettings sharedInstance] sampleRate] unsignedIntegerValue];
+        _tms5220 = new tms5220_device();
+        _tms5220->device_start();
+        _tms5220->device_reset();
+        _tms5220->set_frequency((int)sampleRate * 80);
     }
     return self;
 }
 
--(void)speak:(NSString *)speechID {
-    __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        TMS5220Processor *processor = [[TMS5220Processor alloc] initWithSampleRate:weakSelf.sampleRate];
- 
-        NSArray *samples = [processor processLPC:[weakSelf speechDataWithStartAndStopCommandsFor:speechID]];
-        
-        [weakSelf.sampler stream:samples sampleRate:weakSelf.sampleRate];
-    });
+-(void)dealloc {
+    delete _tms5220;
 }
 
--(void)stop {
-    [self.sampler stop];
-}
-
--(NSArray *)speechDataWithStartAndStopCommandsFor:(NSString *)speechID {
-    NSMutableArray *speechData = [[self.speechTable objectForKey:speechID] mutableCopy];
-    NSAssert(speechData, ([NSString stringWithFormat:@"Speech data for key not found!", speechID]));
-    [speechData insertObject:@0x60 atIndex:0];
-    for (int i = 0; i < 16; i++) {
-        [speechData addObject:@0xff];
+-(Buffer *)processSpeechData:(NSArray *)lpc {
+    self.speaking = YES;
+    NSMutableArray *samples = [NSMutableArray arrayWithCapacity:65536];
+    
+    [self writeData:0x60];
+    
+    while (self.isSpeaking) {
+        [self speakFragment:lpc samples:samples];
     }
     
-    return [speechData copy];
+    [self writeData:0xff];
+    
+    return [self bufferFor:[samples copy]];
 }
 
--(void)loadLPC {
-    NSArray *files = [[NSBundle mainBundle] pathsForResourcesOfType:@"lpc"
-                                                        inDirectory:nil];
-    NSMutableDictionary *speechTable = [NSMutableDictionary dictionaryWithCapacity:[files count]];
-    for (NSString *file in files) {
-        NSData *myData = [NSData dataWithContentsOfFile:file];
-        NSString *string = [[NSString alloc] initWithData:myData encoding:NSUTF8StringEncoding];
-        NSMutableArray *lpc = [NSMutableArray arrayWithCapacity:[string length]];
-        for (NSString *hexString in [string componentsSeparatedByString:@","]) {
-            NSScanner *scanner = [NSScanner scannerWithString:hexString];
-            unsigned int hex;
-            [scanner scanHexInt: &hex];
-            [lpc addObject:[NSNumber numberWithUnsignedInteger:hex]];
-        }
-        NSString *key = [[file componentsSeparatedByString:@"/"] lastObject];
-        key           = [[[key componentsSeparatedByString:@"."] firstObject] lowercaseString];
-        [speechTable setObject:[lpc copy] forKey:key];
+-(Buffer *)bufferFor:(NSArray *)samples {
+    NSUInteger length = [samples count];
+    float *floats = (float *)malloc(sizeof(float) * length);
+    for (int i = 0; i < length; i++) {
+        floats[i] = [samples[i] floatValue];
     }
-    self.speechTable = [speechTable copy];
+    
+    return [[Buffer alloc] initWithSamples:floats size:length sampleRate:8000];
 }
 
--(float *)samplesAsFloats:(NSArray *)samples {
-    NSUInteger numberOfSamples = [samples count];
-    float *buffer;
-    buffer = (float *)malloc(numberOfSamples * sizeof(float));
-    for (int i = 0; i < numberOfSamples; i++) {
-        float sample = (float)[[samples objectAtIndex:i] intValue] / (1 << 16);
-        buffer[i]    = sample;
+-(void)fillBuffer:(NSMutableArray *)samples {
+    unsigned int frames = _tms5220->m_fifo_count;
+    int buffer[frames];
+    _tms5220->process(buffer, frames);
+    float scale = 1.0f / (1 << 15);
+    for (int i = 0; i < frames; i++) {
+        [samples addObject:[NSNumber numberWithFloat:buffer[i] * scale]];
     }
-    return buffer;
+}
+
+-(void)writeData:(int)data {
+    _tms5220->wsq_w(1);
+    _tms5220->data_w(data);
+    _tms5220->wsq_w(0);
+}
+
+-(void)speakFragment:(NSArray *)speechData
+             samples:(NSMutableArray *)samples {
+    while (!_tms5220->m_ready_pin) {
+        [self fillBuffer:samples];
+    }
+    
+    [self writeData:[[speechData objectAtIndex:self.index] intValue]];
+    
+    if (self.index == [speechData count] - 1) {
+        self.speaking = NO;
+        self.index    = 0;
+        return;
+    }
+    
+    self.index += 1;
 }
 
 @end

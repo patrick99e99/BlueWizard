@@ -1,10 +1,8 @@
 #import <Foundation/Foundation.h>
-@class Sampler;
+@class Buffer;
+
 @interface SpeechSynthesizer : NSObject
 
--(instancetype)initWithSampleRate:(NSUInteger)sampleRate sampler:(Sampler *)sampler;
--(NSUInteger)sampleRate;
--(void)speak:(NSString *)speechID;
--(void)stop;
++(Buffer *)processSpeechData:(NSArray *)lpc;
 
 @end
