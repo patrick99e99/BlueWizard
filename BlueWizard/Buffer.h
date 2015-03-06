@@ -2,9 +2,16 @@
 
 @interface Buffer : NSObject
 
--(instancetype)initWithSamples:(float *)samples size:(NSUInteger)size;
+-(instancetype)initWithSize:(NSUInteger)size
+                 sampleRate:(NSUInteger)sampleRate;
+
+-(instancetype)initWithSamples:(float *)samples
+                          size:(NSUInteger)size
+                    sampleRate:(NSUInteger)sampleRate;
+
 -(float *)samples;
 -(NSUInteger)size;
+-(NSUInteger)sampleRate;
 -(float)energy;
 
 @end
