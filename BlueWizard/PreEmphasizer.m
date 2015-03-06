@@ -1,5 +1,6 @@
 #import "PreEmphasizer.h"
 #import "Buffer.h"
+#import "UserSettings.h"
 
 @implementation PreEmphasizer
 
@@ -15,7 +16,7 @@
 }
 
 +(float)alpha {
-    return 0.9f;
+    return [[[UserSettings sharedInstance] preEmphasisAlpha] floatValue];
 }
 
 +(void)scaleBuffer:(Buffer *)buffer preEnergy:(float)preEnergy postEnergy:(float)postEnergy {
