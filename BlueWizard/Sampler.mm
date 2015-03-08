@@ -9,6 +9,8 @@
 @property (nonatomic) NSUInteger sampleRate;
 @property (nonatomic, weak) id<SamplerDelegate>delegate;
 @property (nonatomic) BOOL streaming;
+@property (nonatomic) NSUInteger index;
+@property (nonatomic) NSUInteger bufferSize;
 
 -(void)didFinishStreaming:(Buffer *)buffer;
 
@@ -20,6 +22,7 @@ typedef struct SamplerPlayer
 {
     AudioUnit outputUnit;
     NSUInteger counter;
+    NSUInteger index;
     float ratio;
     Buffer *buffer;
     __unsafe_unretained Sampler *sampler;
@@ -45,6 +48,8 @@ OSStatus CallbackRenderProc(void *inRefCon,
 
     for (int i = 0; i < inNumberFrames; i++) {
         NSUInteger index = floor(player->counter / player->ratio);
+        player->sampler.index = index;
+
         SInt16 sample = player->buffer.samples[index] * (1 << 15);
         ((SInt16 *)ioData->mBuffers[0].mData)[i] = sample;
 
@@ -73,6 +78,8 @@ OSStatus CallbackRenderProc(void *inRefCon,
 }
 
 -(void)stream:(Buffer *)buffer {
+    if (!buffer) return;
+    
     [self stop];
     self.streaming = YES;
     
@@ -80,6 +87,7 @@ OSStatus CallbackRenderProc(void *inRefCon,
     player.ratio   = (float)sampleRate / buffer.sampleRate;
     player.buffer  = buffer;
     player.sampler = self;
+    self.bufferSize = buffer.size;
 
     [self createAndConnectOutputUnit];
 
@@ -91,7 +99,6 @@ OSStatus CallbackRenderProc(void *inRefCon,
     outputcd.componentType = kAudioUnitType_Output;
     outputcd.componentSubType = kAudioUnitSubType_DefaultOutput;
     outputcd.componentManufacturer = kAudioUnitManufacturer_Apple;
-    
     
     AudioComponent comp = AudioComponentFindNext (NULL, &outputcd);
     if (comp == NULL) {
