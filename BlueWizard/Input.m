@@ -39,6 +39,8 @@
         ioData.mBuffers[0].mDataByteSize = asbd.mBytesPerPacket * numberOfFrames;
         ioData.mBuffers[0].mData = malloc(ioData.mBuffers[0].mDataByteSize);
         
+        BOOL isStereo = asbd.mChannelsPerFrame == 2;
+        
         ExtAudioFileRead(inputFile, &numberOfFrames, &ioData);
         
         float scale = 1.0f / (1 << 15);
@@ -46,8 +48,8 @@
         _buffer = [[Buffer alloc] initWithSize:numberOfFrames sampleRate:asbd.mSampleRate];
 
         for (int i = 0; i < numberOfFrames; i++) {
-            SInt16 val = ((SInt16 *)ioData.mBuffers[0].mData)[i];
-
+            NSUInteger index = isStereo ? i * 2 : i;
+            SInt16 val = ((SInt16 *)ioData.mBuffers[0].mData)[index];
             if (asbd.mFormatFlags & kAudioFormatFlagIsBigEndian) {
                 val = CFSwapInt16BigToHost(val);
             }
