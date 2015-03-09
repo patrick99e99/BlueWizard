@@ -31,6 +31,7 @@
         Buffer *buffer = [[Buffer alloc] initWithSamples:samples
                                                     size:[self sizeForWindow]
                                               sampleRate:[self.buffer sampleRate]];
+
         free(samples);
         block(buffer, i);
     }
@@ -41,7 +42,7 @@
     float *samples = malloc(sizeof(float) * length);
     for (int i = 0; i < length; i++) {
         if (self.counter < self.buffer.size) {
-            samples[i] = self.buffer.samples[index];
+            samples[i] = self.buffer.samples[index * self.size + i];
         } else {
             samples[i] = 0;
         }
