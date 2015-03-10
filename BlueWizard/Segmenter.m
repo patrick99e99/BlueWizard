@@ -6,7 +6,6 @@
 @property (nonatomic, weak) Buffer *buffer;
 @property (nonatomic) NSUInteger size;
 @property (nonatomic) NSUInteger windowWidth;
-@property (nonatomic) NSUInteger counter;
 @end
 
 @implementation Segmenter
@@ -24,10 +23,8 @@
 
 -(void)eachSegment:(void (^)(Buffer *, NSUInteger))block {
     NSUInteger length = [self numberOfSegments];
-    self.counter = 0;
-    
     for (int i = 0; i < length; i++) {
-        float *samples = [self samplesForSegment:i];
+        double *samples = [self samplesForSegment:i];
         Buffer *buffer = [[Buffer alloc] initWithSamples:samples
                                                     size:[self sizeForWindow]
                                               sampleRate:[self.buffer sampleRate]];
@@ -37,16 +34,12 @@
     }
 }
 
--(float *)samplesForSegment:(NSUInteger)index {
+-(double *)samplesForSegment:(NSUInteger)index {
     NSUInteger length = [self sizeForWindow];
-    float *samples = malloc(sizeof(float) * length);
+    double *samples = malloc(sizeof(double) * length);
     for (int i = 0; i < length; i++) {
-        if (self.counter < self.buffer.size) {
-            samples[i] = self.buffer.samples[index * self.size + i];
-        } else {
-            samples[i] = 0;
-        }
-        self.counter += 1;
+        NSUInteger sampleIndex = index * self.size + i;
+        samples[i] = (sampleIndex < self.buffer.size) ? self.buffer.samples[sampleIndex] : 0.0;
     }
     return samples;
 }

@@ -44,17 +44,21 @@
     
     [self writeData:0xff];
     
-    return [self bufferFor:[samples copy]];
+    return [self bufferFor:samples];
 }
 
--(Buffer *)bufferFor:(NSArray *)samples {
-    NSUInteger length = [samples count];
-    float *floats = (float *)malloc(sizeof(float) * length);
+-(Buffer *)bufferFor:(NSArray *)wrappedSamples {
+    NSUInteger length = [wrappedSamples count];
+    double *samples = (double *)malloc(sizeof(double) * length);
     for (int i = 0; i < length; i++) {
-        floats[i] = [samples[i] floatValue];
+        samples[i] = [wrappedSamples[i] doubleValue];
     }
     
-    return [[Buffer alloc] initWithSamples:floats size:length sampleRate:8000];
+    Buffer *buffer = [[Buffer alloc] initWithSamples:samples size:length sampleRate:8000];
+
+    free(samples);
+    
+    return buffer;
 }
 
 -(void)fillBuffer:(NSMutableArray *)samples {
@@ -63,7 +67,7 @@
     _tms5220->process(buffer, frames);
     float scale = 1.0f / (1 << 15);
     for (int i = 0; i < frames; i++) {
-        [samples addObject:[NSNumber numberWithFloat:buffer[i] * scale]];
+        [samples addObject:[NSNumber numberWithDouble:buffer[i] * scale]];
     }
 }
 

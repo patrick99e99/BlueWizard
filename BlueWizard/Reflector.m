@@ -1,18 +1,16 @@
 #import "Reflector.h"
 
-@interface Reflector ()
-@property (nonatomic) float *ks;
-@end
+@implementation Reflector {
+    double *_ks[11];
+}
 
-@implementation Reflector
-
-+(instancetype)translateCoefficients:(float *)r numberOfSamples:(NSUInteger)numberOfSamples {
++(instancetype)translateCoefficients:(double *)r numberOfSamples:(NSUInteger)numberOfSamples {
 
     // Leroux Guegen algorithm for finding K's
 
-    float k[11] = {0};
-    float b[11] = {0};
-    float d[11] = {0};
+    double k[11] = {0};
+    double b[11] = {0};
+    double d[12] = {0};
     
     k[1] = -r[1] / r[0];
     d[1] = r[1];
@@ -20,7 +18,7 @@
     
     int i = 2;
     while (i <= 10) {
-        int y = r[i];
+        double y = r[i];
         b[1] = y;
     
         int j = 1;
@@ -37,20 +35,24 @@
         i += 1;
     }
     
-    NSUInteger rms = [self formattedRMS:d[10] numberOfSamples:numberOfSamples];
+    double rms = [self formattedRMS:d[11] numberOfSamples:numberOfSamples];
     return [[Reflector alloc] initWithKs:k rms:rms];
 }
 
-+(NSUInteger)formattedRMS:(float)rms numberOfSamples:(NSUInteger)numberOfSamples {
++(double)formattedRMS:(double)rms numberOfSamples:(NSUInteger)numberOfSamples {
     return sqrt(rms / numberOfSamples) * (1 << 15);
 }
 
--(instancetype)initWithKs:(float *)ks rms:(NSUInteger)rms {
+-(instancetype)initWithKs:(double *)ks rms:(double)rms {
     if (self = [super init]) {
-        self.ks  = ks;
-        self.rms = rms;
+        _rms = rms;
+        memcpy(_ks, ks, sizeof(double) * 11);
     }
     return self;
+}
+
+-(double *)ks {
+    return (double *)_ks;
 }
 
 -(BOOL)isVoiced {

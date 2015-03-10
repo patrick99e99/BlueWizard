@@ -19,7 +19,7 @@
     return [[[UserSettings sharedInstance] preEmphasisAlpha] floatValue];
 }
 
-+(void)scaleBuffer:(Buffer *)buffer preEnergy:(float)preEnergy postEnergy:(float)postEnergy {
++(void)scaleBuffer:(Buffer *)buffer preEnergy:(double)preEnergy postEnergy:(double)postEnergy {
     float scale = sqrt(preEnergy / postEnergy);
     
     for (int i = 1; i < buffer.size; i++) {

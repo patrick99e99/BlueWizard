@@ -3,6 +3,6 @@
 @class Buffer;
 @interface Processor : NSObject
 
-+(void)process:(Buffer *)buffer;
++(instancetype)process:(Buffer *)buffer;
 
 @end

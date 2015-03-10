@@ -5,13 +5,13 @@
 -(instancetype)initWithSize:(NSUInteger)size
                  sampleRate:(NSUInteger)sampleRate;
 
--(instancetype)initWithSamples:(float *)samples
+-(instancetype)initWithSamples:(double *)samples
                           size:(NSUInteger)size
                     sampleRate:(NSUInteger)sampleRate;
 
--(float *)samples;
+-(double *)samples;
 -(NSUInteger)size;
 -(NSUInteger)sampleRate;
--(float)energy;
+-(double)energy;
 
 @end

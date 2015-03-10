@@ -43,7 +43,7 @@
         
         ExtAudioFileRead(inputFile, &numberOfFrames, &ioData);
         
-        float scale = 1.0f / (1 << 15);
+        double scale = 1.0f / (1 << 15);
 
         _buffer = [[Buffer alloc] initWithSize:numberOfFrames sampleRate:asbd.mSampleRate];
 

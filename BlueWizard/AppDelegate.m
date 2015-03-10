@@ -13,6 +13,7 @@
 @property (nonatomic, strong) SpeechSynthesizer *speechSynthesizer;
 @property (nonatomic, strong) Sampler *sampler;
 @property (nonatomic, strong) Input *input;
+@property (nonatomic, strong) Processor *processor;
 
 @end
 
@@ -22,7 +23,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playWasPressed:) name:@"playWasPressed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopWasPressed:) name:@"stopWasPressed" object:nil];
 
-//    NSArray *speechData = [SpeechDataReader speechDataFromFile:@"blue_wizard"];
+//    NSArray *speechData = [SpeechDataReader speechDataFromFile:@"test"];
 //    Buffer *buffer = [SpeechSynthesizer processSpeechData:speechData];
 //    [self.sampler stream:buffer];
 //    [self openFileBrowser];
@@ -59,7 +60,7 @@
         for (NSURL* URL in [dialog URLs]) {
             self.input = [[Input alloc] initWithURL:URL];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"inputReceived" object:self.input.buffer];
-//            [Processor process:self.input.buffer];
+            self.processor = [Processor process:self.input.buffer];
         }
     }
 }

@@ -6,6 +6,7 @@
 
 @property (weak) IBOutlet NSScrollView *inputSampleView;
 @property (weak) IBOutlet PlayheadView *playheadView;
+@property (weak) IBOutlet NSTextField *pitchLabel;
 
 @end
 

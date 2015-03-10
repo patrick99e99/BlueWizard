@@ -11,7 +11,7 @@
                                                             inDirectory:nil];
     NSString *foundFile;
     for (NSString *dataFile in dataFiles) {
-        NSString *key = [[file componentsSeparatedByString:@"/"] lastObject];
+        NSString *key = [[dataFile componentsSeparatedByString:@"/"] lastObject];
         key           = [[[key componentsSeparatedByString:@"."] firstObject] lowercaseString];
 
         if ([key isEqualToString:file]) {
@@ -25,14 +25,19 @@
     
     NSData *myData = [NSData dataWithContentsOfFile:file];
     NSString *string = [[NSString alloc] initWithData:myData encoding:NSUTF8StringEncoding];
-    NSMutableArray *lpc = [NSMutableArray arrayWithCapacity:[string length]];
-    for (NSString *hexString in [string componentsSeparatedByString:@","]) {
-        NSScanner *scanner = [NSScanner scannerWithString:hexString];
+    return [self speechDataFromString:string];
+}
+
++(NSArray *)speechDataFromString:(NSString *)string {
+    NSArray *components = [string componentsSeparatedByString:@","];
+    NSMutableArray *speechData = [NSMutableArray arrayWithCapacity:[components count]];
+    for (NSString *component in components) {
+        NSScanner *scanner = [NSScanner scannerWithString:component];
         unsigned int hex;
         [scanner scanHexInt: &hex];
-        [lpc addObject:[NSNumber numberWithUnsignedInteger:hex]];
+        [speechData addObject:[NSNumber numberWithUnsignedInteger:hex]];
     }
-    return [lpc copy];
+    return [speechData copy];
 }
 
 @end

@@ -6,7 +6,7 @@
 @interface FrameData ()
 
 @property (nonatomic, weak) Reflector *reflector;
-@property (nonatomic) NSUInteger pitch;
+@property (nonatomic) double pitch;
 @property (nonatomic) BOOL repeat;
 @property (nonatomic) BOOL translate;
 
@@ -31,7 +31,7 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:13];
     
     parameters[kParameterGain] = [self parameterizedValueForRMS];
-    if ([parameters[kParameterGain] unsignedIntegerValue]) {
+    if ([parameters[kParameterGain] doubleValue] > 0.0f) {
 
         parameters[kParameterRepeat] = [self parameterizedValueForRepeat];
         parameters[kParameterPitch]  = [self parameterizedValueForPitch];
@@ -58,8 +58,9 @@
 
 -(NSNumber *)parameterizedValueForK:(NSUInteger)k {
     NSUInteger index = [ClosestValueFinder indexFor:self.reflector.ks[k]
-                                             floats:[CodingTable kBinFor:k]
+                                              table:[CodingTable kBinFor:k]
                                                size:[CodingTable kSizeFor:k]];
+
     if (self.translate) {
         return [NSNumber numberWithFloat:[CodingTable kBinFor:k][index]];
     } else {
@@ -68,11 +69,11 @@
 }
 
 -(NSNumber *)parameterizedValueForRMS {
-    NSUInteger index = [ClosestValueFinder indexFor:(int)self.reflector.rms
-                                               ints:[CodingTable rms]
+    NSUInteger index = [ClosestValueFinder indexFor:self.reflector.rms
+                                              table:[CodingTable rms]
                                                size:[CodingTable rmsSize]];
     if (self.translate) {
-        return [NSNumber numberWithUnsignedInteger:[CodingTable rms][index]];
+        return [NSNumber numberWithFloat:[CodingTable rms][index]];
     } else {
         return [NSNumber numberWithUnsignedInteger:index];
     }
@@ -81,11 +82,11 @@
 -(NSNumber *)parameterizedValueForPitch {
     if ([self.reflector isUnvoiced]) return @0;
 
-    NSUInteger index = [ClosestValueFinder indexFor:(int)self.pitch
-                                               ints:[CodingTable pitch]
+    NSUInteger index = [ClosestValueFinder indexFor:self.pitch
+                                              table:[CodingTable pitch]
                                                size:[CodingTable pitchSize]];
     if (self.translate) {
-        return [NSNumber numberWithUnsignedInteger:[CodingTable rms][index]];
+        return [NSNumber numberWithFloat:[CodingTable rms][index]];
     } else {
         return [NSNumber numberWithUnsignedInteger:index];
     }

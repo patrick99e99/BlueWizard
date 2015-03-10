@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		862E7D6824C15959F0D03E52 /* libPods-BlueWizardTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 012428FA7BFBBFF7EE125E77 /* libPods-BlueWizardTests.a */; };
+		CD30A9D51AAD38A70048B222 /* test.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD30A9D41AAD38A70048B222 /* test.lpc */; };
+		CD3B09141AAE416F00D54399 /* PitchEstimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3B09131AAE416F00D54399 /* PitchEstimator.m */; };
 		CD563B5E1AA16872001880B6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD563B5B1AA16872001880B6 /* AudioToolbox.framework */; };
 		CD563B5F1AA16872001880B6 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD563B5C1AA16872001880B6 /* AudioUnit.framework */; };
 		CD563B601AA16872001880B6 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD563B5D1AA16872001880B6 /* CoreAudio.framework */; };
@@ -82,6 +84,9 @@
 		012428FA7BFBBFF7EE125E77 /* libPods-BlueWizardTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BlueWizardTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		081AC1A4326C7E60C28C4025 /* Pods-BlueWizardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueWizardTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueWizardTests/Pods-BlueWizardTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4D0C831C58081BACD3B2165D /* Pods-BlueWizardTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueWizardTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlueWizardTests/Pods-BlueWizardTests.release.xcconfig"; sourceTree = "<group>"; };
+		CD30A9D41AAD38A70048B222 /* test.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.lpc; sourceTree = "<group>"; };
+		CD3B09121AAE416F00D54399 /* PitchEstimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PitchEstimator.h; sourceTree = "<group>"; };
+		CD3B09131AAE416F00D54399 /* PitchEstimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PitchEstimator.m; sourceTree = "<group>"; };
 		CD563B5B1AA16872001880B6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		CD563B5C1AA16872001880B6 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		CD563B5D1AA16872001880B6 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -297,6 +302,8 @@
 				CD6A67391AAA88C300515777 /* WaveformView.m */,
 				CD95A58F1AAAFBE00044EDAA /* PlayheadView.h */,
 				CD95A5901AAAFBE00044EDAA /* PlayheadView.m */,
+				CD3B09121AAE416F00D54399 /* PitchEstimator.h */,
+				CD3B09131AAE416F00D54399 /* PitchEstimator.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -416,6 +423,7 @@
 				CDFC57EC1AA0CD4200457C13 /* welcome-to-treasure.lpc */,
 				CDFC57ED1AA0CD4200457C13 /* welcome.lpc */,
 				CD563B611AA24A54001880B6 /* blue_wizard.lpc */,
+				CD30A9D41AAD38A70048B222 /* test.lpc */,
 			);
 			name = lpc;
 			path = /Users/patrick/coding/objective_c/BlueWizard/BlueWizard/lpc;
@@ -504,6 +512,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD563B621AA24A54001880B6 /* blue_wizard.lpc in Resources */,
+				CD30A9D51AAD38A70048B222 /* test.lpc in Resources */,
 				CDFC57F61AA0CD4200457C13 /* welcome.lpc in Resources */,
 				CDFC57EE1AA0CD4200457C13 /* dont_shoot_food.lpc in Resources */,
 				CDFC57EF1AA0CD4200457C13 /* good_choice_kid.lpc in Resources */,
@@ -593,6 +602,7 @@
 				CD7626BA1AA6FB7B001E0A9E /* UserSettings.m in Sources */,
 				CD7626B51AA6A770001E0A9E /* FrameData.m in Sources */,
 				CD773DE11AA3DFCC004091CC /* Output.m in Sources */,
+				CD3B09141AAE416F00D54399 /* PitchEstimator.m in Sources */,
 				CDA1F73B1A9AF3680011B4B5 /* CodingTable.m in Sources */,
 				CDA1F7351A9AF2120011B4B5 /* BitPacker.m in Sources */,
 				CD79FA9E1A9B11EE008DE994 /* HexConverter.m in Sources */,

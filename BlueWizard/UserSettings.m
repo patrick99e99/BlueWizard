@@ -11,6 +11,13 @@
     return sharedInstance;
 }
 
+-(instancetype)init {
+    if (self = [super init]) {
+        self.pitchValue = 65;
+    }
+    return self;
+}
+
 -(NSNumber *)preEmphasisAlpha {
     if (!_preEmphasisAlpha) {
         _preEmphasisAlpha = @0.93750f;
@@ -44,6 +51,28 @@
         _exportSampleRate = @48000;
     }
     return _exportSampleRate;
+}
+
+-(NSNumber *)maxPitchInHZ {
+    if (!_maxPitchInHZ) {
+        _maxPitchInHZ = @200;
+    }
+    return _maxPitchInHZ;
+}
+
+
+-(NSNumber *)minPitchInHZ {
+    if (!_minPitchInHZ) {
+        _minPitchInHZ = @50;
+    }
+    return _minPitchInHZ;
+}
+
+-(NSNumber *)subMultipleThreshold {
+    if (!_subMultipleThreshold) {
+        _subMultipleThreshold = @0.9;
+    }
+    return _subMultipleThreshold;
 }
 
 @end
