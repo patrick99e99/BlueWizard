@@ -13,9 +13,7 @@
 }
 
 +(double)pitchForPeriod:(Buffer *)buffer {
-    double estimate = [[[self alloc] initWithBuffer:buffer] estimate];
-//    NSLog(@"pitch: %f - %i", estimate, buffer.size);
-    return estimate;
+    return [[[self alloc] initWithBuffer:buffer] estimate];
 }
 
 -(instancetype)initWithBuffer:(Buffer *)buffer {

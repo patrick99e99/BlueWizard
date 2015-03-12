@@ -8,15 +8,13 @@
 #import "BitPacker.h"
 #import "Buffer.h"
 #import "SpeechSynthesizer.h"
-#import "Sampler.h"
 #import "SpeechDataReader.h"
 #import "UserSettings.h"
 #import "PitchEstimator.h"
+#import "NotificationNames.h"
 
 @interface Processor ()
-@property (nonatomic, strong) Sampler *sampler;
 @property (nonatomic, strong) Buffer *buffer;
-
 @end
 
 @implementation Processor
@@ -28,11 +26,18 @@
 }
 
 -(void)process:(Buffer *)mainBuffer {
-//    [PreEmphasizer processBuffer:mainBuffer];
+    if ([[self userSettings] preEmphasis]) {
+        [PreEmphasizer processBuffer:mainBuffer];        
+    }
     
-    short *pitchTable = [self pitchTableForBuffer:mainBuffer];
+    short *pitchTable;
+    NSNumber *wrappedPitch;
+    if ([[self userSettings] overridePitch]) {
+        wrappedPitch = [[self userSettings] pitchValue];
+    } else {
+        pitchTable = [self pitchTableForBuffer:mainBuffer];
+    }
     
-//    NSUInteger pitch = [[UserSettings sharedInstance] pitchValue];
     double *coefficients = malloc(sizeof(double) * 11);
     Segmenter *segmenter = [[Segmenter alloc] initWithBuffer:mainBuffer windowWidth:1];
     NSMutableArray *frames = [NSMutableArray arrayWithCapacity:[segmenter numberOfSegments]];
@@ -42,17 +47,29 @@
         [Autocorrelator getCoefficientsFor:coefficients forBuffer:buffer];
         
         Reflector *reflector = [Reflector translateCoefficients:coefficients numberOfSamples:buffer.size];
+
+        NSUInteger pitch;
+        if (wrappedPitch) {
+            pitch = [wrappedPitch unsignedIntegerValue];
+        } else {
+            pitch = pitchTable[index];
+        }
         
-        FrameData *frameData = [[FrameData alloc] initWithReflector:reflector pitch:pitchTable[index] repeat:NO translate:NO];
+        FrameData *frameData = [[FrameData alloc] initWithReflector:reflector pitch:pitch repeat:NO translate:NO];
         
         [frames addObject:[frameData parameters]];
     }];
     free(coefficients);
-    free(pitchTable);
+    if (!wrappedPitch) free(pitchTable);
 
-    NSArray *speechData = [SpeechDataReader speechDataFromString:[BitPacker pack:frames]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:frameDataGenerated object:frames];
+
+    NSString *byteStream = [BitPacker pack:frames];
+    [[NSNotificationCenter defaultCenter] postNotificationName:byteStreamGenerated object:byteStream];
+
+    NSArray *speechData = [SpeechDataReader speechDataFromString:byteStream];
     self.buffer = [SpeechSynthesizer processSpeechData:speechData];
-    [self.sampler stream:self.buffer];
+    [[NSNotificationCenter defaultCenter] postNotificationName:bufferGenerated object:self.buffer];
 }
 
 -(short *)pitchTableForBuffer:(Buffer *)mainBuffer {
@@ -67,12 +84,8 @@
     return pitchTable;
 }
 
--(Sampler *)sampler {
-    if (!_sampler) {
-        _sampler = [[Sampler alloc] initWithDelegate:nil];
-    }
-    return _sampler;
+-(UserSettings *)userSettings {
+    return [UserSettings sharedInstance];
 }
-
 
 @end

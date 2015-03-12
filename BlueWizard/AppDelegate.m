@@ -8,21 +8,31 @@
 #import "SpeechDataReader.h"
 #import "SpeechSynthesizer.h"
 #import "PlayheadView.h"
+#import "NotificationNames.h"
 
 @interface AppDelegate ()
+
 @property (nonatomic, strong) SpeechSynthesizer *speechSynthesizer;
 @property (nonatomic, strong) Sampler *sampler;
 @property (nonatomic, strong) Input *input;
 @property (nonatomic, strong) Processor *processor;
+@property (nonatomic, strong) Buffer *buffer;
 
 @end
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playWasPressed:) name:@"playWasPressed" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopWasPressed:) name:@"stopWasPressed" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playOriginalWasClicked:) name:playOriginalWasClicked object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopWasClicked:) name:stopOriginalWasClicked object:nil];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playProcessedWasClicked:) name:playProcessedWasClicked object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopWasClicked:) name:stopProcessedWasClicked object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bufferGenerated:) name:bufferGenerated object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processInputSignalWasClicked:) name:processInputSignalWasClicked object:nil];
+
+    
 //    NSArray *speechData = [SpeechDataReader speechDataFromFile:@"test"];
 //    Buffer *buffer = [SpeechSynthesizer processSpeechData:speechData];
 //    [self.sampler stream:buffer];
@@ -59,19 +69,32 @@
     if ([dialog runModal] == NSModalResponseOK) {
         for (NSURL* URL in [dialog URLs]) {
             self.input = [[Input alloc] initWithURL:URL];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"inputReceived" object:self.input.buffer];
-            self.processor = [Processor process:self.input.buffer];
+            [[NSNotificationCenter defaultCenter] postNotificationName:inputSignalReceived object:self.input.buffer];
         }
     }
 }
 
--(void)playWasPressed:(NSNotification *)notification {
-    ((PlayheadView *)notification.object).sampler = self.sampler;
+-(void)playOriginalWasClicked:(NSNotification *)notification {
+//    ((PlayheadView *)notification.object).sampler = self.sampler;
     [self.sampler stream:[self.input buffer]];
 }
 
--(void)stopWasPressed:(NSNotification *)notification {
+-(void)playProcessedWasClicked:(NSNotification *)notification {
+//    ((PlayheadView *)notification.object).sampler = self.sampler;
+    [self.sampler stream:self.buffer];
+}
+
+-(void)processInputSignalWasClicked:(NSNotification *)notification {
+    //    ((PlayheadView *)notification.object).sampler = self.sampler;
+    self.processor = [Processor process:[self.input buffer]];
+}
+
+-(void)stopWasClicked:(NSNotification *)notification {
     [self.sampler stop];
+}
+
+-(void)bufferGenerated:(NSNotification *)notification {
+    self.buffer = (Buffer *)notification.object;
 }
 
 # pragma mark - SamplerDelegate

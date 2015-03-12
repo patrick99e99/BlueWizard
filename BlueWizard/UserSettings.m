@@ -11,13 +11,6 @@
     return sharedInstance;
 }
 
--(instancetype)init {
-    if (self = [super init]) {
-        self.pitchValue = 65;
-    }
-    return self;
-}
-
 -(NSNumber *)preEmphasisAlpha {
     if (!_preEmphasisAlpha) {
         _preEmphasisAlpha = @0.93750f;
@@ -74,5 +67,27 @@
     }
     return _subMultipleThreshold;
 }
+
+-(NSNumber *)pitchValue {
+    if (!_pitchValue) {
+        _pitchValue = @0;
+    }
+    return _pitchValue;
+}
+
+-(NSNumber *)unvoicedThreshold {
+    if (!_unvoicedThreshold) {
+        _unvoicedThreshold = @0.05f;
+    }
+    return _unvoicedThreshold;
+}
+
+-(NSNumber *)rmsLimit {
+    if (!_rmsLimit) {
+        _rmsLimit = @14;
+    }
+    return _rmsLimit;
+}
+
 
 @end

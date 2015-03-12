@@ -24,18 +24,18 @@
     NSUInteger size = 2;
 
     float floats[] = {1.0f, 2.0f};
-    subj = [ClosestValueFinder indexFor:1.25f floats:floats size:size];
+    subj = [ClosestValueFinder indexFor:1.25f table:floats size:size];
     XCTAssertEqual(subj, 0);
 
-    subj = [ClosestValueFinder indexFor:1.75f floats:floats size:size];
+    subj = [ClosestValueFinder indexFor:1.75f table:floats size:size];
     XCTAssertEqual(subj, 1);
 
     floats[0] = 5.0f;
     floats[1] = 6.0f;
-    subj = [ClosestValueFinder indexFor:-1.0f floats:floats size:size];
+    subj = [ClosestValueFinder indexFor:-1.0f table:floats size:size];
     XCTAssertEqual(subj, 0);
     
-    subj = [ClosestValueFinder indexFor:8.0f floats:floats size:size];
+    subj = [ClosestValueFinder indexFor:8.0f table:floats size:size];
     XCTAssertEqual(subj, 1);
 }
 

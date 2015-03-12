@@ -16,7 +16,7 @@
 -(void)setUp {
     [super setUp];
     NSUInteger size = 30;
-    float *samples = malloc(sizeof(float) * size);
+    double *samples = malloc(sizeof(float) * size);
     for (int i = 0; i < size; i++) {
         samples[i] = 1.0f;
     }

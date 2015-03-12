@@ -1,4 +1,5 @@
 #import "Reflector.h"
+#import "UserSettings.h"
 
 @implementation Reflector {
     double *_ks[11];
@@ -64,7 +65,7 @@
 }
 
 -(float)unvoicedThreshold {
-    return 0.3f;
+    return [[[UserSettings sharedInstance] unvoicedThreshold] floatValue];
 }
 
 @end

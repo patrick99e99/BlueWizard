@@ -87,6 +87,7 @@
 		CD30A9D41AAD38A70048B222 /* test.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.lpc; sourceTree = "<group>"; };
 		CD3B09121AAE416F00D54399 /* PitchEstimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PitchEstimator.h; sourceTree = "<group>"; };
 		CD3B09131AAE416F00D54399 /* PitchEstimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PitchEstimator.m; sourceTree = "<group>"; };
+		CD4AC00F1AB1621400E57489 /* NotificationNames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationNames.h; sourceTree = "<group>"; };
 		CD563B5B1AA16872001880B6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		CD563B5C1AA16872001880B6 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		CD563B5D1AA16872001880B6 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -304,6 +305,7 @@
 				CD95A5901AAAFBE00044EDAA /* PlayheadView.m */,
 				CD3B09121AAE416F00D54399 /* PitchEstimator.h */,
 				CD3B09131AAE416F00D54399 /* PitchEstimator.m */,
+				CD4AC00F1AB1621400E57489 /* NotificationNames.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
