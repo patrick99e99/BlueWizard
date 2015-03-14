@@ -4,15 +4,15 @@
 
 @implementation FrameDataBinaryEncoder
 
-+(NSArray *)process:(NSArray *)frameData {
++(NSArray *)process:(NSArray *)parametersList {
     int *bits = [CodingTable bits];
 
     __block NSString *binary = @"";
 
-    for (NSDictionary *frame in frameData) {
+    for (NSDictionary *parameters in parametersList) {
         
         [[CodingTable parameters] enumerateObjectsUsingBlock:^(NSString *parameter, NSUInteger idx, BOOL *stop) {
-            NSNumber *value = [frame objectForKey:parameter];
+            NSNumber *value = [parameters objectForKey:parameter];
             if (value) {
                 NSString *binaryValue = [BitHelpers valueToBinary:[value unsignedIntegerValue]
                                                              bits:bits[idx]];

@@ -8,15 +8,20 @@
 
 @implementation BufferTests {
     Buffer *subject;
+    double *samples;
 }
 
 -(void)setUp {
     [super setUp];
-    float samples[] = { 2.0f, 3.0f, 4.0f };
+    samples = malloc(sizeof(double) * 3);
+    samples[0] = 2.0f;
+    samples[1] = 3.0f;
+    samples[2] = 4.0f;
     subject = [[Buffer alloc] initWithSamples:samples size:3 sampleRate:8000];
 }
 
 -(void)tearDown {
+    free(samples);
     [super tearDown];
 }
 

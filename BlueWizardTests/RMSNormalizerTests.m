@@ -4,6 +4,7 @@
 #import "Reflector.h"
 #import "CodingTable.h"
 #import "UserSettings.h"
+#import "FrameData.h"
 
 @interface RMSNormalizerTests : XCTestCase
 
@@ -26,7 +27,8 @@
     XCTAssertNotEqual(reflector.rms, [CodingTable rms][maxIndex]);
 
     [UserSettings sharedInstance].maxRMSIndex = @(maxIndex);
-    [RMSNormalizer normalize:@[reflector]];
+    FrameData *frameData = [[FrameData alloc] initWithReflector:reflector pitch:0 repeat:NO];
+    [RMSNormalizer normalize:@[frameData]];
 
     XCTAssertEqualWithAccuracy(reflector.rms, [CodingTable rms][maxIndex], 1.0f);
 }

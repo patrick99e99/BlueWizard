@@ -5,8 +5,11 @@
 
 -(instancetype)initWithReflector:(Reflector *)reflector
                            pitch:(NSUInteger)pitch
-                          repeat:(BOOL)repeat
-                       translate:(BOOL)translate;
+                          repeat:(BOOL)repeat;
 -(NSDictionary *)parameters;
+-(NSDictionary *)translatedParameters;
+-(void)setParameter:(NSString *)parameter
+              value:(NSNumber *)value;
+-(Reflector *)reflector;
 
 @end

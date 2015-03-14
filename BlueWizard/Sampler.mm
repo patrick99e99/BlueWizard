@@ -16,7 +16,7 @@
 
 @end
 
-static NSUInteger const sampleRate = 48000;
+static NSUInteger const kSampleRate = 48000;
 
 typedef struct SamplerPlayer
 {
@@ -84,7 +84,7 @@ OSStatus CallbackRenderProc(void *inRefCon,
     self.streaming = YES;
     
     player         = {0};
-    player.ratio   = (float)sampleRate / buffer.sampleRate;
+    player.ratio   = (float)kSampleRate / buffer.sampleRate;
     player.buffer  = buffer;
     player.sampler = self;
     self.bufferSize = buffer.size;
@@ -122,7 +122,7 @@ OSStatus CallbackRenderProc(void *inRefCon,
                "AudioUnitSetProperty failed");
 
     AudioStreamBasicDescription asbd;
-    asbd.mSampleRate = sampleRate;
+    asbd.mSampleRate = kSampleRate;
     asbd.mFormatID = kAudioFormatLinearPCM;
     asbd.mFormatFlags = kAudioFormatFlagIsSignedInteger;
     asbd.mFramesPerPacket = 1;

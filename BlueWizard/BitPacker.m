@@ -6,11 +6,15 @@
 #import "HexByteBinaryEncoder.h"
 #import "CodingTable.h"
 #import "BitHelpers.h"
+#import "FrameData.h"
+
+static NSString * const kFrameDataParametersMethodName = @"parameters";
 
 @implementation BitPacker
 
 +(NSString *)pack:(NSArray *)frameData {
-    NSArray *binary   = [FrameDataBinaryEncoder process:frameData];
+    NSArray *parametersList = [frameData valueForKey:kFrameDataParametersMethodName];
+    NSArray *binary   = [FrameDataBinaryEncoder process:parametersList];
     NSArray *hex      = [HexConverter process:binary];
     NSArray *reversed = [NibbleBitReverser process:hex];
     NSArray *switched = [NibbleSwitcher process:reversed];

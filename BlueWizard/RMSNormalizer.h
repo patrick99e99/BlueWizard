@@ -2,6 +2,6 @@
 
 @interface RMSNormalizer : NSObject
 
-+(void)normalize:(NSArray *)reflectors;
++(void)normalize:(NSArray *)frameData;
 
 @end

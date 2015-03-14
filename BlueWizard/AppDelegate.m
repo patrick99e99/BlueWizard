@@ -9,6 +9,7 @@
 #import "SpeechSynthesizer.h"
 #import "PlayheadView.h"
 #import "NotificationNames.h"
+#import "Buffer.h"
 
 @interface AppDelegate ()
 
@@ -30,7 +31,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopWasClicked:) name:stopProcessedWasClicked object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bufferGenerated:) name:bufferGenerated object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processInputSignalWasClicked:) name:processInputSignalWasClicked object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsChanged:) name:settingsChanged object:nil];
 
     
 //    NSArray *speechData = [SpeechDataReader speechDataFromFile:@"test"];
@@ -70,6 +71,7 @@
         for (NSURL* URL in [dialog URLs]) {
             self.input = [[Input alloc] initWithURL:URL];
             [[NSNotificationCenter defaultCenter] postNotificationName:inputSignalReceived object:self.input.buffer];
+            [self processInputSignal];
         }
     }
 }
@@ -84,9 +86,16 @@
     [self.sampler stream:self.buffer];
 }
 
--(void)processInputSignalWasClicked:(NSNotification *)notification {
+-(void)settingsChanged:(NSNotification *)notification {
+    if (!self.input) return;
+    [self processInputSignal];
+}
+
+-(void)processInputSignal {
     //    ((PlayheadView *)notification.object).sampler = self.sampler;
-    self.processor = [Processor process:[self.input buffer]];
+    Buffer *inputBuffer = [self.input buffer];
+    Buffer *buffer = [[Buffer alloc] initWithSamples:inputBuffer.samples size:inputBuffer.size sampleRate:inputBuffer.sampleRate];
+    self.processor = [Processor process:buffer];
 }
 
 -(void)stopWasClicked:(NSNotification *)notification {

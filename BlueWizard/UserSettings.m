@@ -13,7 +13,7 @@
 
 -(NSNumber *)preEmphasisAlpha {
     if (!_preEmphasisAlpha) {
-        _preEmphasisAlpha = @0.93750f;
+        _preEmphasisAlpha = @-0.93750f;
     }
     return _preEmphasisAlpha;
 }
@@ -52,7 +52,6 @@
     }
     return _maxPitchInHZ;
 }
-
 
 -(NSNumber *)minPitchInHZ {
     if (!_minPitchInHZ) {

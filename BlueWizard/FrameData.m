@@ -5,10 +5,9 @@
 
 @interface FrameData ()
 
-@property (nonatomic, weak) Reflector *reflector;
+@property (nonatomic, strong) Reflector *reflector;
 @property (nonatomic) double pitch;
 @property (nonatomic) BOOL repeat;
-@property (nonatomic) BOOL translate;
 
 @end
 
@@ -16,39 +15,39 @@
 
 -(instancetype)initWithReflector:(Reflector *)reflector
                            pitch:(NSUInteger)pitch
-                          repeat:(BOOL)repeat
-                       translate:(BOOL)translate {
+                          repeat:(BOOL)repeat {
     if (self = [super init]) {
         self.reflector = reflector;
         self.pitch     = pitch;
         self.repeat    = repeat;
-        self.translate = translate;
     }
     return self;
 }
 
 -(NSDictionary *)parameters {
+    return [self parametersWithTranslate:NO];
+}
+
+-(NSDictionary *)translatedParameters {
+    return [self parametersWithTranslate:YES];
+}
+
+-(NSDictionary *)parametersWithTranslate:(BOOL)translate {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:13];
     
-    parameters[kParameterGain] = [self parameterizedValueForRMS];
+    parameters[kParameterGain] = [self parameterizedValueForRMS:self.reflector.rms translate:translate];
     if ([parameters[kParameterGain] doubleValue] > 0.0f) {
-
-        parameters[kParameterRepeat] = [self parameterizedValueForRepeat];
-        parameters[kParameterPitch]  = [self parameterizedValueForPitch];
+        
+        parameters[kParameterRepeat] = [self parameterizedValueForRepeat:self.repeat];
+        parameters[kParameterPitch]  = [self parameterizedValueForPitch:self.pitch translate:translate];
         
         if (![parameters[kParameterRepeat] boolValue]) {
-            parameters[kParameterK1] = [self parameterizedValueForK:1];
-            parameters[kParameterK2] = [self parameterizedValueForK:2];
-            parameters[kParameterK3] = [self parameterizedValueForK:3];
-            parameters[kParameterK4] = [self parameterizedValueForK:4];
+            NSDictionary *ks = [self kParametersFrom:1 to:4 translate:translate];
+            [parameters addEntriesFromDictionary:ks];
             
             if ([self.reflector isVoiced] && [parameters[kParameterPitch] unsignedIntegerValue]) {
-                parameters[kParameterK5]  = [self parameterizedValueForK:5];
-                parameters[kParameterK6]  = [self parameterizedValueForK:6];
-                parameters[kParameterK7]  = [self parameterizedValueForK:7];
-                parameters[kParameterK8]  = [self parameterizedValueForK:8];
-                parameters[kParameterK9]  = [self parameterizedValueForK:9];
-                parameters[kParameterK10] = [self parameterizedValueForK:10];
+                ks = [self kParametersFrom:5 to:10 translate:translate];
+                [parameters addEntriesFromDictionary:ks];
             }
         }
     }
@@ -56,44 +55,79 @@
     return [parameters copy];
 }
 
--(NSNumber *)parameterizedValueForK:(NSUInteger)k {
-    NSUInteger index = [ClosestValueFinder indexFor:self.reflector.ks[k]
-                                              table:[CodingTable kBinFor:k]
-                                               size:[CodingTable kSizeFor:k]];
+-(void)setParameter:(NSString *)parameter value:(NSNumber *)value {
+    if ([parameter isEqualToString:kParameterGain]) {
+        NSUInteger index = [value unsignedIntegerValue];
+        NSNumber *value = [NSNumber numberWithFloat:[CodingTable rms][index]];
+        self.reflector.rms = [value floatValue];
+    } else if ([parameter isEqualToString:kParameterRepeat]) {
+        self.repeat = [value boolValue];
+    } else if ([parameter isEqualToString:kParameterPitch]) {
+        NSUInteger index = [value unsignedIntegerValue];
+        NSNumber *value = [NSNumber numberWithFloat:[CodingTable pitch][index]];
+        self.pitch = [value doubleValue];
+    } else {
+        NSUInteger bin = [[parameter substringFromIndex:1] integerValue];
+        NSUInteger index = [value unsignedIntegerValue];
+        NSNumber *value = [NSNumber numberWithFloat:[CodingTable kBinFor:bin][index]];
+        self.reflector.ks[bin] = [value doubleValue];
+    }
+}
 
-    if (self.translate) {
-        return [NSNumber numberWithFloat:[CodingTable kBinFor:k][index]];
+-(NSNumber *)parameterizedValueForK:(double)k bin:(NSUInteger)bin translate:(BOOL)translate {
+    NSUInteger index = [ClosestValueFinder indexFor:k
+                                              table:[CodingTable kBinFor:bin]
+                                               size:[CodingTable kSizeFor:bin]];
+
+    if (translate) {
+        return [NSNumber numberWithFloat:[CodingTable kBinFor:bin][index]];
     } else {
         return [NSNumber numberWithUnsignedInteger:index];
     }
 }
 
--(NSNumber *)parameterizedValueForRMS {
-    NSUInteger index = [ClosestValueFinder indexFor:self.reflector.rms
+-(NSNumber *)parameterizedValueForRMS:(double)rms translate:(BOOL)translate {
+    NSUInteger index = [ClosestValueFinder indexFor:rms
                                               table:[CodingTable rms]
                                                size:[CodingTable rmsSize]];
-    if (self.translate) {
+    if (translate) {
         return [NSNumber numberWithFloat:[CodingTable rms][index]];
     } else {
         return [NSNumber numberWithUnsignedInteger:index];
     }
 }
 
--(NSNumber *)parameterizedValueForPitch {
+-(NSNumber *)parameterizedValueForPitch:(double)pitch translate:(BOOL)translate {
     if ([self.reflector isUnvoiced]) return @0;
 
-    NSUInteger index = [ClosestValueFinder indexFor:self.pitch
+    NSUInteger index = [ClosestValueFinder indexFor:pitch
                                               table:[CodingTable pitch]
                                                size:[CodingTable pitchSize]];
-    if (self.translate) {
-        return [NSNumber numberWithFloat:[CodingTable rms][index]];
+    if (translate) {
+        return [NSNumber numberWithFloat:[CodingTable pitch][index]];
     } else {
         return [NSNumber numberWithUnsignedInteger:index];
     }
 }
 
--(NSNumber *)parameterizedValueForRepeat {
-    return [NSNumber numberWithBool:self.repeat];
+-(NSNumber *)parameterizedValueForRepeat:(BOOL)repeat {
+    return [NSNumber numberWithBool:repeat];
+}
+
+-(NSDictionary *)kParametersFrom:(NSUInteger)from
+                              to:(NSUInteger)to
+                       translate:(BOOL)translate {
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:to - from];
+    for (NSUInteger k = from; k <= to; k++) {
+        NSString *key = [self parameterKeyForK:k];
+        parameters[key] = [self parameterizedValueForK:self.reflector.ks[k] bin:k translate:translate];
+    }
+    return [parameters copy];
+}
+
+-(NSString *)parameterKeyForK:(NSUInteger)k {
+    return [NSString stringWithFormat:@"k%lu", k];
 }
 
 @end

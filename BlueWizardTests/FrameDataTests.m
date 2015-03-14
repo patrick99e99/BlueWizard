@@ -5,7 +5,7 @@
 #import "CodingTable.h"
 
 @interface Reflector (FrameDataTests)
--(instancetype)initWithKs:(float *)ks rms:(NSUInteger)rms;
+-(instancetype)initWithKs:(double *)ks rms:(double)rms;
 @end
 
 @interface FrameDataTests : XCTestCase
@@ -26,10 +26,10 @@
 }
 
 -(void)testItHasAllParameters {
-    float ks[] = { 0.1f, 0.1f };
+    double ks[] = { 0.0f, 0.0f };
     reflector = [[Reflector alloc] initWithKs:ks rms:32];
 
-    subject = [[FrameData alloc] initWithReflector:reflector pitch:32 repeat:NO translate:NO];
+    subject = [[FrameData alloc] initWithReflector:reflector pitch:32 repeat:NO];
     NSArray *paramterKeys = [[subject parameters] allKeys];
     XCTAssertTrue([paramterKeys containsObject:kParameterGain]);
     XCTAssertTrue([paramterKeys containsObject:kParameterRepeat]);
@@ -47,10 +47,12 @@
 }
 
 -(void)testItHasUnvoicedParameterWhenK1IsLarge {
-    float ks[] = { 0.1f, 5.0f };
-    reflector = [[Reflector alloc] initWithKs:ks rms:32];
+    double ks[] = { 0.1, 5.0f };
     
-    subject = [[FrameData alloc] initWithReflector:reflector pitch:32 repeat:NO translate:NO];
+    reflector = [[Reflector alloc] initWithKs:ks rms:32];
+    XCTAssertTrue([reflector isUnvoiced]);
+    
+    subject = [[FrameData alloc] initWithReflector:reflector pitch:32 repeat:NO];
     NSArray *paramterKeys = [[subject parameters] allKeys];
     XCTAssertTrue([paramterKeys containsObject:kParameterGain]);
     XCTAssertTrue([paramterKeys containsObject:kParameterRepeat]);
@@ -68,10 +70,10 @@
 }
 
 -(void)testItHasUnvoicedParameterWhenPitchIsZero {
-    float ks[] = { 0.1f, 0.1f };
+    double ks[] = { 0.1f, 0.1f };
     reflector = [[Reflector alloc] initWithKs:ks rms:32];
     
-    subject = [[FrameData alloc] initWithReflector:reflector pitch:0 repeat:NO translate:NO];
+    subject = [[FrameData alloc] initWithReflector:reflector pitch:0 repeat:NO];
     NSArray *paramterKeys = [[subject parameters] allKeys];
     XCTAssertTrue([paramterKeys containsObject:kParameterGain]);
     XCTAssertTrue([paramterKeys containsObject:kParameterRepeat]);
@@ -89,10 +91,10 @@
 }
 
 -(void)testItHasGainOnlyParametersWhenGainIsZero {
-    float ks[] = { 0.0f, 0.0f };
+    double ks[] = { 0.0f, 0.0f };
     reflector = [[Reflector alloc] initWithKs:ks rms:0];
     
-    subject = [[FrameData alloc] initWithReflector:reflector pitch:0 repeat:NO translate:NO];
+    subject = [[FrameData alloc] initWithReflector:reflector pitch:0 repeat:NO];
     NSArray *paramterKeys = [[subject parameters] allKeys];
     XCTAssertTrue([paramterKeys containsObject:kParameterGain]);
     XCTAssertFalse([paramterKeys containsObject:kParameterRepeat]);
@@ -110,10 +112,10 @@
 }
 
 -(void)testItHasRepeatParameters {
-    float ks[] = { 0.0f, 0.0f };
+    double ks[] = { 0.0f, 0.0f };
     reflector = [[Reflector alloc] initWithKs:ks rms:32];
     
-    subject = [[FrameData alloc] initWithReflector:reflector pitch:32 repeat:YES translate:NO];
+    subject = [[FrameData alloc] initWithReflector:reflector pitch:32 repeat:YES];
     NSArray *paramterKeys = [[subject parameters] allKeys];
     XCTAssertTrue([paramterKeys containsObject:kParameterGain]);
     XCTAssertTrue([paramterKeys containsObject:kParameterRepeat]);
@@ -128,6 +130,15 @@
     XCTAssertFalse([paramterKeys containsObject:kParameterK8]);
     XCTAssertFalse([paramterKeys containsObject:kParameterK9]);
     XCTAssertFalse([paramterKeys containsObject:kParameterK10]);
+}
+
+-(void)testItHasTranslatedParamteres {
+    double ks[] = { 0.0f, 0.0f };
+    reflector = [[Reflector alloc] initWithKs:ks rms:32];
+    
+    subject = [[FrameData alloc] initWithReflector:reflector pitch:32 repeat:YES];
+    NSNumber *gain = [[subject translatedParameters] objectForKey:kParameterGain];
+    XCTAssertEqualObjects(gain, @52.0f);
 }
 
 @end

@@ -12,6 +12,7 @@
 #import "UserSettings.h"
 #import "PitchEstimator.h"
 #import "NotificationNames.h"
+#import "RMSNormalizer.h"
 
 @interface Processor ()
 @property (nonatomic, strong) Buffer *buffer;
@@ -21,6 +22,7 @@
 
 +(instancetype)process:(Buffer *)buffer {
     Processor *processor = [[self alloc] init];
+    
     [processor process:buffer];
     return processor;
 }
@@ -55,12 +57,14 @@
             pitch = pitchTable[index];
         }
         
-        FrameData *frameData = [[FrameData alloc] initWithReflector:reflector pitch:pitch repeat:NO translate:NO];
+        FrameData *frameData = [[FrameData alloc] initWithReflector:reflector pitch:pitch repeat:NO];
         
-        [frames addObject:[frameData parameters]];
+        [frames addObject:frameData];
     }];
     free(coefficients);
     if (!wrappedPitch) free(pitchTable);
+    
+    if ([[self userSettings] normalizeRMS]) [RMSNormalizer normalize:frames];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:frameDataGenerated object:frames];
 
