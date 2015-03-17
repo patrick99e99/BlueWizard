@@ -8,6 +8,8 @@
 @property (nonatomic, strong) Reflector *reflector;
 @property (nonatomic) double pitch;
 @property (nonatomic) BOOL repeat;
+@property (nonatomic, strong) NSDictionary *parameters;
+@property (nonatomic, strong) NSDictionary *translatedParameters;
 
 @end
 
@@ -24,16 +26,29 @@
     return self;
 }
 
+-(instancetype)init {
+    if (self = [super init]) {
+        self.reflector = [[Reflector alloc] init];
+    }
+    return self;
+}
+
 -(NSDictionary *)parameters {
-    return [self parametersWithTranslate:NO];
+    if (!_parameters) {
+        _parameters = [self parametersWithTranslate:NO];
+    }
+    return _parameters;
 }
 
 -(NSDictionary *)translatedParameters {
-    return [self parametersWithTranslate:YES];
+    if (!_translatedParameters) {
+        _translatedParameters = [self parametersWithTranslate:YES];
+    }
+    return _translatedParameters;
 }
 
 -(NSDictionary *)parametersWithTranslate:(BOOL)translate {
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:13];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:kParameterKeys];
     
     parameters[kParameterGain] = [self parameterizedValueForRMS:self.reflector.rms translate:translate];
     if ([parameters[kParameterGain] doubleValue] > 0.0f) {
@@ -56,21 +71,24 @@
 }
 
 -(void)setParameter:(NSString *)parameter value:(NSNumber *)value {
+    self.parameters = nil;
+    self.translatedParameters = nil;
+    
     if ([parameter isEqualToString:kParameterGain]) {
         NSUInteger index = [value unsignedIntegerValue];
-        NSNumber *value = [NSNumber numberWithFloat:[CodingTable rms][index]];
-        self.reflector.rms = [value floatValue];
+        NSNumber *rms = [NSNumber numberWithFloat:[CodingTable rms][index]];
+        self.reflector.rms = [rms floatValue];
     } else if ([parameter isEqualToString:kParameterRepeat]) {
         self.repeat = [value boolValue];
     } else if ([parameter isEqualToString:kParameterPitch]) {
         NSUInteger index = [value unsignedIntegerValue];
-        NSNumber *value = [NSNumber numberWithFloat:[CodingTable pitch][index]];
-        self.pitch = [value doubleValue];
+        NSNumber *pitch = [NSNumber numberWithFloat:[CodingTable pitch][index]];
+        self.pitch = [pitch doubleValue];
     } else {
         NSUInteger bin = [[parameter substringFromIndex:1] integerValue];
         NSUInteger index = [value unsignedIntegerValue];
-        NSNumber *value = [NSNumber numberWithFloat:[CodingTable kBinFor:bin][index]];
-        self.reflector.ks[bin] = [value doubleValue];
+        NSNumber *k = [NSNumber numberWithFloat:[CodingTable kBinFor:bin][index]];
+        self.reflector.ks[bin] = [k doubleValue];
     }
 }
 

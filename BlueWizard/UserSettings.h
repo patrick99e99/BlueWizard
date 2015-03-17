@@ -17,6 +17,7 @@
 @property (nonatomic) BOOL overridePitch;
 @property (nonatomic) BOOL preEmphasis;
 @property (nonatomic) BOOL normalizeRMS;
+@property (nonatomic) BOOL excitationFilterOnly;
 
 +(instancetype)sharedInstance;
 

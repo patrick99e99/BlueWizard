@@ -76,7 +76,7 @@
 
 -(NSNumber *)unvoicedThreshold {
     if (!_unvoicedThreshold) {
-        _unvoicedThreshold = @0.05f;
+        _unvoicedThreshold = @0.3f;
     }
     return _unvoicedThreshold;
 }

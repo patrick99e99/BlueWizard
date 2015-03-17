@@ -96,7 +96,120 @@
 }
 
 -(void)testItUnpacksAByteStreamIntoFrameData {
-//    XCTAssertEqualObjects([BitPacker unpack:byteStream options:nil], frames);
+    NSArray *frameData = [[BitPacker unpack:byteStream] valueForKey:@"parameters"];
+    NSDictionary *parameters;
+    
+    parameters = frameData[0];
+    
+    XCTAssertEqualObjects([parameters objectForKey:kParameterGain], @9);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterRepeat], @NO);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterPitch], @0);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterK1], @21);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterK2], @22);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterK3], @6);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterK4], @6);
+    XCTAssertNil([parameters objectForKey:kParameterK5]);
+    XCTAssertNil([parameters objectForKey:kParameterK6]);
+    XCTAssertNil([parameters objectForKey:kParameterK7]);
+    XCTAssertNil([parameters objectForKey:kParameterK8]);
+    XCTAssertNil([parameters objectForKey:kParameterK9]);
+    XCTAssertNil([parameters objectForKey:kParameterK10]);
+    
+    parameters = frameData[1];
+    
+    XCTAssertEqualObjects([parameters objectForKey:kParameterGain], @6);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterRepeat], @YES);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterPitch], @0);
+    XCTAssertNil([parameters objectForKey:kParameterK1]);
+    XCTAssertNil([parameters objectForKey:kParameterK2]);
+    XCTAssertNil([parameters objectForKey:kParameterK3]);
+    XCTAssertNil([parameters objectForKey:kParameterK4]);
+    XCTAssertNil([parameters objectForKey:kParameterK5]);
+    XCTAssertNil([parameters objectForKey:kParameterK6]);
+    XCTAssertNil([parameters objectForKey:kParameterK7]);
+    XCTAssertNil([parameters objectForKey:kParameterK8]);
+    XCTAssertNil([parameters objectForKey:kParameterK9]);
+    XCTAssertNil([parameters objectForKey:kParameterK10]);
+
+    parameters = frameData[2];
+    
+    XCTAssertEqualObjects([parameters objectForKey:kParameterGain], @6);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterRepeat], @YES);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterPitch], @0);
+    XCTAssertNil([parameters objectForKey:kParameterK1]);
+    XCTAssertNil([parameters objectForKey:kParameterK2]);
+    XCTAssertNil([parameters objectForKey:kParameterK3]);
+    XCTAssertNil([parameters objectForKey:kParameterK4]);
+    XCTAssertNil([parameters objectForKey:kParameterK5]);
+    XCTAssertNil([parameters objectForKey:kParameterK6]);
+    XCTAssertNil([parameters objectForKey:kParameterK7]);
+    XCTAssertNil([parameters objectForKey:kParameterK8]);
+    XCTAssertNil([parameters objectForKey:kParameterK9]);
+    XCTAssertNil([parameters objectForKey:kParameterK10]);
+    
+    parameters = frameData[3];
+    
+    XCTAssertEqualObjects([parameters objectForKey:kParameterGain], @13);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterRepeat], @NO);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterPitch], @10);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterK1], @18);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterK2], @16);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterK3], @5);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterK4], @5);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterK5], @6);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterK6], @11);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterK7], @10);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterK8], @5);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterK9], @3);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterK10], @2);
+    
+    parameters = frameData[4];
+    
+    XCTAssertEqualObjects([parameters objectForKey:kParameterGain], @13);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterRepeat], @YES);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterPitch], @11);
+    XCTAssertNil([parameters objectForKey:kParameterK1]);
+    XCTAssertNil([parameters objectForKey:kParameterK2]);
+    XCTAssertNil([parameters objectForKey:kParameterK3]);
+    XCTAssertNil([parameters objectForKey:kParameterK4]);
+    XCTAssertNil([parameters objectForKey:kParameterK5]);
+    XCTAssertNil([parameters objectForKey:kParameterK6]);
+    XCTAssertNil([parameters objectForKey:kParameterK7]);
+    XCTAssertNil([parameters objectForKey:kParameterK8]);
+    XCTAssertNil([parameters objectForKey:kParameterK9]);
+    XCTAssertNil([parameters objectForKey:kParameterK10]);
+    
+    parameters = frameData[5];
+    
+    XCTAssertEqualObjects([parameters objectForKey:kParameterGain], @13);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterRepeat], @NO);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterPitch], @12);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterK1], @22);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterK2], @17);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterK3], @7);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterK4], @4);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterK5], @0);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterK6], @10);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterK7], @11);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterK8], @6);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterK9], @4);
+    XCTAssertEqualObjects([parameters objectForKey:kParameterK10], @3);
+    
+    parameters = frameData[6];
+    
+    XCTAssertEqualObjects([parameters objectForKey:kParameterGain], @0);
+    XCTAssertNil([parameters objectForKey:kParameterRepeat]);
+    XCTAssertNil([parameters objectForKey:kParameterPitch]);
+    XCTAssertNil([parameters objectForKey:kParameterK1]);
+    XCTAssertNil([parameters objectForKey:kParameterK2]);
+    XCTAssertNil([parameters objectForKey:kParameterK3]);
+    XCTAssertNil([parameters objectForKey:kParameterK4]);
+    XCTAssertNil([parameters objectForKey:kParameterK5]);
+    XCTAssertNil([parameters objectForKey:kParameterK6]);
+    XCTAssertNil([parameters objectForKey:kParameterK7]);
+    XCTAssertNil([parameters objectForKey:kParameterK8]);
+    XCTAssertNil([parameters objectForKey:kParameterK9]);
+    XCTAssertNil([parameters objectForKey:kParameterK10]);
 }
 
 @end

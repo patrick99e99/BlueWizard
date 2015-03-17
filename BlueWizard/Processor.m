@@ -65,12 +65,15 @@
     if (!wrappedPitch) free(pitchTable);
     
     if ([[self userSettings] normalizeRMS]) [RMSNormalizer normalize:frames];
+    [self postNotificationsForFrames:[frames copy]];
+}
 
+-(void)postNotificationsForFrames:(NSArray *)frames {
     [[NSNotificationCenter defaultCenter] postNotificationName:frameDataGenerated object:frames];
-
+    
     NSString *byteStream = [BitPacker pack:frames];
     [[NSNotificationCenter defaultCenter] postNotificationName:byteStreamGenerated object:byteStream];
-
+    
     NSArray *speechData = [SpeechDataReader speechDataFromString:byteStream];
     self.buffer = [SpeechSynthesizer processSpeechData:speechData];
     [[NSNotificationCenter defaultCenter] postNotificationName:bufferGenerated object:self.buffer];

@@ -1,6 +1,12 @@
 #import "WaveformView.h"
 #import "Buffer.h"
 
+@interface WaveformView ()
+@property (nonatomic) BOOL inverse;
+@property (nonatomic) NSPoint mouseDown;
+@property (nonatomic) NSPoint mouseUp;
+@end
+
 @implementation WaveformView
 
 -(void)drawRect:(NSRect)dirtyRect {
@@ -30,13 +36,25 @@
     NSBezierPath *line = [NSBezierPath bezierPath];
     [line moveToPoint:pointA];
     [line lineToPoint:pointB];
-    
+
     [line setLineWidth:1.0];
     [line stroke];
 }
 
 -(void)setBuffer:(Buffer *)buffer {
     _buffer = buffer;
+    [self setNeedsDisplay:YES];
+}
+
+-(void)mouseDown:(NSEvent *)theEvent {
+    self.inverse = YES;
+    self.mouseDown = [theEvent locationInWindow];
+    [self setNeedsDisplay:YES];
+}
+
+-(void)mouseUp:(NSEvent *)theEvent {
+    self.inverse = NO;
+    self.mouseUp = [theEvent locationInWindow];
     [self setNeedsDisplay:YES];
 }
 

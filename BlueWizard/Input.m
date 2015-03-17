@@ -40,7 +40,7 @@
         ioData.mBuffers[0].mData = malloc(ioData.mBuffers[0].mDataByteSize);
         
         BOOL isStereo = asbd.mChannelsPerFrame == 2;
-        
+
         ExtAudioFileRead(inputFile, &numberOfFrames, &ioData);
         
         double scale = 1.0f / (1 << 15);

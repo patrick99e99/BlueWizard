@@ -115,6 +115,7 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
 
     [self.minFrequencyTextfield setEnabled:!state];
     [self.maxFrequencyTextfield setEnabled:!state];
+    [self.submultipleThresholdTextfield setEnabled:!state];
     [self.pitchValueTextfield setEnabled:state];
 
     [[self userSettings] setOverridePitch:state];
@@ -162,6 +163,11 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
     [self notifySettingsChanged];
 }
 
+- (IBAction)excitationFilterOnlyToggled:(NSButton *)sender {
+    [[self userSettings] setExcitationFilterOnly:[sender state]];
+    [self notifySettingsChanged];
+}
+
 -(void)notifySettingsChanged {
     if (self.frameData) [self showSpinner];
     [[NSNotificationCenter defaultCenter] postNotificationName:settingsChanged object:nil];
@@ -195,29 +201,11 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
     [self.spinner stopAnimation:self];
 }
 
-# pragma mark - NSTextFieldDelegate
+# pragma mark - NSTextViewDelegate
 
--(void)controlTextDidChange:(NSNotification *)notification {
-//    NSTextField *textField = notification.object;
-//    if (textField == self.minFrequencyTextfield) {
-//        [self minFrequencyChanged:textField];
-//    } else if (textField == self.maxFrequencyTextfield) {
-//        [self maxFrequencyChanged:textField];
-//    } else if (textField == self.submultipleThresholdTextfield) {
-//        [self submultipleThresholdChanged:textField];
-//    } else if (textField == self.pitchValueTextfield) {
-//        [self pitchValueChanged:textField];
-//    } else if (textField == self.unvoicedThresholdTextfield) {
-//        [self unvoicedThresholdChanged:textField];
-//    } else if (textField == self.sampleRateTextfield) {
-//        [self sampleRateChanged:textField];
-//    } else if (textField == self.frameRateTextfield) {
-//        [self frameRateChanged:textField];
-//    } else if (textField == self.preEmphasisAlphaTextfield) {
-//        [self preEmphasisAlphaChanged:textField];
-//    } else if (textField == self.rmsLimitTextfield) {
-//        [self rmsLimitChanged:textField];
-//    }
+-(BOOL)textView:(NSTextView *)textView shouldChangeTextInRange:(NSRange)affectedCharRange replacementString:(NSString *)replacementString {
+    [[NSNotificationCenter defaultCenter] postNotificationName:byteStreamChanged object:replacementString];
+    return YES;
 }
 
 # pragma mark - NSTableViewDelegate
@@ -248,7 +236,7 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
     }
     
     if (row == 0) {
-        [self performSelector:@selector(hideSpinner) withObject:nil afterDelay:0.5f];
+        [self hideSpinner];
     }
     
     return result;
@@ -258,10 +246,6 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
 
 -(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
     return [self.frameData count];
-}
-
-- (void)tableView:(NSTableView *)tableView setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-
 }
 
 @end

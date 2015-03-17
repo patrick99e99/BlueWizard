@@ -22,7 +22,7 @@ static NSString * const kFrameDataParametersMethodName = @"parameters";
     return [switched componentsJoinedByString:@","];
 }
 
-+(NSArray *)unpack:(NSString *)packedData options:(NSDictionary *)options {
++(NSArray *)unpack:(NSString *)packedData {
     NSArray *bytes    = [packedData componentsSeparatedByString:@","];
     NSArray *switched = [NibbleSwitcher process:bytes];
     NSArray *reversed = [NibbleBitReverser process:switched];
@@ -35,20 +35,22 @@ static NSString * const kFrameDataParametersMethodName = @"parameters";
     
     int *bits = [CodingTable bits];
     __block NSString *binaryString = binary;
-    while ([binaryString length]) {
-        NSMutableDictionary *frame = [NSMutableDictionary dictionaryWithCapacity:13];
+    while (binaryString) {
+        NSMutableArray *frameKeys = [NSMutableArray arrayWithCapacity:kParameterKeys];
+        FrameData *frame = [[FrameData alloc] init];
         [[CodingTable parameters] enumerateObjectsUsingBlock:^(NSString *parameter, NSUInteger idx, BOOL *stop) {
             NSUInteger parameterBits = bits[idx];
-            NSUInteger length        = [binary length];
+            NSUInteger length        = [binaryString length];
             NSUInteger shift         = length < parameterBits ? (parameterBits - length) : 0;
-            NSUInteger value         = [BitHelpers valueForBinary:[binaryString substringToIndex:parameterBits]] << shift;
-            binaryString = [binaryString substringFromIndex:parameterBits];
+            NSUInteger value         = [BitHelpers valueForBinary:[binaryString substringToIndex:parameterBits - shift]] << shift;
+            binaryString = length >= parameterBits ? [binaryString substringFromIndex:parameterBits] : nil;
             
-            [frame setObject:[NSNumber numberWithUnsignedInteger:value] forKey:parameter];
-            
-            if ([self frameHasNoGain:frame] ||
-                [self frameIsUnvoicedAndComplete:frame] ||
-                [self frameIsRepeatedAndComplete:frame]) *stop = YES;
+            [frame setParameter:parameter value:[NSNumber numberWithUnsignedInteger:value]];
+            [frameKeys addObject:parameter];
+            NSDictionary *parameters = [frame parameters];
+            if ([self parametersHaveNoGain:parameters] ||
+                [self parametersAreUnvoicedAndComplete:parameters frameKeys:frameKeys] ||
+                [self parametersAreRepeatedAndComplete:parameters frameKeys:frameKeys]) *stop = YES;
         }];
 
         [frames addObject:frame];
@@ -56,25 +58,24 @@ static NSString * const kFrameDataParametersMethodName = @"parameters";
     return frames;
 }
 
-+(BOOL)frameHasNoGain:(NSDictionary *)frame {
-    return ![[frame objectForKey:kParameterGain] unsignedIntegerValue];
++(BOOL)parametersHaveNoGain:(NSDictionary *)parameters {
+    return ![[parameters objectForKey:kParameterGain] unsignedIntegerValue];
 }
 
-+(BOOL)frameIsUnvoicedAndComplete:(NSDictionary *)frame {
-    return ![[frame objectForKey:kParameterPitch] unsignedIntegerValue] &&
-            [self frameHasExactKeys:[self unvoicedKeys] frame:frame];
++(BOOL)parametersAreUnvoicedAndComplete:(NSDictionary *)parameters frameKeys:(NSArray *)frameKeys {
+    return ![[parameters objectForKey:kParameterPitch] unsignedIntegerValue] &&
+            [self frameHasExactKeys:[self unvoicedKeys] frameKeys:frameKeys];
 }
 
-+(BOOL)frameIsRepeatedAndComplete:(NSDictionary *)frame {
-    return [[frame objectForKey:kParameterRepeat] unsignedIntegerValue] == 1 &&
-            [self frameHasExactKeys:[self repeatKeys] frame:frame];
++(BOOL)parametersAreRepeatedAndComplete:(NSDictionary *)parameters frameKeys:(NSArray *)frameKeys  {
+    return [[parameters objectForKey:kParameterRepeat] unsignedIntegerValue] == 1 &&
+            [self frameHasExactKeys:[self repeatKeys] frameKeys:frameKeys];
 }
 
-+(BOOL)frameHasExactKeys:(NSArray *)keys frame:(NSDictionary *)frame {
-    NSArray *allKeys = [frame allKeys];
-    if ([keys count] != [allKeys count]) return NO;
++(BOOL)frameHasExactKeys:(NSArray *)keys frameKeys:(NSArray *)frameKeys {
+    if ([keys count] != [frameKeys count]) return NO;
     
-    for (NSString *key in allKeys) {
+    for (NSString *key in frameKeys) {
         if (![keys containsObject:key]) return NO;
     }
     return YES;

@@ -10,6 +10,8 @@
 #import "PlayheadView.h"
 #import "NotificationNames.h"
 #import "Buffer.h"
+#import "BitPacker.h"
+#import "EffectMachine.h"
 
 @interface AppDelegate ()
 
@@ -18,12 +20,19 @@
 @property (nonatomic, strong) Input *input;
 @property (nonatomic, strong) Processor *processor;
 @property (nonatomic, strong) Buffer *buffer;
+@property (nonatomic, strong) EffectMachine *e;
 
 @end
 
 @implementation AppDelegate
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+-(void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    NSArray *speechData = [SpeechDataReader speechDataFromFile:@"blue_wizard"];
+    Buffer *buffer = [SpeechSynthesizer processSpeechData:speechData];
+    self.e = [[EffectMachine alloc] initWithBuffer:buffer];
+    [self.e process];
+//    [self.sampler stream:buffer];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playOriginalWasClicked:) name:playOriginalWasClicked object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopWasClicked:) name:stopOriginalWasClicked object:nil];
 
@@ -31,25 +40,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopWasClicked:) name:stopProcessedWasClicked object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bufferGenerated:) name:bufferGenerated object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsChanged:) name:settingsChanged object:nil];
 
-    
-//    NSArray *speechData = [SpeechDataReader speechDataFromFile:@"test"];
-//    Buffer *buffer = [SpeechSynthesizer processSpeechData:speechData];
-//    [self.sampler stream:buffer];
-//    [self openFileBrowser];
-//    
-//    NSMutableArray *samples = [NSMutableArray array];
-//    for (NSNumber *num in [TestSampleData samples]) {
-//        float f = ((float)[num intValue]) / (1 << 15);
-//        [samples addObject:[NSNumber numberWithFloat:f]];
-//    }
-//    [Output save:samples];
-//    [self.sampler stream:[i samples] sampleRate:48000];
-//    [self openFileBrowser];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(byteStreamChanged:) name:byteStreamChanged object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsChanged:) name:settingsChanged object:nil];
 }
 
-- (void)applicationWillTerminate:(NSNotification *)aNotification {
+-(void)applicationWillTerminate:(NSNotification *)aNotification {
     [self.sampler stop];
 }
 
@@ -89,6 +85,13 @@
 -(void)settingsChanged:(NSNotification *)notification {
     if (!self.input) return;
     [self processInputSignal];
+}
+
+-(void)byteStreamChanged:(NSNotification *)notification {
+    NSArray *frames = [BitPacker unpack:notification.object];
+
+    self.processor = [[Processor alloc] init];
+    [self.processor postNotificationsForFrames:frames];
 }
 
 -(void)processInputSignal {

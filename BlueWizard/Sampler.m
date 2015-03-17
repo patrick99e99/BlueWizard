@@ -18,13 +18,12 @@
 
 static NSUInteger const kSampleRate = 48000;
 
-typedef struct SamplerPlayer
-{
+typedef struct SamplerPlayer {
     AudioUnit outputUnit;
     NSUInteger counter;
     NSUInteger index;
     float ratio;
-    Buffer *buffer;
+    __unsafe_unretained Buffer *buffer;
     __unsafe_unretained Sampler *sampler;
 } SamplerPlayer;
 
@@ -83,7 +82,8 @@ OSStatus CallbackRenderProc(void *inRefCon,
     [self stop];
     self.streaming = YES;
     
-    player         = {0};
+    struct SamplerPlayer initialized = {0};
+    player = initialized;
     player.ratio   = (float)kSampleRate / buffer.sampleRate;
     player.buffer  = buffer;
     player.sampler = self;

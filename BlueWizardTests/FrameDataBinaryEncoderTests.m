@@ -11,7 +11,7 @@
     NSArray *subject;
 }
 
-- (void)setUp {
+-(void)setUp {
     [super setUp];
     NSArray *frameData = @[
       @{ kParameterGain: @9,  kParameterRepeat: @0, kParameterPitch: @0, kParameterK1: @21, kParameterK2: @22, kParameterK3: @6, kParameterK4: @6 },
@@ -29,11 +29,14 @@
     subject = [FrameDataBinaryEncoder process:frameData];
 }
 
-- (void)tearDown {
+-(void)tearDown {
+    int *bits = [CodingTable bits];
+    bits[2] = 6;
+
     [super tearDown];
 }
 
-- (void)testItConvertsFramesIntoBinaryNibbles {
+-(void)testItConvertsFramesIntoBinaryNibbles {
   NSArray *expected = @[ @"1001", @"0000", @"0010", @"1011", @"0110", @"0110", @"0110", @"0110", @"1000", @"0001", @"1010", @"0000", @"1101", @"0010", @"1010", @"0101", @"0000", @"0101", @"0101", @"0110", @"1011", @"1010", @"1010", @"1101", @"0110", @"1101", @"0111", @"1010", @"0110", @"0101", @"1010", @"0010", @"1110", @"1000", @"0001", @"0101", @"0111", @"1010", @"0011", @"0000" ];
     XCTAssertEqualObjects(subject, expected);
 }

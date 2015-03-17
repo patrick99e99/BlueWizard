@@ -7,7 +7,7 @@
     NSMutableArray *reversed = [NSMutableArray arrayWithCapacity:[nibbles count]];
     for (NSString *nibble in nibbles) {
         NSString *leftByte  = [nibble substringToIndex:1];
-        NSString *rightByte = [nibble substringFromIndex:1];
+        NSString *rightByte = [nibble length] == 1 ? @"0" : [nibble substringFromIndex:1];
         
         NSString *reversedNibble = [NSString stringWithFormat:@"%x%x",
                                     (int)[self reversedValueFor:leftByte],

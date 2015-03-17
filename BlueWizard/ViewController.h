@@ -2,7 +2,7 @@
 
 @class PlayheadView, WaveformView;
 
-@interface ViewController : NSViewController <NSTextFieldDelegate, NSTableViewDataSource, NSTableViewDelegate>
+@interface ViewController : NSViewController <NSTextViewDelegate, NSTableViewDataSource, NSTableViewDelegate>
 
 @property (weak) IBOutlet PlayheadView *playheadView;
 @property (weak) IBOutlet WaveformView *inputWaveformView;
@@ -22,6 +22,7 @@
 @property (weak) IBOutlet NSButton *overridePitchButton;
 @property (weak) IBOutlet NSButton *preEmphasisButton;
 @property (weak) IBOutlet NSButton *normalizeRMSButton;
+@property (weak) IBOutlet NSButton *excitationFilterOnlyButton;
 @property (unsafe_unretained) IBOutlet NSTextView *byteStreamTextView;
 @property (weak) IBOutlet NSTableView *frameDataTableView;
 @property (weak) IBOutlet NSButton *translateParametersCheckbox;

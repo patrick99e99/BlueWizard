@@ -1,6 +1,8 @@
 #import "Reflector.h"
 #import "UserSettings.h"
 
+static NSUInteger const kNumberOfKParameters = 11;
+
 @implementation Reflector {
     double *_ks[11];
 }
@@ -44,10 +46,19 @@
     return sqrt(rms / numberOfSamples) * (1 << 15);
 }
 
+-(instancetype)init {
+    if (self = [super init]) {
+        for (int i = 0; i <= kNumberOfKParameters; i++) {
+            _ks[i] = 0;
+        }
+    }
+    return self;
+}
+
 -(instancetype)initWithKs:(double *)ks rms:(double)rms {
     if (self = [super init]) {
         _rms = rms;
-        memcpy(_ks, ks, sizeof(double) * 11);
+        memcpy(_ks, ks, sizeof(double) * kNumberOfKParameters);
     }
     return self;
 }

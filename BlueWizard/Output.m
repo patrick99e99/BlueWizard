@@ -36,14 +36,15 @@
                                       &file),
                "AudioFileCreateWithURL failed");
 
-    UInt32 outputSamples = (UInt32)buffer.size * 6;
+    float ratio = buffer.sampleRate / asbd.mSampleRate;
+    
+    UInt32 outputSamples = (UInt32)buffer.size * ceil(asbd.mSampleRate / buffer.sampleRate);
     AudioBufferList ioData = {0};
     ioData.mNumberBuffers = 1;
     ioData.mBuffers[0].mNumberChannels = 1;
     ioData.mBuffers[0].mDataByteSize = asbd.mBytesPerPacket * outputSamples;
     ioData.mBuffers[0].mData = malloc(ioData.mBuffers[0].mDataByteSize);
-    
-    float ratio = buffer.sampleRate / asbd.mSampleRate;
+
     NSUInteger scale = (1 << 15);
     NSUInteger i = 0;
     NSUInteger index = 0;

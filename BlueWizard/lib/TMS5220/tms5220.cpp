@@ -819,7 +819,11 @@ void tms5220_device::process(int *buffer, unsigned int size)
 					break;
 					case 2: case 3: case 4: case 5: case 6: case 7: case 8: case 9: case 10: case 11:
 					/* PC = 2 through 11, B cycle, write updated K1 through K10 */
-					m_current_k[m_PC-2] += (((m_target_k[m_PC-2] - m_current_k[m_PC-2])*(1-inhibit_state)) INTERP_SHIFT);
+                    if (use_raw_excitation_filter) {
+                        m_current_k[m_PC-2] = 0;
+                    } else {
+                        m_current_k[m_PC-2] += (((m_target_k[m_PC-2] - m_current_k[m_PC-2])*(1-inhibit_state)) INTERP_SHIFT);
+                    }
 					break;
 					case 12: /* PC = 12, do nothing */
 					break;
@@ -1321,6 +1325,7 @@ void tms5220_device::device_start()
 	m_io_ready = 1;
 	m_true_timing = 0;
 	m_rs_ws = 0x03; // rs and ws are assumed to be inactive on device startup
+    use_raw_excitation_filter = false;
 }
 
 void tms5220_device::reset() {
@@ -1668,4 +1673,17 @@ void tms5220_device::set_frequency(int frequency)
 {
     printf("set_frequency called %d - sample rate: %d", frequency, (frequency / 80));
 	m_clock = frequency;
+}
+
+
+
+/**********************************************************************************************
+ 
+ tms5220_set_use_raw_excitation_filter -- whether all ks should be zero'd out
+ 
+ ***********************************************************************************************/
+
+void tms5220_device::set_use_raw_excitation_filter(bool yes_or_no)
+{
+    use_raw_excitation_filter = yes_or_no;
 }

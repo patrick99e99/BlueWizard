@@ -2,6 +2,7 @@
 #import "Buffer.h"
 #import "UserSettings.h"
 #import "tms5220.h"
+#import "UserSettings.h"
 
 @interface SpeechSynthesizer ()
 @property (nonatomic, getter = isSpeaking) BOOL speaking;
@@ -33,8 +34,12 @@
 }
 
 -(Buffer *)processSpeechData:(NSArray *)lpc {
+    NSAssert(!self.speaking, @"already speaking!");
+
     self.speaking = YES;
     NSMutableArray *samples = [NSMutableArray arrayWithCapacity:65536];
+    
+    _tms5220->set_use_raw_excitation_filter([[self userSettings] excitationFilterOnly]);
     
     [self writeData:0x60];
     
@@ -92,6 +97,10 @@
     }
     
     self.index += 1;
+}
+
+-(UserSettings *)userSettings {
+    return [UserSettings sharedInstance];
 }
 
 @end

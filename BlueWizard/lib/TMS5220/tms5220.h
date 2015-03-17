@@ -51,6 +51,8 @@ public:
     int next_sample();
 	int m_ready_pin;        /* state of the READY pin (output) */
 	int m_fifo_count;
+    
+    void set_use_raw_excitation_filter(bool yes_or_no);
 
 protected:
 	void device_config_complete();
@@ -183,6 +185,8 @@ private:
 	int m_digital_select;
 
 	int m_clock;
+    
+    bool use_raw_excitation_filter;
 };
 
 #endif

@@ -13,6 +13,7 @@ static NSString * const kParameterK7     = @"k7";
 static NSString * const kParameterK8     = @"k8";
 static NSString * const kParameterK9     = @"k9";
 static NSString * const kParameterK10    = @"k10";
+static NSUInteger const kParameterKeys   = 13;
 
 @interface CodingTable : NSObject
 
