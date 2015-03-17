@@ -7,15 +7,18 @@
 @property (nonatomic, strong) Buffer *buffer;
 @end
 
-typedef struct EffectMachineGraph {
-    AUGraph   graph;
-    AudioUnit input;
-    AudioUnit lowpass;
-    AudioUnit output;
-} EffectMachineGraph;
+typedef struct MyAUGraphPlayer
+{
+    AudioStreamBasicDescription inputFormat; // input file's data stream description
+    AudioFileID					inputFile; // reference to your input file
+    
+    AUGraph graph;
+    AudioUnit fileAU;
+    AudioUnit lowPassAU;
+    
+} MyAUGraphPlayer;
 
 @implementation EffectMachine {
-    EffectMachineGraph machine;
 }
 
 -(instancetype)initWithBuffer:(Buffer *)buffer {
@@ -23,98 +26,150 @@ typedef struct EffectMachineGraph {
         self.buffer = buffer;
     }
     return self;
+
 }
-
 -(void)process {
-    struct EffectMachineGraph initialized = {0};
-    machine = initialized;
+    CFURLRef inputFileURL = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, CFSTR ("/Users/patrick/Desktop/tms_stuff/save-keys.aif"), kCFURLPOSIXPathStyle, false);
+    MyAUGraphPlayer player = {0};
     
-    CheckError(NewAUGraph(&machine.graph),
+    // open the input audio file
+    CheckError(AudioFileOpenURL(inputFileURL, kAudioFileReadPermission, 0, &player.inputFile),
+               "AudioFileOpenURL failed");
+    CFRelease(inputFileURL);
+    
+    // get the audio data format from the file
+    UInt32 propSize = sizeof(player.inputFormat);
+    CheckError(AudioFileGetProperty(player.inputFile, kAudioFilePropertyDataFormat,
+                                    &propSize, &player.inputFormat),
+               "couldn't get file's data format");
+    
+    // build a basic fileplayer->speakers graph
+    // create a new AUGraph
+    CheckError(NewAUGraph(&player.graph),
                "NewAUGraph failed");
-
-    AudioComponentDescription outputCD = {0};
-    outputCD.componentType = kAudioUnitType_Output;
-    outputCD.componentSubType = kAudioUnitSubType_DefaultOutput;
-    outputCD.componentManufacturer = kAudioUnitManufacturer_Apple;
-
+    
+    // generate description that will match out output device (speakers)
+    AudioComponentDescription outputcd = {0};
+    outputcd.componentType = kAudioUnitType_Output;
+    outputcd.componentSubType = kAudioUnitSubType_DefaultOutput;
+    outputcd.componentManufacturer = kAudioUnitManufacturer_Apple;
+    
+    // adds a node with above description to the graph
     AUNode outputNode;
-    CheckError(AUGraphAddNode(machine.graph,
-                              &outputCD,
-                              &outputNode),
-               "AUGraphAddNode[kAudioUnitSubType_GenericOutput] failed");
+    CheckError(AUGraphAddNode(player.graph, &outputcd, &outputNode),
+               "AUGraphAddNode[kAudioUnitSubType_DefaultOutput] failed");
     
-    AudioComponentDescription inputCD = {0};
-    inputCD.componentType = kAudioUnitType_Generator;
-    inputCD.componentSubType = kAudioUnitSubType_ScheduledSoundPlayer;
-    inputCD.componentManufacturer = kAudioUnitManufacturer_Apple;
+    // generate description that will match a generator AU of type: audio file player
+    AudioComponentDescription fileplayercd = {0};
+    fileplayercd.componentType = kAudioUnitType_Generator;
+    fileplayercd.componentSubType = kAudioUnitSubType_AudioFilePlayer;
+    fileplayercd.componentManufacturer = kAudioUnitManufacturer_Apple;
     
-    AUNode inputNode;
-    CheckError(AUGraphAddNode(machine.graph,
-                              &inputCD,
-                              &inputNode),
-               "AUGraphAddNode[kAudioUnitSubType_ScheduledSoundPlayer] failed");
-
-    CheckError(AUGraphOpen(machine.graph),
+    // adds a node with above description to the graph
+    AUNode fileNode;
+    CheckError(AUGraphAddNode(player.graph, &fileplayercd, &fileNode),
+               "AUGraphAddNode[kAudioUnitSubType_AudioFilePlayer] failed");
+    
+    // opening the graph opens all contained audio units but does not allocate any resources yet
+    CheckError(AUGraphOpen(player.graph),
                "AUGraphOpen failed");
     
-    CheckError(AUGraphNodeInfo(machine.graph,
-                               inputNode,
-                               NULL,
-                               &machine.input),
+    
+    // get the reference to the AudioUnit object for the file player graph node
+    CheckError(AUGraphNodeInfo(player.graph, fileNode, NULL, &player.fileAU),
                "AUGraphNodeInfo failed");
     
-    CheckError(AUGraphConnectNodeInput(machine.graph,
-                                       inputNode,
-                                       0,
-                                       outputNode,
-                                       0),
+    AudioComponentDescription lowpasscd = {0};
+    lowpasscd.componentType = kAudioUnitType_Effect;
+    lowpasscd.componentSubType = kAudioUnitSubType_LowPassFilter;
+    lowpasscd.componentManufacturer = kAudioUnitManufacturer_Apple;
+
+    AUNode lowPassNode;
+    CheckError(AUGraphAddNode(player.graph, &lowpasscd, &lowPassNode),
+               "AUGraphAddNode[kAudioUnitSubType_LowPassFilter] failed");
+
+    
+    // get the reference to the AudioUnit object for the file player graph node
+    CheckError(AUGraphNodeInfo(player.graph, lowPassNode, NULL, &player.lowPassAU),
+               "AUGraphNodeInfo failed");
+    
+    CheckError(AudioUnitSetParameter(player.lowPassAU,
+                                     kLowPassParam_CutoffFrequency,
+                                     kAudioUnitScope_Global,
+                                     0,
+                                     125,
+                                     0), "AudioUnitSetParameter for lowpass failed");
+    
+    // connect the output source of the file player AU to the input source of the output node
+    CheckError(AUGraphConnectNodeInput(player.graph, fileNode, 0, lowPassNode, 0),
                "AUGraphConnectNodeInput");
 
-    CheckError(AUGraphInitialize(machine.graph),
+    
+    // connect the output source of the file player AU to the input source of the output node
+    CheckError(AUGraphConnectNodeInput(player.graph, lowPassNode, 0, outputNode, 0),
+               "AUGraphConnectNodeInput");
+    
+    // now initialize the graph (causes resources to be allocated)
+    CheckError(AUGraphInitialize(player.graph),
                "AUGraphInitialize failed");
     
-    // prepare input
-
-    AudioBufferList ioData = {0};
-    ioData.mNumberBuffers = 1;
-    ioData.mBuffers[0].mNumberChannels = 1;
-    ioData.mBuffers[0].mDataByteSize = (UInt32)(2 * self.buffer.size);
-    ioData.mBuffers[0].mData = self.buffer.samples;
+    // configure the file player
     
-    ScheduledAudioSlice slice = {0};
-    AudioTimeStamp timeStamp  = {0};
-
-    slice.mTimeStamp    = timeStamp;
-    slice.mNumberFrames = (UInt32)self.buffer.size;
-    slice.mBufferList   = &ioData;
     
-    CheckError(AudioUnitSetProperty(machine.input,
-                                    kAudioUnitProperty_ScheduleAudioSlice,
-                                    kAudioUnitScope_Global,
-                                    0,
-                                    &slice,
-                                    sizeof(slice)),
-               "AudioUnitSetProperty[kAudioUnitProperty_ScheduleStartTimeStamp] failed");
+    // tell the file player unit to load the file we want to play
+    CheckError(AudioUnitSetProperty(player.fileAU, kAudioUnitProperty_ScheduledFileIDs,
+                                    kAudioUnitScope_Global, 0, &player.inputFile, sizeof(player.inputFile)),
+               "AudioUnitSetProperty[kAudioUnitProperty_ScheduledFileIDs] failed");
     
-    AudioTimeStamp startTimeStamp = {0};
-    startTimeStamp.mFlags = kAudioTimeStampSampleTimeValid;
-    startTimeStamp.mSampleTime = -1;
+    UInt64 nPackets;
+    UInt32 propsize = sizeof(nPackets);
+    CheckError(AudioFileGetProperty(player.inputFile, kAudioFilePropertyAudioDataPacketCount,
+                                    &propsize, &nPackets),
+               "AudioFileGetProperty[kAudioFilePropertyAudioDataPacketCount] failed");
     
-    CheckError(AudioUnitSetProperty(machine.input,
-                                    kAudioUnitProperty_ScheduleStartTimeStamp,
-                                    kAudioUnitScope_Global,
-                                    0,
-                                    &startTimeStamp,
-                                    sizeof(startTimeStamp)),
-               "AudioUnitSetProperty[kAudioUnitProperty_ScheduleStartTimeStamp] failed");
+    // tell the file player AU to play the entire file
+    ScheduledAudioFileRegion rgn;
+    memset (&rgn.mTimeStamp, 0, sizeof(rgn.mTimeStamp));
+    rgn.mTimeStamp.mFlags = kAudioTimeStampSampleTimeValid;
+    rgn.mTimeStamp.mSampleTime = 0;
+    rgn.mCompletionProc = NULL;
+    rgn.mCompletionProcUserData = NULL;
+    rgn.mAudioFile = player.inputFile;
+    rgn.mLoopCount = 1;
+    rgn.mStartFrame = 0;
+    rgn.mFramesToPlay = nPackets * player.inputFormat.mFramesPerPacket;
     
-    CheckError(AUGraphStart(machine.graph),
+    CheckError(AudioUnitSetProperty(player.fileAU, kAudioUnitProperty_ScheduledFileRegion,
+                                    kAudioUnitScope_Global, 0,&rgn, sizeof(rgn)),
+               "AudioUnitSetProperty[kAudioUnitProperty_ScheduledFileRegion] failed");
+    
+    // prime the file player AU with default values
+    UInt32 defaultVal = 0;
+    CheckError(AudioUnitSetProperty(player.fileAU, kAudioUnitProperty_ScheduledFilePrime,
+                                    kAudioUnitScope_Global, 0, &defaultVal, sizeof(defaultVal)),
+               "AudioUnitSetProperty[kAudioUnitProperty_ScheduledFilePrime] failed");
+    
+    // tell the file player AU when to start playing (-1 sample time means next render cycle)
+    AudioTimeStamp startTime;
+    memset (&startTime, 0, sizeof(startTime));
+    startTime.mFlags = kAudioTimeStampSampleTimeValid;
+    startTime.mSampleTime = -1;
+    CheckError(AudioUnitSetProperty(player.fileAU, kAudioUnitProperty_ScheduleStartTimeStamp,
+                                    kAudioUnitScope_Global, 0, &startTime, sizeof(startTime)),
+               "AudioUnitSetProperty[kAudioUnitProperty_ScheduleStartTimeStamp]");
+    
+    
+    
+    // start playing
+    CheckError(AUGraphStart(player.graph),
                "AUGraphStart failed");
+    
+    // sleep until the file is finished
 
-//    AUGraphStop(machine.graph);
-//    AUGraphUninitialize(machine.graph);
-//    AUGraphClose(machine.graph);
-
+//    AUGraphStop (player.graph);
+//    AUGraphUninitialize (player.graph);
+//    AUGraphClose(player.graph);
+//    AudioFileClose(player.inputFile);
 }
 
 
