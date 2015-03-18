@@ -20,7 +20,9 @@
 @property (nonatomic, strong) Input *input;
 @property (nonatomic, strong) Processor *processor;
 @property (nonatomic, strong) Buffer *buffer;
-@property (nonatomic, strong) EffectMachine *e;
+@property (nonatomic, strong) Buffer *myBuffer;
+
+@property (nonatomic, strong) EffectMachine *effectTest;
 
 @end
 
@@ -29,9 +31,8 @@
 -(void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     NSArray *speechData = [SpeechDataReader speechDataFromFile:@"blue_wizard"];
     Buffer *buffer = [SpeechSynthesizer processSpeechData:speechData];
-    self.e = [[EffectMachine alloc] initWithBuffer:buffer];
-    [self.e process];
-//    [self.sampler stream:buffer];
+    self.effectTest = [[EffectMachine alloc] initWithBuffer:buffer];
+    [self.effectTest process];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playOriginalWasClicked:) name:playOriginalWasClicked object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopWasClicked:) name:stopOriginalWasClicked object:nil];

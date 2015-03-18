@@ -33,7 +33,6 @@ OSStatus CallbackRenderProc(void *inRefCon,
                             UInt32 inBusNumber,
                             UInt32 inNumberFrames,
                             AudioBufferList * ioData);
-void CreateAndConnectOutputUnit (SamplerPlayer *player);
 
 OSStatus CallbackRenderProc(void *inRefCon,
                             AudioUnitRenderActionFlags *ioActionFlags,
