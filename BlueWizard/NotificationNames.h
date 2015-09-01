@@ -12,5 +12,8 @@ static NSString * const byteStreamGenerated     = @"byteStreamGenerated";
 static NSString * const frameDataGenerated      = @"frameDataGenerated";
 static NSString * const bufferGenerated         = @"bufferGenerated";
 static NSString * const settingsChanged         = @"settingsChanged";
+static NSString * const frameWasEdited          = @"frameWasEdited";
+static NSString * const eqChanged               = @"eqChanged";
+static NSString * const speedChanged            = @"speedChanged";
 
 #endif

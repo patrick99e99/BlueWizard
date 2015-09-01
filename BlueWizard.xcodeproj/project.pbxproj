@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		862E7D6824C15959F0D03E52 /* libPods-BlueWizardTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 012428FA7BFBBFF7EE125E77 /* libPods-BlueWizardTests.a */; };
-		CD04B82A1AB672AA001F89DE /* EffectMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = CD04B8291AB672AA001F89DE /* EffectMachine.m */; };
+		CD1680651AC77F7E009920C3 /* Filterer.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1680621AC77F7E009920C3 /* Filterer.m */; };
 		CD30A9D51AAD38A70048B222 /* test.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD30A9D41AAD38A70048B222 /* test.lpc */; };
 		CD3B09141AAE416F00D54399 /* PitchEstimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3B09131AAE416F00D54399 /* PitchEstimator.m */; };
 		CD563B5E1AA16872001880B6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD563B5B1AA16872001880B6 /* AudioToolbox.framework */; };
@@ -51,7 +51,6 @@
 		CD79FAC21A9D2A1C008DE994 /* SpeechDataReader.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79FABF1A9D2A1C008DE994 /* SpeechDataReader.m */; };
 		CD79FAC31A9D2A1C008DE994 /* SpeechSynthesizer.mm in Sources */ = {isa = PBXBuildFile; fileRef = CD79FAC11A9D2A1C008DE994 /* SpeechSynthesizer.mm */; };
 		CD95A5911AAAFBE00044EDAA /* PlayheadView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD95A5901AAAFBE00044EDAA /* PlayheadView.m */; };
-		CD99A7AB1AA0EEAF003BC67E /* TestSampleData.m in Sources */ = {isa = PBXBuildFile; fileRef = CD99A7AA1AA0EEAF003BC67E /* TestSampleData.m */; };
 		CD99A7AE1AA155FD003BC67E /* Sampler.m in Sources */ = {isa = PBXBuildFile; fileRef = CD99A7AD1AA155FD003BC67E /* Sampler.m */; };
 		CDA1F7351A9AF2120011B4B5 /* BitPacker.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA1F7321A9AF2120011B4B5 /* BitPacker.m */; };
 		CDA1F7361A9AF2120011B4B5 /* FrameDataBinaryEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA1F7341A9AF2120011B4B5 /* FrameDataBinaryEncoder.m */; };
@@ -61,6 +60,7 @@
 		CDBF22E01A99C917001E25AB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBF22DF1A99C917001E25AB /* ViewController.m */; };
 		CDBF22E51A99C917001E25AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDBF22E31A99C917001E25AB /* Main.storyboard */; };
 		CDD390DC1AB5273D004A2654 /* disappear-fragment.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CDD390DB1AB5273D004A2654 /* disappear-fragment.lpc */; };
+		CDFBCEC41AD0C85800E9A893 /* TimeMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFBCEC31AD0C85800E9A893 /* TimeMachine.m */; };
 		CDFC57EE1AA0CD4200457C13 /* dont_shoot_food.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CDFC57E51AA0CD4200457C13 /* dont_shoot_food.lpc */; };
 		CDFC57EF1AA0CD4200457C13 /* good_choice_kid.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CDFC57E61AA0CD4200457C13 /* good_choice_kid.lpc */; };
 		CDFC57F01AA0CD4200457C13 /* save_keys_to_open_doors.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CDFC57E71AA0CD4200457C13 /* save_keys_to_open_doors.lpc */; };
@@ -86,8 +86,8 @@
 		012428FA7BFBBFF7EE125E77 /* libPods-BlueWizardTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BlueWizardTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		081AC1A4326C7E60C28C4025 /* Pods-BlueWizardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueWizardTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueWizardTests/Pods-BlueWizardTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4D0C831C58081BACD3B2165D /* Pods-BlueWizardTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueWizardTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlueWizardTests/Pods-BlueWizardTests.release.xcconfig"; sourceTree = "<group>"; };
-		CD04B8281AB672AA001F89DE /* EffectMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectMachine.h; sourceTree = "<group>"; };
-		CD04B8291AB672AA001F89DE /* EffectMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EffectMachine.m; sourceTree = "<group>"; };
+		CD1680611AC77F7E009920C3 /* Filterer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filterer.h; sourceTree = "<group>"; };
+		CD1680621AC77F7E009920C3 /* Filterer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Filterer.m; sourceTree = "<group>"; };
 		CD30A9D41AAD38A70048B222 /* test.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.lpc; sourceTree = "<group>"; };
 		CD3B09121AAE416F00D54399 /* PitchEstimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PitchEstimator.h; sourceTree = "<group>"; };
 		CD3B09131AAE416F00D54399 /* PitchEstimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PitchEstimator.m; sourceTree = "<group>"; };
@@ -158,8 +158,6 @@
 		CD79FAC11A9D2A1C008DE994 /* SpeechSynthesizer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SpeechSynthesizer.mm; sourceTree = "<group>"; };
 		CD95A58F1AAAFBE00044EDAA /* PlayheadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayheadView.h; sourceTree = "<group>"; };
 		CD95A5901AAAFBE00044EDAA /* PlayheadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayheadView.m; sourceTree = "<group>"; };
-		CD99A7A91AA0EEAF003BC67E /* TestSampleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSampleData.h; sourceTree = "<group>"; };
-		CD99A7AA1AA0EEAF003BC67E /* TestSampleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSampleData.m; sourceTree = "<group>"; };
 		CD99A7AC1AA155FD003BC67E /* Sampler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sampler.h; sourceTree = "<group>"; };
 		CD99A7AD1AA155FD003BC67E /* Sampler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sampler.m; sourceTree = "<group>"; };
 		CDA1F7311A9AF2120011B4B5 /* BitPacker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitPacker.h; sourceTree = "<group>"; };
@@ -179,6 +177,8 @@
 		CDBF22EA1A99C917001E25AB /* BlueWizardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlueWizardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBF22EF1A99C917001E25AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CDD390DB1AB5273D004A2654 /* disappear-fragment.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "disappear-fragment.lpc"; sourceTree = "<group>"; };
+		CDFBCEC21AD0C85800E9A893 /* TimeMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeMachine.h; sourceTree = "<group>"; };
+		CDFBCEC31AD0C85800E9A893 /* TimeMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeMachine.m; sourceTree = "<group>"; };
 		CDFC57E51AA0CD4200457C13 /* dont_shoot_food.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dont_shoot_food.lpc; sourceTree = "<group>"; };
 		CDFC57E61AA0CD4200457C13 /* good_choice_kid.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = good_choice_kid.lpc; sourceTree = "<group>"; };
 		CDFC57E71AA0CD4200457C13 /* save_keys_to_open_doors.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = save_keys_to_open_doors.lpc; sourceTree = "<group>"; };
@@ -275,14 +275,14 @@
 				CD76269C1AA454E8001E0A9E /* ClosestValueFinder.m */,
 				CDA1F7391A9AF3680011B4B5 /* CodingTable.h */,
 				CDA1F73A1A9AF3680011B4B5 /* CodingTable.m */,
-				CD04B8281AB672AA001F89DE /* EffectMachine.h */,
-				CD04B8291AB672AA001F89DE /* EffectMachine.m */,
 				CD7626B31AA6A770001E0A9E /* FrameData.h */,
 				CD7626B41AA6A770001E0A9E /* FrameData.m */,
 				CD7626981AA43ABB001E0A9E /* HammingWindow.h */,
 				CD7626991AA43ABB001E0A9E /* HammingWindow.m */,
 				CD563B631AA2A1DF001880B6 /* Input.h */,
 				CD563B641AA2A1DF001880B6 /* Input.m */,
+				CD1680611AC77F7E009920C3 /* Filterer.h */,
+				CD1680621AC77F7E009920C3 /* Filterer.m */,
 				CD4AC00F1AB1621400E57489 /* NotificationNames.h */,
 				CD773DDF1AA3DFCC004091CC /* Output.h */,
 				CD773DE01AA3DFCC004091CC /* Output.m */,
@@ -307,12 +307,12 @@
 				CD79FABF1A9D2A1C008DE994 /* SpeechDataReader.m */,
 				CD79FAC01A9D2A1C008DE994 /* SpeechSynthesizer.h */,
 				CD79FAC11A9D2A1C008DE994 /* SpeechSynthesizer.mm */,
-				CD99A7A91AA0EEAF003BC67E /* TestSampleData.h */,
-				CD99A7AA1AA0EEAF003BC67E /* TestSampleData.m */,
 				CD7626B81AA6FB7B001E0A9E /* UserSettings.h */,
 				CD7626B91AA6FB7B001E0A9E /* UserSettings.m */,
 				CD6A67381AAA88C300515777 /* WaveformView.h */,
 				CD6A67391AAA88C300515777 /* WaveformView.m */,
+				CDFBCEC21AD0C85800E9A893 /* TimeMachine.h */,
+				CDFBCEC31AD0C85800E9A893 /* TimeMachine.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -586,7 +586,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD04B82A1AB672AA001F89DE /* EffectMachine.m in Sources */,
 				CD79FAAD1A9BD62C008DE994 /* NibbleSwitcher.m in Sources */,
 				CD76269D1AA454E8001E0A9E /* ClosestValueFinder.m in Sources */,
 				CDA1F7361A9AF2120011B4B5 /* FrameDataBinaryEncoder.m in Sources */,
@@ -594,6 +593,7 @@
 				CD76269A1AA43ABB001E0A9E /* HammingWindow.m in Sources */,
 				CD7626A21AA51275001E0A9E /* Autocorrelator.m in Sources */,
 				CD99A7AE1AA155FD003BC67E /* Sampler.m in Sources */,
+				CD1680651AC77F7E009920C3 /* Filterer.m in Sources */,
 				CD7626C21AA85FB0001E0A9E /* RMSNormalizer.m in Sources */,
 				CD79FAB21A9C5677008DE994 /* HexByteBinaryEncoder.m in Sources */,
 				CD563B651AA2A1DF001880B6 /* Input.m in Sources */,
@@ -607,7 +607,6 @@
 				CD7626C71AA90D9E001E0A9E /* Processor.m in Sources */,
 				CDBF22DB1A99C917001E25AB /* AppDelegate.m in Sources */,
 				CD7626A51AA51593001E0A9E /* Reflector.m in Sources */,
-				CD99A7AB1AA0EEAF003BC67E /* TestSampleData.m in Sources */,
 				CD95A5911AAAFBE00044EDAA /* PlayheadView.m in Sources */,
 				CD79FAC31A9D2A1C008DE994 /* SpeechSynthesizer.mm in Sources */,
 				CD79FABC1A9D2A0A008DE994 /* tms5220.cpp in Sources */,
@@ -618,6 +617,7 @@
 				CDA1F73B1A9AF3680011B4B5 /* CodingTable.m in Sources */,
 				CDA1F7351A9AF2120011B4B5 /* BitPacker.m in Sources */,
 				CD79FA9E1A9B11EE008DE994 /* HexConverter.m in Sources */,
+				CDFBCEC41AD0C85800E9A893 /* TimeMachine.m in Sources */,
 				CD7626A81AA5A6CD001E0A9E /* Buffer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

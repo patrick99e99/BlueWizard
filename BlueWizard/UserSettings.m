@@ -32,13 +32,6 @@
     return _frameRate;
 }
 
--(NSNumber *)maxRMSIndex {
-    if (!_maxRMSIndex) {
-        _maxRMSIndex = @14;
-    }
-    return _maxRMSIndex;
-}
-
 -(NSNumber *)exportSampleRate {
     if (!_exportSampleRate) {
         _exportSampleRate = @48000;
@@ -74,6 +67,13 @@
     return _pitchValue;
 }
 
+-(NSNumber *)pitchOffset {
+    if (!_pitchOffset) {
+        _pitchOffset = @0;
+    }
+    return _pitchOffset;
+}
+
 -(NSNumber *)unvoicedThreshold {
     if (!_unvoicedThreshold) {
         _unvoicedThreshold = @0.3f;
@@ -88,5 +88,32 @@
     return _rmsLimit;
 }
 
+-(NSNumber *)unvoicedRMSLimit {
+    if (!_unvoicedRMSLimit) {
+        _unvoicedRMSLimit = @14;
+    }
+    return _unvoicedRMSLimit;
+}
+
+-(NSNumber *)lowPassCutoff {
+    if (!_lowPassCutoff) {
+        _lowPassCutoff = @48000;
+    }
+    return _lowPassCutoff;
+}
+
+-(NSNumber *)highPassCutoff {
+    if (!_highPassCutoff) {
+        _highPassCutoff = @0;
+    }
+    return _highPassCutoff;
+}
+
+-(NSNumber *)speed {
+    if (!_speed) {
+        _speed = @1.0f;
+    }
+    return _speed;
+}
 
 @end

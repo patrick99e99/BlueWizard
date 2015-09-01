@@ -6,13 +6,17 @@
 @property (nonatomic, strong) NSNumber *sampleRate;
 @property (nonatomic, strong) NSNumber *exportSampleRate;
 @property (nonatomic, strong) NSNumber *frameRate;
-@property (nonatomic, strong) NSNumber *maxRMSIndex;
 @property (nonatomic, strong) NSNumber *maxPitchInHZ;
 @property (nonatomic, strong) NSNumber *minPitchInHZ;
 @property (nonatomic, strong) NSNumber *subMultipleThreshold;
 @property (nonatomic, strong) NSNumber *unvoicedThreshold;
 @property (nonatomic, strong) NSNumber *pitchValue;
+@property (nonatomic, strong) NSNumber *pitchOffset;
 @property (nonatomic, strong) NSNumber *rmsLimit;
+@property (nonatomic, strong) NSNumber *unvoicedRMSLimit;
+@property (nonatomic, strong) NSNumber *lowPassCutoff;
+@property (nonatomic, strong) NSNumber *highPassCutoff;
+@property (nonatomic, strong) NSNumber *speed;
 
 @property (nonatomic) BOOL overridePitch;
 @property (nonatomic) BOOL preEmphasis;

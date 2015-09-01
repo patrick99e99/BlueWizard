@@ -27,6 +27,12 @@
 @property (weak) IBOutlet NSTableView *frameDataTableView;
 @property (weak) IBOutlet NSButton *translateParametersCheckbox;
 @property (weak) IBOutlet NSProgressIndicator *spinner;
+@property (weak) IBOutlet NSTextField *pitchOffsetTextField;
+@property (weak) IBOutlet NSTextField *highPassCutoffTextField;
+@property (weak) IBOutlet NSTextField *lowPassCutoffTextField;
+@property (weak) IBOutlet NSTableView *frameDataTable;
+@property (weak) IBOutlet NSTextField *unvoicedRMSLimitTextField;
+@property (weak) IBOutlet NSSlider *speedSlider;
 
 @end
 

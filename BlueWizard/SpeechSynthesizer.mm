@@ -54,12 +54,13 @@
 
 -(Buffer *)bufferFor:(NSArray *)wrappedSamples {
     NSUInteger length = [wrappedSamples count];
-    double *samples = (double *)malloc(sizeof(double) * length);
+    double *samples = (double *)malloc(sizeof(double) * length + 1);
     for (int i = 0; i < length; i++) {
         samples[i] = [wrappedSamples[i] doubleValue];
     }
+    samples[length] = 0.0;
     
-    Buffer *buffer = [[Buffer alloc] initWithSamples:samples size:length sampleRate:8000];
+    Buffer *buffer = [[Buffer alloc] initWithSamples:samples size:length + 1 sampleRate:8000];
 
     free(samples);
     

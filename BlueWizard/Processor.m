@@ -13,6 +13,7 @@
 #import "PitchEstimator.h"
 #import "NotificationNames.h"
 #import "RMSNormalizer.h"
+#import "Filterer.h"
 
 @interface Processor ()
 @property (nonatomic, strong) Buffer *buffer;
@@ -80,7 +81,10 @@
 }
 
 -(short *)pitchTableForBuffer:(Buffer *)mainBuffer {
-    Segmenter *segmenter = [[Segmenter alloc] initWithBuffer:mainBuffer windowWidth:2];
+    Filterer *filterer = [[Filterer alloc] initWithBuffer:mainBuffer lowPassCutoffInHZ:800 highPassCutoffInHZ:0];
+    Buffer *buffer = [filterer process];
+
+    Segmenter *segmenter = [[Segmenter alloc] initWithBuffer:buffer windowWidth:2];
 
     short *pitchTable = malloc(sizeof(short) * [segmenter numberOfSegments]);
     

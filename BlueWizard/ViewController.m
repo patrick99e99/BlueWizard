@@ -40,6 +40,8 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
     self.frameRateTextfield.stringValue            = [[[self userSettings] frameRate] stringValue];
     self.preEmphasisAlphaTextfield.stringValue     = [[[self userSettings] preEmphasisAlpha] stringValue];
     self.rmsLimitTextfield.stringValue             = [[[self userSettings] rmsLimit] stringValue];
+    self.lowPassCutoffTextField.stringValue        = [[[self userSettings] lowPassCutoff] stringValue];
+    self.highPassCutoffTextField.stringValue       = [[[self userSettings] highPassCutoff] stringValue];
     
     self.overridePitchButton.state  = [[self userSettings] overridePitch];
     self.preEmphasisButton.state    = [[self userSettings] preEmphasis];
@@ -117,6 +119,7 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
     [self.maxFrequencyTextfield setEnabled:!state];
     [self.submultipleThresholdTextfield setEnabled:!state];
     [self.pitchValueTextfield setEnabled:state];
+    [self.pitchOffsetTextField setEnabled:!state];
 
     [[self userSettings] setOverridePitch:state];
     [self notifySettingsChanged];
@@ -147,6 +150,16 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
     [self notifySettingsChanged];
 }
 
+- (IBAction)unvoicedRMSLimitChanged:(NSTextField *)sender {
+    [[self userSettings] setUnvoicedRMSLimit:[self numberFromString:[sender stringValue]]];
+    [self notifySettingsChanged];
+}
+
+- (IBAction)pitchOffsetChanged:(NSTextField *)sender {
+    [[self userSettings] setPitchOffset:[self numberFromString:[sender stringValue]]];
+    [self notifySettingsChanged];
+}
+
 - (IBAction)preEmphasisToggled:(NSButton *)sender {
     BOOL state = [sender state];
     
@@ -159,6 +172,8 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
     BOOL state = [sender state];
     
     [self.rmsLimitTextfield setEnabled:state];
+    [self.unvoicedRMSLimitTextField setEnabled:state];
+
     [[self userSettings] setNormalizeRMS:state];
     [self notifySettingsChanged];
 }
@@ -166,6 +181,29 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
 - (IBAction)excitationFilterOnlyToggled:(NSButton *)sender {
     [[self userSettings] setExcitationFilterOnly:[sender state]];
     [self notifySettingsChanged];
+}
+
+- (IBAction)lowPassCutoffChanged:(NSTextField *)sender {
+    [[self userSettings] setLowPassCutoff:[self numberFromString:[sender stringValue]]];
+    [self notifyEQChanged];
+    [self notifySettingsChanged];
+}
+
+- (IBAction)highPassCutoffChanged:(NSTextField *)sender {
+    [[self userSettings] setHighPassCutoff:[self numberFromString:[sender stringValue]]];
+    [self notifyEQChanged];
+    [self notifySettingsChanged];
+}
+
+- (IBAction)speedSliderChanged:(NSSlider *)sender {
+    NSNumber *speed = [NSNumber numberWithFloat:[sender floatValue] + 0.5f];
+    [[self userSettings] setSpeed:speed];
+    [[NSNotificationCenter defaultCenter] postNotificationName:speedChanged object:nil];
+    [self notifySettingsChanged];
+}
+
+-(void)notifyEQChanged {
+    [[NSNotificationCenter defaultCenter] postNotificationName:eqChanged object:nil];
 }
 
 -(void)notifySettingsChanged {
@@ -218,6 +256,9 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
         result.bezeled = NO;
         result.backgroundColor = [NSColor clearColor];
         result.identifier  = kFrameDataTableViewIdentifier;
+        result.target = self;
+        result.action = @selector(didEditTableViewCell:);
+        result.objectValue = @"foo";
     }
 
     if ([tableColumn.identifier isEqualToString:kFrameDataTableViewFrameKey]) {
@@ -234,12 +275,26 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
             result.stringValue = value ? value : @"";
         }
     }
-    
+
     if (row == 0) {
         [self hideSpinner];
     }
-    
+
     return result;
+}
+
+-(void)didEditTableViewCell:(NSTextField *)sender {
+    NSUInteger row    = [self.frameDataTable rowForView:sender];
+    NSUInteger column = [self.frameDataTable columnForView:sender];
+    NSTableColumn *tableColumn = [[self.frameDataTable tableColumns] objectAtIndex:column];
+    FrameData *frameData = [self.frameData objectAtIndex:row];
+    NSNumber *value = [self numberFromString:[sender stringValue]];
+    if (self.translate) {
+        [frameData setParameter:tableColumn.identifier translatedValue:value];
+    } else {
+        [frameData setParameter:tableColumn.identifier value:value];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:frameWasEdited object:self.frameData];
 }
 
 # pragma mark - NSTableViewDataSource

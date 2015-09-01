@@ -2,6 +2,7 @@
 #import "Reflector.h"
 #import "CodingTable.h"
 #import "ClosestValueFinder.h"
+#import "UserSettings.h"
 
 @interface FrameData ()
 
@@ -92,6 +93,22 @@
     }
 }
 
+-(void)setParameter:(NSString *)parameter translatedValue:(NSNumber *)translatedValue {
+    self.parameters = nil;
+    self.translatedParameters = nil;
+    
+    if ([parameter isEqualToString:kParameterGain]) {
+        self.reflector.rms = [translatedValue unsignedIntegerValue];
+    } else if ([parameter isEqualToString:kParameterRepeat]) {
+        self.repeat = [translatedValue boolValue];
+    } else if ([parameter isEqualToString:kParameterPitch]) {
+        self.pitch = [translatedValue unsignedIntegerValue];
+    } else {
+        NSUInteger bin = [[parameter substringFromIndex:1] integerValue];
+        self.reflector.ks[bin] = [translatedValue doubleValue];
+    }
+}
+
 -(NSNumber *)parameterizedValueForK:(double)k bin:(NSUInteger)bin translate:(BOOL)translate {
     NSUInteger index = [ClosestValueFinder indexFor:k
                                               table:[CodingTable kBinFor:bin]
@@ -116,11 +133,18 @@
 }
 
 -(NSNumber *)parameterizedValueForPitch:(double)pitch translate:(BOOL)translate {
-    if ([self.reflector isUnvoiced]) return @0;
+    if ([self.reflector isUnvoiced] || !self.pitch) return @0;
 
-    NSUInteger index = [ClosestValueFinder indexFor:pitch
-                                              table:[CodingTable pitch]
-                                               size:[CodingTable pitchSize]];
+    NSUInteger offset = [[self userSettings] overridePitch] ?
+        0 : [[[self userSettings] pitchOffset] unsignedIntegerValue];
+
+    NSInteger index = [ClosestValueFinder indexFor:pitch
+                                             table:[CodingTable pitch]
+                                              size:[CodingTable pitchSize]] + offset;
+    
+    if (index > 63) index = 63;
+    if (index < 0)  index = 0;
+
     if (translate) {
         return [NSNumber numberWithFloat:[CodingTable pitch][index]];
     } else {
@@ -146,6 +170,10 @@
 
 -(NSString *)parameterKeyForK:(NSUInteger)k {
     return [NSString stringWithFormat:@"k%lu", k];
+}
+
+-(UserSettings *)userSettings {
+    return [UserSettings sharedInstance];
 }
 
 @end

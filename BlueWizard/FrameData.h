@@ -10,6 +10,8 @@
 -(NSDictionary *)translatedParameters;
 -(void)setParameter:(NSString *)parameter
               value:(NSNumber *)value;
+-(void)setParameter:(NSString *)parameter
+    translatedValue:(NSNumber *)translatedValue;
 -(Reflector *)reflector;
 
 @end

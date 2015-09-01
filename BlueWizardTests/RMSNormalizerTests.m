@@ -26,7 +26,7 @@
     NSUInteger maxIndex = [CodingTable rmsSize] - 1;
     XCTAssertNotEqual(reflector.rms, [CodingTable rms][maxIndex]);
 
-    [UserSettings sharedInstance].maxRMSIndex = @(maxIndex);
+
     FrameData *frameData = [[FrameData alloc] initWithReflector:reflector pitch:0 repeat:NO];
     [RMSNormalizer normalize:@[frameData]];
 
