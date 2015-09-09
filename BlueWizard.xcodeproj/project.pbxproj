@@ -46,7 +46,6 @@
 		CD79FAAF1A9BD643008DE994 /* NibbleSwitcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79FAAE1A9BD643008DE994 /* NibbleSwitcherTests.m */; };
 		CD79FAB21A9C5677008DE994 /* HexByteBinaryEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79FAB11A9C5677008DE994 /* HexByteBinaryEncoder.m */; };
 		CD79FAB41A9C56E1008DE994 /* HexByteBinaryEncoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79FAB31A9C56E1008DE994 /* HexByteBinaryEncoderTests.m */; };
-		CD79FABC1A9D2A0A008DE994 /* tms5220.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD79FAB81A9D2A0A008DE994 /* tms5220.cpp */; };
 		CD79FABD1A9D2A0A008DE994 /* tms5220.txt in Resources */ = {isa = PBXBuildFile; fileRef = CD79FABA1A9D2A0A008DE994 /* tms5220.txt */; };
 		CD79FAC21A9D2A1C008DE994 /* SpeechDataReader.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79FABF1A9D2A1C008DE994 /* SpeechDataReader.m */; };
 		CD79FAC31A9D2A1C008DE994 /* SpeechSynthesizer.mm in Sources */ = {isa = PBXBuildFile; fileRef = CD79FAC11A9D2A1C008DE994 /* SpeechSynthesizer.mm */; };
@@ -55,6 +54,7 @@
 		CDA1F7351A9AF2120011B4B5 /* BitPacker.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA1F7321A9AF2120011B4B5 /* BitPacker.m */; };
 		CDA1F7361A9AF2120011B4B5 /* FrameDataBinaryEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA1F7341A9AF2120011B4B5 /* FrameDataBinaryEncoder.m */; };
 		CDA1F73B1A9AF3680011B4B5 /* CodingTable.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA1F73A1A9AF3680011B4B5 /* CodingTable.m */; };
+		CDBA9F7C1BA086A50025D497 /* tms5220.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD79FAB81A9D2A0A008DE994 /* tms5220.cpp */; };
 		CDBF22DB1A99C917001E25AB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBF22DA1A99C917001E25AB /* AppDelegate.m */; };
 		CDBF22DD1A99C917001E25AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBF22DC1A99C917001E25AB /* main.m */; };
 		CDBF22E01A99C917001E25AB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBF22DF1A99C917001E25AB /* ViewController.m */; };
@@ -246,9 +246,8 @@
 			children = (
 				CD79FAB61A9D2A0A008DE994 /* TMS5220 */,
 			);
-			name = lib;
-			path = /Users/patrick/coding/objective_c/BlueWizard/lib;
-			sourceTree = "<absolute>";
+			path = lib;
+			sourceTree = "<group>";
 		};
 		CD79FAB61A9D2A0A008DE994 /* TMS5220 */ = {
 			isa = PBXGroup;
@@ -258,9 +257,8 @@
 				CD79FAB91A9D2A0A008DE994 /* tms5220.h */,
 				CD79FABA1A9D2A0A008DE994 /* tms5220.txt */,
 			);
-			name = TMS5220;
-			path = /Users/patrick/coding/objective_c/BlueWizard/BlueWizard/lib/TMS5220;
-			sourceTree = "<absolute>";
+			path = TMS5220;
+			sourceTree = "<group>";
 		};
 		CDA1F7371A9AF2170011B4B5 /* Classes */ = {
 			isa = PBXGroup;
@@ -436,8 +434,8 @@
 				CD30A9D41AAD38A70048B222 /* test.lpc */,
 			);
 			name = lpc;
-			path = /Users/patrick/coding/objective_c/BlueWizard/BlueWizard/lpc;
-			sourceTree = "<absolute>";
+			path = BlueWizard/lpc;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -586,6 +584,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDBA9F7C1BA086A50025D497 /* tms5220.cpp in Sources */,
 				CD79FAAD1A9BD62C008DE994 /* NibbleSwitcher.m in Sources */,
 				CD76269D1AA454E8001E0A9E /* ClosestValueFinder.m in Sources */,
 				CDA1F7361A9AF2120011B4B5 /* FrameDataBinaryEncoder.m in Sources */,
@@ -609,7 +608,6 @@
 				CD7626A51AA51593001E0A9E /* Reflector.m in Sources */,
 				CD95A5911AAAFBE00044EDAA /* PlayheadView.m in Sources */,
 				CD79FAC31A9D2A1C008DE994 /* SpeechSynthesizer.mm in Sources */,
-				CD79FABC1A9D2A0A008DE994 /* tms5220.cpp in Sources */,
 				CD7626BA1AA6FB7B001E0A9E /* UserSettings.m in Sources */,
 				CD7626B51AA6A770001E0A9E /* FrameData.m in Sources */,
 				CD773DE11AA3DFCC004091CC /* Output.m in Sources */,
