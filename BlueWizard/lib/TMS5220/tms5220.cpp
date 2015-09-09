@@ -870,14 +870,24 @@ void tms5220_device::process(INT16 *buffer, unsigned int size)
 					m_current_energy = (m_current_energy + (((m_coeff->energytable[m_new_frame_energy_idx] - m_current_energy)*(1-inhibit_state))*current_sample)/samples_per_frame)*(1-m_zpar);
 					m_current_pitch = (m_current_pitch + (((m_coeff->pitchtable[m_new_frame_pitch_idx] - m_current_pitch)*(1-inhibit_state))*current_sample)/samples_per_frame)*(1-m_zpar);
 					for (i = 0; i < m_coeff->num_k; i++)
-						m_current_k[i] = (m_current_k[i] + (((m_coeff->ktable[i][m_new_frame_k_idx[i]] - m_current_k[i])*(1-inhibit_state))*current_sample)/samples_per_frame)*(1-((i<4)?m_zpar:m_uv_zpar));
+					{
+						if (!use_raw_excitation_filter)
+							m_current_k[i] = (m_current_k[i] + (((m_coeff->ktable[i][m_new_frame_k_idx[i]] - m_current_k[i])*(1-inhibit_state))*current_sample)/samples_per_frame)*(1-((i<4)?m_zpar:m_uv_zpar));
+						else
+							m_current_k[i] = 0;
+					}
 				}
 				else // we're done, play this frame for 1/8 frame.
 				{
 					m_current_energy = (m_coeff->energytable[m_new_frame_energy_idx] * (1-m_zpar));
 					m_current_pitch = (m_coeff->pitchtable[m_new_frame_pitch_idx] * (1-m_zpar));
 					for (i = 0; i < m_coeff->num_k; i++)
-						m_current_k[i] = (m_coeff->ktable[i][m_new_frame_k_idx[i]] * (1-((i<4)?m_zpar:m_uv_zpar)));
+					{
+						if (!use_raw_excitation_filter)
+							m_current_k[i] = (m_coeff->ktable[i][m_new_frame_k_idx[i]] * (1-((i<4)?m_zpar:m_uv_zpar)));
+						else
+							m_current_k[i] = 0;
+					}
 				}
 #else
 				//Updates to parameters only happen on subcycle '2' (B cycle) of PCs.
@@ -893,7 +903,10 @@ void tms5220_device::process(INT16 *buffer, unsigned int size)
 						break;
 						case 2: case 3: case 4: case 5: case 6: case 7: case 8: case 9: case 10: case 11:
 						/* PC = 2 through 11, B cycle, write updated K1 through K10 */
-						m_current_k[m_PC-2] = (m_current_k[m_PC-2] + (((m_coeff->ktable[m_PC-2][m_new_frame_k_idx[m_PC-2]] - m_current_k[m_PC-2])*(1-inhibit_state)) INTERP_SHIFT))*(((m_PC-2)>4)?(1-m_uv_zpar):(1-m_zpar));
+						if (!use_raw_excitation_filter)
+							m_current_k[m_PC-2] = (m_current_k[m_PC-2] + (((m_coeff->ktable[m_PC-2][m_new_frame_k_idx[m_PC-2]] - m_current_k[m_PC-2])*(1-inhibit_state)) INTERP_SHIFT))*(((m_PC-2)>4)?(1-m_uv_zpar):(1-m_zpar));
+						else
+							m_current_k[m_PC-2] = 0;
 						break;
 						case 12: /* PC = 12 */
 						/* we should NEVER reach this point, PC=12 doesn't have a subcycle 2 */
