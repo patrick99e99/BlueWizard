@@ -30,16 +30,16 @@
 -(void)tearDown {
     [super tearDown];
 }
-//
-//-(void)testItYieldsBuffers {
-//    __block int sum = 0;
-//    [subject eachSegment:^(Buffer *buffer, NSUInteger index) {
-//        for (int i = 0; i < buffer.size; i++) {
-//            sum += buffer.samples[i];
-//        }
-//    }];
-//
-//    XCTAssertEqual(sum, 30);
-//}
+
+-(void)testItYieldsBuffers {
+    __block int sum = 0;
+    [subject eachSegment:^(Buffer *buffer, NSUInteger index) {
+        for (int i = 0; i < buffer.size; i++) {
+            sum += buffer.samples[i];
+        }
+    }];
+
+    XCTAssertEqual(sum, 30);
+}
 
 @end

@@ -14,10 +14,8 @@
 
     if (max <= 0.0f) return;
 
-    NSUInteger maxRMSIndex = [[[UserSettings sharedInstance] rmsLimit] unsignedIntegerValue];
-    NSUInteger maxUnvoicedRMSIndex = [[[UserSettings sharedInstance] unvoicedRMSLimit] unsignedIntegerValue];
-    double maxUnvoicedRMS = [CodingTable rms][maxUnvoicedRMSIndex];
-    float scale = [CodingTable rms][maxRMSIndex] / max;
+    double maxUnvoicedRMS = [CodingTable rms][[self maxUnvoicedRMSIndex]];
+    float scale = [CodingTable rms][[self maxRMSIndex]] / max;
 
     for (FrameData *frame in frameData) {
         frame.reflector.rms = frame.reflector.rms * scale;
@@ -25,6 +23,14 @@
             frame.reflector.rms = maxUnvoicedRMS;
         }
     }
+}
+
++(NSUInteger)maxRMSIndex {
+    return [[[UserSettings sharedInstance] rmsLimit] unsignedIntegerValue];
+}
+
++(NSUInteger)maxUnvoicedRMSIndex {
+    return [[[UserSettings sharedInstance] unvoicedRMSLimit] unsignedIntegerValue];
 }
 
 @end

@@ -5,6 +5,11 @@
 #import "CodingTable.h"
 #import "UserSettings.h"
 #import "FrameData.h"
+#import <OCMock.h>
+
+@interface RMSNormalizer (Stubs)
+-(NSUInteger)maxRMSIndex;
+@end
 
 @interface RMSNormalizerTests : XCTestCase
 
@@ -23,14 +28,15 @@
 -(void)testItNormalizesRMSValues {
     Reflector *reflector = [[Reflector alloc] init];
     reflector.rms = [CodingTable rms][2];
-    NSUInteger maxIndex = [CodingTable rmsSize] - 1;
-    XCTAssertNotEqual(reflector.rms, [CodingTable rms][maxIndex]);
+    XCTAssertEqualWithAccuracy(reflector.rms, [CodingTable rms][2], 1.0f);
 
-
+    id classMock = OCMClassMock([RMSNormalizer class]);
+    OCMStub([classMock maxRMSIndex]).andReturn(3);
+    
     FrameData *frameData = [[FrameData alloc] initWithReflector:reflector pitch:0 repeat:NO];
     [RMSNormalizer normalize:@[frameData]];
 
-    XCTAssertEqualWithAccuracy(reflector.rms, [CodingTable rms][maxIndex], 1.0f);
+    XCTAssertEqualWithAccuracy(reflector.rms, [CodingTable rms][3], 1.0f);
 }
 
 @end
