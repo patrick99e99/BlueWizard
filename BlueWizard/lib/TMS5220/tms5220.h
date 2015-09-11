@@ -59,8 +59,6 @@ public:
 
 	void process(INT16 *buffer, unsigned int size);
     int next_sample();
-	int m_ready_pin;        /* state of the READY pin (output) */
-	int m_fifo_count;
 
     void set_use_raw_excitation_filter(bool yes_or_no);
 
@@ -102,6 +100,7 @@ private:
 	UINT8 m_fifo[FIFO_SIZE];
 	UINT8 m_fifo_head;
 	UINT8 m_fifo_tail;
+	UINT8 m_fifo_count;
 	UINT8 m_fifo_bits_taken;
 
 
@@ -115,7 +114,7 @@ private:
 	UINT8 m_buffer_low;       /* If 1, FIFO has less than 8 bytes in it */
 	UINT8 m_buffer_empty;     /* If 1, FIFO is empty */
 	UINT8 m_irq_pin;          /* state of the IRQ pin (output) */
-	//UINT8 m_ready_pin;        /* state of the READY pin (output) */
+	UINT8 m_ready_pin;        /* state of the READY pin (output) */
 
 	/* these contain data describing the current and previous voice frames */
 #define OLD_FRAME_SILENCE_FLAG m_OLDE // 1 if E=0, 0 otherwise.

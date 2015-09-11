@@ -518,7 +518,6 @@ void tms5220_device::data_write(int data)
 					m_new_frame_k_idx[i] = 0xF;
 				for (i = 7; i < m_coeff->num_k; i++)
 					m_new_frame_k_idx[i] = 0x7;
-
 			}
 		}
 		else
@@ -528,8 +527,6 @@ void tms5220_device::data_write(int data)
 			// at this point, /READY should remain HIGH/inactive until the fifo has at least one byte open in it.
 #endif
 		}
-
-
 	}
 	else //(! m_DDIS)
 		// R Nabet : we parse commands at once.  It is necessary for such commands as read.
