@@ -4,12 +4,12 @@
 #import "tms5220.h"
 #import "UserSettings.h"
 
-#define SPEAK_EXTERNAL_COMMAND 0x60
-#define RESET_COMMAND 0xFF
-#define SAMPLES_PER_HALF_FRAME (200)
-#define STATUS_TS_MASK 0x80
-#define STATUS_BL_MASK 0x40
-#define STATUS_BE_MASK 0x20
+static int const SPEAK_EXTERNAL_COMMAND = 0x60;
+static int const RESET_COMMAND = 0xFF;
+static int const SAMPLES_PER_HALF_FRAME = 200;
+static int const STATUS_TS_MASK = 0x80;
+static int const STATUS_BL_MASK = 0x40;
+static int const STATUS_BE_MASK = 0x20;
 
 @interface SpeechSynthesizer ()
 @property (nonatomic, getter = isSpeaking) BOOL speaking;
@@ -84,32 +84,31 @@
 }
 
 -(void)writeData:(int)data {
-    //_tms5220->wsq_w(1); // don't use these since we want to use the 5220 without worrying about timing the reads and writes
     _tms5220->data_w(data);
-    //_tms5220->wsq_w(0);
 }
 
 -(int)readStatus {
-    int tms_status;
-    //_tms5220->rsq_w(1); // don't use these since we want to use the 5220 without worrying about timing the reads and writes
-    tms_status = _tms5220->status_r();
-    //_tms5220->rsq_w(0);
-    //NSLog(@"5220 DEBUG: Index: %lu, Status read: TS: %d, BL: %d, BE: %d", self.index, (tms_status&0x80)?1:0, (tms_status&0x40)?1:0, (tms_status&0x20)?1:0);
+    int tms_status = _tms5220->status_r();
+    NSLog(@"5220 DEBUG: Index: %lu, Status read: TS: %d, BL: %d, BE: %d", self.index, (tms_status&0x80)?1:0, (tms_status&0x40)?1:0, (tms_status&0x20)?1:0);
     return tms_status;
+}
+
+-(BOOL)chipHasNotStartedTalkingYetAndSentNoData {
+    return !([self readStatus] & STATUS_TS_MASK) && !self.index;
 }
 
 -(void)speakFragment:(NSArray *)speechData
              samples:(NSMutableArray *)samples {
     // If the chip hasn't started talking yet, and we have yet to send any data...
-    if ( !([self readStatus]&STATUS_TS_MASK) && (self.index == 0) ) {
+    if ( [self chipHasNotStartedTalkingYetAndSentNoData] ) {
         // Load the fifo with enough bytes to either unset the BL mask and get speech going, or enough that we've run out of input data.
-        while ( (self.index <= ([speechData count] - 1)) && ([self readStatus]&STATUS_BL_MASK) ) {
+        while ( (self.index <= ([speechData count] - 1)) && ([self readStatus] & STATUS_BL_MASK) ) {
             [self writeData:[[speechData objectAtIndex:self.index] intValue]];
             self.index += 1;
         }
         // If we ran out of input data and never even filled the fifo, bail out.
-        if ( (self.index > ([speechData count] - 1)) && ([self readStatus]&STATUS_BL_MASK) ) {
-            //NSLog(@"TMS5220 error: insufficient speech data (<9 bytes) to start synthesizing speech");
+        if ( (self.index > ([speechData count] - 1)) && ([self readStatus] & STATUS_BL_MASK) ) {
+            NSLog(@"TMS5220 error: insufficient speech data (<9 bytes) to start synthesizing speech");
             self.speaking = NO;
             self.index = 0;
             return;
@@ -119,13 +118,13 @@
         // We're either talking or have finished talking. First check if there's any data left to send...
         if (self.index <= ([speechData count] - 1)) {
             // We still have input data to send, so try to fill the fifo until we run out of data or BL goes inactive
-            while ( (self.index <= ([speechData count] - 1)) && ([self readStatus]&STATUS_BL_MASK) ) {
+            while ( (self.index <= ([speechData count] - 1)) && ([self readStatus] & STATUS_BL_MASK) ) {
                 [self writeData:[[speechData objectAtIndex:self.index] intValue]];
                 self.index += 1;
             }
         }
         // Now, no matter if we have data left to send or not, check the talk status line. if it is inactive, finish up, since we either finished speech or desynced.
-        if (!([self readStatus]&STATUS_TS_MASK)) {
+        if (!([self readStatus] & STATUS_TS_MASK)) {
            // If talk status went inactive, shut everything down, we're done.
            self.speaking = NO;
            self.index = 0;
