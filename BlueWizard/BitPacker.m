@@ -48,7 +48,8 @@ static NSString * const kFrameDataParametersMethodName = @"parameters";
             [frame setParameter:parameter value:[NSNumber numberWithUnsignedInteger:value]];
             [frameKeys addObject:parameter];
             NSDictionary *parameters = [frame parameters];
-            if ([self parametersHaveNoGain:parameters] ||
+            if ([self parametersAreSilenceAndComplete:parameters] ||
+                [self parametersAreStopAndComplete:parameters] ||
                 [self parametersAreUnvoicedAndComplete:parameters frameKeys:frameKeys] ||
                 [self parametersAreRepeatedAndComplete:parameters frameKeys:frameKeys]) *stop = YES;
         }];
@@ -58,8 +59,12 @@ static NSString * const kFrameDataParametersMethodName = @"parameters";
     return frames;
 }
 
-+(BOOL)parametersHaveNoGain:(NSDictionary *)parameters {
++(BOOL)parametersAreSilenceAndComplete:(NSDictionary *)parameters {
     return ![[parameters objectForKey:kParameterGain] unsignedIntegerValue];
+}
+
++(BOOL)parametersAreStopAndComplete:(NSDictionary *)parameters {
+    return [[parameters objectForKey:kParameterGain] unsignedIntegerValue] == 15;
 }
 
 +(BOOL)parametersAreUnvoicedAndComplete:(NSDictionary *)parameters frameKeys:(NSArray *)frameKeys {
