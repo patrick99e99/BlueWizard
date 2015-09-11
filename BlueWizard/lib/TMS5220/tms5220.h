@@ -61,6 +61,7 @@ public:
     int next_sample();
 	int m_ready_pin;        /* state of the READY pin (output) */
 	int m_fifo_count;
+    UINT8 m_DDIS; /* speak external state, for panic button */
 
     void set_use_raw_excitation_filter(bool yes_or_no);
 
@@ -108,7 +109,7 @@ private:
 	/* these contain global status bits */
 	UINT8 m_previous_TALK_STATUS;      /* this is the OLD value of TALK_STATUS (i.e. previous value of m_SPEN|m_TALKD), needed for generating interrupts on a falling TALK_STATUS edge */
 	UINT8 m_SPEN;             /* set on speak(or speak external and BL falling edge) command, cleared on stop command, reset command, or buffer out */
-	UINT8 m_DDIS;             /* If 1, DDIS is 1, i.e. Speak External command in progress, writes go to FIFO. */
+	//UINT8 m_DDIS;             /* If 1, DDIS is 1, i.e. Speak External command in progress, writes go to FIFO. */
 	UINT8 m_TALK;             /* set on SPEN & RESETL4(pc12->pc0 transition), cleared on stop command or reset command */
 #define TALK_STATUS (m_SPEN|m_TALKD)
 	UINT8 m_TALKD;            /* TALK(TCON) value, latched every RESETL4 */
