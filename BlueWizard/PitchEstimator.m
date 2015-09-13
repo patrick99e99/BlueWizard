@@ -53,20 +53,20 @@
     if (estimate != estimate) return 0.0;
         
     while (!found && maximumMultiple >= 1) {
-        BOOL subMultiplesAreStrong = true;
+        BOOL subMultiplesAreStrong = YES;
         
         for (int i = 0; i < maximumMultiple; i++) {
             NSUInteger subMultiplePeriod = floor((i + 1) * estimate / maximumMultiple + 0.5);
                 
             if (self.normalizedCoefficients[subMultiplePeriod] &&
                 self.normalizedCoefficients[subMultiplePeriod] < [self subMultipleThreshold] * self.normalizedCoefficients[bestPeriod]) {
-                subMultiplesAreStrong = false;
+                subMultiplesAreStrong = NO;
             }
         }
                     
         if (subMultiplesAreStrong) {
             estimate /= maximumMultiple;
-            found = true;
+            found = YES;
         }
                 
         maximumMultiple -= 1;

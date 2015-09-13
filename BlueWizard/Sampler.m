@@ -16,7 +16,7 @@
 
 @end
 
-static NSUInteger const kSampleRate = 44100;
+static NSUInteger const kSampleRate = 48000;
 
 typedef struct SamplerPlayer {
     AudioUnit outputUnit;
