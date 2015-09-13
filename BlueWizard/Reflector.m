@@ -75,7 +75,7 @@ static NSUInteger const kNumberOfKParameters = 11;
 }
 
 -(double)rms {
-    if (self.shouldLimitRMS && _rms >= [CodingTable rms][kStopFrameIndex]) {
+    if (self.shouldLimitRMS && _rms >= [CodingTable rms][kStopFrameIndex - 1]) {
         return [CodingTable rms][kStopFrameIndex - 1];
     } else {
         return _rms;
