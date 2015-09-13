@@ -36,12 +36,23 @@
     }
 }
 
++(void)applyUnvoicedMultiplier:(NSArray *)frameData {
+    float multiplier = [self unvoicedRMSMultiplier];
+    for (FrameData *frame in frameData) {
+        if ([frame.reflector isUnvoiced]) frame.reflector.rms *= multiplier;
+    }
+}
+
 +(NSUInteger)maxRMSIndex {
     return [[[UserSettings sharedInstance] rmsLimit] unsignedIntegerValue];
 }
 
 +(NSUInteger)maxUnvoicedRMSIndex {
     return [[[UserSettings sharedInstance] unvoicedRMSLimit] unsignedIntegerValue];
+}
+
++(float)unvoicedRMSMultiplier {
+    return [[[UserSettings sharedInstance] unvoicedMultiplier] floatValue];
 }
 
 @end

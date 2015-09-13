@@ -4,6 +4,7 @@
 #import "WaveformView.h"
 #import "CodingTable.h"
 #import "FrameData.h"
+#import "LargeWaveformViewController.h"
 
 static NSString * const kFrameDataTableViewIdentifier = @"parameter";
 static NSString * const kFrameDataTableViewFrameKey = @"frame";
@@ -11,6 +12,8 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
 @interface ViewController ()
 @property (nonatomic, strong) NSArray *frameData;
 @property (nonatomic, strong) NSNumber *timestamp;
+@property (nonatomic, strong) NSWindowController *waveformWindow;
+
 @end
 
 @implementation ViewController
@@ -28,6 +31,14 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
 -(void)setRepresentedObject:(id)representedObject {
     [super setRepresentedObject:representedObject];
     [self updateInputsToMatchUserSettings];
+}
+
+- (IBAction)inspectWasClicked:(id)sender {
+    NSStoryboard *storyBoard = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
+    self.waveformWindow = [storyBoard instantiateControllerWithIdentifier:@"Waveform"];
+    LargeWaveformViewController *viewController = (LargeWaveformViewController *)[[self.waveformWindow window] contentViewController];
+    viewController.waveformView.buffer = self.processedWaveformView.buffer;
+    [self.waveformWindow showWindow:self];
 }
 
 -(void)updateInputsToMatchUserSettings {
@@ -213,11 +224,9 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
     [self notifySettingsChanged];
 }
 
-- (IBAction)inputGainChanged:(id)sender {
-    NSNumber *gain = [NSNumber numberWithFloat:[sender floatValue]];
-    [[self userSettings] setGain:gain];
-    [[NSNotificationCenter defaultCenter] postNotificationName:speedChanged object:nil];
-    [self notifySignalChanged];
+- (IBAction)unvoicedMultiplierChanged:(id)sender {
+    NSNumber *multiplier = [NSNumber numberWithFloat:[sender floatValue]];
+    [[self userSettings] setUnvoicedMultiplier:multiplier];
     [self notifySettingsChanged];
 }
 

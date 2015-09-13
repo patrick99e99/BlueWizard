@@ -43,4 +43,19 @@
     XCTAssertEqual([subject sampleRate], 8000);
 }
 
+-(void)testItCanBeCopied {
+    Buffer *buffer = [Buffer copy:subject];
+
+    XCTAssertEqual(buffer.samples[0], 2.0f);
+    XCTAssertEqual(buffer.samples[1], 3.0f);
+    XCTAssertEqual(buffer.samples[2], 4.0f);
+    XCTAssertEqual(buffer.size, 3);
+    XCTAssertEqual([buffer energy], 29.0f);
+    XCTAssertEqual([buffer sampleRate], 8000);
+
+    buffer.samples[0] = 1.0f;
+    
+    XCTAssertEqual(subject.samples[0], 2.0f);
+}
+
 @end

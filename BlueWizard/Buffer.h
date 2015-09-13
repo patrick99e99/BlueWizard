@@ -2,6 +2,7 @@
 
 @interface Buffer : NSObject
 
++(Buffer *)copy:(Buffer *)buffer;
 -(instancetype)initWithSize:(NSUInteger)size
                  sampleRate:(NSUInteger)sampleRate;
 

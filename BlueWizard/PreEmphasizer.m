@@ -22,7 +22,7 @@
 +(void)scaleBuffer:(Buffer *)buffer preEnergy:(double)preEnergy postEnergy:(double)postEnergy {
     float scale = sqrt(preEnergy / postEnergy);
     
-    for (int i = 1; i < buffer.size; i++) {
+    for (int i = 0; i < buffer.size; i++) {
         buffer.samples[i] *= scale;
     }
 }

@@ -29,6 +29,8 @@
 }
 
 -(void)process:(Buffer *)mainBuffer {
+    Buffer *pitchBuffer = [Buffer copy:mainBuffer];
+
     if ([[self userSettings] preEmphasis]) {
         [PreEmphasizer processBuffer:mainBuffer];        
     }
@@ -38,7 +40,7 @@
     if ([[self userSettings] overridePitch]) {
         wrappedPitch = [[self userSettings] pitchValue];
     } else {
-        pitchTable = [self pitchTableForBuffer:mainBuffer];
+        pitchTable = [self pitchTableForBuffer:pitchBuffer];
     }
     
     double *coefficients = malloc(sizeof(double) * 11);
@@ -68,6 +70,8 @@
     if ([[self userSettings] normalizeVoicedRMS]) [RMSNormalizer normalizeVoiced:frames];
     if ([[self userSettings] normalizeUnvoicedRMS]) [RMSNormalizer normalizeUnvoiced:frames];
 
+    [RMSNormalizer applyUnvoicedMultiplier:frames];
+
     [self postNotificationsForFrames:[frames copy]];
 }
 
@@ -82,8 +86,8 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:bufferGenerated object:self.buffer];
 }
 
--(short *)pitchTableForBuffer:(Buffer *)mainBuffer {
-    Filterer *filterer = [[Filterer alloc] initWithBuffer:mainBuffer lowPassCutoffInHZ:800 highPassCutoffInHZ:0 gain:1.0f];
+-(short *)pitchTableForBuffer:(Buffer *)pitchBuffer {
+    Filterer *filterer = [[Filterer alloc] initWithBuffer:pitchBuffer lowPassCutoffInHZ:800 highPassCutoffInHZ:0];
     Buffer *buffer = [filterer process];
 
     Segmenter *segmenter = [[Segmenter alloc] initWithBuffer:buffer windowWidth:2];

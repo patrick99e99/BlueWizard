@@ -18,7 +18,6 @@
     [[NSColor blueColor] set];
 
     if (self.buffer) {
-
         float spacing = self.bounds.size.width / self.buffer.size;
         for (int i = 0; i < self.buffer.size - 1; i++) {
             NSPoint pointA = NSMakePoint(i * spacing, zero - (self.buffer.samples[i] * zero));

@@ -4,5 +4,6 @@
 
 +(void)normalizeVoiced:(NSArray *)frameData;
 +(void)normalizeUnvoiced:(NSArray *)frameData;
++(void)applyUnvoicedMultiplier:(NSArray *)frameData;
 
 @end

@@ -81,15 +81,13 @@
     [self.sampler stop];
     NSUInteger lowPassCutoff  = [[[self userSettings] lowPassCutoff] unsignedIntegerValue];
     NSUInteger highPassCutoff = [[[self userSettings] highPassCutoff] unsignedIntegerValue];
-    float gain                = [[[self userSettings] gain] floatValue];
     
     Buffer *buffer = [TimeMachine process:self.input.buffer];
     
     Filterer *filterer = [[Filterer alloc] initWithBuffer:buffer
                                         lowPassCutoffInHZ:lowPassCutoff
-                                       highPassCutoffInHZ:highPassCutoff
-                                                     gain:gain];
-    
+                                       highPassCutoffInHZ:highPassCutoff];
+
     self.bufferWIthEQ = [filterer process];
     [[NSNotificationCenter defaultCenter] postNotificationName:inputSignalReceived object:self.bufferWIthEQ];
 }
