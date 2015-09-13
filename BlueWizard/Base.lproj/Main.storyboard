@@ -632,7 +632,7 @@
                     </connections>
                 </tabViewController>
             </objects>
-            <point key="canvasLocation" x="75" y="583"/>
+            <point key="canvasLocation" x="10" y="651"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
@@ -651,6 +651,62 @@
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="233"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="JMt-OA-BQF">
+            <objects>
+                <windowController storyboardIdentifier="Waveform" id="lLU-C5-44A" sceneMemberID="viewController">
+                    <window key="window" title="TMS5220 Waveform Inspector" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="qIB-ZN-JPc">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="163" y="199" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+                    </window>
+                    <connections>
+                        <segue destination="7qF-uR-pK9" kind="relationship" relationship="window.shadowedContentViewController" id="ym2-iS-edC"/>
+                    </connections>
+                </windowController>
+                <customObject id="8ji-e7-K9r" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1178" y="598"/>
+        </scene>
+        <!--Large Waveform View Controller-->
+        <scene sceneID="jc7-6X-p8M">
+            <objects>
+                <viewController id="7qF-uR-pK9" customClass="LargeWaveformViewController" sceneMemberID="viewController">
+                    <view key="view" id="n65-tL-O4Z">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="512"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dun-yK-akS" customClass="WaveformView">
+                                <rect key="frame" x="20" y="20" width="984" height="472"/>
+                                <subviews>
+                                    <box horizontalHuggingPriority="750" ambiguous="YES" misplaced="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="5h7-4W-2D3" customClass="PlayheadView">
+                                        <rect key="frame" x="17" y="376" width="4" height="96"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" id="kl4-cW-YWi"/>
+                                        </constraints>
+                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <font key="titleFont" metaFont="system"/>
+                                    </box>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="5h7-4W-2D3" secondAttribute="bottom" constant="376" id="0Nu-ar-Xpo"/>
+                                    <constraint firstItem="5h7-4W-2D3" firstAttribute="top" secondItem="Dun-yK-akS" secondAttribute="top" id="r8S-pV-FWE"/>
+                                    <constraint firstItem="5h7-4W-2D3" firstAttribute="leading" secondItem="Dun-yK-akS" secondAttribute="leading" constant="19" id="rfc-5I-rfM"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="WaveformView" destination="Dun-yK-akS" id="Gk4-GD-cRA"/>
+                        <outlet property="waveformView" destination="Dun-yK-akS" id="fV3-b2-0xb"/>
+                    </connections>
+                </viewController>
+                <customObject id="Pui-YP-OlY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1466" y="1134"/>
         </scene>
         <!--Process-->
         <scene sceneID="hIz-AP-VOD">
@@ -1443,23 +1499,6 @@
                                     <action selector="unvoicedMultiplierChanged:" target="XfG-lQ-9wD" id="7Dn-MJ-Syz"/>
                                 </connections>
                             </slider>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HXN-uY-gQZ">
-                                <rect key="frame" x="267" y="421" width="161" height="18"/>
-                                <buttonCell key="cell" type="check" title="Unvoiced RMS Limit:" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="95G-yw-jYM">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="normalizeUnvoicedRMSToggled:" target="XfG-lQ-9wD" id="LqZ-Qk-f09"/>
-                                </connections>
-                            </button>
-                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RY9-M3-NWy">
-                                <rect key="frame" x="604" y="439" width="122" height="25"/>
-                                <sliderCell key="cell" state="on" alignment="left" maxValue="1" doubleValue="0.5" tickMarkPosition="above" numberOfTickMarks="1" sliderType="linear" id="n6E-Ar-uIJ"/>
-                                <connections>
-                                    <action selector="speedSliderChanged:" target="XfG-lQ-9wD" id="Iwz-FN-KnQ"/>
-                                </connections>
-                            </slider>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NQJ-Wp-U2b">
                                 <rect key="frame" x="539" y="476" width="96" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Window width:" id="5No-sa-rKf">
@@ -1479,6 +1518,33 @@
                                     <action selector="windowWidthChanged:" target="XfG-lQ-9wD" id="Fzz-2E-bdM"/>
                                 </connections>
                             </textField>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HXN-uY-gQZ">
+                                <rect key="frame" x="267" y="421" width="161" height="18"/>
+                                <buttonCell key="cell" type="check" title="Unvoiced RMS Limit:" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="95G-yw-jYM">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="normalizeUnvoicedRMSToggled:" target="XfG-lQ-9wD" id="LqZ-Qk-f09"/>
+                                </connections>
+                            </button>
+                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RY9-M3-NWy">
+                                <rect key="frame" x="604" y="439" width="122" height="25"/>
+                                <sliderCell key="cell" state="on" alignment="left" maxValue="1" doubleValue="0.5" tickMarkPosition="above" numberOfTickMarks="1" sliderType="linear" id="n6E-Ar-uIJ"/>
+                                <connections>
+                                    <action selector="speedSliderChanged:" target="XfG-lQ-9wD" id="Iwz-FN-KnQ"/>
+                                </connections>
+                            </slider>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8GX-fF-W1u">
+                                <rect key="frame" x="842" y="552" width="86" height="32"/>
+                                <buttonCell key="cell" type="push" title="Inspect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="g7p-9a-KKN">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="inspectWasClicked:" target="XfG-lQ-9wD" id="6aX-8a-QTQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="eeP-eq-JNl" firstAttribute="baseline" secondItem="goY-6M-Q95" secondAttribute="baseline" id="3U9-xb-Z2e"/>
@@ -1593,7 +1659,6 @@
                         <outlet property="frameDataTable" destination="eQM-1M-xMK" id="hRk-VH-WvX"/>
                         <outlet property="frameDataTableView" destination="eQM-1M-xMK" id="ywa-cq-vgq"/>
                         <outlet property="frameRateTextfield" destination="5Q5-Qq-tgW" id="wX9-Q1-mQu"/>
-                        <outlet property="gainSlider" destination="3NX-hr-pgc" id="Mrs-RX-YEO"/>
                         <outlet property="highPassCutoffTextField" destination="Gt4-Ob-AAo" id="OlZ-cM-IQc"/>
                         <outlet property="inputWaveformView" destination="nkQ-g9-MPc" id="x2S-91-qQA"/>
                         <outlet property="lowPassCutoffTextField" destination="Lwe-mo-ejE" id="hZZ-ig-qNX"/>
