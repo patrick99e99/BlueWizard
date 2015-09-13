@@ -14,6 +14,8 @@
 /* usually 640000 for 8000 Hz sample rate or */
 /* usually 800000 for 10000 Hz sample rate.  */
 #include <stdint.h>
+#include <stdarg.h>
+#include <stdio.h>
 typedef uint32_t UINT32;
 typedef int32_t INT32;
 typedef uint16_t UINT16;
@@ -86,7 +88,12 @@ private:
 	void set_interrupt_state(int state);
 	void update_ready_state();
     void reset();
-    void logerror(const char *string, ...) {};
+    void logerror(const char * __restrict fmt, ...) {
+        va_list args;
+        va_start(args, fmt);
+        vprintf(fmt, args);
+        va_end(args);
+    };
 
 	// internal state
 
