@@ -4,11 +4,16 @@
 
 static NSUInteger const kNumberOfKParameters = 11;
 
+@interface Reflector ()
+@property (nonatomic, getter=shouldLimitRMS) BOOL limitRMS;
+@end
+
 @implementation Reflector {
     double *_ks[11];
 }
 
-+(instancetype)translateCoefficients:(double *)r numberOfSamples:(NSUInteger)numberOfSamples {
++(instancetype)translateCoefficients:(double *)r
+                     numberOfSamples:(NSUInteger)numberOfSamples {
 
     // Leroux Guegen algorithm for finding K's
 
@@ -40,7 +45,7 @@ static NSUInteger const kNumberOfKParameters = 11;
     }
     
     double rms = [self formattedRMS:d[11] numberOfSamples:numberOfSamples];
-    return [[Reflector alloc] initWithKs:k rms:rms];
+    return [[Reflector alloc] initWithKs:k rms:rms limitRMS:YES];
 }
 
 +(double)formattedRMS:(double)rms numberOfSamples:(NSUInteger)numberOfSamples {
@@ -56,9 +61,10 @@ static NSUInteger const kNumberOfKParameters = 11;
     return self;
 }
 
--(instancetype)initWithKs:(double *)ks rms:(double)rms {
+-(instancetype)initWithKs:(double *)ks rms:(double)rms limitRMS:(BOOL)limitRMS {
     if (self = [super init]) {
-        _rms = rms;
+        _rms      = rms;
+        _limitRMS = limitRMS;
         memcpy(_ks, ks, sizeof(double) * kNumberOfKParameters);
     }
     return self;
@@ -69,7 +75,11 @@ static NSUInteger const kNumberOfKParameters = 11;
 }
 
 -(double)rms {
-    return _rms >= [CodingTable rms][kStopFrameIndex] ? [CodingTable rms][kStopFrameIndex - 1] : _rms;
+    if (self.shouldLimitRMS && _rms >= [CodingTable rms][kStopFrameIndex]) {
+        return [CodingTable rms][kStopFrameIndex - 1];
+    } else {
+        return _rms;
+    }
 }
 
 -(BOOL)isVoiced {

@@ -3,6 +3,10 @@
 #import "Reflector.h"
 #import "CodingTable.h"
 
+@interface Reflector (ReflectorTests)
+@property (nonatomic, getter=shouldLimitRMS) BOOL limitRMS;
+@end
+
 @interface ReflectorTests : XCTestCase
 
 @end
@@ -23,6 +27,8 @@
 
 -(void)testItDoesNotAllowStopFramesToGetGenerated {
     subject.rms = [CodingTable rms][15];
+    XCTAssertEqual(subject.rms, [CodingTable rms][15]);
+    subject.limitRMS = YES;
     XCTAssertEqual(subject.rms, [CodingTable rms][14]);
 }
 

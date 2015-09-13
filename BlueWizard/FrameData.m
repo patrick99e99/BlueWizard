@@ -74,7 +74,7 @@
 -(void)setParameter:(NSString *)parameter value:(NSNumber *)value {
     self.parameters = nil;
     self.translatedParameters = nil;
-    
+
     if ([parameter isEqualToString:kParameterGain]) {
         NSUInteger index = [value unsignedIntegerValue];
         NSNumber *rms = [NSNumber numberWithFloat:[CodingTable rms][index]];

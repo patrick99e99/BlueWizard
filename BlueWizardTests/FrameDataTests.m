@@ -5,7 +5,7 @@
 #import "CodingTable.h"
 
 @interface Reflector (FrameDataTests)
--(instancetype)initWithKs:(double *)ks rms:(double)rms;
+-(instancetype)initWithKs:(double *)ks rms:(double)rms limitRMS:(BOOL)limitRMS;
 @end
 
 @interface FrameDataTests : XCTestCase
@@ -27,7 +27,7 @@
 
 -(void)testItHasAllParameters {
     double ks[] = { 0.0f, 0.0f };
-    reflector = [[Reflector alloc] initWithKs:ks rms:32];
+    reflector = [[Reflector alloc] initWithKs:ks rms:32 limitRMS:NO];
 
     subject = [[FrameData alloc] initWithReflector:reflector pitch:32 repeat:NO];
     NSArray *paramterKeys = [[subject parameters] allKeys];
@@ -49,7 +49,7 @@
 -(void)testItHasUnvoicedParameterWhenK1IsLarge {
     double ks[] = { 0.1, 5.0f };
     
-    reflector = [[Reflector alloc] initWithKs:ks rms:32];
+    reflector = [[Reflector alloc] initWithKs:ks rms:32 limitRMS:NO];
     XCTAssertTrue([reflector isUnvoiced]);
     
     subject = [[FrameData alloc] initWithReflector:reflector pitch:32 repeat:NO];
@@ -71,7 +71,7 @@
 
 -(void)testItHasUnvoicedParameterWhenPitchIsZero {
     double ks[] = { 0.1f, 0.1f };
-    reflector = [[Reflector alloc] initWithKs:ks rms:32];
+    reflector = [[Reflector alloc] initWithKs:ks rms:32 limitRMS:NO];
     
     subject = [[FrameData alloc] initWithReflector:reflector pitch:0 repeat:NO];
     NSArray *paramterKeys = [[subject parameters] allKeys];
@@ -92,7 +92,7 @@
 
 -(void)testItHasGainOnlyParametersWhenGainIsZero {
     double ks[] = { 0.0f, 0.0f };
-    reflector = [[Reflector alloc] initWithKs:ks rms:0];
+    reflector = [[Reflector alloc] initWithKs:ks rms:0 limitRMS:NO];
     
     subject = [[FrameData alloc] initWithReflector:reflector pitch:0 repeat:NO];
     NSArray *paramterKeys = [[subject parameters] allKeys];
@@ -113,7 +113,7 @@
 
 -(void)testItHasRepeatParameters {
     double ks[] = { 0.0f, 0.0f };
-    reflector = [[Reflector alloc] initWithKs:ks rms:32];
+    reflector = [[Reflector alloc] initWithKs:ks rms:32 limitRMS:NO];
     
     subject = [[FrameData alloc] initWithReflector:reflector pitch:32 repeat:YES];
     NSArray *paramterKeys = [[subject parameters] allKeys];
@@ -134,7 +134,7 @@
 
 -(void)testItHasTranslatedParamteres {
     double ks[] = { 0.0f, 0.0f };
-    reflector = [[Reflector alloc] initWithKs:ks rms:32];
+    reflector = [[Reflector alloc] initWithKs:ks rms:32 limitRMS:NO];
     
     subject = [[FrameData alloc] initWithReflector:reflector pitch:32 repeat:YES];
     NSNumber *gain = [[subject translatedParameters] objectForKey:kParameterGain];
