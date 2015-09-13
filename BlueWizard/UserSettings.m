@@ -116,11 +116,11 @@
     return _speed;
 }
 
--(NSNumber *)gain {
-    if (!_gain) {
-        _gain = @1.0f;
+-(NSNumber *)unvoicedMultiplier {
+    if (!_unvoicedMultiplier) {
+        _unvoicedMultiplier = @0.5f;
     }
-    return _gain;
+    return _unvoicedMultiplier;
 }
 
 -(NSNumber *)windowWidth {

@@ -5,8 +5,8 @@
 
 -(instancetype)initWithBuffer:(Buffer *)buffer
             lowPassCutoffInHZ:(NSUInteger)lowPassCutoffInHZ
-           highPassCutoffInHZ:(NSUInteger)highPassCutoffInHZ
-                         gain:(float)gain;
+           highPassCutoffInHZ:(NSUInteger)highPassCutoffInHZ;
+
 -(Buffer *)process;
 
 @end

@@ -18,7 +18,7 @@
 @property (nonatomic, strong) NSNumber *highPassCutoff;
 @property (nonatomic, strong) NSNumber *speed;
 @property (nonatomic, strong) NSNumber *windowWidth;
-@property (nonatomic, strong) NSNumber *gain;
+@property (nonatomic, strong) NSNumber *unvoicedMultiplier;
 
 @property (nonatomic) BOOL overridePitch;
 @property (nonatomic) BOOL preEmphasis;

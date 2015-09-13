@@ -213,11 +213,9 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
     [self notifySettingsChanged];
 }
 
-- (IBAction)inputGainChanged:(id)sender {
-    NSNumber *gain = [NSNumber numberWithFloat:[sender floatValue]];
-    [[self userSettings] setGain:gain];
-    [[NSNotificationCenter defaultCenter] postNotificationName:speedChanged object:nil];
-    [self notifySignalChanged];
+- (IBAction)unvoicedMultiplierChanged:(id)sender {
+    NSNumber *multiplier = [NSNumber numberWithFloat:[sender floatValue]];
+    [[self userSettings] setUnvoicedMultiplier:multiplier];
     [self notifySettingsChanged];
 }
 

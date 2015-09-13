@@ -9,6 +9,10 @@
 
 @implementation Buffer
 
++(Buffer *)copy:(Buffer *)buffer {
+    return [[self alloc] initWithSamples:buffer.samples size:buffer.size sampleRate:buffer.sampleRate];
+}
+
 -(instancetype)initWithSize:(NSUInteger)size
                  sampleRate:(NSUInteger)sampleRate {
     if (self = [super init]) {

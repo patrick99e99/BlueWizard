@@ -34,7 +34,7 @@
 @property (weak) IBOutlet NSTableView *frameDataTable;
 @property (weak) IBOutlet NSTextField *unvoicedRMSLimitTextField;
 @property (weak) IBOutlet NSSlider *speedSlider;
-@property (weak) IBOutlet NSSlider *gainSlider;
+@property (weak) IBOutlet NSSlider *unvoicedMultiplierSlider;
 @property (weak) IBOutlet NSTextField *windowWidthTextfield;
 
 @end
