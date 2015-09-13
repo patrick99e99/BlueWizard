@@ -42,7 +42,7 @@
     }
     
     double *coefficients = malloc(sizeof(double) * 11);
-    Segmenter *segmenter = [[Segmenter alloc] initWithBuffer:mainBuffer windowWidth:1];
+    Segmenter *segmenter = [[Segmenter alloc] initWithBuffer:mainBuffer windowWidth:[[[self userSettings] windowWidth] unsignedIntegerValue]];
     NSMutableArray *frames = [NSMutableArray arrayWithCapacity:[segmenter numberOfSegments]];
     [segmenter eachSegment:^(Buffer *buffer, NSUInteger index) {
         [HammingWindow processBuffer:buffer];
@@ -65,7 +65,9 @@
     free(coefficients);
     if (!wrappedPitch) free(pitchTable);
     
-    if ([[self userSettings] normalizeRMS]) [RMSNormalizer normalize:frames];
+    if ([[self userSettings] normalizeVoicedRMS]) [RMSNormalizer normalizeVoiced:frames];
+    if ([[self userSettings] normalizeUnvoicedRMS]) [RMSNormalizer normalizeUnvoiced:frames];
+
     [self postNotificationsForFrames:[frames copy]];
 }
 
@@ -81,7 +83,7 @@
 }
 
 -(short *)pitchTableForBuffer:(Buffer *)mainBuffer {
-    Filterer *filterer = [[Filterer alloc] initWithBuffer:mainBuffer lowPassCutoffInHZ:800 highPassCutoffInHZ:0];
+    Filterer *filterer = [[Filterer alloc] initWithBuffer:mainBuffer lowPassCutoffInHZ:800 highPassCutoffInHZ:0 gain:1.0f];
     Buffer *buffer = [filterer process];
 
     Segmenter *segmenter = [[Segmenter alloc] initWithBuffer:buffer windowWidth:2];

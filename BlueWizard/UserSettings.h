@@ -17,10 +17,13 @@
 @property (nonatomic, strong) NSNumber *lowPassCutoff;
 @property (nonatomic, strong) NSNumber *highPassCutoff;
 @property (nonatomic, strong) NSNumber *speed;
+@property (nonatomic, strong) NSNumber *windowWidth;
+@property (nonatomic, strong) NSNumber *gain;
 
 @property (nonatomic) BOOL overridePitch;
 @property (nonatomic) BOOL preEmphasis;
-@property (nonatomic) BOOL normalizeRMS;
+@property (nonatomic) BOOL normalizeVoicedRMS;
+@property (nonatomic) BOOL normalizeUnvoicedRMS;
 @property (nonatomic) BOOL excitationFilterOnly;
 
 +(instancetype)sharedInstance;

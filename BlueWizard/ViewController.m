@@ -42,14 +42,17 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
     self.rmsLimitTextfield.stringValue             = [[[self userSettings] rmsLimit] stringValue];
     self.lowPassCutoffTextField.stringValue        = [[[self userSettings] lowPassCutoff] stringValue];
     self.highPassCutoffTextField.stringValue       = [[[self userSettings] highPassCutoff] stringValue];
+    self.windowWidthTextfield.stringValue          = [[[self userSettings] windowWidth] stringValue];
     
     self.overridePitchButton.state  = [[self userSettings] overridePitch];
     self.preEmphasisButton.state    = [[self userSettings] preEmphasis];
-    self.normalizeRMSButton.state   = [[self userSettings] normalizeRMS];
+    self.normalizeRMSButton.state   = [[self userSettings] normalizeVoicedRMS];
+    self.normalizeUnvoicedRMSButton.state   = [[self userSettings] normalizeUnvoicedRMS];
     
     [self overridePitchToggled:self.overridePitchButton];
     [self preEmphasisToggled:self.preEmphasisButton];
     [self normalizeRMSToggled:self.normalizeRMSButton];
+    [self normalizeUnvoicedRMSToggled:self.normalizeUnvoicedRMSButton];
 }
 
 -(void)updateInputWaveformView:(NSNotification *)notification {
@@ -172,9 +175,17 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
     BOOL state = [sender state];
     
     [self.rmsLimitTextfield setEnabled:state];
-    [self.unvoicedRMSLimitTextField setEnabled:state];
 
-    [[self userSettings] setNormalizeRMS:state];
+    [[self userSettings] setNormalizeVoicedRMS:state];
+    [self notifySettingsChanged];
+}
+
+- (IBAction)normalizeUnvoicedRMSToggled:(NSButton *)sender {
+    BOOL state = [sender state];
+    
+    [self.unvoicedRMSLimitTextField setEnabled:state];
+    
+    [[self userSettings] setNormalizeUnvoicedRMS:state];
     [self notifySettingsChanged];
 }
 
@@ -185,13 +196,13 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
 
 - (IBAction)lowPassCutoffChanged:(NSTextField *)sender {
     [[self userSettings] setLowPassCutoff:[self numberFromString:[sender stringValue]]];
-    [self notifyEQChanged];
+    [self notifySignalChanged];
     [self notifySettingsChanged];
 }
 
 - (IBAction)highPassCutoffChanged:(NSTextField *)sender {
     [[self userSettings] setHighPassCutoff:[self numberFromString:[sender stringValue]]];
-    [self notifyEQChanged];
+    [self notifySignalChanged];
     [self notifySettingsChanged];
 }
 
@@ -202,8 +213,21 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
     [self notifySettingsChanged];
 }
 
--(void)notifyEQChanged {
-    [[NSNotificationCenter defaultCenter] postNotificationName:eqChanged object:nil];
+- (IBAction)inputGainChanged:(id)sender {
+    NSNumber *gain = [NSNumber numberWithFloat:[sender floatValue]];
+    [[self userSettings] setGain:gain];
+    [[NSNotificationCenter defaultCenter] postNotificationName:speedChanged object:nil];
+    [self notifySignalChanged];
+    [self notifySettingsChanged];
+}
+
+- (IBAction)windowWidthChanged:(id)sender {
+    [[self userSettings] setWindowWidth:[self numberFromString:[sender stringValue]]];
+    [self notifySettingsChanged];
+}
+
+-(void)notifySignalChanged {
+    [[NSNotificationCenter defaultCenter] postNotificationName:signalChanged object:nil];
 }
 
 -(void)notifySettingsChanged {

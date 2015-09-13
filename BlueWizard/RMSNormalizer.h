@@ -2,6 +2,7 @@
 
 @interface RMSNormalizer : NSObject
 
-+(void)normalize:(NSArray *)frameData;
++(void)normalizeVoiced:(NSArray *)frameData;
++(void)normalizeUnvoiced:(NSArray *)frameData;
 
 @end

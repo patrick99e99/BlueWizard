@@ -21,6 +21,7 @@
 
 @property (weak) IBOutlet NSButton *overridePitchButton;
 @property (weak) IBOutlet NSButton *preEmphasisButton;
+@property (weak) IBOutlet NSButton *normalizeUnvoicedRMSButton;
 @property (weak) IBOutlet NSButton *normalizeRMSButton;
 @property (weak) IBOutlet NSButton *excitationFilterOnlyButton;
 @property (unsafe_unretained) IBOutlet NSTextView *byteStreamTextView;
@@ -33,6 +34,8 @@
 @property (weak) IBOutlet NSTableView *frameDataTable;
 @property (weak) IBOutlet NSTextField *unvoicedRMSLimitTextField;
 @property (weak) IBOutlet NSSlider *speedSlider;
+@property (weak) IBOutlet NSSlider *gainSlider;
+@property (weak) IBOutlet NSTextField *windowWidthTextfield;
 
 @end
 

@@ -99,7 +99,6 @@ static int const STATUS_BE_MASK = 0x20;
 
 -(void)speakFragment:(NSArray *)speechData
              samples:(NSMutableArray *)samples {
-    // If the chip hasn't started talking yet, and we have yet to send any data...
     if ( [self chipHasNotStartedTalkingYetAndSentNoData] ) {
         // Load the fifo with enough bytes to either unset the BL mask and get speech going, or enough that we've run out of input data.
         while ( (self.index <= ([speechData count] - 1)) && ([self readStatus] & STATUS_BL_MASK) ) {

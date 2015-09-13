@@ -90,7 +90,7 @@
 
 -(NSNumber *)unvoicedRMSLimit {
     if (!_unvoicedRMSLimit) {
-        _unvoicedRMSLimit = @14;
+        _unvoicedRMSLimit = @6;
     }
     return _unvoicedRMSLimit;
 }
@@ -114,6 +114,20 @@
         _speed = @1.0f;
     }
     return _speed;
+}
+
+-(NSNumber *)gain {
+    if (!_gain) {
+        _gain = @1.0f;
+    }
+    return _gain;
+}
+
+-(NSNumber *)windowWidth {
+    if (!_windowWidth) {
+        _windowWidth = @1;
+    }
+    return _windowWidth;
 }
 
 @end
