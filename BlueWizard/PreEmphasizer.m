@@ -5,14 +5,14 @@
 @implementation PreEmphasizer
 
 +(void)processBuffer:(Buffer *)buffer {
-    float preEnergy = [buffer energy];
-
-    float alpha = [self alpha];
-    float unmodifiedPreviousSample = buffer.samples[0];
-    float tempSample;
+    double preEnergy = [buffer energy];
+    
+    double alpha = [self alpha];
+    double unmodifiedPreviousSample = buffer.samples[0];
+    double tempSample;
     for (int i = 1; i < buffer.size; i++) {
         tempSample = buffer.samples[i];
-        buffer.samples[i] -= (alpha * unmodifiedPreviousSample);
+        buffer.samples[i] += (alpha * unmodifiedPreviousSample);
         unmodifiedPreviousSample = tempSample;
     }
     
@@ -24,7 +24,7 @@
 }
 
 +(void)scaleBuffer:(Buffer *)buffer preEnergy:(double)preEnergy postEnergy:(double)postEnergy {
-    float scale = sqrt(preEnergy / postEnergy);
+    double scale = sqrt(preEnergy / postEnergy);
     
     for (int i = 0; i < buffer.size; i++) {
         buffer.samples[i] *= scale;
