@@ -14,6 +14,7 @@ static NSString * const kParameterK8     = @"k8";
 static NSString * const kParameterK9     = @"k9";
 static NSString * const kParameterK10    = @"k10";
 static NSUInteger const kParameterKeys   = 13;
+static NSUInteger const kStopFrameIndex  = 15;
 
 @interface CodingTable : NSObject
 

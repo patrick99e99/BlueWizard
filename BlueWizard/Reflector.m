@@ -1,5 +1,6 @@
 #import "Reflector.h"
 #import "UserSettings.h"
+#import "CodingTable.h"
 
 static NSUInteger const kNumberOfKParameters = 11;
 
@@ -65,6 +66,10 @@ static NSUInteger const kNumberOfKParameters = 11;
 
 -(double *)ks {
     return (double *)_ks;
+}
+
+-(double)rms {
+    return _rms >= [CodingTable rms][kStopFrameIndex] ? [CodingTable rms][kStopFrameIndex - 1] : _rms;
 }
 
 -(BOOL)isVoiced {
