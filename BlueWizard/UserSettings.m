@@ -125,7 +125,7 @@
 
 -(NSNumber *)windowWidth {
     if (!_windowWidth) {
-        _windowWidth = @1;
+        _windowWidth = @2;
     }
     return _windowWidth;
 }
