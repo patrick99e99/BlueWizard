@@ -34,7 +34,7 @@
     OCMStub([classMock maxRMSIndex]).andReturn(3);
     
     FrameData *frameData = [[FrameData alloc] initWithReflector:reflector pitch:0 repeat:NO];
-    [RMSNormalizer normalize:@[frameData]];
+    [RMSNormalizer normalizeVoiced:@[frameData]];
 
     XCTAssertEqualWithAccuracy(reflector.rms, [CodingTable rms][3], 1.0f);
 }
