@@ -8,8 +8,12 @@
     float preEnergy = [buffer energy];
 
     float alpha = [self alpha];
+    float unmodifiedPreviousSample = buffer.samples[0];
+    float tempSample;
     for (int i = 1; i < buffer.size; i++) {
-        buffer.samples[i] += buffer.samples[i - 1] * alpha;
+        tempSample = buffer.samples[i];
+        buffer.samples[i] -= (alpha * unmodifiedPreviousSample);
+        unmodifiedPreviousSample = tempSample;
     }
     
     [self scaleBuffer:buffer preEnergy:preEnergy postEnergy:[buffer energy]];
