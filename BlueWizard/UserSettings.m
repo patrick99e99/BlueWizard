@@ -90,7 +90,7 @@
 
 -(NSNumber *)unvoicedRMSLimit {
     if (!_unvoicedRMSLimit) {
-        _unvoicedRMSLimit = @6;
+        _unvoicedRMSLimit = @14;
     }
     return _unvoicedRMSLimit;
 }

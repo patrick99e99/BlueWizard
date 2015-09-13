@@ -47,7 +47,7 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
     self.overridePitchButton.state  = [[self userSettings] overridePitch];
     self.preEmphasisButton.state    = [[self userSettings] preEmphasis];
     self.normalizeRMSButton.state   = [[self userSettings] normalizeVoicedRMS];
-    self.normalizeUnvoicedRMSButton.state   = [[self userSettings] normalizeUnvoicedRMS];
+    self.normalizeUnvoicedRMSButton.state = [[self userSettings] normalizeUnvoicedRMS];
     
     [self overridePitchToggled:self.overridePitchButton];
     [self preEmphasisToggled:self.preEmphasisButton];
