@@ -1325,14 +1325,13 @@ void tms5220_device::process_command(unsigned char cmd)
 void tms5220_device::parse_frame()
 {
 	int i, rep_flag;
-    
 #ifdef PERFECT_INTERPOLATION_HACK
-    m_old_uv_zpar = m_uv_zpar;
-    m_old_zpar = m_zpar;
+	m_old_uv_zpar = m_uv_zpar;
+	m_old_zpar = m_zpar;
 #endif
-    // since we're parsing a frame, we must be talking, so clear zpar here
-    // before we start parsing a frame, the P=0 and E=0 latches were both reset by RESETL4, so clear m_uv_zpar here
-    m_uv_zpar = m_zpar = 0;
+	// since we're parsing a frame, we must be talking, so clear zpar here
+	// before we start parsing a frame, the P=0 and E=0 latches were both reset by RESETL4, so clear m_uv_zpar here
+	m_uv_zpar = m_zpar = 0;
 
 	// We actually don't care how many bits are left in the fifo here; the frame subpart will be processed normally, and any bits extracted 'past the end' of the fifo will be read as zeroes; the fifo being emptied will set the /BE latch which will halt speech exactly as if a stop frame had been encountered (instead of whatever partial frame was read); the same exact circuitry is used for both on the real chip, see us patent 4335277 sheet 16, gates 232a (decode stop frame) and 232b (decode /BE plus DDIS (decode disable) which is active during speak external).
 
@@ -1379,8 +1378,8 @@ void tms5220_device::parse_frame()
 	printbits(m_new_frame_pitch_idx,m_coeff->pitch_bits);
 	logerror(" ");
 #endif
-    // if the new frame is unvoiced, be sure to zero out the k5-k10 parameters
-    m_uv_zpar = NEW_FRAME_UNVOICED_FLAG;
+	// if the new frame is unvoiced, be sure to zero out the k5-k10 parameters
+	m_uv_zpar = NEW_FRAME_UNVOICED_FLAG;
 	update_fifo_status_and_ints();
 	if (m_DDIS && m_buffer_empty) goto ranout;
 	// if this is a repeat frame, just do nothing, it will reuse the old coefficients
