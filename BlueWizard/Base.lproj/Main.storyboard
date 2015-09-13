@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C1510" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
@@ -1041,7 +1041,7 @@
                             </textField>
                             <scrollView identifier="frame" horizontalLineScroll="25" horizontalPageScroll="10" verticalLineScroll="25" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="AlV-tG-AH3">
                                 <rect key="frame" x="20" y="45" width="716" height="322"/>
-                                <clipView key="contentView" misplaced="YES" drawsBackground="NO" copiesOnScroll="NO" id="OFw-sP-HKG">
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="OFw-sP-HKG">
                                     <rect key="frame" x="1" y="0.0" width="238" height="134"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -1493,7 +1493,7 @@
                                 </textFieldCell>
                             </textField>
                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3NX-hr-pgc">
-                                <rect key="frame" x="407" y="392" width="122" height="25"/>
+                                <rect key="frame" x="407" y="392" width="122" height="26"/>
                                 <sliderCell key="cell" alignment="left" maxValue="1" doubleValue="0.5" tickMarkPosition="above" numberOfTickMarks="1" sliderType="linear" id="HaK-YK-UZc"/>
                                 <connections>
                                     <action selector="unvoicedMultiplierChanged:" target="XfG-lQ-9wD" id="7Dn-MJ-Syz"/>
@@ -1529,7 +1529,7 @@
                                 </connections>
                             </button>
                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RY9-M3-NWy">
-                                <rect key="frame" x="604" y="439" width="122" height="25"/>
+                                <rect key="frame" x="604" y="439" width="122" height="26"/>
                                 <sliderCell key="cell" state="on" alignment="left" maxValue="1" doubleValue="0.5" tickMarkPosition="above" numberOfTickMarks="1" sliderType="linear" id="n6E-Ar-uIJ"/>
                                 <connections>
                                     <action selector="speedSliderChanged:" target="XfG-lQ-9wD" id="Iwz-FN-KnQ"/>
@@ -1545,6 +1545,21 @@
                                     <action selector="inspectWasClicked:" target="XfG-lQ-9wD" id="6aX-8a-QTQ"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="huM-KJ-gZW">
+                                <rect key="frame" x="539" y="418" width="37" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Gain:" id="9ui-2R-FRy">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uvZ-nd-wtz">
+                                <rect key="frame" x="604" y="416" width="122" height="26"/>
+                                <sliderCell key="cell" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" numberOfTickMarks="1" sliderType="linear" id="nCc-3w-0Ri"/>
+                                <connections>
+                                    <action selector="inputGainChanged:" target="XfG-lQ-9wD" id="1hv-Mv-Q4i"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <constraints>
                             <constraint firstItem="eeP-eq-JNl" firstAttribute="baseline" secondItem="goY-6M-Q95" secondAttribute="baseline" id="3U9-xb-Z2e"/>
@@ -1659,6 +1674,7 @@
                         <outlet property="frameDataTable" destination="eQM-1M-xMK" id="hRk-VH-WvX"/>
                         <outlet property="frameDataTableView" destination="eQM-1M-xMK" id="ywa-cq-vgq"/>
                         <outlet property="frameRateTextfield" destination="5Q5-Qq-tgW" id="wX9-Q1-mQu"/>
+                        <outlet property="gainSlider" destination="uvZ-nd-wtz" id="Who-1L-DYs"/>
                         <outlet property="highPassCutoffTextField" destination="Gt4-Ob-AAo" id="OlZ-cM-IQc"/>
                         <outlet property="inputWaveformView" destination="nkQ-g9-MPc" id="x2S-91-qQA"/>
                         <outlet property="lowPassCutoffTextField" destination="Lwe-mo-ejE" id="hZZ-ig-qNX"/>

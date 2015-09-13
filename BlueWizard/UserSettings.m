@@ -123,6 +123,13 @@
     return _unvoicedMultiplier;
 }
 
+-(NSNumber *)gain {
+    if (!_gain) {
+        _gain = @1.0f;
+    }
+    return _gain;
+}
+
 -(NSNumber *)windowWidth {
     if (!_windowWidth) {
         _windowWidth = @2;

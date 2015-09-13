@@ -7,6 +7,7 @@
 @property (nonatomic, strong) Buffer *buffer;
 @property (nonatomic) NSUInteger lowPassCutoffInHZ;
 @property (nonatomic) NSUInteger highPassCutoffInHZ;
+@property (nonatomic) float gain;
 @end
 
 typedef struct FilterPlayer {
@@ -52,11 +53,13 @@ OSStatus FiltererCallbackRenderProc(void *inRefCon,
 
 -(instancetype)initWithBuffer:(Buffer *)buffer
             lowPassCutoffInHZ:(NSUInteger)lowPassCutoffInHZ
-           highPassCutoffInHZ:(NSUInteger)highPassCutoffInHZ {
+           highPassCutoffInHZ:(NSUInteger)highPassCutoffInHZ
+                         gain:(float)gain {
     if (self = [super init]) {
         self.buffer = buffer;
         self.lowPassCutoffInHZ  = lowPassCutoffInHZ;
         self.highPassCutoffInHZ = highPassCutoffInHZ;
+        self.gain               = gain;
     }
     return self;
 }
@@ -182,7 +185,7 @@ OSStatus FiltererCallbackRenderProc(void *inRefCon,
 
         AudioUnitRender(player.highPassUnit, &flag, &inTimeStamp, 0, blockSize, bufferlist);
         for (NSUInteger j = 0; j < blockSize; j++) {
-            processed[j + (blockSize * i)] = left[j];
+            processed[j + (blockSize * i)] = left[j] * self.gain;
         }
         inTimeStamp.mSampleTime += blockSize;
     }

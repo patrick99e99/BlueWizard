@@ -87,7 +87,7 @@
 }
 
 -(short *)pitchTableForBuffer:(Buffer *)pitchBuffer {
-    Filterer *filterer = [[Filterer alloc] initWithBuffer:pitchBuffer lowPassCutoffInHZ:800 highPassCutoffInHZ:0];
+    Filterer *filterer = [[Filterer alloc] initWithBuffer:pitchBuffer lowPassCutoffInHZ:800 highPassCutoffInHZ:0 gain:1.0f];
     Buffer *buffer = [filterer process];
 
     Segmenter *segmenter = [[Segmenter alloc] initWithBuffer:buffer windowWidth:2];
