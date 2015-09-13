@@ -89,24 +89,32 @@ static int const STATUS_BE_MASK = 0x20;
 
 -(int)readStatus {
     int tms_status = _tms5220->status_r();
-    NSLog(@"5220 DEBUG: Index: %lu, Status read: TS: %d, BL: %d, BE: %d", self.index, (tms_status&0x80)?1:0, (tms_status&0x40)?1:0, (tms_status&0x20)?1:0);
+    NSLog(@"5220 DEBUG: Index: %lu, Status read: TS: %d, BL: %d, BE: %d", self.index, (tms_status&STATUS_TS_MASK)?1:0, (tms_status&STATUS_BL_MASK)?1:0, (tms_status&STATUS_BE_MASK)?1:0);
     return tms_status;
 }
 
--(BOOL)chipHasNotStartedTalkingYetAndSentNoData {
-    return !([self readStatus] & STATUS_TS_MASK) && !self.index;
+-(BOOL)chipIsTalking {
+    return ([self readStatus] & STATUS_TS_MASK);
+}
+
+-(BOOL)chipFifoIsLow {
+    return ([self readStatus] & STATUS_BL_MASK);
+}
+
+-(BOOL)chipHasNotStartedTalkingYetBecauseWeSentNoData {
+    return ![self chipIsTalking] && !self.index;
 }
 
 -(void)speakFragment:(NSArray *)speechData
              samples:(NSMutableArray *)samples {
-    if ( [self chipHasNotStartedTalkingYetAndSentNoData] ) {
+    if ( [self chipHasNotStartedTalkingYetBecauseWeSentNoData] ) {
         // Load the fifo with enough bytes to either unset the BL mask and get speech going, or enough that we've run out of input data.
-        while ( (self.index <= ([speechData count] - 1)) && ([self readStatus] & STATUS_BL_MASK) ) {
+        while ( (self.index <= ([speechData count] - 1)) && [self chipFifoIsLow] ) {
             [self writeData:[[speechData objectAtIndex:self.index] intValue]];
             self.index += 1;
         }
         // If we ran out of input data and never even filled the fifo, bail out.
-        if ( (self.index > ([speechData count] - 1)) && ([self readStatus] & STATUS_BL_MASK) ) {
+        if ( (self.index > ([speechData count] - 1)) && [self chipFifoIsLow] ) {
             NSLog(@"TMS5220 error: insufficient speech data (<9 bytes) to start synthesizing speech");
             self.speaking = NO;
             self.index = 0;
@@ -117,13 +125,13 @@ static int const STATUS_BE_MASK = 0x20;
         // We're either talking or have finished talking. First check if there's any data left to send...
         if (self.index <= ([speechData count] - 1)) {
             // We still have input data to send, so try to fill the fifo until we run out of data or BL goes inactive
-            while ( (self.index <= ([speechData count] - 1)) && ([self readStatus] & STATUS_BL_MASK) ) {
+            while ( (self.index <= ([speechData count] - 1)) && [self chipFifoIsLow] ) {
                 [self writeData:[[speechData objectAtIndex:self.index] intValue]];
                 self.index += 1;
             }
         }
         // Now, no matter if we have data left to send or not, check the talk status line. if it is inactive, finish up, since we either finished speech or desynced.
-        if (!([self readStatus] & STATUS_TS_MASK)) {
+        if (![self chipIsTalking]) {
            // If talk status went inactive, shut everything down, we're done.
            self.speaking = NO;
            self.index = 0;
