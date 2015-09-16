@@ -1,8 +1,7 @@
 #import <Foundation/Foundation.h>
 
-@interface Buffer : NSObject
+@interface Buffer : NSObject <NSCopying>
 
-+(Buffer *)copy:(Buffer *)buffer;
 -(instancetype)initWithSize:(NSUInteger)size
                  sampleRate:(NSUInteger)sampleRate;
 

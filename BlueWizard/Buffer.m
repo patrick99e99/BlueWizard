@@ -9,10 +9,6 @@
 
 @implementation Buffer
 
-+(Buffer *)copy:(Buffer *)buffer {
-    return [[self alloc] initWithSamples:buffer.samples size:buffer.size sampleRate:buffer.sampleRate];
-}
-
 -(instancetype)initWithSize:(NSUInteger)size
                  sampleRate:(NSUInteger)sampleRate {
     if (self = [super init]) {
@@ -44,6 +40,14 @@
 
 -(double)energy {
     return [Autocorrelator sumOfSquaresFor:self];
+}
+
+# pragma mark - NSCopying
+
+-(instancetype)copyWithZone:(NSZone *)zone {
+    return [[[self class] alloc] initWithSamples:self->_samples
+                                            size:self->_size
+                                      sampleRate:self->_sampleRate];
 }
 
 @end

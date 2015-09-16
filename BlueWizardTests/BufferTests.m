@@ -44,7 +44,7 @@
 }
 
 -(void)testItCanBeCopied {
-    Buffer *buffer = [Buffer copy:subject];
+    Buffer *buffer = [subject copy];
 
     XCTAssertEqual(buffer.samples[0], 2.0f);
     XCTAssertEqual(buffer.samples[1], 3.0f);

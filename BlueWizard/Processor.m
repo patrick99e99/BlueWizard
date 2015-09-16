@@ -29,7 +29,7 @@
 }
 
 -(void)process:(Buffer *)mainBuffer {
-    Buffer *pitchBuffer = [Buffer copy:mainBuffer];
+    Buffer *pitchBuffer = [mainBuffer copy];
 
     if ([[self userSettings] preEmphasis]) {
         [PreEmphasizer processBuffer:mainBuffer];        
