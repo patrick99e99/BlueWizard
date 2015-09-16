@@ -4,9 +4,14 @@
 #import "tms5220.h"
 #import "UserSettings.h"
 
+static int const RATE_SET_NORMAL = 0x00; // 8 interpolation periods per frame, i.e. 200 samples per frame
+static int const RATE_SET_FAST = 0x01; // 6 interpolation periods per frame, i.e. 150 samples per frame
+static int const RATE_SET_FASTER = 0x02; // 4 interpolation periods per frame, i.e 100 samples per frame
+static int const RATE_SET_FASTEST = 0x03; // 2 interpolation periods per frame, i.e 50 samples per frame
+static int const RATE_SET_VARIABLE_PER_FRAME = 0x04; // if enabled, each frame is prepended with 2 bits, selecting one of the above 4 rates
 static int const SPEAK_EXTERNAL_COMMAND = 0x60;
 static int const RESET_COMMAND = 0xFF;
-static int const SAMPLES_PER_HALF_FRAME = 200;
+static int const SAMPLES_PER_2_INTERP_PERIODS = 50;
 static int const STATUS_TS_MASK = 0x80;
 static int const STATUS_BL_MASK = 0x40;
 static int const STATUS_BE_MASK = 0x20;
@@ -45,17 +50,19 @@ static int const STATUS_BE_MASK = 0x20;
 
     self.speaking = YES;
     NSMutableArray *samples = [NSMutableArray arrayWithCapacity:65536];
-    
+
     _tms5220->set_use_raw_excitation_filter([[self userSettings] excitationFilterOnly]);
-    
+
+    [self writeData:RATE_SET_NORMAL];
+
     [self writeData:SPEAK_EXTERNAL_COMMAND];
-    
+
     while (self.isSpeaking) {
         [self speakFragment:lpc samples:samples];
     }
-    
+
     [self writeData:RESET_COMMAND];
-    
+
     return [self bufferFor:samples];
 }
 
@@ -66,19 +73,19 @@ static int const STATUS_BE_MASK = 0x20;
         samples[i] = [wrappedSamples[i] doubleValue];
     }
     samples[length] = 0.0;
-    
+
     Buffer *buffer = [[Buffer alloc] initWithSamples:samples size:length + 1 sampleRate:8000];
 
     free(samples);
-    
+
     return buffer;
 }
 
 -(void)fillBuffer:(NSMutableArray *)samples {
-    short int buffer[SAMPLES_PER_HALF_FRAME];
-    _tms5220->process(buffer, SAMPLES_PER_HALF_FRAME);
+    short int buffer[SAMPLES_PER_2_INTERP_PERIODS];
+    _tms5220->process(buffer, SAMPLES_PER_2_INTERP_PERIODS);
     float scale = 1.0f / (1 << 15);
-    for (int i = 0; i < SAMPLES_PER_HALF_FRAME; i++) {
+    for (int i = 0; i < SAMPLES_PER_2_INTERP_PERIODS; i++) {
         [samples addObject:[NSNumber numberWithDouble:buffer[i] * scale]];
     }
 }
