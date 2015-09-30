@@ -39,8 +39,11 @@
     double middle = self.normalizedCoefficients[bestPeriod];
     double left   = self.normalizedCoefficients[bestPeriod - 1];
     double right  = self.normalizedCoefficients[bestPeriod + 1];
-
-    return bestPeriod + 0.5 * (right - left) / (2 * middle - left - right);
+    
+    if (!(2 * middle - left - right))
+        return bestPeriod;
+    else
+        return bestPeriod + 0.5 * (right - left) / (2 * middle - left - right);
 }
 
 -(double)estimate {
