@@ -170,7 +170,7 @@ Interpolation is inhibited (i.e. interpolation at IP frames will not happen
     x100aaaa: LOAD ADDRESS (LA) Send a load address command (M0 low M1 high) to VSM with the 4 'a' bits; Note you need to send four or five of these in sequence to actually specify an address to the vsm.
     TALK STATUS must be CLEAR for this command to work; otherwise it is treated as a NOP.
 
-    x101xxxx: SPEAK (SPK) Begins speaking, pulling spech data from the current address pointer location of the VSM modules.
+    x101xxxx: SPEAK (SPK) Begins speaking, pulling speech data from the current address pointer location of the VSM modules.
 
     x110xxxx: SPEAK EXTERNAL (SPKEXT) Clears the FIFO using SPKEE line, then sets TALKD (TALKST remains zero) until 8 bytes have been written to the FIFO, at which point it begins speaking, pulling data from the 16 byte fifo.
     The patent implies TALK STATUS must be CLEAR for this command to work; otherwise it is treated as a NOP, but the decap shows that this is not true, and is an error on the patent diagram.
@@ -581,7 +581,8 @@ void tms5220_device::update_fifo_status_and_ints()
 		if (!m_buffer_empty)
 			set_interrupt_state(1);
 		m_buffer_empty = 1;
-		m_TALK = m_SPEN = 0; // /BE being active clears the TALK status via TCON, which in turn clears SPEN
+		if (m_DDIS)
+			m_TALK = m_SPEN = 0; // /BE being active clears the TALK status via TCON, which in turn clears SPEN, but ONLY if m_DDIS is set! See patent page 16, gate 232b
 	}
 	else
 		m_buffer_empty = 0;
@@ -999,7 +1000,7 @@ void tms5220_device::process(INT16 *buffer, unsigned int size)
 						logerror("tms5220_process: processing frame: TALKD = 0 caused by stop frame or buffer empty, halting speech.\n");
 #endif
 					m_TALKD = m_TALK; // TALKD is latched from TALK
-					update_fifo_status_and_ints(); // to trigger an interrupt if TALK_STATUS is now inactive
+					update_fifo_status_and_ints(); // to trigger an interrupt if TALK_STATUS has changed
 					if ((!m_TALK) && m_SPEN) m_TALK = 1; // TALK is only activated if it wasn't already active, if m_SPEN is active, and if we're in RESETL4 (which we are).
 #ifdef DEBUG_GENERATION
 					logerror("RESETL4, status updated: IP=%d, PC=%d, subcycle=%d, m_SPEN=%d, m_TALK=%d, m_TALKD=%d\n", m_IP, m_PC, m_subcycle, m_SPEN, m_TALK, m_TALKD);
@@ -1641,6 +1642,9 @@ void tms5220_device::update_stream()
         /* Read */
         /* bring up to date first */
         m_read_latch = status_read();
+#ifdef DEBUG_IO_READY
+        fprintf(stderr,"Serviced read, returning %02x\n", m_read_latch);
+#endif
         break;
     case 0x03:
         /* High Impedance */
