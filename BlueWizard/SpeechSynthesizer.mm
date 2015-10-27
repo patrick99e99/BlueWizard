@@ -5,10 +5,10 @@
 #import "UserSettings.h"
 
 static int const RATE_SET_NORMAL = 0x00; // 8 interpolation periods per frame, i.e. 200 samples per frame
-static int const RATE_SET_FAST = 0x01; // 6 interpolation periods per frame, i.e. 150 samples per frame
-static int const RATE_SET_FASTER = 0x02; // 4 interpolation periods per frame, i.e 100 samples per frame
-static int const RATE_SET_FASTEST = 0x03; // 2 interpolation periods per frame, i.e 50 samples per frame
-static int const RATE_SET_VARIABLE_PER_FRAME = 0x04; // if enabled, each frame is prepended with 2 bits, selecting one of the above 4 rates
+__unused static int const RATE_SET_FAST = 0x01; // 6 interpolation periods per frame, i.e. 150 samples per frame
+__unused static int const RATE_SET_FASTER = 0x02; // 4 interpolation periods per frame, i.e 100 samples per frame
+__unused static int const RATE_SET_FASTEST = 0x03; // 2 interpolation periods per frame, i.e 50 samples per frame
+__unused static int const RATE_SET_VARIABLE_PER_FRAME = 0x04; // if enabled, each frame is prepended with 2 bits, selecting one of the above 4 rates
 static int const SPEAK_EXTERNAL_COMMAND = 0x60;
 static int const RESET_COMMAND = 0xFF;
 static int const SAMPLES_PER_2_INTERP_PERIODS = 50;
@@ -62,6 +62,35 @@ static int const STATUS_BE_MASK = 0x20;
     }
 
     [self writeData:RESET_COMMAND];
+
+    return [self bufferFor:samples];
+}
+
+-(Buffer *)processSpeechDataList:(NSArray *)concatenations {
+    NSAssert(!self.speaking, @"already speaking!");
+    
+    self.speaking = YES;
+    NSMutableArray *samples = [NSMutableArray arrayWithCapacity:65536];
+    
+    _tms5220->set_use_raw_excitation_filter([[self userSettings] excitationFilterOnly]);
+    
+    [self writeData:RATE_SET_NORMAL];
+    
+    NSUInteger index = 0;
+    NSUInteger concatinationsCount = [concatenations count];
+    
+    while (index < concatinationsCount) {
+        [self writeData:SPEAK_EXTERNAL_COMMAND];
+        self.speaking = YES;
+        
+        NSArray *concatenation = [concatenations objectAtIndex:index];
+        while (self.isSpeaking) {
+            [self speakFragment:concatenation samples:samples];
+        }
+        
+        [self writeData:RESET_COMMAND];
+        index += 1;
+    }
 
     return [self bufferFor:samples];
 }

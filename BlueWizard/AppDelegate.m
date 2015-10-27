@@ -22,6 +22,7 @@
 @property (nonatomic, strong) Processor *processor;
 @property (nonatomic, strong) Buffer *buffer;
 @property (nonatomic, strong) Buffer *bufferWIthEQ;
+@property (nonatomic, strong) Buffer *testBuffer;
 
 @end
 
@@ -48,6 +49,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(frameWasEdited:) name:frameWasEdited object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processInputWithEQ:) name:signalChanged object:nil];
+    
+    [self testConcatenations];
 }
 
 -(void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -138,6 +141,20 @@
 
 -(void)bufferGenerated:(NSNotification *)notification {
     self.buffer = (Buffer *)notification.object;
+}
+
+-(void)testConcatenations {
+    NSArray *lpc = [SpeechDataReader speechDataFromFile:@"traps_make_walls_disappear"];
+    NSArray *lpc2 = [SpeechDataReader speechDataFromFile:@"welcome"];
+    NSArray *lpc3 = [SpeechDataReader speechDataFromFile:@"valkrie_is_it"];
+    NSArray *lpc4 = [SpeechDataReader speechDataFromFile:@"skate_or_die"];
+    NSArray *lpc5 = [SpeechDataReader speechDataFromFile:@"dont_shoot_food"];
+    NSArray *lpc6 = [SpeechDataReader speechDataFromFile:@"save_keys_to_open_doors"];
+    NSArray *lpc7 = [SpeechDataReader speechDataFromFile:@"welcome-to-treasure"];
+    
+    SpeechSynthesizer *synth = [[SpeechSynthesizer alloc] init];
+    self.testBuffer = [synth processSpeechDataList:@[lpc, lpc2, lpc3, lpc4, lpc5, lpc6, lpc7]];
+    [self.sampler stream:self.testBuffer];
 }
 
 # pragma mark - SamplerDelegate
