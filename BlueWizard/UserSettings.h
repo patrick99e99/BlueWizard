@@ -20,6 +20,8 @@
 @property (nonatomic, strong) NSNumber *windowWidth;
 @property (nonatomic, strong) NSNumber *unvoicedMultiplier;
 @property (nonatomic, strong) NSNumber *gain;
+@property (nonatomic, strong) NSNumber *startSample;
+@property (nonatomic, strong) NSNumber *endSample;
 
 @property (nonatomic) BOOL overridePitch;
 @property (nonatomic) BOOL preEmphasis;

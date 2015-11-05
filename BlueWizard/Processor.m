@@ -76,9 +76,11 @@
 }
 
 -(void)postNotificationsForFrames:(NSArray *)frames {
-    [[NSNotificationCenter defaultCenter] postNotificationName:frameDataGenerated object:frames];
+    NSPredicate *finder = [NSPredicate predicateWithFormat:@"skip = NO"];
+    NSArray *filteredFrames = [frames filteredArrayUsingPredicate:finder];
+    [[NSNotificationCenter defaultCenter] postNotificationName:frameDataGenerated object:filteredFrames];
     
-    NSString *byteStream = [BitPacker pack:frames];
+    NSString *byteStream = [BitPacker pack:filteredFrames];
     [[NSNotificationCenter defaultCenter] postNotificationName:byteStreamGenerated object:byteStream];
     
     NSArray *speechData = [SpeechDataReader speechDataFromString:byteStream];

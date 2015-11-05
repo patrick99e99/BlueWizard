@@ -37,6 +37,8 @@
 @property (weak) IBOutlet NSSlider *unvoicedMultiplierSlider;
 @property (weak) IBOutlet NSSlider *gainSlider;
 @property (weak) IBOutlet NSTextField *windowWidthTextfield;
+@property (weak) IBOutlet NSTextField *startSample;
+@property (weak) IBOutlet NSTextField *endSample;
 
 @end
 

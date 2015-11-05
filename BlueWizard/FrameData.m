@@ -140,7 +140,9 @@
 
     NSInteger index = [ClosestValueFinder indexFor:pitch
                                              table:[CodingTable pitch]
-                                              size:[CodingTable pitchSize]] + offset;
+                                              size:[CodingTable pitchSize]];
+    
+    index += offset;
     
     if (index > 63) index = 63;
     if (index < 0)  index = 0;

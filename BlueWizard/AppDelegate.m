@@ -128,7 +128,11 @@
     //    ((PlayheadView *)notification.object).sampler = self.sampler;
     [self.sampler stop];
     Buffer *inputBuffer = self.bufferWIthEQ;
-    Buffer *buffer = [[Buffer alloc] initWithSamples:inputBuffer.samples size:inputBuffer.size sampleRate:inputBuffer.sampleRate];
+    Buffer *buffer = [[Buffer alloc] initWithSamples:inputBuffer.samples
+                                                size:inputBuffer.size
+                                          sampleRate:inputBuffer.sampleRate
+                                               start:[[[self userSettings] startSample] unsignedIntegerValue]
+                                                 end:[[[self userSettings] endSample] unsignedIntegerValue]];
     self.processor = [Processor process:buffer];
 }
 

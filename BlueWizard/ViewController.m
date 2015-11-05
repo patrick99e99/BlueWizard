@@ -72,6 +72,8 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
 
 -(void)updateProcessedWaveformView:(NSNotification *)notification {
     self.processedWaveformView.buffer = notification.object;
+    self.startSample.stringValue = [[[self userSettings] startSample] stringValue];
+    self.endSample.stringValue = [[[self userSettings] endSample] stringValue];
 }
 
 -(void)updateByteStreamView:(NSNotification *)notification {
@@ -252,6 +254,18 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
     [[NSNotificationCenter defaultCenter] postNotificationName:settingsChanged object:nil];
 }
 
+- (IBAction)startSampleChanged:(id)sender {
+    NSNumber *sample = [NSNumber numberWithFloat:[sender intValue]];
+    [[self userSettings] setStartSample:sample];
+    [[NSNotificationCenter defaultCenter] postNotificationName:settingsChanged object:nil];
+}
+
+- (IBAction)endSampleChanged:(id)sender {
+    NSNumber *sample = [NSNumber numberWithFloat:[sender intValue]];
+    [[self userSettings] setEndSample:sample];
+    [[NSNotificationCenter defaultCenter] postNotificationName:settingsChanged object:nil];
+}
+
 -(IBAction)translateParametersToggled:(NSButton *)sender {
     self.frameData = self.frameData;
 }
@@ -302,14 +316,15 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
         result.objectValue = @"foo";
     }
 
+    FrameData *frameData = [self.frameData objectAtIndex:row];
     if ([tableColumn.identifier isEqualToString:kFrameDataTableViewFrameKey]) {
-        result.stringValue = [NSString stringWithFormat:@"%i", (int)row + 1];
+        result.stringValue = [NSString stringWithFormat:@"%i%@", (int)row + 1, (frameData.shouldSkip ? @"x" : @"")];
     } else {
         NSDictionary *frame;
         if (self.translate) {
-            frame = [[self.frameData objectAtIndex:row] translatedParameters];
+            frame = [frameData translatedParameters];
         } else {
-            frame = [[self.frameData objectAtIndex:row] parameters];
+            frame = [frameData parameters];
         }
         NSString *value = [[frame objectForKey:tableColumn.identifier] stringValue];
         if (frame) {
@@ -325,15 +340,21 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
 }
 
 -(void)didEditTableViewCell:(NSTextField *)sender {
-    NSUInteger row    = [self.frameDataTable rowForView:sender];
-    NSUInteger column = [self.frameDataTable columnForView:sender];
-    NSTableColumn *tableColumn = [[self.frameDataTable tableColumns] objectAtIndex:column];
-    FrameData *frameData = [self.frameData objectAtIndex:row];
-    NSNumber *value = [self numberFromString:[sender stringValue]];
-    if (self.translate) {
-        [frameData setParameter:tableColumn.identifier translatedValue:value];
+    NSString *valueString = [sender stringValue];
+    NSUInteger row        = [self.frameDataTable rowForView:sender];
+    NSUInteger column     = [self.frameDataTable columnForView:sender];
+    FrameData *frameData  = [self.frameData objectAtIndex:row];
+
+    if (!column) {
+        frameData.skip = !![[valueString lowercaseString] rangeOfString:@"x"].location;
     } else {
-        [frameData setParameter:tableColumn.identifier value:value];
+        NSTableColumn *tableColumn = [[self.frameDataTable tableColumns] objectAtIndex:column];
+        NSNumber *value = [self numberFromString:valueString];
+        if (self.translate) {
+            [frameData setParameter:tableColumn.identifier translatedValue:value];
+        } else {
+            [frameData setParameter:tableColumn.identifier value:value];
+        }
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:frameWasEdited object:self.frameData];
 }

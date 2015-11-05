@@ -5,6 +5,9 @@
 @property (nonatomic) double *samples;
 @property (nonatomic) NSUInteger size;
 @property (nonatomic) NSUInteger sampleRate;
+@property (nonatomic) NSUInteger start;
+@property (nonatomic) NSUInteger end;
+
 @end
 
 @implementation Buffer
@@ -21,16 +24,29 @@
 
 -(instancetype)initWithSamples:(double *)samples
                           size:(NSUInteger)size
-                    sampleRate:(NSUInteger)sampleRate {
-    if (self = [self initWithSize:size sampleRate:sampleRate]) {
+                    sampleRate:(NSUInteger)sampleRate
+                         start:(NSUInteger)start
+                           end:(NSUInteger)end {
+    if (self = [self initWithSize:end - start sampleRate:sampleRate]) {
+        self.start = start;
+        self.end   = end;
         [self copySamples:samples];
     }
     return self;
 }
 
+-(instancetype)initWithSamples:(double *)samples
+                          size:(NSUInteger)size
+                    sampleRate:(NSUInteger)sampleRate {
+    return [self initWithSamples:samples size:size sampleRate:sampleRate start:0 end:size];
+}
+
 -(void)copySamples:(double *)samples {
     for (int i = 0; i < self.size; i++) {
-        self.samples[i] = samples[i];
+        if (i >= self.start) {
+            NSUInteger index = i - self.start;
+            self.samples[index] = samples[i];
+        }
     }
 }
 

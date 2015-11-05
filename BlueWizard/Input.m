@@ -2,6 +2,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "AudioHelpers.h"
 #import "Buffer.h"
+#import "UserSettings.h"
 
 @interface Input ()
 @property (nonatomic, copy) NSURL *URL;
@@ -55,12 +56,19 @@
             }
             _buffer.samples[i] = val * scale;
         }
-    
+
         free(ioData.mBuffers[0].mData);
         ExtAudioFileDispose(inputFile);
+
+        [[self userSettings] setStartSample:@0];
+        [[self userSettings] setEndSample:[NSNumber numberWithUnsignedInteger:numberOfFrames]];
     }
 
     return _buffer;
+}
+
+-(UserSettings *)userSettings {
+    return [UserSettings sharedInstance];
 }
 
 @end

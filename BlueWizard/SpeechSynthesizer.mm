@@ -96,7 +96,7 @@ static int const STATUS_BE_MASK = 0x20;
 
 -(int)readStatus {
     int tms_status = _tms5220->status_r();
-    NSLog(@"5220 DEBUG: Index: %lu, Status read: TS: %d, BL: %d, BE: %d", self.index, (tms_status&STATUS_TS_MASK)?1:0, (tms_status&STATUS_BL_MASK)?1:0, (tms_status&STATUS_BE_MASK)?1:0);
+//    NSLog(@"5220 DEBUG: Index: %lu, Status read: TS: %d, BL: %d, BE: %d", self.index, (tms_status&STATUS_TS_MASK)?1:0, (tms_status&STATUS_BL_MASK)?1:0, (tms_status&STATUS_BE_MASK)?1:0);
     return tms_status;
 }
 

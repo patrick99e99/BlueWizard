@@ -3,6 +3,8 @@
 @class Reflector;
 @interface FrameData : NSObject
 
+@property (nonatomic, getter=shouldSkip) BOOL skip;
+
 -(instancetype)initWithReflector:(Reflector *)reflector
                            pitch:(NSUInteger)pitch
                           repeat:(BOOL)repeat;
