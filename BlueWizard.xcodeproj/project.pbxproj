@@ -8,15 +8,160 @@
 
 /* Begin PBXBuildFile section */
 		862E7D6824C15959F0D03E52 /* libPods-BlueWizardTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 012428FA7BFBBFF7EE125E77 /* libPods-BlueWizardTests.a */; };
+		CD10F8C21BEB319700C5D145 /* 0.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F82F1BEB319700C5D145 /* 0.lpc */; };
+		CD10F8C31BEB319700C5D145 /* 1.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8301BEB319700C5D145 /* 1.lpc */; };
+		CD10F8C41BEB319700C5D145 /* 10.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8311BEB319700C5D145 /* 10.lpc */; };
+		CD10F8C51BEB319700C5D145 /* 2.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8321BEB319700C5D145 /* 2.lpc */; };
+		CD10F8C61BEB319700C5D145 /* 3.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8331BEB319700C5D145 /* 3.lpc */; };
+		CD10F8C71BEB319700C5D145 /* 4.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8341BEB319700C5D145 /* 4.lpc */; };
+		CD10F8C81BEB319700C5D145 /* 5.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8351BEB319700C5D145 /* 5.lpc */; };
+		CD10F8C91BEB319700C5D145 /* 6.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8361BEB319700C5D145 /* 6.lpc */; };
+		CD10F8CA1BEB319700C5D145 /* 7.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8371BEB319700C5D145 /* 7.lpc */; };
+		CD10F8CB1BEB319700C5D145 /* 8.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8381BEB319700C5D145 /* 8.lpc */; };
+		CD10F8CC1BEB319700C5D145 /* 9.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8391BEB319700C5D145 /* 9.lpc */; };
+		CD10F8CD1BEB319700C5D145 /* all-your-powers-will-be-lost.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F83A1BEB319700C5D145 /* all-your-powers-will-be-lost.lpc */; };
+		CD10F8CE1BEB319700C5D145 /* better-hurry.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F83B1BEB319700C5D145 /* better-hurry.lpc */; };
+		CD10F8CF1BEB319700C5D145 /* better-luck-next-time.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F83C1BEB319700C5D145 /* better-luck-next-time.lpc */; };
+		CD10F8D01BEB319700C5D145 /* blue-elf.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F83D1BEB319700C5D145 /* blue-elf.lpc */; };
+		CD10F8D11BEB319700C5D145 /* blue-valkrie.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F83E1BEB319700C5D145 /* blue-valkrie.lpc */; };
+		CD10F8D21BEB319700C5D145 /* blue-warrior.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F83F1BEB319700C5D145 /* blue-warrior.lpc */; };
+		CD10F8D31BEB319700C5D145 /* blue-wizard.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8401BEB319700C5D145 /* blue-wizard.lpc */; };
+		CD10F8D41BEB319700C5D145 /* can-you-make-it.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8411BEB319700C5D145 /* can-you-make-it.lpc */; };
+		CD10F8D51BEB319700C5D145 /* disappear-fragment.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8421BEB319700C5D145 /* disappear-fragment.lpc */; };
+		CD10F8D61BEB319700C5D145 /* dont-shoot-the-potion.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8431BEB319700C5D145 /* dont-shoot-the-potion.lpc */; };
+		CD10F8D71BEB319700C5D145 /* dont-shoot-your-friends-on-this-level.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8441BEB319700C5D145 /* dont-shoot-your-friends-on-this-level.lpc */; };
+		CD10F8D81BEB319700C5D145 /* dragon.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8451BEB319700C5D145 /* dragon.lpc */; };
+		CD10F8D91BEB319700C5D145 /* elf-damage-2.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8461BEB319700C5D145 /* elf-damage-2.lpc */; };
+		CD10F8DA1BEB319700C5D145 /* elf-damage-3.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8471BEB319700C5D145 /* elf-damage-3.lpc */; };
+		CD10F8DB1BEB319700C5D145 /* elf-damage-4.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8481BEB319700C5D145 /* elf-damage-4.lpc */; };
+		CD10F8DC1BEB319700C5D145 /* elf-damage-5.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8491BEB319700C5D145 /* elf-damage-5.lpc */; };
+		CD10F8DD1BEB319700C5D145 /* elf-damage-6.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F84A1BEB319700C5D145 /* elf-damage-6.lpc */; };
+		CD10F8DE1BEB319700C5D145 /* elf-damage-7.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F84B1BEB319700C5D145 /* elf-damage-7.lpc */; };
+		CD10F8DF1BEB319700C5D145 /* elf-damage-8.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F84C1BEB319700C5D145 /* elf-damage-8.lpc */; };
+		CD10F8E01BEB319700C5D145 /* elf-damage.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F84D1BEB319700C5D145 /* elf-damage.lpc */; };
+		CD10F8E11BEB319700C5D145 /* elf-death.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F84E1BEB319700C5D145 /* elf-death.lpc */; };
+		CD10F8E21BEB319700C5D145 /* elf-laugh.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F84F1BEB319700C5D145 /* elf-laugh.lpc */; };
+		CD10F8E31BEB319700C5D145 /* elf-ooo.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8501BEB319700C5D145 /* elf-ooo.lpc */; };
+		CD10F8E41BEB319700C5D145 /* exits-may-move-around.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8511BEB319700C5D145 /* exits-may-move-around.lpc */; };
+		CD10F8E51BEB319700C5D145 /* extra-armor.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8521BEB319700C5D145 /* extra-armor.lpc */; };
+		CD10F8E61BEB319700C5D145 /* extra-fight-power.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8531BEB319700C5D145 /* extra-fight-power.lpc */; };
+		CD10F8E71BEB319700C5D145 /* extra-magic-power.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8541BEB319700C5D145 /* extra-magic-power.lpc */; };
+		CD10F8E81BEB319700C5D145 /* extra-shot-power.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8551BEB319700C5D145 /* extra-shot-power.lpc */; };
+		CD10F8E91BEB319700C5D145 /* extra-shot-speed.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8561BEB319700C5D145 /* extra-shot-speed.lpc */; };
+		CD10F8EA1BEB319700C5D145 /* extra-speed.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8571BEB319700C5D145 /* extra-speed.lpc */; };
+		CD10F8EB1BEB319700C5D145 /* find-the-hidden-potion.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8581BEB319700C5D145 /* find-the-hidden-potion.lpc */; };
+		CD10F8EC1BEB319700C5D145 /* fooled-you.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8591BEB319700C5D145 /* fooled-you.lpc */; };
+		CD10F8ED1BEB319700C5D145 /* good_choice_kid.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F85A1BEB319700C5D145 /* good_choice_kid.lpc */; };
+		CD10F8EE1BEB319700C5D145 /* green-elf.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F85B1BEB319700C5D145 /* green-elf.lpc */; };
+		CD10F8EF1BEB319700C5D145 /* green-valkrie.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F85C1BEB319700C5D145 /* green-valkrie.lpc */; };
+		CD10F8F01BEB319700C5D145 /* green-warrior.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F85D1BEB319700C5D145 /* green-warrior.lpc */; };
+		CD10F8F11BEB319700C5D145 /* green-wizard.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F85E1BEB319700C5D145 /* green-wizard.lpc */; };
+		CD10F8F21BEB319700C5D145 /* ha-ha-ha-ha.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F85F1BEB319700C5D145 /* ha-ha-ha-ha.lpc */; };
+		CD10F8F31BEB319700C5D145 /* hah-hah.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8601BEB319700C5D145 /* hah-hah.lpc */; };
+		CD10F8F41BEB319700C5D145 /* haha.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8611BEB319700C5D145 /* haha.lpc */; };
+		CD10F8F51BEB319700C5D145 /* hahaha.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8621BEB319700C5D145 /* hahaha.lpc */; };
+		CD10F8F61BEB319700C5D145 /* has-eaten-all-the-food-lately.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8631BEB319700C5D145 /* has-eaten-all-the-food-lately.lpc */; };
+		CD10F8F71BEB319700C5D145 /* hehehe.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8641BEB319700C5D145 /* hehehe.lpc */; };
+		CD10F8F81BEB319700C5D145 /* is-it.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8651BEB319700C5D145 /* is-it.lpc */; };
+		CD10F8F91BEB319700C5D145 /* is-now-it.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8661BEB319700C5D145 /* is-now-it.lpc */; };
+		CD10F8FA1BEB319700C5D145 /* ive-not-seen-such-bravery.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8671BEB319700C5D145 /* ive-not-seen-such-bravery.lpc */; };
+		CD10F8FB1BEB319700C5D145 /* just-kidding.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8681BEB319700C5D145 /* just-kidding.lpc */; };
+		CD10F8FC1BEB319700C5D145 /* kill-thief-to-recover-stolen-item.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8691BEB319700C5D145 /* kill-thief-to-recover-stolen-item.lpc */; };
+		CD10F8FD1BEB319700C5D145 /* lets-see-you-get-out-of-here.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F86A1BEB319700C5D145 /* lets-see-you-get-out-of-here.lpc */; };
+		CD10F8FE1BEB319700C5D145 /* limited-invisibility.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F86B1BEB319700C5D145 /* limited-invisibility.lpc */; };
+		CD10F8FF1BEB319700C5D145 /* looks-like-you-lose.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F86C1BEB319700C5D145 /* looks-like-you-lose.lpc */; };
+		CD10F9001BEB319700C5D145 /* needs-food-badly.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F86D1BEB319700C5D145 /* needs-food-badly.lpc */; };
+		CD10F9011BEB319700C5D145 /* now-has.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F86E1BEB319700C5D145 /* now-has.lpc */; };
+		CD10F9021BEB319700C5D145 /* red-elf.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F86F1BEB319700C5D145 /* red-elf.lpc */; };
+		CD10F9031BEB319700C5D145 /* red-valkrie.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8701BEB319700C5D145 /* red-valkrie.lpc */; };
+		CD10F9041BEB319700C5D145 /* red-warrior.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8711BEB319700C5D145 /* red-warrior.lpc */; };
+		CD10F9051BEB319700C5D145 /* red-wizard.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8721BEB319700C5D145 /* red-wizard.lpc */; };
+		CD10F9061BEB319700C5D145 /* reflective-shots.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8731BEB319700C5D145 /* reflective-shots.lpc */; };
+		CD10F9071BEB319700C5D145 /* remember-dont-shoot-food.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8741BEB319700C5D145 /* remember-dont-shoot-food.lpc */; };
+		CD10F9081BEB319700C5D145 /* save_keys_to_open_doors.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8751BEB319700C5D145 /* save_keys_to_open_doors.lpc */; };
+		CD10F9091BEB319700C5D145 /* shot-the-food.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8761BEB319700C5D145 /* shot-the-food.lpc */; };
+		CD10F90A1BEB319700C5D145 /* shot-the-potion.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8771BEB319700C5D145 /* shot-the-potion.lpc */; };
+		CD10F90B1BEB319700C5D145 /* shots-do-not-hurt-other-players-yet.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8781BEB319700C5D145 /* shots-do-not-hurt-other-players-yet.lpc */; };
+		CD10F90C1BEB319700C5D145 /* skate_or_die.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8791BEB319700C5D145 /* skate_or_die.lpc */; };
+		CD10F90D1BEB319700C5D145 /* some-walls-are-invisible.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F87A1BEB319700C5D145 /* some-walls-are-invisible.lpc */; };
+		CD10F90E1BEB319700C5D145 /* some-walls-may-be-destroyed.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F87B1BEB319700C5D145 /* some-walls-may-be-destroyed.lpc */; };
+		CD10F90F1BEB319700C5D145 /* someone-shot-the-food.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F87C1BEB319700C5D145 /* someone-shot-the-food.lpc */; };
+		CD10F9101BEB319700C5D145 /* speech-chip-test.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F87D1BEB319700C5D145 /* speech-chip-test.lpc */; };
+		CD10F9111BEB319700C5D145 /* stuart-congrats.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F87E1BEB319700C5D145 /* stuart-congrats.lpc */; };
+		CD10F9121BEB319700C5D145 /* stuart-honsbridge.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F87F1BEB319700C5D145 /* stuart-honsbridge.lpc */; };
+		CD10F9131BEB319700C5D145 /* stuart-welcome-nb.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8801BEB319700C5D145 /* stuart-welcome-nb.lpc */; };
+		CD10F9141BEB319700C5D145 /* stuart.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8811BEB319700C5D145 /* stuart.lpc */; };
+		CD10F9151BEB319700C5D145 /* temporary-repulsiveness.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8821BEB319700C5D145 /* temporary-repulsiveness.lpc */; };
+		CD10F9161BEB319700C5D145 /* temporary-transportability.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8831BEB319700C5D145 /* temporary-transportability.lpc */; };
+		CD10F9171BEB319700C5D145 /* test.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8841BEB319700C5D145 /* test.lpc */; };
+		CD10F9181BEB319700C5D145 /* that-was-a-heroic-effort.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8851BEB319700C5D145 /* that-was-a-heroic-effort.lpc */; };
+		CD10F9191BEB319700C5D145 /* this-treasure-chest-is-locked.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8861BEB319700C5D145 /* this-treasure-chest-is-locked.lpc */; };
+		CD10F91A1BEB319700C5D145 /* times-on-my-side.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8871BEB319700C5D145 /* times-on-my-side.lpc */; };
+		CD10F91B1BEB319700C5D145 /* times-running-out.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8881BEB319700C5D145 /* times-running-out.lpc */; };
+		CD10F91C1BEB319700C5D145 /* traps-make-walls-disappear.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8891BEB319700C5D145 /* traps-make-walls-disappear.lpc */; };
+		CD10F91D1BEB319700C5D145 /* try-and-find-a-way-out.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F88A1BEB319700C5D145 /* try-and-find-a-way-out.lpc */; };
+		CD10F91E1BEB319700C5D145 /* try-this-level-now.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F88B1BEB319700C5D145 /* try-this-level-now.lpc */; };
+		CD10F91F1BEB319700C5D145 /* valkrie-damage-1.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F88C1BEB319700C5D145 /* valkrie-damage-1.lpc */; };
+		CD10F9201BEB319700C5D145 /* valkrie-damage-10.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F88D1BEB319700C5D145 /* valkrie-damage-10.lpc */; };
+		CD10F9211BEB319700C5D145 /* valkrie-damage-11.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F88E1BEB319700C5D145 /* valkrie-damage-11.lpc */; };
+		CD10F9221BEB319700C5D145 /* valkrie-damage-12.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F88F1BEB319700C5D145 /* valkrie-damage-12.lpc */; };
+		CD10F9231BEB319700C5D145 /* valkrie-damage-13.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8901BEB319700C5D145 /* valkrie-damage-13.lpc */; };
+		CD10F9241BEB319700C5D145 /* valkrie-damage-14.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8911BEB319700C5D145 /* valkrie-damage-14.lpc */; };
+		CD10F9251BEB319700C5D145 /* valkrie-damage-2.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8921BEB319700C5D145 /* valkrie-damage-2.lpc */; };
+		CD10F9261BEB319700C5D145 /* valkrie-damage-3.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8931BEB319700C5D145 /* valkrie-damage-3.lpc */; };
+		CD10F9271BEB319700C5D145 /* valkrie-damage-4.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8941BEB319700C5D145 /* valkrie-damage-4.lpc */; };
+		CD10F9281BEB319700C5D145 /* valkrie-damage-5.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8951BEB319700C5D145 /* valkrie-damage-5.lpc */; };
+		CD10F9291BEB319700C5D145 /* valkrie-damage-6.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8961BEB319700C5D145 /* valkrie-damage-6.lpc */; };
+		CD10F92A1BEB319700C5D145 /* valkrie-damage-7.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8971BEB319700C5D145 /* valkrie-damage-7.lpc */; };
+		CD10F92B1BEB319700C5D145 /* valkrie-damage-8.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8981BEB319700C5D145 /* valkrie-damage-8.lpc */; };
+		CD10F92C1BEB319700C5D145 /* valkrie-damage-9.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8991BEB319700C5D145 /* valkrie-damage-9.lpc */; };
+		CD10F92D1BEB319700C5D145 /* valkrie-death.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F89A1BEB319700C5D145 /* valkrie-death.lpc */; };
+		CD10F92E1BEB319700C5D145 /* valkrie_is_it.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F89B1BEB319700C5D145 /* valkrie_is_it.lpc */; };
+		CD10F92F1BEB319700C5D145 /* warrior-damage-1.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F89C1BEB319700C5D145 /* warrior-damage-1.lpc */; };
+		CD10F9301BEB319700C5D145 /* warrior-death.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F89D1BEB319700C5D145 /* warrior-death.lpc */; };
+		CD10F9311BEB319700C5D145 /* warriror-damage-2.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F89E1BEB319700C5D145 /* warriror-damage-2.lpc */; };
+		CD10F9321BEB319700C5D145 /* warriror-damage-3.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F89F1BEB319700C5D145 /* warriror-damage-3.lpc */; };
+		CD10F9331BEB319700C5D145 /* warriror-damage-4.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8A01BEB319700C5D145 /* warriror-damage-4.lpc */; };
+		CD10F9341BEB319700C5D145 /* warriror-damage-5.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8A11BEB319700C5D145 /* warriror-damage-5.lpc */; };
+		CD10F9351BEB319700C5D145 /* warriror-damage-6.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8A21BEB319700C5D145 /* warriror-damage-6.lpc */; };
+		CD10F9361BEB319700C5D145 /* warriror-damage-7.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8A31BEB319700C5D145 /* warriror-damage-7.lpc */; };
+		CD10F9371BEB319700C5D145 /* warriror-damage-8.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8A41BEB319700C5D145 /* warriror-damage-8.lpc */; };
+		CD10F9381BEB319700C5D145 /* welcome-to-treasure.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8A51BEB319700C5D145 /* welcome-to-treasure.lpc */; };
+		CD10F9391BEB319700C5D145 /* welcome.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8A61BEB319700C5D145 /* welcome.lpc */; };
+		CD10F93A1BEB319700C5D145 /* welcome_blue_valkrie.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8A71BEB319700C5D145 /* welcome_blue_valkrie.lpc */; };
+		CD10F93B1BEB319700C5D145 /* wizard-damage-1.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8A81BEB319700C5D145 /* wizard-damage-1.lpc */; };
+		CD10F93C1BEB319700C5D145 /* wizard-damage-10.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8A91BEB319700C5D145 /* wizard-damage-10.lpc */; };
+		CD10F93D1BEB319700C5D145 /* wizard-damage-11.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8AA1BEB319700C5D145 /* wizard-damage-11.lpc */; };
+		CD10F93E1BEB319700C5D145 /* wizard-damage-12.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8AB1BEB319700C5D145 /* wizard-damage-12.lpc */; };
+		CD10F93F1BEB319700C5D145 /* wizard-damage-13.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8AC1BEB319700C5D145 /* wizard-damage-13.lpc */; };
+		CD10F9401BEB319700C5D145 /* wizard-damage-2.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8AD1BEB319700C5D145 /* wizard-damage-2.lpc */; };
+		CD10F9411BEB319700C5D145 /* wizard-damage-3.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8AE1BEB319700C5D145 /* wizard-damage-3.lpc */; };
+		CD10F9421BEB319700C5D145 /* wizard-damage-4.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8AF1BEB319700C5D145 /* wizard-damage-4.lpc */; };
+		CD10F9431BEB319700C5D145 /* wizard-damage-5.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8B01BEB319700C5D145 /* wizard-damage-5.lpc */; };
+		CD10F9441BEB319700C5D145 /* wizard-damage-6.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8B11BEB319700C5D145 /* wizard-damage-6.lpc */; };
+		CD10F9451BEB319700C5D145 /* wizard-damage-7.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8B21BEB319700C5D145 /* wizard-damage-7.lpc */; };
+		CD10F9461BEB319700C5D145 /* wizard-damage-8.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8B31BEB319700C5D145 /* wizard-damage-8.lpc */; };
+		CD10F9471BEB319700C5D145 /* wizard-damage-9.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8B41BEB319700C5D145 /* wizard-damage-9.lpc */; };
+		CD10F9481BEB319700C5D145 /* wizard-death.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8B51BEB319700C5D145 /* wizard-death.lpc */; };
+		CD10F9491BEB319700C5D145 /* yellow-elf.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8B61BEB319700C5D145 /* yellow-elf.lpc */; };
+		CD10F94A1BEB319700C5D145 /* yellow-valkrie.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8B71BEB319700C5D145 /* yellow-valkrie.lpc */; };
+		CD10F94B1BEB319700C5D145 /* yellow-warrior.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8B81BEB319700C5D145 /* yellow-warrior.lpc */; };
+		CD10F94C1BEB319700C5D145 /* yellow-wizard.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8B91BEB319700C5D145 /* yellow-wizard.lpc */; };
+		CD10F94D1BEB319700C5D145 /* you-cant-catch-me.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8BA1BEB319700C5D145 /* you-cant-catch-me.lpc */; };
+		CD10F94E1BEB319700C5D145 /* you-cant-catch-me2.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8BB1BEB319700C5D145 /* you-cant-catch-me2.lpc */; };
+		CD10F94F1BEB319700C5D145 /* you-have-found-my-treasure.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8BC1BEB319700C5D145 /* you-have-found-my-treasure.lpc */; };
+		CD10F9501BEB319700C5D145 /* you-just-shot-the-potion.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8BD1BEB319700C5D145 /* you-just-shot-the-potion.lpc */; };
+		CD10F9511BEB319700C5D145 /* your-life-force-is-running-out.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8BE1BEB319700C5D145 /* your-life-force-is-running-out.lpc */; };
+		CD10F9521BEB319700C5D145 /* your-shots-now-hurt-other-players.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8BF1BEB319700C5D145 /* your-shots-now-hurt-other-players.lpc */; };
+		CD10F9531BEB319700C5D145 /* your-shots-now-stun-other-players.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8C01BEB319700C5D145 /* your-shots-now-stun-other-players.lpc */; };
+		CD10F9541BEB319700C5D145 /* yumm.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8C11BEB319700C5D145 /* yumm.lpc */; };
 		CD1680651AC77F7E009920C3 /* Filterer.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1680621AC77F7E009920C3 /* Filterer.m */; };
-		CD30A9D51AAD38A70048B222 /* test.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD30A9D41AAD38A70048B222 /* test.lpc */; };
 		CD3B09141AAE416F00D54399 /* PitchEstimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3B09131AAE416F00D54399 /* PitchEstimator.m */; };
 		CD4663061BA52750009835D1 /* LargeWaveformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4663051BA52750009835D1 /* LargeWaveformViewController.m */; };
 		CD46630F1BA57331009835D1 /* ReflectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD46630E1BA57331009835D1 /* ReflectorTests.m */; };
 		CD563B5E1AA16872001880B6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD563B5B1AA16872001880B6 /* AudioToolbox.framework */; };
 		CD563B5F1AA16872001880B6 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD563B5C1AA16872001880B6 /* AudioUnit.framework */; };
 		CD563B601AA16872001880B6 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD563B5D1AA16872001880B6 /* CoreAudio.framework */; };
-		CD563B621AA24A54001880B6 /* blue_wizard.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD563B611AA24A54001880B6 /* blue_wizard.lpc */; };
 		CD563B651AA2A1DF001880B6 /* Input.m in Sources */ = {isa = PBXBuildFile; fileRef = CD563B641AA2A1DF001880B6 /* Input.m */; };
 		CD6A673A1AAA88C300515777 /* WaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6A67391AAA88C300515777 /* WaveformView.m */; };
 		CD7626971AA43673001E0A9E /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD7626961AA43673001E0A9E /* Media.xcassets */; };
@@ -61,17 +206,7 @@
 		CDBF22DD1A99C917001E25AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBF22DC1A99C917001E25AB /* main.m */; };
 		CDBF22E01A99C917001E25AB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBF22DF1A99C917001E25AB /* ViewController.m */; };
 		CDBF22E51A99C917001E25AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDBF22E31A99C917001E25AB /* Main.storyboard */; };
-		CDD390DC1AB5273D004A2654 /* disappear-fragment.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CDD390DB1AB5273D004A2654 /* disappear-fragment.lpc */; };
 		CDFBCEC41AD0C85800E9A893 /* TimeMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFBCEC31AD0C85800E9A893 /* TimeMachine.m */; };
-		CDFC57EE1AA0CD4200457C13 /* dont_shoot_food.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CDFC57E51AA0CD4200457C13 /* dont_shoot_food.lpc */; };
-		CDFC57EF1AA0CD4200457C13 /* good_choice_kid.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CDFC57E61AA0CD4200457C13 /* good_choice_kid.lpc */; };
-		CDFC57F01AA0CD4200457C13 /* save_keys_to_open_doors.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CDFC57E71AA0CD4200457C13 /* save_keys_to_open_doors.lpc */; };
-		CDFC57F11AA0CD4200457C13 /* skate_or_die.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CDFC57E81AA0CD4200457C13 /* skate_or_die.lpc */; };
-		CDFC57F21AA0CD4200457C13 /* traps_make_walls_disappear.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CDFC57E91AA0CD4200457C13 /* traps_make_walls_disappear.lpc */; };
-		CDFC57F31AA0CD4200457C13 /* valkrie_is_it.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CDFC57EA1AA0CD4200457C13 /* valkrie_is_it.lpc */; };
-		CDFC57F41AA0CD4200457C13 /* welcome_blue_valkrie.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CDFC57EB1AA0CD4200457C13 /* welcome_blue_valkrie.lpc */; };
-		CDFC57F51AA0CD4200457C13 /* welcome-to-treasure.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CDFC57EC1AA0CD4200457C13 /* welcome-to-treasure.lpc */; };
-		CDFC57F61AA0CD4200457C13 /* welcome.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CDFC57ED1AA0CD4200457C13 /* welcome.lpc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,9 +223,155 @@
 		012428FA7BFBBFF7EE125E77 /* libPods-BlueWizardTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BlueWizardTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		081AC1A4326C7E60C28C4025 /* Pods-BlueWizardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueWizardTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueWizardTests/Pods-BlueWizardTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4D0C831C58081BACD3B2165D /* Pods-BlueWizardTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueWizardTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlueWizardTests/Pods-BlueWizardTests.release.xcconfig"; sourceTree = "<group>"; };
+		CD10F82F1BEB319700C5D145 /* 0.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 0.lpc; sourceTree = "<group>"; };
+		CD10F8301BEB319700C5D145 /* 1.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 1.lpc; sourceTree = "<group>"; };
+		CD10F8311BEB319700C5D145 /* 10.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10.lpc; sourceTree = "<group>"; };
+		CD10F8321BEB319700C5D145 /* 2.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 2.lpc; sourceTree = "<group>"; };
+		CD10F8331BEB319700C5D145 /* 3.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 3.lpc; sourceTree = "<group>"; };
+		CD10F8341BEB319700C5D145 /* 4.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 4.lpc; sourceTree = "<group>"; };
+		CD10F8351BEB319700C5D145 /* 5.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5.lpc; sourceTree = "<group>"; };
+		CD10F8361BEB319700C5D145 /* 6.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 6.lpc; sourceTree = "<group>"; };
+		CD10F8371BEB319700C5D145 /* 7.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 7.lpc; sourceTree = "<group>"; };
+		CD10F8381BEB319700C5D145 /* 8.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 8.lpc; sourceTree = "<group>"; };
+		CD10F8391BEB319700C5D145 /* 9.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 9.lpc; sourceTree = "<group>"; };
+		CD10F83A1BEB319700C5D145 /* all-your-powers-will-be-lost.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "all-your-powers-will-be-lost.lpc"; sourceTree = "<group>"; };
+		CD10F83B1BEB319700C5D145 /* better-hurry.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "better-hurry.lpc"; sourceTree = "<group>"; };
+		CD10F83C1BEB319700C5D145 /* better-luck-next-time.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "better-luck-next-time.lpc"; sourceTree = "<group>"; };
+		CD10F83D1BEB319700C5D145 /* blue-elf.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "blue-elf.lpc"; sourceTree = "<group>"; };
+		CD10F83E1BEB319700C5D145 /* blue-valkrie.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "blue-valkrie.lpc"; sourceTree = "<group>"; };
+		CD10F83F1BEB319700C5D145 /* blue-warrior.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "blue-warrior.lpc"; sourceTree = "<group>"; };
+		CD10F8401BEB319700C5D145 /* blue-wizard.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "blue-wizard.lpc"; sourceTree = "<group>"; };
+		CD10F8411BEB319700C5D145 /* can-you-make-it.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "can-you-make-it.lpc"; sourceTree = "<group>"; };
+		CD10F8421BEB319700C5D145 /* disappear-fragment.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "disappear-fragment.lpc"; sourceTree = "<group>"; };
+		CD10F8431BEB319700C5D145 /* dont-shoot-the-potion.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "dont-shoot-the-potion.lpc"; sourceTree = "<group>"; };
+		CD10F8441BEB319700C5D145 /* dont-shoot-your-friends-on-this-level.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "dont-shoot-your-friends-on-this-level.lpc"; sourceTree = "<group>"; };
+		CD10F8451BEB319700C5D145 /* dragon.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dragon.lpc; sourceTree = "<group>"; };
+		CD10F8461BEB319700C5D145 /* elf-damage-2.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "elf-damage-2.lpc"; sourceTree = "<group>"; };
+		CD10F8471BEB319700C5D145 /* elf-damage-3.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "elf-damage-3.lpc"; sourceTree = "<group>"; };
+		CD10F8481BEB319700C5D145 /* elf-damage-4.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "elf-damage-4.lpc"; sourceTree = "<group>"; };
+		CD10F8491BEB319700C5D145 /* elf-damage-5.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "elf-damage-5.lpc"; sourceTree = "<group>"; };
+		CD10F84A1BEB319700C5D145 /* elf-damage-6.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "elf-damage-6.lpc"; sourceTree = "<group>"; };
+		CD10F84B1BEB319700C5D145 /* elf-damage-7.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "elf-damage-7.lpc"; sourceTree = "<group>"; };
+		CD10F84C1BEB319700C5D145 /* elf-damage-8.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "elf-damage-8.lpc"; sourceTree = "<group>"; };
+		CD10F84D1BEB319700C5D145 /* elf-damage.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "elf-damage.lpc"; sourceTree = "<group>"; };
+		CD10F84E1BEB319700C5D145 /* elf-death.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "elf-death.lpc"; sourceTree = "<group>"; };
+		CD10F84F1BEB319700C5D145 /* elf-laugh.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "elf-laugh.lpc"; sourceTree = "<group>"; };
+		CD10F8501BEB319700C5D145 /* elf-ooo.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "elf-ooo.lpc"; sourceTree = "<group>"; };
+		CD10F8511BEB319700C5D145 /* exits-may-move-around.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "exits-may-move-around.lpc"; sourceTree = "<group>"; };
+		CD10F8521BEB319700C5D145 /* extra-armor.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "extra-armor.lpc"; sourceTree = "<group>"; };
+		CD10F8531BEB319700C5D145 /* extra-fight-power.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "extra-fight-power.lpc"; sourceTree = "<group>"; };
+		CD10F8541BEB319700C5D145 /* extra-magic-power.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "extra-magic-power.lpc"; sourceTree = "<group>"; };
+		CD10F8551BEB319700C5D145 /* extra-shot-power.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "extra-shot-power.lpc"; sourceTree = "<group>"; };
+		CD10F8561BEB319700C5D145 /* extra-shot-speed.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "extra-shot-speed.lpc"; sourceTree = "<group>"; };
+		CD10F8571BEB319700C5D145 /* extra-speed.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "extra-speed.lpc"; sourceTree = "<group>"; };
+		CD10F8581BEB319700C5D145 /* find-the-hidden-potion.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "find-the-hidden-potion.lpc"; sourceTree = "<group>"; };
+		CD10F8591BEB319700C5D145 /* fooled-you.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "fooled-you.lpc"; sourceTree = "<group>"; };
+		CD10F85A1BEB319700C5D145 /* good_choice_kid.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = good_choice_kid.lpc; sourceTree = "<group>"; };
+		CD10F85B1BEB319700C5D145 /* green-elf.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "green-elf.lpc"; sourceTree = "<group>"; };
+		CD10F85C1BEB319700C5D145 /* green-valkrie.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "green-valkrie.lpc"; sourceTree = "<group>"; };
+		CD10F85D1BEB319700C5D145 /* green-warrior.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "green-warrior.lpc"; sourceTree = "<group>"; };
+		CD10F85E1BEB319700C5D145 /* green-wizard.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "green-wizard.lpc"; sourceTree = "<group>"; };
+		CD10F85F1BEB319700C5D145 /* ha-ha-ha-ha.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ha-ha-ha-ha.lpc"; sourceTree = "<group>"; };
+		CD10F8601BEB319700C5D145 /* hah-hah.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "hah-hah.lpc"; sourceTree = "<group>"; };
+		CD10F8611BEB319700C5D145 /* haha.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = haha.lpc; sourceTree = "<group>"; };
+		CD10F8621BEB319700C5D145 /* hahaha.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hahaha.lpc; sourceTree = "<group>"; };
+		CD10F8631BEB319700C5D145 /* has-eaten-all-the-food-lately.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "has-eaten-all-the-food-lately.lpc"; sourceTree = "<group>"; };
+		CD10F8641BEB319700C5D145 /* hehehe.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hehehe.lpc; sourceTree = "<group>"; };
+		CD10F8651BEB319700C5D145 /* is-it.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "is-it.lpc"; sourceTree = "<group>"; };
+		CD10F8661BEB319700C5D145 /* is-now-it.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "is-now-it.lpc"; sourceTree = "<group>"; };
+		CD10F8671BEB319700C5D145 /* ive-not-seen-such-bravery.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ive-not-seen-such-bravery.lpc"; sourceTree = "<group>"; };
+		CD10F8681BEB319700C5D145 /* just-kidding.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "just-kidding.lpc"; sourceTree = "<group>"; };
+		CD10F8691BEB319700C5D145 /* kill-thief-to-recover-stolen-item.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "kill-thief-to-recover-stolen-item.lpc"; sourceTree = "<group>"; };
+		CD10F86A1BEB319700C5D145 /* lets-see-you-get-out-of-here.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "lets-see-you-get-out-of-here.lpc"; sourceTree = "<group>"; };
+		CD10F86B1BEB319700C5D145 /* limited-invisibility.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "limited-invisibility.lpc"; sourceTree = "<group>"; };
+		CD10F86C1BEB319700C5D145 /* looks-like-you-lose.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "looks-like-you-lose.lpc"; sourceTree = "<group>"; };
+		CD10F86D1BEB319700C5D145 /* needs-food-badly.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "needs-food-badly.lpc"; sourceTree = "<group>"; };
+		CD10F86E1BEB319700C5D145 /* now-has.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "now-has.lpc"; sourceTree = "<group>"; };
+		CD10F86F1BEB319700C5D145 /* red-elf.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "red-elf.lpc"; sourceTree = "<group>"; };
+		CD10F8701BEB319700C5D145 /* red-valkrie.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "red-valkrie.lpc"; sourceTree = "<group>"; };
+		CD10F8711BEB319700C5D145 /* red-warrior.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "red-warrior.lpc"; sourceTree = "<group>"; };
+		CD10F8721BEB319700C5D145 /* red-wizard.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "red-wizard.lpc"; sourceTree = "<group>"; };
+		CD10F8731BEB319700C5D145 /* reflective-shots.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "reflective-shots.lpc"; sourceTree = "<group>"; };
+		CD10F8741BEB319700C5D145 /* remember-dont-shoot-food.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "remember-dont-shoot-food.lpc"; sourceTree = "<group>"; };
+		CD10F8751BEB319700C5D145 /* save_keys_to_open_doors.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = save_keys_to_open_doors.lpc; sourceTree = "<group>"; };
+		CD10F8761BEB319700C5D145 /* shot-the-food.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "shot-the-food.lpc"; sourceTree = "<group>"; };
+		CD10F8771BEB319700C5D145 /* shot-the-potion.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "shot-the-potion.lpc"; sourceTree = "<group>"; };
+		CD10F8781BEB319700C5D145 /* shots-do-not-hurt-other-players-yet.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "shots-do-not-hurt-other-players-yet.lpc"; sourceTree = "<group>"; };
+		CD10F8791BEB319700C5D145 /* skate_or_die.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = skate_or_die.lpc; sourceTree = "<group>"; };
+		CD10F87A1BEB319700C5D145 /* some-walls-are-invisible.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "some-walls-are-invisible.lpc"; sourceTree = "<group>"; };
+		CD10F87B1BEB319700C5D145 /* some-walls-may-be-destroyed.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "some-walls-may-be-destroyed.lpc"; sourceTree = "<group>"; };
+		CD10F87C1BEB319700C5D145 /* someone-shot-the-food.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "someone-shot-the-food.lpc"; sourceTree = "<group>"; };
+		CD10F87D1BEB319700C5D145 /* speech-chip-test.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "speech-chip-test.lpc"; sourceTree = "<group>"; };
+		CD10F87E1BEB319700C5D145 /* stuart-congrats.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "stuart-congrats.lpc"; sourceTree = "<group>"; };
+		CD10F87F1BEB319700C5D145 /* stuart-honsbridge.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "stuart-honsbridge.lpc"; sourceTree = "<group>"; };
+		CD10F8801BEB319700C5D145 /* stuart-welcome-nb.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "stuart-welcome-nb.lpc"; sourceTree = "<group>"; };
+		CD10F8811BEB319700C5D145 /* stuart.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stuart.lpc; sourceTree = "<group>"; };
+		CD10F8821BEB319700C5D145 /* temporary-repulsiveness.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "temporary-repulsiveness.lpc"; sourceTree = "<group>"; };
+		CD10F8831BEB319700C5D145 /* temporary-transportability.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "temporary-transportability.lpc"; sourceTree = "<group>"; };
+		CD10F8841BEB319700C5D145 /* test.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.lpc; sourceTree = "<group>"; };
+		CD10F8851BEB319700C5D145 /* that-was-a-heroic-effort.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "that-was-a-heroic-effort.lpc"; sourceTree = "<group>"; };
+		CD10F8861BEB319700C5D145 /* this-treasure-chest-is-locked.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "this-treasure-chest-is-locked.lpc"; sourceTree = "<group>"; };
+		CD10F8871BEB319700C5D145 /* times-on-my-side.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "times-on-my-side.lpc"; sourceTree = "<group>"; };
+		CD10F8881BEB319700C5D145 /* times-running-out.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "times-running-out.lpc"; sourceTree = "<group>"; };
+		CD10F8891BEB319700C5D145 /* traps-make-walls-disappear.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "traps-make-walls-disappear.lpc"; sourceTree = "<group>"; };
+		CD10F88A1BEB319700C5D145 /* try-and-find-a-way-out.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "try-and-find-a-way-out.lpc"; sourceTree = "<group>"; };
+		CD10F88B1BEB319700C5D145 /* try-this-level-now.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "try-this-level-now.lpc"; sourceTree = "<group>"; };
+		CD10F88C1BEB319700C5D145 /* valkrie-damage-1.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "valkrie-damage-1.lpc"; sourceTree = "<group>"; };
+		CD10F88D1BEB319700C5D145 /* valkrie-damage-10.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "valkrie-damage-10.lpc"; sourceTree = "<group>"; };
+		CD10F88E1BEB319700C5D145 /* valkrie-damage-11.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "valkrie-damage-11.lpc"; sourceTree = "<group>"; };
+		CD10F88F1BEB319700C5D145 /* valkrie-damage-12.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "valkrie-damage-12.lpc"; sourceTree = "<group>"; };
+		CD10F8901BEB319700C5D145 /* valkrie-damage-13.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "valkrie-damage-13.lpc"; sourceTree = "<group>"; };
+		CD10F8911BEB319700C5D145 /* valkrie-damage-14.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "valkrie-damage-14.lpc"; sourceTree = "<group>"; };
+		CD10F8921BEB319700C5D145 /* valkrie-damage-2.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "valkrie-damage-2.lpc"; sourceTree = "<group>"; };
+		CD10F8931BEB319700C5D145 /* valkrie-damage-3.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "valkrie-damage-3.lpc"; sourceTree = "<group>"; };
+		CD10F8941BEB319700C5D145 /* valkrie-damage-4.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "valkrie-damage-4.lpc"; sourceTree = "<group>"; };
+		CD10F8951BEB319700C5D145 /* valkrie-damage-5.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "valkrie-damage-5.lpc"; sourceTree = "<group>"; };
+		CD10F8961BEB319700C5D145 /* valkrie-damage-6.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "valkrie-damage-6.lpc"; sourceTree = "<group>"; };
+		CD10F8971BEB319700C5D145 /* valkrie-damage-7.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "valkrie-damage-7.lpc"; sourceTree = "<group>"; };
+		CD10F8981BEB319700C5D145 /* valkrie-damage-8.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "valkrie-damage-8.lpc"; sourceTree = "<group>"; };
+		CD10F8991BEB319700C5D145 /* valkrie-damage-9.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "valkrie-damage-9.lpc"; sourceTree = "<group>"; };
+		CD10F89A1BEB319700C5D145 /* valkrie-death.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "valkrie-death.lpc"; sourceTree = "<group>"; };
+		CD10F89B1BEB319700C5D145 /* valkrie_is_it.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = valkrie_is_it.lpc; sourceTree = "<group>"; };
+		CD10F89C1BEB319700C5D145 /* warrior-damage-1.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "warrior-damage-1.lpc"; sourceTree = "<group>"; };
+		CD10F89D1BEB319700C5D145 /* warrior-death.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "warrior-death.lpc"; sourceTree = "<group>"; };
+		CD10F89E1BEB319700C5D145 /* warriror-damage-2.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "warriror-damage-2.lpc"; sourceTree = "<group>"; };
+		CD10F89F1BEB319700C5D145 /* warriror-damage-3.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "warriror-damage-3.lpc"; sourceTree = "<group>"; };
+		CD10F8A01BEB319700C5D145 /* warriror-damage-4.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "warriror-damage-4.lpc"; sourceTree = "<group>"; };
+		CD10F8A11BEB319700C5D145 /* warriror-damage-5.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "warriror-damage-5.lpc"; sourceTree = "<group>"; };
+		CD10F8A21BEB319700C5D145 /* warriror-damage-6.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "warriror-damage-6.lpc"; sourceTree = "<group>"; };
+		CD10F8A31BEB319700C5D145 /* warriror-damage-7.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "warriror-damage-7.lpc"; sourceTree = "<group>"; };
+		CD10F8A41BEB319700C5D145 /* warriror-damage-8.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "warriror-damage-8.lpc"; sourceTree = "<group>"; };
+		CD10F8A51BEB319700C5D145 /* welcome-to-treasure.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "welcome-to-treasure.lpc"; sourceTree = "<group>"; };
+		CD10F8A61BEB319700C5D145 /* welcome.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = welcome.lpc; sourceTree = "<group>"; };
+		CD10F8A71BEB319700C5D145 /* welcome_blue_valkrie.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = welcome_blue_valkrie.lpc; sourceTree = "<group>"; };
+		CD10F8A81BEB319700C5D145 /* wizard-damage-1.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "wizard-damage-1.lpc"; sourceTree = "<group>"; };
+		CD10F8A91BEB319700C5D145 /* wizard-damage-10.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "wizard-damage-10.lpc"; sourceTree = "<group>"; };
+		CD10F8AA1BEB319700C5D145 /* wizard-damage-11.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "wizard-damage-11.lpc"; sourceTree = "<group>"; };
+		CD10F8AB1BEB319700C5D145 /* wizard-damage-12.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "wizard-damage-12.lpc"; sourceTree = "<group>"; };
+		CD10F8AC1BEB319700C5D145 /* wizard-damage-13.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "wizard-damage-13.lpc"; sourceTree = "<group>"; };
+		CD10F8AD1BEB319700C5D145 /* wizard-damage-2.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "wizard-damage-2.lpc"; sourceTree = "<group>"; };
+		CD10F8AE1BEB319700C5D145 /* wizard-damage-3.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "wizard-damage-3.lpc"; sourceTree = "<group>"; };
+		CD10F8AF1BEB319700C5D145 /* wizard-damage-4.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "wizard-damage-4.lpc"; sourceTree = "<group>"; };
+		CD10F8B01BEB319700C5D145 /* wizard-damage-5.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "wizard-damage-5.lpc"; sourceTree = "<group>"; };
+		CD10F8B11BEB319700C5D145 /* wizard-damage-6.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "wizard-damage-6.lpc"; sourceTree = "<group>"; };
+		CD10F8B21BEB319700C5D145 /* wizard-damage-7.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "wizard-damage-7.lpc"; sourceTree = "<group>"; };
+		CD10F8B31BEB319700C5D145 /* wizard-damage-8.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "wizard-damage-8.lpc"; sourceTree = "<group>"; };
+		CD10F8B41BEB319700C5D145 /* wizard-damage-9.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "wizard-damage-9.lpc"; sourceTree = "<group>"; };
+		CD10F8B51BEB319700C5D145 /* wizard-death.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "wizard-death.lpc"; sourceTree = "<group>"; };
+		CD10F8B61BEB319700C5D145 /* yellow-elf.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "yellow-elf.lpc"; sourceTree = "<group>"; };
+		CD10F8B71BEB319700C5D145 /* yellow-valkrie.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "yellow-valkrie.lpc"; sourceTree = "<group>"; };
+		CD10F8B81BEB319700C5D145 /* yellow-warrior.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "yellow-warrior.lpc"; sourceTree = "<group>"; };
+		CD10F8B91BEB319700C5D145 /* yellow-wizard.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "yellow-wizard.lpc"; sourceTree = "<group>"; };
+		CD10F8BA1BEB319700C5D145 /* you-cant-catch-me.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "you-cant-catch-me.lpc"; sourceTree = "<group>"; };
+		CD10F8BB1BEB319700C5D145 /* you-cant-catch-me2.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "you-cant-catch-me2.lpc"; sourceTree = "<group>"; };
+		CD10F8BC1BEB319700C5D145 /* you-have-found-my-treasure.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "you-have-found-my-treasure.lpc"; sourceTree = "<group>"; };
+		CD10F8BD1BEB319700C5D145 /* you-just-shot-the-potion.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "you-just-shot-the-potion.lpc"; sourceTree = "<group>"; };
+		CD10F8BE1BEB319700C5D145 /* your-life-force-is-running-out.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "your-life-force-is-running-out.lpc"; sourceTree = "<group>"; };
+		CD10F8BF1BEB319700C5D145 /* your-shots-now-hurt-other-players.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "your-shots-now-hurt-other-players.lpc"; sourceTree = "<group>"; };
+		CD10F8C01BEB319700C5D145 /* your-shots-now-stun-other-players.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "your-shots-now-stun-other-players.lpc"; sourceTree = "<group>"; };
+		CD10F8C11BEB319700C5D145 /* yumm.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = yumm.lpc; sourceTree = "<group>"; };
 		CD1680611AC77F7E009920C3 /* Filterer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filterer.h; sourceTree = "<group>"; };
 		CD1680621AC77F7E009920C3 /* Filterer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Filterer.m; sourceTree = "<group>"; };
-		CD30A9D41AAD38A70048B222 /* test.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.lpc; sourceTree = "<group>"; };
 		CD3B09121AAE416F00D54399 /* PitchEstimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PitchEstimator.h; sourceTree = "<group>"; };
 		CD3B09131AAE416F00D54399 /* PitchEstimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PitchEstimator.m; sourceTree = "<group>"; };
 		CD4663041BA52750009835D1 /* LargeWaveformViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargeWaveformViewController.h; sourceTree = "<group>"; };
@@ -100,7 +381,6 @@
 		CD563B5B1AA16872001880B6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		CD563B5C1AA16872001880B6 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		CD563B5D1AA16872001880B6 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
-		CD563B611AA24A54001880B6 /* blue_wizard.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = blue_wizard.lpc; sourceTree = "<group>"; };
 		CD563B631AA2A1DF001880B6 /* Input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Input.h; sourceTree = "<group>"; };
 		CD563B641AA2A1DF001880B6 /* Input.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Input.m; sourceTree = "<group>"; };
 		CD6A67381AAA88C300515777 /* WaveformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveformView.h; sourceTree = "<group>"; };
@@ -181,18 +461,8 @@
 		CDBF22E41A99C917001E25AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CDBF22EA1A99C917001E25AB /* BlueWizardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlueWizardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBF22EF1A99C917001E25AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CDD390DB1AB5273D004A2654 /* disappear-fragment.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "disappear-fragment.lpc"; sourceTree = "<group>"; };
 		CDFBCEC21AD0C85800E9A893 /* TimeMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeMachine.h; sourceTree = "<group>"; };
 		CDFBCEC31AD0C85800E9A893 /* TimeMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeMachine.m; sourceTree = "<group>"; };
-		CDFC57E51AA0CD4200457C13 /* dont_shoot_food.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dont_shoot_food.lpc; sourceTree = "<group>"; };
-		CDFC57E61AA0CD4200457C13 /* good_choice_kid.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = good_choice_kid.lpc; sourceTree = "<group>"; };
-		CDFC57E71AA0CD4200457C13 /* save_keys_to_open_doors.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = save_keys_to_open_doors.lpc; sourceTree = "<group>"; };
-		CDFC57E81AA0CD4200457C13 /* skate_or_die.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = skate_or_die.lpc; sourceTree = "<group>"; };
-		CDFC57E91AA0CD4200457C13 /* traps_make_walls_disappear.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = traps_make_walls_disappear.lpc; sourceTree = "<group>"; };
-		CDFC57EA1AA0CD4200457C13 /* valkrie_is_it.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = valkrie_is_it.lpc; sourceTree = "<group>"; };
-		CDFC57EB1AA0CD4200457C13 /* welcome_blue_valkrie.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = welcome_blue_valkrie.lpc; sourceTree = "<group>"; };
-		CDFC57EC1AA0CD4200457C13 /* welcome-to-treasure.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "welcome-to-treasure.lpc"; sourceTree = "<group>"; };
-		CDFC57ED1AA0CD4200457C13 /* welcome.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = welcome.lpc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +506,160 @@
 				012428FA7BFBBFF7EE125E77 /* libPods-BlueWizardTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CD10F82E1BEB319700C5D145 /* lpc */ = {
+			isa = PBXGroup;
+			children = (
+				CD10F82F1BEB319700C5D145 /* 0.lpc */,
+				CD10F8301BEB319700C5D145 /* 1.lpc */,
+				CD10F8311BEB319700C5D145 /* 10.lpc */,
+				CD10F8321BEB319700C5D145 /* 2.lpc */,
+				CD10F8331BEB319700C5D145 /* 3.lpc */,
+				CD10F8341BEB319700C5D145 /* 4.lpc */,
+				CD10F8351BEB319700C5D145 /* 5.lpc */,
+				CD10F8361BEB319700C5D145 /* 6.lpc */,
+				CD10F8371BEB319700C5D145 /* 7.lpc */,
+				CD10F8381BEB319700C5D145 /* 8.lpc */,
+				CD10F8391BEB319700C5D145 /* 9.lpc */,
+				CD10F83A1BEB319700C5D145 /* all-your-powers-will-be-lost.lpc */,
+				CD10F83B1BEB319700C5D145 /* better-hurry.lpc */,
+				CD10F83C1BEB319700C5D145 /* better-luck-next-time.lpc */,
+				CD10F83D1BEB319700C5D145 /* blue-elf.lpc */,
+				CD10F83E1BEB319700C5D145 /* blue-valkrie.lpc */,
+				CD10F83F1BEB319700C5D145 /* blue-warrior.lpc */,
+				CD10F8401BEB319700C5D145 /* blue-wizard.lpc */,
+				CD10F8411BEB319700C5D145 /* can-you-make-it.lpc */,
+				CD10F8421BEB319700C5D145 /* disappear-fragment.lpc */,
+				CD10F8431BEB319700C5D145 /* dont-shoot-the-potion.lpc */,
+				CD10F8441BEB319700C5D145 /* dont-shoot-your-friends-on-this-level.lpc */,
+				CD10F8451BEB319700C5D145 /* dragon.lpc */,
+				CD10F8461BEB319700C5D145 /* elf-damage-2.lpc */,
+				CD10F8471BEB319700C5D145 /* elf-damage-3.lpc */,
+				CD10F8481BEB319700C5D145 /* elf-damage-4.lpc */,
+				CD10F8491BEB319700C5D145 /* elf-damage-5.lpc */,
+				CD10F84A1BEB319700C5D145 /* elf-damage-6.lpc */,
+				CD10F84B1BEB319700C5D145 /* elf-damage-7.lpc */,
+				CD10F84C1BEB319700C5D145 /* elf-damage-8.lpc */,
+				CD10F84D1BEB319700C5D145 /* elf-damage.lpc */,
+				CD10F84E1BEB319700C5D145 /* elf-death.lpc */,
+				CD10F84F1BEB319700C5D145 /* elf-laugh.lpc */,
+				CD10F8501BEB319700C5D145 /* elf-ooo.lpc */,
+				CD10F8511BEB319700C5D145 /* exits-may-move-around.lpc */,
+				CD10F8521BEB319700C5D145 /* extra-armor.lpc */,
+				CD10F8531BEB319700C5D145 /* extra-fight-power.lpc */,
+				CD10F8541BEB319700C5D145 /* extra-magic-power.lpc */,
+				CD10F8551BEB319700C5D145 /* extra-shot-power.lpc */,
+				CD10F8561BEB319700C5D145 /* extra-shot-speed.lpc */,
+				CD10F8571BEB319700C5D145 /* extra-speed.lpc */,
+				CD10F8581BEB319700C5D145 /* find-the-hidden-potion.lpc */,
+				CD10F8591BEB319700C5D145 /* fooled-you.lpc */,
+				CD10F85A1BEB319700C5D145 /* good_choice_kid.lpc */,
+				CD10F85B1BEB319700C5D145 /* green-elf.lpc */,
+				CD10F85C1BEB319700C5D145 /* green-valkrie.lpc */,
+				CD10F85D1BEB319700C5D145 /* green-warrior.lpc */,
+				CD10F85E1BEB319700C5D145 /* green-wizard.lpc */,
+				CD10F85F1BEB319700C5D145 /* ha-ha-ha-ha.lpc */,
+				CD10F8601BEB319700C5D145 /* hah-hah.lpc */,
+				CD10F8611BEB319700C5D145 /* haha.lpc */,
+				CD10F8621BEB319700C5D145 /* hahaha.lpc */,
+				CD10F8631BEB319700C5D145 /* has-eaten-all-the-food-lately.lpc */,
+				CD10F8641BEB319700C5D145 /* hehehe.lpc */,
+				CD10F8651BEB319700C5D145 /* is-it.lpc */,
+				CD10F8661BEB319700C5D145 /* is-now-it.lpc */,
+				CD10F8671BEB319700C5D145 /* ive-not-seen-such-bravery.lpc */,
+				CD10F8681BEB319700C5D145 /* just-kidding.lpc */,
+				CD10F8691BEB319700C5D145 /* kill-thief-to-recover-stolen-item.lpc */,
+				CD10F86A1BEB319700C5D145 /* lets-see-you-get-out-of-here.lpc */,
+				CD10F86B1BEB319700C5D145 /* limited-invisibility.lpc */,
+				CD10F86C1BEB319700C5D145 /* looks-like-you-lose.lpc */,
+				CD10F86D1BEB319700C5D145 /* needs-food-badly.lpc */,
+				CD10F86E1BEB319700C5D145 /* now-has.lpc */,
+				CD10F86F1BEB319700C5D145 /* red-elf.lpc */,
+				CD10F8701BEB319700C5D145 /* red-valkrie.lpc */,
+				CD10F8711BEB319700C5D145 /* red-warrior.lpc */,
+				CD10F8721BEB319700C5D145 /* red-wizard.lpc */,
+				CD10F8731BEB319700C5D145 /* reflective-shots.lpc */,
+				CD10F8741BEB319700C5D145 /* remember-dont-shoot-food.lpc */,
+				CD10F8751BEB319700C5D145 /* save_keys_to_open_doors.lpc */,
+				CD10F8761BEB319700C5D145 /* shot-the-food.lpc */,
+				CD10F8771BEB319700C5D145 /* shot-the-potion.lpc */,
+				CD10F8781BEB319700C5D145 /* shots-do-not-hurt-other-players-yet.lpc */,
+				CD10F8791BEB319700C5D145 /* skate_or_die.lpc */,
+				CD10F87A1BEB319700C5D145 /* some-walls-are-invisible.lpc */,
+				CD10F87B1BEB319700C5D145 /* some-walls-may-be-destroyed.lpc */,
+				CD10F87C1BEB319700C5D145 /* someone-shot-the-food.lpc */,
+				CD10F87D1BEB319700C5D145 /* speech-chip-test.lpc */,
+				CD10F87E1BEB319700C5D145 /* stuart-congrats.lpc */,
+				CD10F87F1BEB319700C5D145 /* stuart-honsbridge.lpc */,
+				CD10F8801BEB319700C5D145 /* stuart-welcome-nb.lpc */,
+				CD10F8811BEB319700C5D145 /* stuart.lpc */,
+				CD10F8821BEB319700C5D145 /* temporary-repulsiveness.lpc */,
+				CD10F8831BEB319700C5D145 /* temporary-transportability.lpc */,
+				CD10F8841BEB319700C5D145 /* test.lpc */,
+				CD10F8851BEB319700C5D145 /* that-was-a-heroic-effort.lpc */,
+				CD10F8861BEB319700C5D145 /* this-treasure-chest-is-locked.lpc */,
+				CD10F8871BEB319700C5D145 /* times-on-my-side.lpc */,
+				CD10F8881BEB319700C5D145 /* times-running-out.lpc */,
+				CD10F8891BEB319700C5D145 /* traps-make-walls-disappear.lpc */,
+				CD10F88A1BEB319700C5D145 /* try-and-find-a-way-out.lpc */,
+				CD10F88B1BEB319700C5D145 /* try-this-level-now.lpc */,
+				CD10F88C1BEB319700C5D145 /* valkrie-damage-1.lpc */,
+				CD10F88D1BEB319700C5D145 /* valkrie-damage-10.lpc */,
+				CD10F88E1BEB319700C5D145 /* valkrie-damage-11.lpc */,
+				CD10F88F1BEB319700C5D145 /* valkrie-damage-12.lpc */,
+				CD10F8901BEB319700C5D145 /* valkrie-damage-13.lpc */,
+				CD10F8911BEB319700C5D145 /* valkrie-damage-14.lpc */,
+				CD10F8921BEB319700C5D145 /* valkrie-damage-2.lpc */,
+				CD10F8931BEB319700C5D145 /* valkrie-damage-3.lpc */,
+				CD10F8941BEB319700C5D145 /* valkrie-damage-4.lpc */,
+				CD10F8951BEB319700C5D145 /* valkrie-damage-5.lpc */,
+				CD10F8961BEB319700C5D145 /* valkrie-damage-6.lpc */,
+				CD10F8971BEB319700C5D145 /* valkrie-damage-7.lpc */,
+				CD10F8981BEB319700C5D145 /* valkrie-damage-8.lpc */,
+				CD10F8991BEB319700C5D145 /* valkrie-damage-9.lpc */,
+				CD10F89A1BEB319700C5D145 /* valkrie-death.lpc */,
+				CD10F89B1BEB319700C5D145 /* valkrie_is_it.lpc */,
+				CD10F89C1BEB319700C5D145 /* warrior-damage-1.lpc */,
+				CD10F89D1BEB319700C5D145 /* warrior-death.lpc */,
+				CD10F89E1BEB319700C5D145 /* warriror-damage-2.lpc */,
+				CD10F89F1BEB319700C5D145 /* warriror-damage-3.lpc */,
+				CD10F8A01BEB319700C5D145 /* warriror-damage-4.lpc */,
+				CD10F8A11BEB319700C5D145 /* warriror-damage-5.lpc */,
+				CD10F8A21BEB319700C5D145 /* warriror-damage-6.lpc */,
+				CD10F8A31BEB319700C5D145 /* warriror-damage-7.lpc */,
+				CD10F8A41BEB319700C5D145 /* warriror-damage-8.lpc */,
+				CD10F8A51BEB319700C5D145 /* welcome-to-treasure.lpc */,
+				CD10F8A61BEB319700C5D145 /* welcome.lpc */,
+				CD10F8A71BEB319700C5D145 /* welcome_blue_valkrie.lpc */,
+				CD10F8A81BEB319700C5D145 /* wizard-damage-1.lpc */,
+				CD10F8A91BEB319700C5D145 /* wizard-damage-10.lpc */,
+				CD10F8AA1BEB319700C5D145 /* wizard-damage-11.lpc */,
+				CD10F8AB1BEB319700C5D145 /* wizard-damage-12.lpc */,
+				CD10F8AC1BEB319700C5D145 /* wizard-damage-13.lpc */,
+				CD10F8AD1BEB319700C5D145 /* wizard-damage-2.lpc */,
+				CD10F8AE1BEB319700C5D145 /* wizard-damage-3.lpc */,
+				CD10F8AF1BEB319700C5D145 /* wizard-damage-4.lpc */,
+				CD10F8B01BEB319700C5D145 /* wizard-damage-5.lpc */,
+				CD10F8B11BEB319700C5D145 /* wizard-damage-6.lpc */,
+				CD10F8B21BEB319700C5D145 /* wizard-damage-7.lpc */,
+				CD10F8B31BEB319700C5D145 /* wizard-damage-8.lpc */,
+				CD10F8B41BEB319700C5D145 /* wizard-damage-9.lpc */,
+				CD10F8B51BEB319700C5D145 /* wizard-death.lpc */,
+				CD10F8B61BEB319700C5D145 /* yellow-elf.lpc */,
+				CD10F8B71BEB319700C5D145 /* yellow-valkrie.lpc */,
+				CD10F8B81BEB319700C5D145 /* yellow-warrior.lpc */,
+				CD10F8B91BEB319700C5D145 /* yellow-wizard.lpc */,
+				CD10F8BA1BEB319700C5D145 /* you-cant-catch-me.lpc */,
+				CD10F8BB1BEB319700C5D145 /* you-cant-catch-me2.lpc */,
+				CD10F8BC1BEB319700C5D145 /* you-have-found-my-treasure.lpc */,
+				CD10F8BD1BEB319700C5D145 /* you-just-shot-the-potion.lpc */,
+				CD10F8BE1BEB319700C5D145 /* your-life-force-is-running-out.lpc */,
+				CD10F8BF1BEB319700C5D145 /* your-shots-now-hurt-other-players.lpc */,
+				CD10F8C01BEB319700C5D145 /* your-shots-now-stun-other-players.lpc */,
+				CD10F8C11BEB319700C5D145 /* yumm.lpc */,
+			);
+			path = lpc;
 			sourceTree = "<group>";
 		};
 		CD7626C91AAA2310001E0A9E /* Protocols */ = {
@@ -364,13 +788,13 @@
 		CDBF22D61A99C917001E25AB /* BlueWizard */ = {
 			isa = PBXGroup;
 			children = (
+				CD10F82E1BEB319700C5D145 /* lpc */,
 				CDBF22D91A99C917001E25AB /* AppDelegate.h */,
 				CDBF22DA1A99C917001E25AB /* AppDelegate.m */,
 				CDA1F7371A9AF2170011B4B5 /* Classes */,
 				CD4663041BA52750009835D1 /* LargeWaveformViewController.h */,
 				CD4663051BA52750009835D1 /* LargeWaveformViewController.m */,
 				CD79FAB51A9D2A0A008DE994 /* lib */,
-				CDFC57E41AA0CC3B00457C13 /* lpc */,
 				CDBF22E31A99C917001E25AB /* Main.storyboard */,
 				CD7626961AA43673001E0A9E /* Media.xcassets */,
 				CDBF22D71A99C917001E25AB /* Supporting Files */,
@@ -424,26 +848,6 @@
 			name = "Local Podspecs";
 			path = "Pods/Local Podspecs";
 			sourceTree = "<group>";
-		};
-		CDFC57E41AA0CC3B00457C13 /* lpc */ = {
-			isa = PBXGroup;
-			children = (
-				CDD390DB1AB5273D004A2654 /* disappear-fragment.lpc */,
-				CDFC57E51AA0CD4200457C13 /* dont_shoot_food.lpc */,
-				CDFC57E61AA0CD4200457C13 /* good_choice_kid.lpc */,
-				CDFC57E71AA0CD4200457C13 /* save_keys_to_open_doors.lpc */,
-				CDFC57E81AA0CD4200457C13 /* skate_or_die.lpc */,
-				CDFC57E91AA0CD4200457C13 /* traps_make_walls_disappear.lpc */,
-				CDFC57EA1AA0CD4200457C13 /* valkrie_is_it.lpc */,
-				CDFC57EB1AA0CD4200457C13 /* welcome_blue_valkrie.lpc */,
-				CDFC57EC1AA0CD4200457C13 /* welcome-to-treasure.lpc */,
-				CDFC57ED1AA0CD4200457C13 /* welcome.lpc */,
-				CD563B611AA24A54001880B6 /* blue_wizard.lpc */,
-				CD30A9D41AAD38A70048B222 /* test.lpc */,
-			);
-			name = lpc;
-			path = BlueWizard/lpc;
-			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -527,21 +931,156 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD563B621AA24A54001880B6 /* blue_wizard.lpc in Resources */,
-				CDD390DC1AB5273D004A2654 /* disappear-fragment.lpc in Resources */,
-				CD30A9D51AAD38A70048B222 /* test.lpc in Resources */,
-				CDFC57F61AA0CD4200457C13 /* welcome.lpc in Resources */,
-				CDFC57EE1AA0CD4200457C13 /* dont_shoot_food.lpc in Resources */,
-				CDFC57EF1AA0CD4200457C13 /* good_choice_kid.lpc in Resources */,
-				CDFC57F41AA0CD4200457C13 /* welcome_blue_valkrie.lpc in Resources */,
-				CDFC57F11AA0CD4200457C13 /* skate_or_die.lpc in Resources */,
-				CDFC57F21AA0CD4200457C13 /* traps_make_walls_disappear.lpc in Resources */,
+				CD10F8F91BEB319700C5D145 /* is-now-it.lpc in Resources */,
+				CD10F8DA1BEB319700C5D145 /* elf-damage-3.lpc in Resources */,
+				CD10F8CD1BEB319700C5D145 /* all-your-powers-will-be-lost.lpc in Resources */,
+				CD10F8C91BEB319700C5D145 /* 6.lpc in Resources */,
+				CD10F93C1BEB319700C5D145 /* wizard-damage-10.lpc in Resources */,
+				CD10F9041BEB319700C5D145 /* red-warrior.lpc in Resources */,
+				CD10F91D1BEB319700C5D145 /* try-and-find-a-way-out.lpc in Resources */,
+				CD10F8CC1BEB319700C5D145 /* 9.lpc in Resources */,
+				CD10F8DE1BEB319700C5D145 /* elf-damage-7.lpc in Resources */,
+				CD10F92B1BEB319700C5D145 /* valkrie-damage-8.lpc in Resources */,
+				CD10F9301BEB319700C5D145 /* warrior-death.lpc in Resources */,
+				CD10F8FC1BEB319700C5D145 /* kill-thief-to-recover-stolen-item.lpc in Resources */,
+				CD10F9291BEB319700C5D145 /* valkrie-damage-6.lpc in Resources */,
+				CD10F93F1BEB319700C5D145 /* wizard-damage-13.lpc in Resources */,
+				CD10F8DD1BEB319700C5D145 /* elf-damage-6.lpc in Resources */,
+				CD10F8C41BEB319700C5D145 /* 10.lpc in Resources */,
+				CD10F8E51BEB319700C5D145 /* extra-armor.lpc in Resources */,
+				CD10F9481BEB319700C5D145 /* wizard-death.lpc in Resources */,
+				CD10F9121BEB319700C5D145 /* stuart-honsbridge.lpc in Resources */,
+				CD10F91E1BEB319700C5D145 /* try-this-level-now.lpc in Resources */,
+				CD10F8D81BEB319700C5D145 /* dragon.lpc in Resources */,
+				CD10F92C1BEB319700C5D145 /* valkrie-damage-9.lpc in Resources */,
+				CD10F8E11BEB319700C5D145 /* elf-death.lpc in Resources */,
+				CD10F92E1BEB319700C5D145 /* valkrie_is_it.lpc in Resources */,
+				CD10F9451BEB319700C5D145 /* wizard-damage-7.lpc in Resources */,
+				CD10F90B1BEB319700C5D145 /* shots-do-not-hurt-other-players-yet.lpc in Resources */,
+				CD10F8D21BEB319700C5D145 /* blue-warrior.lpc in Resources */,
+				CD10F8F11BEB319700C5D145 /* green-wizard.lpc in Resources */,
+				CD10F9421BEB319700C5D145 /* wizard-damage-4.lpc in Resources */,
+				CD10F9371BEB319700C5D145 /* warriror-damage-8.lpc in Resources */,
+				CD10F9491BEB319700C5D145 /* yellow-elf.lpc in Resources */,
+				CD10F8CF1BEB319700C5D145 /* better-luck-next-time.lpc in Resources */,
+				CD10F9401BEB319700C5D145 /* wizard-damage-2.lpc in Resources */,
+				CD10F9221BEB319700C5D145 /* valkrie-damage-12.lpc in Resources */,
+				CD10F9281BEB319700C5D145 /* valkrie-damage-5.lpc in Resources */,
+				CD10F8C51BEB319700C5D145 /* 2.lpc in Resources */,
+				CD10F9511BEB319700C5D145 /* your-life-force-is-running-out.lpc in Resources */,
 				CDBF22E51A99C917001E25AB /* Main.storyboard in Resources */,
+				CD10F8FF1BEB319700C5D145 /* looks-like-you-lose.lpc in Resources */,
+				CD10F8EA1BEB319700C5D145 /* extra-speed.lpc in Resources */,
+				CD10F91A1BEB319700C5D145 /* times-on-my-side.lpc in Resources */,
+				CD10F8D91BEB319700C5D145 /* elf-damage-2.lpc in Resources */,
+				CD10F8EC1BEB319700C5D145 /* fooled-you.lpc in Resources */,
+				CD10F9321BEB319700C5D145 /* warriror-damage-3.lpc in Resources */,
+				CD10F9521BEB319700C5D145 /* your-shots-now-hurt-other-players.lpc in Resources */,
+				CD10F8D01BEB319700C5D145 /* blue-elf.lpc in Resources */,
+				CD10F8E01BEB319700C5D145 /* elf-damage.lpc in Resources */,
+				CD10F9531BEB319700C5D145 /* your-shots-now-stun-other-players.lpc in Resources */,
+				CD10F9021BEB319700C5D145 /* red-elf.lpc in Resources */,
+				CD10F8C81BEB319700C5D145 /* 5.lpc in Resources */,
+				CD10F9441BEB319700C5D145 /* wizard-damage-6.lpc in Resources */,
+				CD10F9431BEB319700C5D145 /* wizard-damage-5.lpc in Resources */,
+				CD10F8E81BEB319700C5D145 /* extra-shot-power.lpc in Resources */,
+				CD10F8FB1BEB319700C5D145 /* just-kidding.lpc in Resources */,
+				CD10F8F81BEB319700C5D145 /* is-it.lpc in Resources */,
+				CD10F8D31BEB319700C5D145 /* blue-wizard.lpc in Resources */,
+				CD10F8C71BEB319700C5D145 /* 4.lpc in Resources */,
+				CD10F93E1BEB319700C5D145 /* wizard-damage-12.lpc in Resources */,
+				CD10F9251BEB319700C5D145 /* valkrie-damage-2.lpc in Resources */,
+				CD10F8C31BEB319700C5D145 /* 1.lpc in Resources */,
+				CD10F9061BEB319700C5D145 /* reflective-shots.lpc in Resources */,
+				CD10F9391BEB319700C5D145 /* welcome.lpc in Resources */,
+				CD10F9201BEB319700C5D145 /* valkrie-damage-10.lpc in Resources */,
+				CD10F8E71BEB319700C5D145 /* extra-magic-power.lpc in Resources */,
+				CD10F92F1BEB319700C5D145 /* warrior-damage-1.lpc in Resources */,
+				CD10F9181BEB319700C5D145 /* that-was-a-heroic-effort.lpc in Resources */,
+				CD10F9351BEB319700C5D145 /* warriror-damage-6.lpc in Resources */,
+				CD10F9011BEB319700C5D145 /* now-has.lpc in Resources */,
+				CD10F8FA1BEB319700C5D145 /* ive-not-seen-such-bravery.lpc in Resources */,
+				CD10F9541BEB319700C5D145 /* yumm.lpc in Resources */,
+				CD10F9151BEB319700C5D145 /* temporary-repulsiveness.lpc in Resources */,
 				CD7626971AA43673001E0A9E /* Media.xcassets in Resources */,
+				CD10F8F41BEB319700C5D145 /* haha.lpc in Resources */,
+				CD10F8E91BEB319700C5D145 /* extra-shot-speed.lpc in Resources */,
+				CD10F9361BEB319700C5D145 /* warriror-damage-7.lpc in Resources */,
+				CD10F90E1BEB319700C5D145 /* some-walls-may-be-destroyed.lpc in Resources */,
+				CD10F9081BEB319700C5D145 /* save_keys_to_open_doors.lpc in Resources */,
+				CD10F8ED1BEB319700C5D145 /* good_choice_kid.lpc in Resources */,
+				CD10F92D1BEB319700C5D145 /* valkrie-death.lpc in Resources */,
+				CD10F9471BEB319700C5D145 /* wizard-damage-9.lpc in Resources */,
+				CD10F8CE1BEB319700C5D145 /* better-hurry.lpc in Resources */,
+				CD10F8F61BEB319700C5D145 /* has-eaten-all-the-food-lately.lpc in Resources */,
+				CD10F90C1BEB319700C5D145 /* skate_or_die.lpc in Resources */,
+				CD10F8E61BEB319700C5D145 /* extra-fight-power.lpc in Resources */,
+				CD10F9141BEB319700C5D145 /* stuart.lpc in Resources */,
+				CD10F9341BEB319700C5D145 /* warriror-damage-5.lpc in Resources */,
+				CD10F93D1BEB319700C5D145 /* wizard-damage-11.lpc in Resources */,
+				CD10F8C61BEB319700C5D145 /* 3.lpc in Resources */,
+				CD10F94E1BEB319700C5D145 /* you-cant-catch-me2.lpc in Resources */,
+				CD10F8EE1BEB319700C5D145 /* green-elf.lpc in Resources */,
+				CD10F8F01BEB319700C5D145 /* green-warrior.lpc in Resources */,
+				CD10F8F31BEB319700C5D145 /* hah-hah.lpc in Resources */,
+				CD10F8E31BEB319700C5D145 /* elf-ooo.lpc in Resources */,
+				CD10F8F21BEB319700C5D145 /* ha-ha-ha-ha.lpc in Resources */,
+				CD10F91F1BEB319700C5D145 /* valkrie-damage-1.lpc in Resources */,
+				CD10F94B1BEB319700C5D145 /* yellow-warrior.lpc in Resources */,
+				CD10F9171BEB319700C5D145 /* test.lpc in Resources */,
+				CD10F8DF1BEB319700C5D145 /* elf-damage-8.lpc in Resources */,
+				CD10F91B1BEB319700C5D145 /* times-running-out.lpc in Resources */,
+				CD10F9461BEB319700C5D145 /* wizard-damage-8.lpc in Resources */,
+				CD10F9261BEB319700C5D145 /* valkrie-damage-3.lpc in Resources */,
+				CD10F8CA1BEB319700C5D145 /* 7.lpc in Resources */,
+				CD10F8D61BEB319700C5D145 /* dont-shoot-the-potion.lpc in Resources */,
+				CD10F94D1BEB319700C5D145 /* you-cant-catch-me.lpc in Resources */,
+				CD10F8D51BEB319700C5D145 /* disappear-fragment.lpc in Resources */,
+				CD10F90A1BEB319700C5D145 /* shot-the-potion.lpc in Resources */,
+				CD10F8C21BEB319700C5D145 /* 0.lpc in Resources */,
+				CD10F8F51BEB319700C5D145 /* hahaha.lpc in Resources */,
+				CD10F9051BEB319700C5D145 /* red-wizard.lpc in Resources */,
+				CD10F9131BEB319700C5D145 /* stuart-welcome-nb.lpc in Resources */,
+				CD10F90D1BEB319700C5D145 /* some-walls-are-invisible.lpc in Resources */,
+				CD10F9271BEB319700C5D145 /* valkrie-damage-4.lpc in Resources */,
+				CD10F8FD1BEB319700C5D145 /* lets-see-you-get-out-of-here.lpc in Resources */,
+				CD10F9101BEB319700C5D145 /* speech-chip-test.lpc in Resources */,
+				CD10F93B1BEB319700C5D145 /* wizard-damage-1.lpc in Resources */,
+				CD10F9311BEB319700C5D145 /* warriror-damage-2.lpc in Resources */,
+				CD10F94C1BEB319700C5D145 /* yellow-wizard.lpc in Resources */,
+				CD10F8E41BEB319700C5D145 /* exits-may-move-around.lpc in Resources */,
+				CD10F9331BEB319700C5D145 /* warriror-damage-4.lpc in Resources */,
+				CD10F9381BEB319700C5D145 /* welcome-to-treasure.lpc in Resources */,
+				CD10F94F1BEB319700C5D145 /* you-have-found-my-treasure.lpc in Resources */,
+				CD10F9211BEB319700C5D145 /* valkrie-damage-11.lpc in Resources */,
+				CD10F9091BEB319700C5D145 /* shot-the-food.lpc in Resources */,
+				CD10F94A1BEB319700C5D145 /* yellow-valkrie.lpc in Resources */,
+				CD10F9161BEB319700C5D145 /* temporary-transportability.lpc in Resources */,
+				CD10F8D71BEB319700C5D145 /* dont-shoot-your-friends-on-this-level.lpc in Resources */,
+				CD10F9501BEB319700C5D145 /* you-just-shot-the-potion.lpc in Resources */,
+				CD10F9071BEB319700C5D145 /* remember-dont-shoot-food.lpc in Resources */,
+				CD10F9231BEB319700C5D145 /* valkrie-damage-13.lpc in Resources */,
+				CD10F9001BEB319700C5D145 /* needs-food-badly.lpc in Resources */,
+				CD10F9191BEB319700C5D145 /* this-treasure-chest-is-locked.lpc in Resources */,
+				CD10F8DC1BEB319700C5D145 /* elf-damage-5.lpc in Resources */,
+				CD10F9111BEB319700C5D145 /* stuart-congrats.lpc in Resources */,
 				CD79FABD1A9D2A0A008DE994 /* tms5220.txt in Resources */,
-				CDFC57F01AA0CD4200457C13 /* save_keys_to_open_doors.lpc in Resources */,
-				CDFC57F31AA0CD4200457C13 /* valkrie_is_it.lpc in Resources */,
-				CDFC57F51AA0CD4200457C13 /* welcome-to-treasure.lpc in Resources */,
+				CD10F8F71BEB319700C5D145 /* hehehe.lpc in Resources */,
+				CD10F92A1BEB319700C5D145 /* valkrie-damage-7.lpc in Resources */,
+				CD10F8E21BEB319700C5D145 /* elf-laugh.lpc in Resources */,
+				CD10F8FE1BEB319700C5D145 /* limited-invisibility.lpc in Resources */,
+				CD10F93A1BEB319700C5D145 /* welcome_blue_valkrie.lpc in Resources */,
+				CD10F9241BEB319700C5D145 /* valkrie-damage-14.lpc in Resources */,
+				CD10F9031BEB319700C5D145 /* red-valkrie.lpc in Resources */,
+				CD10F8DB1BEB319700C5D145 /* elf-damage-4.lpc in Resources */,
+				CD10F8D11BEB319700C5D145 /* blue-valkrie.lpc in Resources */,
+				CD10F9411BEB319700C5D145 /* wizard-damage-3.lpc in Resources */,
+				CD10F8EB1BEB319700C5D145 /* find-the-hidden-potion.lpc in Resources */,
+				CD10F8EF1BEB319700C5D145 /* green-valkrie.lpc in Resources */,
+				CD10F90F1BEB319700C5D145 /* someone-shot-the-food.lpc in Resources */,
+				CD10F8CB1BEB319700C5D145 /* 8.lpc in Resources */,
+				CD10F91C1BEB319700C5D145 /* traps-make-walls-disappear.lpc in Resources */,
+				CD10F8D41BEB319700C5D145 /* can-you-make-it.lpc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
