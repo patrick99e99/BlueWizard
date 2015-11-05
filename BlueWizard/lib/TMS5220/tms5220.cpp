@@ -1191,7 +1191,9 @@ INT32 tms5220_device::lattice_filter()
 		m_u[2] = m_u[3] - matrix_multiply(m_current_k[2], m_x[2]);
 		m_u[1] = m_u[2] - matrix_multiply(m_current_k[1], m_x[1]);
 		m_u[0] = m_u[1] - matrix_multiply(m_current_k[0], m_x[0]);
+#ifdef DEBUG_LATTICE
 		INT32 err = m_x[9] + matrix_multiply(m_current_k[9], m_u[9]); //x_10, real chip doesn't use or calculate this
+#endif
 		m_x[9] = m_x[8] + matrix_multiply(m_current_k[8], m_u[8]);
 		m_x[8] = m_x[7] + matrix_multiply(m_current_k[7], m_u[7]);
 		m_x[7] = m_x[6] + matrix_multiply(m_current_k[6], m_u[6]);
