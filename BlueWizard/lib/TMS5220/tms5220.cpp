@@ -276,9 +276,6 @@ static INT16 clip_analog(INT16 cliptemp);
 /* for some reason, this hack makes victory behave better, though it does not match the patent */
 #define FAST_START_HACK 1
 
-/* forces speech to have no leading silence and start immediately. Not accurate to chip, but useful for other purposes */
-#define NO_LEADING_SILENCE_HACK 1
-
 
 /* *****configuration of chip connection stuff***** */
 /* must be defined; if 0, output the waveform as if it was tapped on the speaker pin as usual, if 1, output the waveform as if it was tapped on the i/o pin (volume is much lower in the latter case) */
@@ -518,41 +515,42 @@ void tms5220_device::data_write(int data)
 					m_new_frame_k_idx[i] = 0xF;
 				for (i = 7; i < m_coeff->num_k; i++)
 					m_new_frame_k_idx[i] = 0x7;
-#ifdef NO_LEADING_SILENCE_HACK
-				// hack to force first frame to immediately interpolate in and start talking right now
-				m_TALKD = 1;
-				m_IP = 0;
-				m_PC = 12;
-				m_subcycle = FORCE_SUBC_RELOAD;
-				/* Parse a new frame into the new_target_energy, new_target_pitch and new_target_k[] */
-				parse_frame();
-				if ( ((OLD_FRAME_UNVOICED_FLAG == 0) && (NEW_FRAME_UNVOICED_FLAG == 1))
-					|| ((OLD_FRAME_UNVOICED_FLAG == 1) && (NEW_FRAME_UNVOICED_FLAG == 0))
-					|| ((OLD_FRAME_SILENCE_FLAG == 1) && (NEW_FRAME_SILENCE_FLAG == 0))
-					//|| ((m_inhibit == 1) && (OLD_FRAME_UNVOICED_FLAG == 1) && (NEW_FRAME_SILENCE_FLAG == 1)) ) //TMS51xx INTERP BUG1
-					|| ((OLD_FRAME_UNVOICED_FLAG == 1) && (NEW_FRAME_SILENCE_FLAG == 1)) )
-					m_inhibit = 1;
-				else // normal frame, normal interpolation
-				m_inhibit = 0;
-				int inhibit_state = ((m_inhibit==1)&&(m_IP != 0)); // disable inhibit when reaching the last interp period, but don't overwrite the m_inhibit value
-				/* now force the new frame into the current frame values */
-				if (m_IP==0) m_pitch_zero = 0; // this reset happens around the second subcycle during IP=0
-				m_current_energy = (m_current_energy + (((m_coeff->energytable[m_new_frame_energy_idx] - m_current_energy)*(1-inhibit_state)) INTERP_SHIFT))*(1-m_zpar);
-				m_current_pitch = (m_current_pitch + (((m_coeff->pitchtable[m_new_frame_pitch_idx] - m_current_pitch)*(1-inhibit_state)) INTERP_SHIFT))*(1-m_zpar);
-				for (i = 0; i < 10; i++)
+				if (use_no_leading_silence_hack)
 				{
-					if (!use_raw_excitation_filter)
-						m_current_k[i] = (m_current_k[i] + (((m_coeff->ktable[i][m_new_frame_k_idx[i]] - m_current_k[i])*(1-inhibit_state)) INTERP_SHIFT))*(1-(((i)<4)?m_zpar:m_uv_zpar));
-					else
-						m_current_k[i] = 0;
+					// hack to force first frame to immediately interpolate in and start talking right now
+					m_TALKD = 1;
+					m_IP = 0;
+					m_PC = 12;
+					m_subcycle = FORCE_SUBC_RELOAD;
+					/* Parse a new frame into the new_target_energy, new_target_pitch and new_target_k[] */
+					parse_frame();
+					if ( ((OLD_FRAME_UNVOICED_FLAG == 0) && (NEW_FRAME_UNVOICED_FLAG == 1))
+						|| ((OLD_FRAME_UNVOICED_FLAG == 1) && (NEW_FRAME_UNVOICED_FLAG == 0))
+						|| ((OLD_FRAME_SILENCE_FLAG == 1) && (NEW_FRAME_SILENCE_FLAG == 0))
+						//|| ((m_inhibit == 1) && (OLD_FRAME_UNVOICED_FLAG == 1) && (NEW_FRAME_SILENCE_FLAG == 1)) ) //TMS51xx INTERP BUG1
+						|| ((OLD_FRAME_UNVOICED_FLAG == 1) && (NEW_FRAME_SILENCE_FLAG == 1)) )
+						m_inhibit = 1;
+					else // normal frame, normal interpolation
+						m_inhibit = 0;
+					int inhibit_state = ((m_inhibit==1)&&(m_IP != 0)); // disable inhibit when reaching the last interp period, but don't overwrite the m_inhibit value
+					/* now force the new frame into the current frame values */
+					if (m_IP==0) m_pitch_zero = 0; // this reset happens around the second subcycle during IP=0
+					m_current_energy = (m_current_energy + (((m_coeff->energytable[m_new_frame_energy_idx] - m_current_energy)*(1-inhibit_state)) INTERP_SHIFT))*(1-m_zpar);
+					m_current_pitch = (m_current_pitch + (((m_coeff->pitchtable[m_new_frame_pitch_idx] - m_current_pitch)*(1-inhibit_state)) INTERP_SHIFT))*(1-m_zpar);
+					for (i = 0; i < 10; i++)
+					{
+						if (!use_raw_excitation_filter)
+							m_current_k[i] = (m_current_k[i] + (((m_coeff->ktable[i][m_new_frame_k_idx[i]] - m_current_k[i])*(1-inhibit_state)) INTERP_SHIFT))*(1-(((i)<4)?m_zpar:m_uv_zpar));
+						else
+							m_current_k[i] = 0;
+						}
+					/* if the new frame is a stop frame, unset both TALK and SPEN (via TCON). TALKD remains active while the energy is ramping to 0. */
+					if (NEW_FRAME_STOP_FLAG == 1)
+					{
+						m_TALK = m_SPEN = 0;
+						update_fifo_status_and_ints(); // probably not necessary...
+					}
 				}
-				/* if the new frame is a stop frame, unset both TALK and SPEN (via TCON). TALKD remains active while the energy is ramping to 0. */
-				if (NEW_FRAME_STOP_FLAG == 1)
-				{
-					m_TALK = m_SPEN = 0;
-					update_fifo_status_and_ints(); // probably not necessary...
-				}
-#endif
 			}
 		}
 		else
@@ -1983,4 +1981,16 @@ void tms5220_device::set_frequency(int frequency)
 void tms5220_device::set_use_raw_excitation_filter(bool yes_or_no)
 {
     use_raw_excitation_filter = yes_or_no;
+}
+
+/**********************************************************************************************
+
+ tms5220_set_use_no_leading_silence_hack -- whether we start speech by forcing the first
+ frame to be immediately interpolated in and immediately start the second frame afterward
+
+ ***********************************************************************************************/
+
+void tms5220_device::set_use_no_leading_silence_hack(bool yes_or_no)
+{
+    use_no_leading_silence_hack = yes_or_no;
 }

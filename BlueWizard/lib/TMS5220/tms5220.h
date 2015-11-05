@@ -63,6 +63,7 @@ public:
     int next_sample();
 
     void set_use_raw_excitation_filter(bool yes_or_no);
+    void set_use_no_leading_silence_hack(bool yes_or_no);
 
 protected:
 	void device_config_complete();
@@ -204,6 +205,7 @@ private:
 	int m_clock;
 
     bool use_raw_excitation_filter;
+    bool use_no_leading_silence_hack;
 };
 
 #endif
