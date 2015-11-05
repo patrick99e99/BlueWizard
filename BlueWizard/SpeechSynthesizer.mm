@@ -32,11 +32,12 @@ static int const STATUS_BE_MASK = 0x20;
 
 -(instancetype)init {
     if (self = [super init]) {
-        NSUInteger sampleRate = [[[UserSettings sharedInstance] sampleRate] unsignedIntegerValue];
+        NSUInteger sampleRate = [[[self userSettings] sampleRate] unsignedIntegerValue];
         _tms5220 = new tms5220_device();
         _tms5220->device_start();
         _tms5220->device_reset();
         _tms5220->set_frequency((int)sampleRate * 80);
+        _tms5220->set_use_no_leading_silence_hack([[self userSettings] skipLeadingSilence]);
     }
     return self;
 }

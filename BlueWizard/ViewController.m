@@ -207,6 +207,12 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
     [self notifySettingsChanged];
 }
 
+- (IBAction)skipLeadingSilenceToggled:(id)sender {
+    BOOL state = [sender state];
+    [[self userSettings] setSkipLeadingSilence:state];
+    [self notifySettingsChanged];
+}
+
 - (IBAction)lowPassCutoffChanged:(NSTextField *)sender {
     [[self userSettings] setLowPassCutoff:[self numberFromString:[sender stringValue]]];
     [self notifySignalChanged];

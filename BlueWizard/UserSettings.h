@@ -28,6 +28,7 @@
 @property (nonatomic) BOOL normalizeVoicedRMS;
 @property (nonatomic) BOOL normalizeUnvoicedRMS;
 @property (nonatomic) BOOL excitationFilterOnly;
+@property (nonatomic) BOOL skipLeadingSilence;
 
 +(instancetype)sharedInstance;
 

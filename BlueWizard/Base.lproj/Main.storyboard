@@ -1380,16 +1380,6 @@
                             <progressIndicator hidden="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="j3x-gT-UdT">
                                 <rect key="frame" x="362" y="190" width="32" height="32"/>
                             </progressIndicator>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="2jO-Mp-ZGu">
-                                <rect key="frame" x="539" y="393" width="150" height="18"/>
-                                <buttonCell key="cell" type="check" title="Excitation Filter Only" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="2pw-oy-b77">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="excitationFilterOnlyToggled:" target="XfG-lQ-9wD" id="k2a-AQ-CoV"/>
-                                </connections>
-                            </button>
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="DFW-db-ZDQ">
                                 <rect key="frame" x="744" y="44" width="240" height="323"/>
                                 <clipView key="contentView" copiesOnScroll="NO" id="baO-5x-Lw2">
@@ -1607,6 +1597,16 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2jO-Mp-ZGu">
+                                <rect key="frame" x="756" y="472" width="165" height="18"/>
+                                <buttonCell key="cell" type="check" title="skip leading silence" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="2pw-oy-b77">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="skipLeadingSilenceToggled:" target="XfG-lQ-9wD" id="IR9-Uf-yHq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="eeP-eq-JNl" firstAttribute="baseline" secondItem="goY-6M-Q95" secondAttribute="baseline" id="3U9-xb-Z2e"/>
@@ -1616,9 +1616,9 @@
                             <constraint firstItem="NSp-NI-WBO" firstAttribute="trailing" secondItem="dBV-a3-J0E" secondAttribute="trailing" id="64q-qc-Kdf"/>
                             <constraint firstItem="WRM-6w-JOA" firstAttribute="leading" secondItem="iFs-Nr-6VW" secondAttribute="leading" id="6ar-rz-b9h"/>
                             <constraint firstItem="Lwe-mo-ejE" firstAttribute="baseline" secondItem="Jsw-pe-N5A" secondAttribute="baseline" constant="23" id="7JD-tQ-PVf"/>
-                            <constraint firstItem="Rka-YI-I7u" firstAttribute="top" secondItem="2jO-Mp-ZGu" secondAttribute="top" constant="-4" id="7JM-F6-XPv"/>
+                            <constraint firstItem="Rka-YI-I7u" firstAttribute="top" secondItem="2jO-Mp-ZGu" secondAttribute="top" constant="75" id="7JM-F6-XPv"/>
                             <constraint firstItem="Rka-YI-I7u" firstAttribute="top" secondItem="CK5-ij-8qy" secondAttribute="bottom" constant="34" id="7fc-v5-4nz"/>
-                            <constraint firstItem="LUf-ue-ZtO" firstAttribute="leading" secondItem="moy-Vq-BLj" secondAttribute="leading" id="8KI-EF-1gK"/>
+                            <constraint firstItem="LUf-ue-ZtO" firstAttribute="leading" secondItem="moy-Vq-BLj" secondAttribute="leading" constant="-2" id="8KI-EF-1gK"/>
                             <constraint firstItem="DFW-db-ZDQ" firstAttribute="trailing" secondItem="vcp-z4-J8r" secondAttribute="trailing" id="9t8-Ox-HmA"/>
                             <constraint firstItem="TJL-E4-pVt" firstAttribute="top" secondItem="KYD-IG-k3P" secondAttribute="bottom" constant="8" symbolic="YES" id="AA9-QX-nhF"/>
                             <constraint firstItem="6XT-4a-6ai" firstAttribute="leading" secondItem="msL-S9-p7l" secondAttribute="leading" id="B0w-lV-imA"/>
@@ -1670,7 +1670,7 @@
                             <constraint firstItem="4GI-Mw-a7v" firstAttribute="leading" secondItem="KYD-IG-k3P" secondAttribute="leading" constant="33" id="aD8-u5-XBY"/>
                             <constraint firstItem="Jsw-pe-N5A" firstAttribute="leading" secondItem="ks6-Ol-OyD" secondAttribute="leading" id="aMb-uB-pJR"/>
                             <constraint firstItem="nkQ-g9-MPc" firstAttribute="trailing" secondItem="tZ4-2Z-E2P" secondAttribute="trailing" id="avP-mo-VES"/>
-                            <constraint firstItem="2jO-Mp-ZGu" firstAttribute="leading" secondItem="msL-S9-p7l" secondAttribute="leading" constant="272" id="b8x-PX-m1S"/>
+                            <constraint firstItem="2jO-Mp-ZGu" firstAttribute="leading" secondItem="msL-S9-p7l" secondAttribute="leading" constant="489" id="b8x-PX-m1S"/>
                             <constraint firstItem="0FF-x5-DgY" firstAttribute="leading" secondItem="Uio-st-jYm" secondAttribute="trailing" constant="61" id="bST-1N-V99"/>
                             <constraint firstItem="tZ4-2Z-E2P" firstAttribute="trailing" secondItem="fFS-Km-boL" secondAttribute="trailing" constant="-35" id="byZ-jc-fsD"/>
                             <constraint firstItem="AlV-tG-AH3" firstAttribute="top" secondItem="DFW-db-ZDQ" secondAttribute="top" id="cNV-NH-7bq"/>
@@ -1724,7 +1724,6 @@
                         <outlet property="FrameDataTable" destination="eQM-1M-xMK" id="4HD-r3-ZE6"/>
                         <outlet property="byteStreamTextView" destination="ksB-zT-mAO" id="hEC-71-uGa"/>
                         <outlet property="endSample" destination="V8Q-94-wds" id="xqN-Lo-vwN"/>
-                        <outlet property="excitationFilterOnlyButton" destination="2jO-Mp-ZGu" id="76d-GX-0zd"/>
                         <outlet property="frameDataTable" destination="eQM-1M-xMK" id="hRk-VH-WvX"/>
                         <outlet property="frameDataTableView" destination="eQM-1M-xMK" id="ywa-cq-vgq"/>
                         <outlet property="frameRateTextfield" destination="5Q5-Qq-tgW" id="wX9-Q1-mQu"/>
