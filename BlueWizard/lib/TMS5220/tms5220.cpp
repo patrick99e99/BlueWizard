@@ -520,7 +520,8 @@ void tms5220_device::data_write(int data)
 					// hack to force first frame to immediately interpolate in and start talking right now
 					m_TALKD = 1;
 					m_IP = 0;
-					m_PC = 12;
+                    m_PC = 0;					//m_PC = 12;
+
 					m_subcycle = FORCE_SUBC_RELOAD;
 					/* Parse a new frame into the new_target_energy, new_target_pitch and new_target_k[] */
 					parse_frame();
@@ -532,18 +533,18 @@ void tms5220_device::data_write(int data)
 						m_inhibit = 1;
 					else // normal frame, normal interpolation
 						m_inhibit = 0;
-					int inhibit_state = ((m_inhibit==1)&&(m_IP != 0)); // disable inhibit when reaching the last interp period, but don't overwrite the m_inhibit value
+					//int inhibit_state = ((m_inhibit==1)&&(m_IP != 0)); // disable inhibit when reaching the last interp period, but don't overwrite the m_inhibit value
 					/* now force the new frame into the current frame values */
-					if (m_IP==0) m_pitch_zero = 0; // this reset happens around the second subcycle during IP=0
-					m_current_energy = (m_current_energy + (((m_coeff->energytable[m_new_frame_energy_idx] - m_current_energy)*(1-inhibit_state)) INTERP_SHIFT))*(1-m_zpar);
-					m_current_pitch = (m_current_pitch + (((m_coeff->pitchtable[m_new_frame_pitch_idx] - m_current_pitch)*(1-inhibit_state)) INTERP_SHIFT))*(1-m_zpar);
-					for (i = 0; i < 10; i++)
-					{
-						if (!use_raw_excitation_filter)
-							m_current_k[i] = (m_current_k[i] + (((m_coeff->ktable[i][m_new_frame_k_idx[i]] - m_current_k[i])*(1-inhibit_state)) INTERP_SHIFT))*(1-(((i)<4)?m_zpar:m_uv_zpar));
-						else
-							m_current_k[i] = 0;
-						}
+//					if (m_IP==0) m_pitch_zero = 0; // this reset happens around the second subcycle during IP=0
+//					m_current_energy = (m_current_energy + (((m_coeff->energytable[m_new_frame_energy_idx] - m_current_energy)*(1-inhibit_state)) INTERP_SHIFT))*(1-m_zpar);
+//					m_current_pitch = (m_current_pitch + (((m_coeff->pitchtable[m_new_frame_pitch_idx] - m_current_pitch)*(1-inhibit_state)) INTERP_SHIFT))*(1-m_zpar);
+//					for (i = 0; i < 10; i++)
+//					{
+//						if (!use_raw_excitation_filter)
+//							m_current_k[i] = (m_current_k[i] + (((m_coeff->ktable[i][m_new_frame_k_idx[i]] - m_current_k[i])*(1-inhibit_state)) INTERP_SHIFT))*(1-(((i)<4)?m_zpar:m_uv_zpar));
+//						else
+//							m_current_k[i] = 0;
+//						}
 					/* if the new frame is a stop frame, unset both TALK and SPEN (via TCON). TALKD remains active while the energy is ramping to 0. */
 					if (NEW_FRAME_STOP_FLAG == 1)
 					{
