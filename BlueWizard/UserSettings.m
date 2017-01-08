@@ -41,7 +41,7 @@
 
 -(NSNumber *)maxPitchInHZ {
     if (!_maxPitchInHZ) {
-        _maxPitchInHZ = @200;
+        _maxPitchInHZ = @500;
     }
     return _maxPitchInHZ;
 }
