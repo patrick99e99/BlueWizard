@@ -28,11 +28,6 @@
 @implementation AppDelegate
 
 -(void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-//    NSArray *speechData = [SpeechDataReader speechDataFromFile:@"blue_wizard"];
-//    Buffer *buffer = [SpeechSynthesizer processSpeechData:speechData];
-//    self.effectTest = [[EffectMachine alloc] initWithBuffer:buffer];
-//    [self.effectTest process];
-
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playOriginalWasClicked:) name:playOriginalWasClicked object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopWasClicked:) name:stopOriginalWasClicked object:nil];
 
@@ -95,12 +90,10 @@
 }
 
 -(void)playOriginalWasClicked:(NSNotification *)notification {
-//    ((PlayheadView *)notification.object).sampler = self.sampler;
     [self.sampler stream:self.bufferWIthEQ];
 }
 
 -(void)playProcessedWasClicked:(NSNotification *)notification {
-//    ((PlayheadView *)notification.object).sampler = self.sampler;
     [self.sampler stream:self.buffer];
 }
 
@@ -125,7 +118,6 @@
 }
 
 -(void)processInputSignal {
-    //    ((PlayheadView *)notification.object).sampler = self.sampler;
     [self.sampler stop];
     Buffer *inputBuffer = self.bufferWIthEQ;
     Buffer *buffer = [[Buffer alloc] initWithSamples:inputBuffer.samples
