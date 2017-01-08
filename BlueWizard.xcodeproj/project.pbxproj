@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		862E7D6824C15959F0D03E52 /* libPods-BlueWizardTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 012428FA7BFBBFF7EE125E77 /* libPods-BlueWizardTests.a */; };
+		CD0BF6811BFFA90700747B7E /* ces.wav in Resources */ = {isa = PBXBuildFile; fileRef = CD0BF6801BFFA90700747B7E /* ces.wav */; };
 		CD10F8C21BEB319700C5D145 /* 0.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F82F1BEB319700C5D145 /* 0.lpc */; };
 		CD10F8C31BEB319700C5D145 /* 1.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8301BEB319700C5D145 /* 1.lpc */; };
 		CD10F8C41BEB319700C5D145 /* 10.lpc in Resources */ = {isa = PBXBuildFile; fileRef = CD10F8311BEB319700C5D145 /* 10.lpc */; };
@@ -223,6 +224,7 @@
 		012428FA7BFBBFF7EE125E77 /* libPods-BlueWizardTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BlueWizardTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		081AC1A4326C7E60C28C4025 /* Pods-BlueWizardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueWizardTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueWizardTests/Pods-BlueWizardTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4D0C831C58081BACD3B2165D /* Pods-BlueWizardTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueWizardTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BlueWizardTests/Pods-BlueWizardTests.release.xcconfig"; sourceTree = "<group>"; };
+		CD0BF6801BFFA90700747B7E /* ces.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ces.wav; sourceTree = "<group>"; };
 		CD10F82F1BEB319700C5D145 /* 0.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 0.lpc; sourceTree = "<group>"; };
 		CD10F8301BEB319700C5D145 /* 1.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 1.lpc; sourceTree = "<group>"; };
 		CD10F8311BEB319700C5D145 /* 10.lpc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10.lpc; sourceTree = "<group>"; };
@@ -508,6 +510,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CD0BF67E1BFFA8E200747B7E /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				CD0BF67F1BFFA8F300747B7E /* 8khz */,
+			);
+			name = audio;
+			path = lpc;
+			sourceTree = "<group>";
+		};
+		CD0BF67F1BFFA8F300747B7E /* 8khz */ = {
+			isa = PBXGroup;
+			children = (
+				CD0BF6801BFFA90700747B7E /* ces.wav */,
+			);
+			name = 8khz;
+			sourceTree = "<group>";
+		};
 		CD10F82E1BEB319700C5D145 /* lpc */ = {
 			isa = PBXGroup;
 			children = (
@@ -788,6 +807,7 @@
 		CDBF22D61A99C917001E25AB /* BlueWizard */ = {
 			isa = PBXGroup;
 			children = (
+				CD0BF67E1BFFA8E200747B7E /* audio */,
 				CD10F82E1BEB319700C5D145 /* lpc */,
 				CDBF22D91A99C917001E25AB /* AppDelegate.h */,
 				CDBF22DA1A99C917001E25AB /* AppDelegate.m */,
@@ -1061,6 +1081,7 @@
 				CD10F9071BEB319700C5D145 /* remember-dont-shoot-food.lpc in Resources */,
 				CD10F9231BEB319700C5D145 /* valkrie-damage-13.lpc in Resources */,
 				CD10F9001BEB319700C5D145 /* needs-food-badly.lpc in Resources */,
+				CD0BF6811BFFA90700747B7E /* ces.wav in Resources */,
 				CD10F9191BEB319700C5D145 /* this-treasure-chest-is-locked.lpc in Resources */,
 				CD10F8DC1BEB319700C5D145 /* elf-damage-5.lpc in Resources */,
 				CD10F9111BEB319700C5D145 /* stuart-congrats.lpc in Resources */,
