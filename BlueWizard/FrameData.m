@@ -11,10 +11,19 @@
 @property (nonatomic) BOOL repeat;
 @property (nonatomic, strong) NSDictionary *parameters;
 @property (nonatomic, strong) NSDictionary *translatedParameters;
+@property (nonatomic, getter=isStopFrame) BOOL stopFrame;
 
 @end
 
 @implementation FrameData
+
++(FrameData *)stopFrame {
+    Reflector *reflector = [[Reflector alloc] init];
+    reflector.rms = [CodingTable rms][kStopFrameIndex];
+    FrameData *frameData = [[self alloc] initWithReflector:reflector pitch:0 repeat:NO];
+    frameData.stopFrame = YES;
+    return frameData;
+}
 
 -(instancetype)initWithReflector:(Reflector *)reflector
                            pitch:(NSUInteger)pitch
@@ -57,6 +66,9 @@
         parameters[kParameterRepeat] = [self parameterizedValueForRepeat:self.repeat];
         parameters[kParameterPitch]  = [self parameterizedValueForPitch:self.pitch translate:translate];
         
+        if (self.stopFrame) {
+            __unused int x = 0;
+        }
         if (![parameters[kParameterRepeat] boolValue]) {
             NSDictionary *ks = [self kParametersFrom:1 to:4 translate:translate];
             [parameters addEntriesFromDictionary:ks];
@@ -161,7 +173,7 @@
 -(NSDictionary *)kParametersFrom:(NSUInteger)from
                               to:(NSUInteger)to
                        translate:(BOOL)translate {
-    
+    if (self.isStopFrame) return nil;
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:to - from];
     for (NSUInteger k = from; k <= to; k++) {
         NSString *key = [self parameterKeyForK:k];
