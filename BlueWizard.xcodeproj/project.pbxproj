@@ -12,7 +12,6 @@
 		CD2570921E230A2900637C34 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CD2570911E230A2900637C34 /* Credits.rtf */; };
 		CD3B09141AAE416F00D54399 /* PitchEstimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3B09131AAE416F00D54399 /* PitchEstimator.m */; };
 		CD4663061BA52750009835D1 /* LargeWaveformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4663051BA52750009835D1 /* LargeWaveformViewController.m */; };
-		CD46630F1BA57331009835D1 /* ReflectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD46630E1BA57331009835D1 /* ReflectorTests.m */; };
 		CD563B5E1AA16872001880B6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD563B5B1AA16872001880B6 /* AudioToolbox.framework */; };
 		CD563B5F1AA16872001880B6 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD563B5C1AA16872001880B6 /* AudioUnit.framework */; };
 		CD563B601AA16872001880B6 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD563B5D1AA16872001880B6 /* CoreAudio.framework */; };
@@ -60,6 +59,7 @@
 		CDBF22DD1A99C917001E25AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBF22DC1A99C917001E25AB /* main.m */; };
 		CDBF22E01A99C917001E25AB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBF22DF1A99C917001E25AB /* ViewController.m */; };
 		CDBF22E51A99C917001E25AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDBF22E31A99C917001E25AB /* Main.storyboard */; };
+		CDC5A1F11E88E207000BFC66 /* HexFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC5A1F01E88E207000BFC66 /* HexFormatter.m */; };
 		CDFBCEC41AD0C85800E9A893 /* TimeMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFBCEC31AD0C85800E9A893 /* TimeMachine.m */; };
 /* End PBXBuildFile section */
 
@@ -84,7 +84,6 @@
 		CD3B09131AAE416F00D54399 /* PitchEstimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PitchEstimator.m; sourceTree = "<group>"; };
 		CD4663041BA52750009835D1 /* LargeWaveformViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargeWaveformViewController.h; sourceTree = "<group>"; };
 		CD4663051BA52750009835D1 /* LargeWaveformViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargeWaveformViewController.m; sourceTree = "<group>"; };
-		CD46630E1BA57331009835D1 /* ReflectorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReflectorTests.m; sourceTree = "<group>"; };
 		CD4AC00F1AB1621400E57489 /* NotificationNames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationNames.h; sourceTree = "<group>"; };
 		CD563B5B1AA16872001880B6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		CD563B5C1AA16872001880B6 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
@@ -169,6 +168,8 @@
 		CDBF22E41A99C917001E25AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CDBF22EA1A99C917001E25AB /* BlueWizardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlueWizardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBF22EF1A99C917001E25AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CDC5A1EF1E88E207000BFC66 /* HexFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexFormatter.h; sourceTree = "<group>"; };
+		CDC5A1F01E88E207000BFC66 /* HexFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexFormatter.m; sourceTree = "<group>"; };
 		CDFBCEC21AD0C85800E9A893 /* TimeMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeMachine.h; sourceTree = "<group>"; };
 		CDFBCEC31AD0C85800E9A893 /* TimeMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeMachine.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -315,6 +316,8 @@
 				CD79FAA21A9B1B47008DE994 /* NibbleBitReverser.m */,
 				CD79FAAB1A9BD62C008DE994 /* NibbleSwitcher.h */,
 				CD79FAAC1A9BD62C008DE994 /* NibbleSwitcher.m */,
+				CDC5A1EF1E88E207000BFC66 /* HexFormatter.h */,
+				CDC5A1F01E88E207000BFC66 /* HexFormatter.m */,
 			);
 			name = BitPacker;
 			sourceTree = "<group>";
@@ -379,7 +382,6 @@
 				CD79FA9F1A9B1205008DE994 /* HexConverterTests.m */,
 				CD79FAA41A9B1B5D008DE994 /* NibbleBitReverserTests.m */,
 				CD79FAAE1A9BD643008DE994 /* NibbleSwitcherTests.m */,
-				CD46630E1BA57331009835D1 /* ReflectorTests.m */,
 				CD7626C31AA860F0001E0A9E /* RMSNormalizerTests.m */,
 				CD7626BE1AA7052E001E0A9E /* SegmenterTests.m */,
 				CDBF22EE1A99C917001E25AB /* Supporting Files */,
@@ -542,6 +544,7 @@
 				CDBA9F7C1BA086A50025D497 /* tms5220.cpp in Sources */,
 				CD79FAAD1A9BD62C008DE994 /* NibbleSwitcher.m in Sources */,
 				CD76269D1AA454E8001E0A9E /* ClosestValueFinder.m in Sources */,
+				CDC5A1F11E88E207000BFC66 /* HexFormatter.m in Sources */,
 				CDA1F7361A9AF2120011B4B5 /* FrameDataBinaryEncoder.m in Sources */,
 				CDBF22E01A99C917001E25AB /* ViewController.m in Sources */,
 				CD76269A1AA43ABB001E0A9E /* HammingWindow.m in Sources */,
@@ -588,7 +591,6 @@
 				CD7731171A9AEB04006155F0 /* BitPackerTests.m in Sources */,
 				CD7626AD1AA66AA4001E0A9E /* BufferTests.m in Sources */,
 				CD79FAB41A9C56E1008DE994 /* HexByteBinaryEncoderTests.m in Sources */,
-				CD46630F1BA57331009835D1 /* ReflectorTests.m in Sources */,
 				CD7626B71AA6A7B5001E0A9E /* FrameDataTests.m in Sources */,
 				CD7626BF1AA7052E001E0A9E /* SegmenterTests.m in Sources */,
 				CD76269F1AA45500001E0A9E /* ClosestValueFinderTests.m in Sources */,

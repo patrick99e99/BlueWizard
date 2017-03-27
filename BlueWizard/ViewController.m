@@ -213,6 +213,18 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
     [self notifySettingsChanged];
 }
 
+- (IBAction)includeHexPrefixToggled:(id)sender {
+    BOOL state = [sender state];
+    [[self userSettings] setIncludeHexPrefix:state];
+    [self notifySettingsChanged];
+}
+
+- (IBAction)includeExplicitStopFrameToggled:(id)sender {
+    BOOL state = [sender state];
+    [[self userSettings] setIncludeExplicitStopFrame:state];
+    [self notifySettingsChanged];
+}
+
 - (IBAction)lowPassCutoffChanged:(NSTextField *)sender {
     [[self userSettings] setLowPassCutoff:[self numberFromString:[sender stringValue]]];
     [self notifySignalChanged];

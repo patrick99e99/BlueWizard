@@ -72,6 +72,8 @@
 
     [RMSNormalizer applyUnvoicedMultiplier:frames];
 
+    if ([[self userSettings] includeExplicitStopFrame]) [frames addObject:[FrameData stopFrame]];
+
     [self postNotificationsForFrames:[frames copy]];
 }
 

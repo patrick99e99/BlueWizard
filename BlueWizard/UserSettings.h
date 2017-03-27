@@ -29,6 +29,8 @@
 @property (nonatomic) BOOL normalizeUnvoicedRMS;
 @property (nonatomic) BOOL excitationFilterOnly;
 @property (nonatomic) BOOL skipLeadingSilence;
+@property (nonatomic) BOOL includeHexPrefix;
+@property (nonatomic) BOOL includeExplicitStopFrame;
 
 +(instancetype)sharedInstance;
 

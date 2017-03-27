@@ -7,8 +7,10 @@
 #import "CodingTable.h"
 #import "BitHelpers.h"
 #import "FrameData.h"
+#import "HexFormatter.h"
 
 static NSString * const kFrameDataParametersMethodName = @"parameters";
+static NSString * const kByteStreamDelimiter = @",";
 
 @implementation BitPacker
 
@@ -18,12 +20,13 @@ static NSString * const kFrameDataParametersMethodName = @"parameters";
     NSArray *hex      = [HexConverter process:binary];
     NSArray *reversed = [NibbleBitReverser process:hex];
     NSArray *switched = [NibbleSwitcher process:reversed];
-    
-    return [switched componentsJoinedByString:@","];
+    NSArray *output   = [HexFormatter process:switched];
+
+    return [output componentsJoinedByString:kByteStreamDelimiter];
 }
 
 +(NSArray *)unpack:(NSString *)packedData {
-    NSArray *bytes    = [packedData componentsSeparatedByString:@","];
+    NSArray *bytes    = [packedData componentsSeparatedByString:kByteStreamDelimiter];
     NSArray *switched = [NibbleSwitcher process:bytes];
     NSArray *reversed = [NibbleBitReverser process:switched];
     NSString *binary  = [[HexByteBinaryEncoder process:reversed] componentsJoinedByString:@""];
