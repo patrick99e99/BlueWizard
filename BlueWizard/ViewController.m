@@ -101,6 +101,14 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
     return [appDelegate hasInput];
 }
 
+-(NSNumber *)limitedForRMSInput:(NSTextField *)textField {
+    NSNumber *wrappedValue = [self numberFromString:[textField stringValue]];
+    NSInteger value = [wrappedValue integerValue];
+    if (value < 0) return @0;
+    if (value > 14) return @14;
+    return wrappedValue;
+}
+
 # pragma mark - Actions
 
 -(IBAction)stopOriginalWasClicked:(id)sender {
@@ -173,12 +181,16 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
 }
 
 - (IBAction)rmsLimitChanged:(NSTextField *)sender {
-    [[self userSettings] setRmsLimit:[self numberFromString:[sender stringValue]]];
+    NSNumber *limit = [self limitedForRMSInput:sender];
+    [[self userSettings] setRmsLimit:limit];
+    sender.stringValue = [limit stringValue];
     [self notifySettingsChanged];
 }
 
 - (IBAction)unvoicedRMSLimitChanged:(NSTextField *)sender {
-    [[self userSettings] setUnvoicedRMSLimit:[self numberFromString:[sender stringValue]]];
+    NSNumber *limit = [self limitedForRMSInput:sender];
+    [[self userSettings] setUnvoicedRMSLimit:limit];
+    sender.stringValue = [limit stringValue];
     [self notifySettingsChanged];
 }
 
