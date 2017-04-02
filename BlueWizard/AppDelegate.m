@@ -56,6 +56,10 @@
     return _sampler;
 }
 
+-(BOOL)hasInput {
+    return !!self.input;
+}
+
 # pragma mark - MenuItems
 
 - (IBAction)MenuFileOpenWasChosen:(id)sender {

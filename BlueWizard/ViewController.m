@@ -5,6 +5,7 @@
 #import "CodingTable.h"
 #import "FrameData.h"
 #import "LargeWaveformViewController.h"
+#import "AppDelegate.h"
 
 static NSString * const kFrameDataTableViewIdentifier = @"parameter";
 static NSString * const kFrameDataTableViewFrameKey = @"frame";
@@ -72,11 +73,16 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
 
 -(void)updateProcessedWaveformView:(NSNotification *)notification {
     self.processedWaveformView.buffer = notification.object;
-    self.startSample.stringValue = [[[self userSettings] startSample] stringValue];
-    self.endSample.stringValue = [[[self userSettings] endSample] stringValue];
+    NSNumber *startSample = [[self userSettings] startSample];
+    NSNumber *endSample   = [[self userSettings] endSample];
+    if (!startSample || !endSample) return;
+    self.startSample.stringValue = [startSample stringValue];
+    self.endSample.stringValue   = [endSample stringValue];
 }
 
 -(void)updateByteStreamView:(NSNotification *)notification {
+    [self.byteStreamTextView setTextColor:[NSColor blueColor]];
+
     self.byteStreamTextView.string = notification.object;
 }
 
@@ -88,6 +94,11 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
     _frameData = frameData;
     if (self.spinner.hidden) [self showSpinner];
     [self.frameDataTableView reloadData];
+}
+
+-(BOOL)hasInput {
+    AppDelegate *appDelegate = (AppDelegate *)[[NSApplication sharedApplication] delegate];
+    return [appDelegate hasInput];
 }
 
 # pragma mark - Actions
@@ -268,7 +279,7 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
 }
 
 -(void)notifySettingsChanged {
-    if (self.frameData) [self showSpinner];
+    if (self.frameData && [self hasInput]) [self showSpinner];
     [[NSNotificationCenter defaultCenter] postNotificationName:settingsChanged object:nil];
 }
 
@@ -305,6 +316,7 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
 -(void)showSpinner {
     self.spinner.hidden = NO;
     [self.spinner startAnimation:self];
+    self.byteStreamTextView.string = @"";
 }
 
 -(void)hideSpinner {

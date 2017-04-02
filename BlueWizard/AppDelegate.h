@@ -3,6 +3,7 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, SamplerDelegate>
 
+-(BOOL)hasInput;
 
 @end
 
