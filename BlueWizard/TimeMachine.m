@@ -19,6 +19,9 @@
         processed.samples[i] = buffer.samples[index];
         counter += ratio;
     }
+
+    [userSettings setStartSample:@0];
+    [userSettings setEndSample:[NSNumber numberWithUnsignedInteger:size]];
     return processed;
 }
 
