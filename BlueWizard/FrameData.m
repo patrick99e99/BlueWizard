@@ -12,6 +12,7 @@
 @property (nonatomic, strong) NSDictionary *parameters;
 @property (nonatomic, strong) NSDictionary *translatedParameters;
 @property (nonatomic, getter=isStopFrame) BOOL stopFrame;
+@property (nonatomic, getter=isForDecoding) BOOL decodeFrame;
 
 @end
 
@@ -19,9 +20,16 @@
 
 +(FrameData *)stopFrame {
     Reflector *reflector = [[Reflector alloc] init];
-    reflector.rms = [CodingTable rms][kStopFrameIndex];
+    reflector.rms        = [CodingTable rms][kStopFrameIndex];
     FrameData *frameData = [[self alloc] initWithReflector:reflector pitch:0 repeat:NO];
-    frameData.stopFrame = YES;
+    frameData.stopFrame  = YES;
+    return frameData;
+}
+
++(FrameData *)frameForDecoding {
+    Reflector *reflector  = [[Reflector alloc] init];
+    FrameData *frameData  = [[self alloc] initWithReflector:reflector pitch:0 repeat:NO];
+    frameData.decodeFrame = YES;
     return frameData;
 }
 
@@ -32,13 +40,6 @@
         self.reflector = reflector;
         self.pitch     = pitch;
         self.repeat    = repeat;
-    }
-    return self;
-}
-
--(instancetype)init {
-    if (self = [super init]) {
-        self.reflector = [[Reflector alloc] init];
     }
     return self;
 }
@@ -65,15 +66,13 @@
         
         parameters[kParameterRepeat] = [self parameterizedValueForRepeat:self.repeat];
         parameters[kParameterPitch]  = [self parameterizedValueForPitch:self.pitch translate:translate];
-        
-        if (self.stopFrame) {
-            __unused int x = 0;
-        }
+
         if (![parameters[kParameterRepeat] boolValue]) {
             NSDictionary *ks = [self kParametersFrom:1 to:4 translate:translate];
             [parameters addEntriesFromDictionary:ks];
             
-            if ([self.reflector isVoiced] && [parameters[kParameterPitch] unsignedIntegerValue]) {
+            if ([parameters[kParameterPitch] unsignedIntegerValue] &&
+                (self.isForDecoding || [self.reflector isVoiced])) {
                 ks = [self kParametersFrom:5 to:10 translate:translate];
                 [parameters addEntriesFromDictionary:ks];
             }
@@ -145,7 +144,15 @@
 }
 
 -(NSNumber *)parameterizedValueForPitch:(double)pitch translate:(BOOL)translate {
-    if ([self.reflector isUnvoiced] || !self.pitch) return @0;
+    if (self.isForDecoding) {
+        if (!pitch) return @0;
+        if ([[self userSettings] overridePitch]) {
+            NSUInteger index = [[[self userSettings] pitchValue] unsignedIntegerValue];;
+            return [NSNumber numberWithFloat:[CodingTable pitch][index]];
+        }
+    } else if ([self.reflector isUnvoiced] || !pitch) {
+        return @0;
+    }
 
     NSUInteger offset = [[self userSettings] overridePitch] ?
         0 : [[[self userSettings] pitchOffset] unsignedIntegerValue];

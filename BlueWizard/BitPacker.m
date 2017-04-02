@@ -40,7 +40,7 @@ static NSString * const kByteStreamDelimiter = @",";
     __block NSString *binaryString = binary;
     while (binaryString) {
         NSMutableArray *frameKeys = [NSMutableArray arrayWithCapacity:kParameterKeys];
-        FrameData *frame = [[FrameData alloc] init];
+        FrameData *frame = [FrameData frameForDecoding];
         [[CodingTable parameters] enumerateObjectsUsingBlock:^(NSString *parameter, NSUInteger idx, BOOL *stop) {
             NSUInteger parameterBits = bits[idx];
             NSUInteger length        = [binaryString length];
