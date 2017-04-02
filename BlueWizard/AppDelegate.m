@@ -63,14 +63,14 @@
 
 # pragma mark - MenuItems
 
--(IBAction)MenuFileOpenWasChosen:(id)sender {
+-(IBAction)menuFileOpenAudioWasChosen:(id)sender {
     NSOpenPanel* dialog = [NSOpenPanel openPanel];
     [dialog setCanChooseFiles:YES];
     [dialog setCanChooseDirectories:YES];
+    [dialog setAllowedFileTypes:@[@"aif", @"wav"]];
     
     if ([dialog runModal] == NSModalResponseOK) {
-        [dialog close];
-        for (NSURL* URL in [dialog URLs]) {
+        for (NSURL *URL in [dialog URLs]) {
             self.input = [[Input alloc] initWithURL:URL];
             [self processInputWithEQ:nil];
             [self processInputSignal];
@@ -78,15 +78,27 @@
     }
 }
 
--(IBAction)MenuFileSaveWasChosen:(id)sender {
+-(IBAction)menuFileOpenLPCWasChosen:(id)sender {
+    NSOpenPanel* dialog = [NSOpenPanel openPanel];
+    [dialog setCanChooseFiles:YES];
+    [dialog setCanChooseDirectories:YES];
+    
+    if ([dialog runModal] == NSModalResponseOK) {
+        for (NSURL *URL in [dialog URLs]) {
+            NSData *myData = [NSData dataWithContentsOfURL:URL];
+            NSString *byteStream = [[NSString alloc] initWithData:myData encoding:NSUTF8StringEncoding];
+            [self processFromByteStream:byteStream];
+        }
+    }
+}
+
+-(IBAction)menuFileSaveWasChosen:(id)sender {
     NSSavePanel *dialog = [NSSavePanel savePanel];
     [dialog setExtensionHidden:NO];
     [dialog setAllowsOtherFileTypes:NO];
     [dialog setAllowedFileTypes:@[@"aif"]];
-    NSInteger result = [dialog runModal];
 
-    if (result == NSModalResponseOK) {
-        [dialog close];
+    if ([dialog runModal] == NSModalResponseOK) {
         [Output createAIFFileFrom:self.buffer URL:[dialog URL]];
     }
 }
@@ -122,8 +134,14 @@
 }
 
 -(void)byteStreamChanged:(NSNotification *)notification {
-    NSArray *frames = [BitPacker unpack:notification.object];
+    [self processFromByteStream:notification.object];
+}
+
+-(void)processFromByteStream:(NSString *)byteStream {
+    NSArray *frames = [BitPacker unpack:byteStream];
     [self postNotificationForFrames:frames];
+    self.input = nil;
+    [[NSNotificationCenter defaultCenter] postNotificationName:inputSignalReceived object:nil];
 }
 
 -(void)frameWasEdited:(NSNotification *)notification {

@@ -60,12 +60,17 @@
                                     <items>
                                         <menuItem title="Open 16-bit 8khz .wav or .aif" keyEquivalent="o" id="IAo-SY-fd9">
                                             <connections>
-                                                <action selector="MenuFileOpenWasChosen:" target="Voe-Tx-rLC" id="Be8-yL-Sq6"/>
+                                                <action selector="menuFileOpenAudioWasChosen:" target="Voe-Tx-rLC" id="UC4-MN-U3P"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Open LPC Byte Stream" keyEquivalent="l" id="U10-vq-iTy">
+                                            <connections>
+                                                <action selector="menuFileOpenLPCWasChosen:" target="Voe-Tx-rLC" id="S1P-T0-74q"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Save TMS5220 Output Audio" keyEquivalent="s" id="QdD-gI-l7X">
                                             <connections>
-                                                <action selector="MenuFileSaveWasChosen:" target="Voe-Tx-rLC" id="Fp9-cg-fDc"/>
+                                                <action selector="menuFileSaveWasChosen:" target="Voe-Tx-rLC" id="xkv-cP-7bq"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
@@ -657,7 +662,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="gVt-bC-xqH" customClass="PlayheadView">
-                                        <rect key="frame" x="-7" y="0.0" width="5" height="96"/>
+                                        <rect key="frame" x="-7" y="0.0" width="4" height="96"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     </box>
                                 </subviews>
