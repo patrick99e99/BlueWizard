@@ -3,6 +3,6 @@
 @class Buffer;
 @interface Output : NSObject
 
-+(void)save:(Buffer *)buffer;
++(void)createAIFFileFrom:(Buffer *)buffer URL:(NSURL *)URL;
 
 @end

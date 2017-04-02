@@ -7,16 +7,6 @@
 
 @implementation Output
 
-+(void)save:(Buffer *)buffer {
-    NSSavePanel *save = [NSSavePanel savePanel];
-    
-    NSInteger result = [save runModal];
-    
-    if (result == NSModalResponseOK) {
-        [self createAIFFileFrom:buffer URL:[save URL]];
-    }
-}
-
 +(void)createAIFFileFrom:(Buffer *)buffer URL:(NSURL *)URL {
     AudioStreamBasicDescription asbd = {0};
     

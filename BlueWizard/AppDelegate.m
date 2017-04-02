@@ -47,6 +47,7 @@
 
 -(void)applicationWillTerminate:(NSNotification *)aNotification {
     [self.sampler stop];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(Sampler *)sampler {
@@ -62,17 +63,31 @@
 
 # pragma mark - MenuItems
 
-- (IBAction)MenuFileOpenWasChosen:(id)sender {
+-(IBAction)MenuFileOpenWasChosen:(id)sender {
     NSOpenPanel* dialog = [NSOpenPanel openPanel];
     [dialog setCanChooseFiles:YES];
     [dialog setCanChooseDirectories:YES];
     
     if ([dialog runModal] == NSModalResponseOK) {
+        [dialog close];
         for (NSURL* URL in [dialog URLs]) {
             self.input = [[Input alloc] initWithURL:URL];
             [self processInputWithEQ:nil];
             [self processInputSignal];
         }
+    }
+}
+
+-(IBAction)MenuFileSaveWasChosen:(id)sender {
+    NSSavePanel *dialog = [NSSavePanel savePanel];
+    [dialog setExtensionHidden:NO];
+    [dialog setAllowsOtherFileTypes:NO];
+    [dialog setAllowedFileTypes:@[@"aif"]];
+    NSInteger result = [dialog runModal];
+
+    if (result == NSModalResponseOK) {
+        [dialog close];
+        [Output createAIFFileFrom:self.buffer URL:[dialog URL]];
     }
 }
 
