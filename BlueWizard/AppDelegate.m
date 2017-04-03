@@ -17,9 +17,9 @@
 
 static NSString * const kExtensionBIN = @"bin";
 static NSString * const kExtensionLPC = @"lpc";
+static NSString * const kExtensionTXT = @"txt";
 static NSString * const kExtensionAIF = @"aif";
 static NSString * const kExtensionWAV = @"wav";
-static NSString * const kExtensionTXT = @"txt";
 
 @interface AppDelegate ()
 
@@ -30,6 +30,7 @@ static NSString * const kExtensionTXT = @"txt";
 @property (nonatomic, strong) Buffer *buffer;
 @property (nonatomic, strong) Buffer *bufferWIthEQ;
 @property (nonatomic, strong) NSString *byteStream;
+@property (nonatomic, strong) NSSavePanel *save;
 
 @end
 
@@ -90,6 +91,7 @@ static NSString * const kExtensionTXT = @"txt";
     NSOpenPanel* dialog = [NSOpenPanel openPanel];
     [dialog setCanChooseFiles:YES];
     [dialog setCanChooseDirectories:YES];
+    [dialog setAllowedFileTypes:@[kExtensionLPC, kExtensionBIN, kExtensionTXT]];
     if ([dialog runModal] == NSModalResponseOK) {
         for (NSURL *URL in [dialog URLs]) {
             NSData *data = [NSData dataWithContentsOfURL:URL];
@@ -113,10 +115,29 @@ static NSString * const kExtensionTXT = @"txt";
 
 -(IBAction)menuFileSaveLPCWasChosen:(id)sender {
     NSSavePanel *dialog = [NSSavePanel savePanel];
+    self.save = dialog;
+
     [dialog setExtensionHidden:NO];
     [dialog setAllowsOtherFileTypes:NO];
-    [dialog setAllowedFileTypes:@[kExtensionLPC, kExtensionTXT, kExtensionBIN]];
+    [dialog setAllowedFileTypes:@[kExtensionLPC, kExtensionBIN]];
+
+    NSArray *buttonItems   = @[@"Text (*.lpc)", @"Binary (*.bin)"];
+    NSView  *accessoryView = [[NSView alloc] initWithFrame:NSMakeRect(0.0, 0.0, 200, 32.0)];
+    NSTextField *label = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 60, 22)];
+    [label setEditable:NO];
+    [label setStringValue:@"Format:"];
+    [label setBordered:NO];
+    [label setBezeled:NO];
+    [label setDrawsBackground:NO];
     
+    NSPopUpButton *popupButton = [[NSPopUpButton alloc] initWithFrame:NSMakeRect(50.0, 2, 140, 22.0) pullsDown:NO];
+    [popupButton addItemsWithTitles:buttonItems];
+    [popupButton setAction:@selector(selectFormat:)];
+    [popupButton setTarget:self];
+    [accessoryView addSubview:label];
+    [accessoryView addSubview:popupButton];
+
+    [dialog setAccessoryView:accessoryView];
     if ([dialog runModal] == NSModalResponseOK) {
         NSURL *url = [dialog URL];
         NSError *error;
@@ -131,6 +152,18 @@ static NSString * const kExtensionTXT = @"txt";
 
         if (error) NSLog(@"%@", [error description]);
     }
+}
+
+-(void)selectFormat:(id)sender {
+    NSPopUpButton *button            = (NSPopUpButton *)sender;
+    NSInteger selectedItemIndex      = [button indexOfSelectedItem];
+    NSString *nameFieldString        = [self.save nameFieldStringValue];
+    NSString *trimmedNameFieldString = [nameFieldString stringByDeletingPathExtension];
+    NSString *extension = selectedItemIndex ? kExtensionBIN : kExtensionLPC;
+
+    NSString *nameFieldStringWithExt = [NSString stringWithFormat:@"%@.%@", trimmedNameFieldString, extension];
+    [self.save setNameFieldStringValue:nameFieldStringWithExt];
+    [self.save setAllowedFileTypes:@[extension]];
 }
 
 -(void)processInputWithEQ:(NSNotification *)notification {
