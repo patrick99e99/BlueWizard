@@ -13,6 +13,13 @@
 #import "Filterer.h"
 #import "UserSettings.h"
 #import "TimeMachine.h"
+#import "HexConverter.h"
+
+static NSString * const kExtensionBIN = @"bin";
+static NSString * const kExtensionLPC = @"lpc";
+static NSString * const kExtensionAIF = @"aif";
+static NSString * const kExtensionWAV = @"wav";
+static NSString * const kExtensionTXT = @"txt";
 
 @interface AppDelegate ()
 
@@ -22,6 +29,7 @@
 @property (nonatomic, strong) Processor *processor;
 @property (nonatomic, strong) Buffer *buffer;
 @property (nonatomic, strong) Buffer *bufferWIthEQ;
+@property (nonatomic, strong) NSString *byteStream;
 
 @end
 
@@ -67,7 +75,7 @@
     NSOpenPanel* dialog = [NSOpenPanel openPanel];
     [dialog setCanChooseFiles:YES];
     [dialog setCanChooseDirectories:YES];
-    [dialog setAllowedFileTypes:@[@"aif", @"wav"]];
+    [dialog setAllowedFileTypes:@[kExtensionAIF, kExtensionWAV]];
     
     if ([dialog runModal] == NSModalResponseOK) {
         for (NSURL *URL in [dialog URLs]) {
@@ -82,24 +90,46 @@
     NSOpenPanel* dialog = [NSOpenPanel openPanel];
     [dialog setCanChooseFiles:YES];
     [dialog setCanChooseDirectories:YES];
-    
     if ([dialog runModal] == NSModalResponseOK) {
         for (NSURL *URL in [dialog URLs]) {
-            NSData *myData = [NSData dataWithContentsOfURL:URL];
-            NSString *byteStream = [[NSString alloc] initWithData:myData encoding:NSUTF8StringEncoding];
+            NSData *data = [NSData dataWithContentsOfURL:URL];
+            NSString *byteStream = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            if (!byteStream) byteStream = [HexConverter stringFromData:data];
             [self processFromByteStream:byteStream];
         }
     }
 }
 
--(IBAction)menuFileSaveWasChosen:(id)sender {
+-(IBAction)menuFileSaveAudioWasChosen:(id)sender {
     NSSavePanel *dialog = [NSSavePanel savePanel];
     [dialog setExtensionHidden:NO];
     [dialog setAllowsOtherFileTypes:NO];
-    [dialog setAllowedFileTypes:@[@"aif"]];
+    [dialog setAllowedFileTypes:@[kExtensionAIF]];
 
     if ([dialog runModal] == NSModalResponseOK) {
         [Output createAIFFileFrom:self.buffer URL:[dialog URL]];
+    }
+}
+
+-(IBAction)menuFileSaveLPCWasChosen:(id)sender {
+    NSSavePanel *dialog = [NSSavePanel savePanel];
+    [dialog setExtensionHidden:NO];
+    [dialog setAllowsOtherFileTypes:NO];
+    [dialog setAllowedFileTypes:@[kExtensionLPC, kExtensionTXT, kExtensionBIN]];
+    
+    if ([dialog runModal] == NSModalResponseOK) {
+        NSURL *url = [dialog URL];
+        NSError *error;
+
+        if ([[[url pathExtension] lowercaseString] isEqualToString:kExtensionBIN]) {
+            NSString *withoutDelimiter = [[self.byteStream componentsSeparatedByString:[BitPacker delimiter]] componentsJoinedByString:@""];
+            NSData *byteStreamData = [HexConverter dataFromString:withoutDelimiter];
+            [byteStreamData writeToURL:url options:NSDataWritingAtomic error:&error];
+        } else {
+            [self.byteStream writeToURL:url atomically:YES encoding:NSUTF8StringEncoding error:&error];
+        }
+
+        if (error) NSLog(@"%@", [error description]);
     }
 }
 
@@ -138,6 +168,7 @@
 }
 
 -(void)processFromByteStream:(NSString *)byteStream {
+    self.byteStream = byteStream;
     NSArray *frames = [BitPacker unpack:byteStream];
     [self postNotificationForFrames:frames];
     self.input = nil;

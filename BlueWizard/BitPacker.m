@@ -14,6 +14,10 @@ static NSString * const kByteStreamDelimiter = @",";
 
 @implementation BitPacker
 
++(NSString *)delimiter {
+    return kByteStreamDelimiter;
+}
+
 +(NSString *)pack:(NSArray *)frameData {
     NSArray *parametersList = [frameData valueForKey:kFrameDataParametersMethodName];
     NSArray *binary   = [FrameDataBinaryEncoder process:parametersList];

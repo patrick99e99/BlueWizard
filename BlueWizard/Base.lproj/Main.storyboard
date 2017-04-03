@@ -63,14 +63,21 @@
                                                 <action selector="menuFileOpenAudioWasChosen:" target="Voe-Tx-rLC" id="UC4-MN-U3P"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Open LPC Byte Stream" keyEquivalent="l" id="U10-vq-iTy">
+                                        <menuItem title="Open LPC Byte Stream" keyEquivalent="o" id="U10-vq-iTy">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
                                                 <action selector="menuFileOpenLPCWasChosen:" target="Voe-Tx-rLC" id="S1P-T0-74q"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Save TMS5220 Output Audio" keyEquivalent="s" id="QdD-gI-l7X">
                                             <connections>
-                                                <action selector="menuFileSaveWasChosen:" target="Voe-Tx-rLC" id="xkv-cP-7bq"/>
+                                                <action selector="menuFileSaveAudioWasChosen:" target="Voe-Tx-rLC" id="fSK-Wg-nUY"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Save LPC Byte Stream" keyEquivalent="s" id="9fK-2a-Xki">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="menuFileSaveLPCWasChosen:" target="Voe-Tx-rLC" id="0k9-Gy-7Wt"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
