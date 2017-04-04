@@ -44,7 +44,7 @@ static NSString * const kExtensionWAV = @"wav";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopWasClicked:) name:stopProcessedWasClicked object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bufferGenerated:) name:bufferGenerated object:nil];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(byteStreamGenerated:) name:byteStreamGenerated object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(byteStreamChanged:) name:byteStreamChanged object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(settingsChanged:) name:settingsChanged object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processInputWithEQ:) name:speedChanged object:nil];
@@ -243,6 +243,10 @@ static NSString * const kExtensionWAV = @"wav";
 
 -(void)bufferGenerated:(NSNotification *)notification {
     self.buffer = (Buffer *)notification.object;
+}
+
+-(void)byteStreamGenerated:(NSNotification *)notification {
+    self.byteStream = (NSString *)notification.object;
 }
 
 # pragma mark - SamplerDelegate
