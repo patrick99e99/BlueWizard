@@ -17,14 +17,20 @@
 
 -(void)setSampler:(Sampler *)sampler {
     _sampler = sampler;
+    if (!sampler) {
+        [self.timer invalidate];
+        self.timer = nil;
+        return;
+    }
+
     if (self.timer) return;
-    self.timer = [NSTimer timerWithTimeInterval:1.0 / 60.0 target:self selector:@selector(updatePosition) userInfo:nil repeats:1];
+    self.timer = [NSTimer timerWithTimeInterval:1.0 / 60.0 target:self selector:@selector(updatePosition) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop]addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
 -(void)drawRect:(NSRect)dirtyRect {
-    [[NSColor redColor] setFill];
-    NSRectFill(dirtyRect);
+    [[NSColor purpleColor] setFill];
+    NSRectFill(NSMakeRect(dirtyRect.origin.x, dirtyRect.origin.y, 2.0f, dirtyRect.size.height));
     [super drawRect:dirtyRect];
 }
 

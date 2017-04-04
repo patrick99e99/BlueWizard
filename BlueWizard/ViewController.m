@@ -87,12 +87,12 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
 }
 
 -(void)frameDataGenerated:(NSNotification *)notification {
+    if (self.spinner.hidden) [self showSpinner];
     self.frameData = notification.object;
 }
 
 -(void)setFrameData:(NSArray *)frameData {
     _frameData = frameData;
-    if (self.spinner.hidden) [self showSpinner];
     [self.frameDataTableView reloadData];
 }
 
@@ -116,7 +116,7 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
 }
 
 -(IBAction)playOriginalWasClicked:(id)sender {
-    [[NSNotificationCenter defaultCenter] postNotificationName:playOriginalWasClicked object:self.playheadView];
+    [[NSNotificationCenter defaultCenter] postNotificationName:playOriginalWasClicked object:@[self.inputPlayheadView, self.OutputPlayheadView]];
 }
 
 -(IBAction)stopProcessedWasClicked:(id)sender {
@@ -124,7 +124,7 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
 }
 
 -(IBAction)playProcessedWasClicked:(id)sender {
-    [[NSNotificationCenter defaultCenter] postNotificationName:playProcessedWasClicked object:self.playheadView];
+    [[NSNotificationCenter defaultCenter] postNotificationName:playProcessedWasClicked object:@[self.inputPlayheadView, self.OutputPlayheadView]];
 }
 
 -(IBAction)minFrequencyChanged:(NSTextField *)sender {
@@ -308,6 +308,7 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
 }
 
 -(IBAction)translateParametersToggled:(NSButton *)sender {
+    if (self.spinner.hidden) [self showSpinnerWithClearByteStream:NO];
     self.frameData = self.frameData;
 }
 
@@ -326,9 +327,13 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
 }
 
 -(void)showSpinner {
+    [self showSpinnerWithClearByteStream:YES];
+}
+
+-(void)showSpinnerWithClearByteStream:(BOOL)clearByteStream {
     self.spinner.hidden = NO;
     [self.spinner startAnimation:self];
-    self.byteStreamTextView.string = @"";
+    if (clearByteStream) self.byteStreamTextView.string = @"";
 }
 
 -(void)hideSpinner {
@@ -355,7 +360,7 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
         result.identifier  = kFrameDataTableViewIdentifier;
         result.target = self;
         result.action = @selector(didEditTableViewCell:);
-        result.objectValue = @"foo";
+        result.objectValue = @"";
     }
 
     FrameData *frameData = [self.frameData objectAtIndex:row];

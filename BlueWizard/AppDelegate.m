@@ -184,10 +184,18 @@ static NSString * const kExtensionWAV = @"wav";
 }
 
 -(void)playOriginalWasClicked:(NSNotification *)notification {
+    NSArray *playheads = notification.object;
+    [[playheads firstObject] setSampler:self.sampler];
+    [[playheads lastObject] setSampler:nil];
+
     [self.sampler stream:self.bufferWIthEQ];
 }
 
 -(void)playProcessedWasClicked:(NSNotification *)notification {
+    NSArray *playheads = notification.object;
+    [[playheads firstObject] setSampler:nil];
+    [[playheads lastObject] setSampler:self.sampler];
+
     [self.sampler stream:self.buffer];
 }
 

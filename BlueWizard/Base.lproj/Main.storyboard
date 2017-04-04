@@ -459,7 +459,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Vg2-No-nH3" customClass="PlayheadView">
-                                        <rect key="frame" x="0.0" y="0.0" width="5" height="96"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="4" height="96"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     </box>
                                 </subviews>
@@ -669,7 +669,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="gVt-bC-xqH" customClass="PlayheadView">
-                                        <rect key="frame" x="-7" y="0.0" width="4" height="96"/>
+                                        <rect key="frame" x="-7" y="0.0" width="5" height="96"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     </box>
                                 </subviews>
@@ -773,7 +773,7 @@
                                             <size key="intercellSpacing" width="0.0" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <tableViewGridLines key="gridStyleMask" vertical="YES" horizontal="YES"/>
-                                            <color key="gridColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="gridColor" red="0.16603481543723614" green="0.15786786856355803" blue="0.38144224476439792" alpha="1" colorSpace="calibratedRGB"/>
                                             <tableColumns>
                                                 <tableColumn identifier="frame" width="50" minWidth="50" maxWidth="50" id="vnR-6T-8US">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Frame">
@@ -1379,6 +1379,7 @@
                     </view>
                     <connections>
                         <outlet property="FrameDataTable" destination="eQM-1M-xMK" id="4HD-r3-ZE6"/>
+                        <outlet property="OutputPlayheadView" destination="gVt-bC-xqH" id="GuA-pT-UtN"/>
                         <outlet property="byteStreamTextView" destination="ksB-zT-mAO" id="hEC-71-uGa"/>
                         <outlet property="endSample" destination="V8Q-94-wds" id="xqN-Lo-vwN"/>
                         <outlet property="frameDataTable" destination="eQM-1M-xMK" id="hRk-VH-WvX"/>
@@ -1386,6 +1387,7 @@
                         <outlet property="frameRateTextfield" destination="5Q5-Qq-tgW" id="wX9-Q1-mQu"/>
                         <outlet property="gainSlider" destination="uvZ-nd-wtz" id="Who-1L-DYs"/>
                         <outlet property="highPassCutoffTextField" destination="Gt4-Ob-AAo" id="OlZ-cM-IQc"/>
+                        <outlet property="inputPlayheadView" destination="Vg2-No-nH3" id="1rP-WS-AMA"/>
                         <outlet property="inputWaveformView" destination="nkQ-g9-MPc" id="x2S-91-qQA"/>
                         <outlet property="lowPassCutoffTextField" destination="Lwe-mo-ejE" id="hZZ-ig-qNX"/>
                         <outlet property="maxFrequencyTextfield" destination="0dH-L8-jNs" id="AJe-44-wU5"/>
@@ -1395,7 +1397,6 @@
                         <outlet property="overridePitchButton" destination="iFs-Nr-6VW" id="C8p-Wi-XHx"/>
                         <outlet property="pitchOffsetTextField" destination="0FF-x5-DgY" id="DZ9-Ev-y30"/>
                         <outlet property="pitchValueTextfield" destination="CK5-ij-8qy" id="Fa0-0G-jjU"/>
-                        <outlet property="playheadView" destination="Vg2-No-nH3" id="Frj-qJ-A37"/>
                         <outlet property="preEmphasisAlphaTextfield" destination="NSp-NI-WBO" id="TUm-hN-mAO"/>
                         <outlet property="preEmphasisButton" destination="6XT-4a-6ai" id="B25-N4-oIT"/>
                         <outlet property="processedWaveformView" destination="KYD-IG-k3P" id="lak-S2-CCr"/>
