@@ -78,6 +78,10 @@ static int bits[] = {
     return 1 << bits[2];
 }
 
++(NSUInteger)pitchBinLength {
+    return 64;
+}
+
 +(float *)kBinFor:(NSUInteger)k {
     switch (k) {
         case 1:

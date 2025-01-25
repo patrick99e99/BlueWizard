@@ -310,6 +310,7 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
 -(IBAction)translateParametersToggled:(NSButton *)sender {
     if (self.spinner.hidden) [self showSpinnerWithClearByteStream:NO];
     self.frameData = self.frameData;
+    [[self userSettings] setTranslateParameters:[self.translateParametersCheckbox state]];
 }
 
 -(BOOL)translate {
@@ -357,6 +358,7 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
         result.font = [NSFont systemFontOfSize:8];
         result.bezeled = NO;
         result.backgroundColor = [NSColor clearColor];
+        result.textColor = [NSColor whiteColor];
         result.identifier  = kFrameDataTableViewIdentifier;
         result.target = self;
         result.action = @selector(didEditTableViewCell:);

@@ -14,6 +14,7 @@
 #import "NotificationNames.h"
 #import "RMSNormalizer.h"
 #import "Filterer.h"
+#import <AppKit/AppKit.h>
 
 @interface Processor ()
 @property (nonatomic, strong) Buffer *buffer;
@@ -35,7 +36,7 @@
         [PreEmphasizer processBuffer:mainBuffer];        
     }
     
-    short *pitchTable;
+    short *pitchTable = nil;
     NSNumber *wrappedPitch;
     if ([[self userSettings] overridePitch]) {
         wrappedPitch = [[self userSettings] pitchValue];
@@ -86,6 +87,17 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:byteStreamGenerated object:byteStream];
     
     NSArray *speechData = [SpeechDataReader speechDataFromString:byteStream];
+    NSMutableArray *hexStrings = [NSMutableArray arrayWithCapacity:[speechData count]];
+    
+    for (NSNumber *number in speechData) {
+        unsigned char byte = (unsigned char)[number unsignedCharValue];
+        NSString *hexString = [NSString stringWithFormat:@"%02x", byte];
+        [hexStrings addObject:hexString];
+    }
+
+    NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+    [pasteboard clearContents];
+    [pasteboard setString: [hexStrings componentsJoinedByString:@","] forType:NSPasteboardTypeString];
     self.buffer = [SpeechSynthesizer processSpeechData:speechData];
     [[NSNotificationCenter defaultCenter] postNotificationName:bufferGenerated object:self.buffer];
 }

@@ -31,6 +31,7 @@
 @property (nonatomic) BOOL skipLeadingSilence;
 @property (nonatomic) BOOL includeHexPrefix;
 @property (nonatomic) BOOL includeExplicitStopFrame;
+@property (nonatomic) BOOL translateParameters;
 
 +(instancetype)sharedInstance;
 

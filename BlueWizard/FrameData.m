@@ -94,8 +94,31 @@
         self.repeat = [value boolValue];
     } else if ([parameter isEqualToString:kParameterPitch]) {
         NSUInteger index = [value unsignedIntegerValue];
-        NSNumber *pitch = [NSNumber numberWithFloat:[CodingTable pitch][index]];
-        self.pitch = [pitch doubleValue];
+        NSNumber *wrappedPitch;
+        if ([[self userSettings] overridePitch]) {
+            if (index > 0) {
+                index = [[[self userSettings] pitchValue] unsignedIntegerValue];
+                NSUInteger length = [CodingTable pitchBinLength];
+                if (index >= length) {
+                    index = length - 1;
+                }
+            }
+        } else {
+            wrappedPitch = [NSNumber numberWithFloat:[CodingTable pitch][index]];
+            double offset = [[[self userSettings] pitchOffset] doubleValue];
+            if (offset != 0 && index != 0) {
+                index = [ClosestValueFinder indexFor:[wrappedPitch doubleValue] + offset
+                                               table:[CodingTable pitch]
+                                                size:[CodingTable pitchSize]];
+                wrappedPitch = nil;
+            }
+        }
+        
+        if (!wrappedPitch) {
+            wrappedPitch = [NSNumber numberWithFloat:[CodingTable pitch][index]];
+        }
+        
+        self.pitch = [wrappedPitch doubleValue];
     } else {
         NSUInteger bin = [[parameter substringFromIndex:1] integerValue];
         NSUInteger index = [value unsignedIntegerValue];

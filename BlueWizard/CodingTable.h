@@ -23,6 +23,7 @@ static NSUInteger const kStopFrameIndex  = 15;
 +(float *)pitch;
 +(float *)rms;
 +(float *)kBinFor:(NSUInteger)k;
++(NSUInteger)pitchBinLength;
 +(NSUInteger)pitchSize;
 +(NSUInteger)rmsSize;
 +(NSUInteger)kSizeFor:(NSUInteger)k;
