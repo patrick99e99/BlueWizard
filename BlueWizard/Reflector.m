@@ -15,7 +15,7 @@ static NSUInteger const kNumberOfKParameters = 11;
 +(instancetype)translateCoefficients:(double *)r
                      numberOfSamples:(NSUInteger)numberOfSamples {
 
-    // Leroux Guegen algorithm for finding K's
+    // Leroux Gueguen algorithm for finding K's
 
     double k[11] = {0};
     double b[11] = {0};
