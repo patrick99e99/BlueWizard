@@ -1,4 +1,6 @@
 BlueWizard.xcodeproj/project.xcworkspace/**
 BlueWizard.xcworkspace/**
-BlueWizard.xcodeproj/xcuserdata/**
+BlueWizard.xcodeproj/xcuserdata/*
+.DS_Store
+BlueWizard/.DS_Store
 Pods/**
