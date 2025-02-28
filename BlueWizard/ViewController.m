@@ -4,8 +4,8 @@
 #import "WaveformView.h"
 #import "CodingTable.h"
 #import "FrameData.h"
-#import "LargeWaveformViewController.h"
 #import "AppDelegate.h"
+#import "PlayheadView.h"
 
 static NSString * const kFrameDataTableViewIdentifier = @"parameter";
 static NSString * const kFrameDataTableViewFrameKey = @"frame";
@@ -32,14 +32,6 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
 -(void)setRepresentedObject:(id)representedObject {
     [super setRepresentedObject:representedObject];
     [self updateInputsToMatchUserSettings];
-}
-
-- (IBAction)inspectWasClicked:(id)sender {
-    NSStoryboard *storyBoard = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
-    self.waveformWindow = [storyBoard instantiateControllerWithIdentifier:@"Waveform"];
-    LargeWaveformViewController *viewController = (LargeWaveformViewController *)[[self.waveformWindow window] contentViewController];
-    viewController.waveformView.buffer = self.processedWaveformView.buffer;
-    [self.waveformWindow showWindow:self];
 }
 
 -(void)updateInputsToMatchUserSettings {
@@ -69,6 +61,7 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
 
 -(void)updateInputWaveformView:(NSNotification *)notification {
     self.inputWaveformView.buffer = notification.object;
+    self.inputPlayheadView.waveformView = self.inputWaveformView;
 }
 
 -(void)updateProcessedWaveformView:(NSNotification *)notification {
@@ -78,6 +71,7 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
     if (!startSample || !endSample) return;
     self.startSample.stringValue = [startSample stringValue];
     self.endSample.stringValue   = [endSample stringValue];
+    self.outputPlayheadView.waveformView = self.processedWaveformView;
 }
 
 -(void)updateByteStreamView:(NSNotification *)notification {
@@ -116,7 +110,7 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
 }
 
 -(IBAction)playOriginalWasClicked:(id)sender {
-    [[NSNotificationCenter defaultCenter] postNotificationName:playOriginalWasClicked object:@[self.inputPlayheadView, self.OutputPlayheadView]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:playOriginalWasClicked object:@[self.inputPlayheadView, self.outputPlayheadView]];
 }
 
 -(IBAction)stopProcessedWasClicked:(id)sender {
@@ -124,7 +118,7 @@ static NSString * const kFrameDataTableViewFrameKey = @"frame";
 }
 
 -(IBAction)playProcessedWasClicked:(id)sender {
-    [[NSNotificationCenter defaultCenter] postNotificationName:playProcessedWasClicked object:@[self.inputPlayheadView, self.OutputPlayheadView]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:playProcessedWasClicked object:@[self.inputPlayheadView, self.outputPlayheadView]];
 }
 
 -(IBAction)minFrequencyChanged:(NSTextField *)sender {

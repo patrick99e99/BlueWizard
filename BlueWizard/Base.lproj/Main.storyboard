@@ -402,59 +402,6 @@
             </objects>
             <point key="canvasLocation" x="75" y="233"/>
         </scene>
-        <!--Window Controller-->
-        <scene sceneID="JMt-OA-BQF">
-            <objects>
-                <windowController storyboardIdentifier="Waveform" id="lLU-C5-44A" sceneMemberID="viewController">
-                    <window key="window" title="TMS5220 Waveform Inspector" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="qIB-ZN-JPc">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="163" y="199" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
-                        <connections>
-                            <outlet property="delegate" destination="lLU-C5-44A" id="k9c-2t-ab0"/>
-                        </connections>
-                    </window>
-                    <connections>
-                        <segue destination="7qF-uR-pK9" kind="relationship" relationship="window.shadowedContentViewController" id="ym2-iS-edC"/>
-                    </connections>
-                </windowController>
-                <customObject id="8ji-e7-K9r" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1178" y="598"/>
-        </scene>
-        <!--Large Waveform View Controller-->
-        <scene sceneID="jc7-6X-p8M">
-            <objects>
-                <viewController id="7qF-uR-pK9" customClass="LargeWaveformViewController" sceneMemberID="viewController">
-                    <view key="view" id="n65-tL-O4Z">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="512"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ltf-mC-CJY">
-                                <rect key="frame" x="20" y="20" width="984" height="472"/>
-                                <subviews>
-                                    <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dun-yK-akS" customClass="WaveformView">
-                                        <rect key="frame" x="0.0" y="0.0" width="984" height="472"/>
-                                    </customView>
-                                </subviews>
-                                <visibilityPriorities>
-                                    <integer value="1000"/>
-                                </visibilityPriorities>
-                                <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
-                                </customSpacing>
-                            </stackView>
-                        </subviews>
-                    </view>
-                    <connections>
-                        <outlet property="waveformView" destination="Dun-yK-akS" id="bKG-SE-SxR"/>
-                    </connections>
-                </viewController>
-                <customObject id="Pui-YP-OlY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1466" y="1134"/>
-        </scene>
         <!--Process-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
@@ -1193,7 +1140,7 @@
                                 </textFieldCell>
                             </textField>
                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3NX-hr-pgc">
-                                <rect key="frame" x="407" y="392" width="122" height="25"/>
+                                <rect key="frame" x="407" y="392" width="122" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <sliderCell key="cell" alignment="left" maxValue="1" doubleValue="0.5" tickMarkPosition="above" numberOfTickMarks="1" sliderType="linear" id="HaK-YK-UZc"/>
                                 <connections>
@@ -1240,17 +1187,6 @@
                                     <action selector="speedSliderChanged:" target="XfG-lQ-9wD" id="Iwz-FN-KnQ"/>
                                 </connections>
                             </slider>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8GX-fF-W1u">
-                                <rect key="frame" x="842" y="552" width="86" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Inspect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="g7p-9a-KKN">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="inspectWasClicked:" target="XfG-lQ-9wD" id="6aX-8a-QTQ"/>
-                                </connections>
-                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="huM-KJ-gZW">
                                 <rect key="frame" x="533" y="418" width="37" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1273,29 +1209,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8MK-h6-n86">
-                                <rect key="frame" x="839" y="523" width="71" height="21"/>
-                                <subviews>
-                                    <textField verticalHuggingPriority="750" ambiguous="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zKo-sM-hqF">
-                                        <rect key="frame" x="0.0" y="0.0" width="71" height="21"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" alignment="right" title="0" placeholderString="20" drawsBackground="YES" id="IQB-Y5-iNh">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                        <connections>
-                                            <action selector="startSampleChanged:" target="XfG-lQ-9wD" id="Wwj-So-wbj"/>
-                                        </connections>
-                                    </textField>
-                                </subviews>
-                                <visibilityPriorities>
-                                    <integer value="1000"/>
-                                </visibilityPriorities>
-                                <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
-                                </customSpacing>
+                                <rect key="frame" x="839" y="530" width="144" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </stackView>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V8Q-94-wds">
-                                <rect key="frame" x="839" y="497" width="71" height="22"/>
+                                <rect key="frame" x="839" y="497" width="145" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" alignment="right" title="0" placeholderString="20" drawsBackground="YES" id="VQj-nr-RX5">
                                     <font key="font" metaFont="system"/>
@@ -1307,7 +1225,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LUf-ue-ZtO">
-                                <rect key="frame" x="745" y="523" width="88" height="17"/>
+                                <rect key="frame" x="745" y="525" width="88" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Start Sample:" id="WQz-ky-CZw">
                                     <font key="font" metaFont="system"/>
@@ -1316,7 +1234,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="moy-Vq-BLj">
-                                <rect key="frame" x="745" y="499" width="83" height="17"/>
+                                <rect key="frame" x="745" y="497" width="83" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="End Sample:" id="gXJ-Fa-xQV">
                                     <font key="font" metaFont="system"/>
@@ -1368,6 +1286,18 @@
                                     <action selector="excitationFilterOnlyToggled:" target="XfG-lQ-9wD" id="jVC-4e-GuO"/>
                                 </connections>
                             </button>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zKo-sM-hqF">
+                                <rect key="frame" x="839" y="525" width="144" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" alignment="right" title="0" placeholderString="20" drawsBackground="YES" id="IQB-Y5-iNh">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="startSampleChanged:" target="XfG-lQ-9wD" id="Wwj-So-wbj"/>
+                                </connections>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>

@@ -5,7 +5,7 @@
 @interface ViewController : NSViewController <NSTextViewDelegate, NSTableViewDataSource, NSTableViewDelegate>
 
 @property (weak) IBOutlet PlayheadView *inputPlayheadView;
-@property (weak) IBOutlet PlayheadView *OutputPlayheadView;
+@property (weak) IBOutlet PlayheadView *outputPlayheadView;
 
 @property (weak) IBOutlet WaveformView *inputWaveformView;
 @property (weak) IBOutlet WaveformView *processedWaveformView;

@@ -1,5 +1,6 @@
 #import "PlayheadView.h"
 #import "Sampler.h"
+#import "WaveformView.h"
 
 @interface PlayheadView ()
 @property (nonatomic) float containerWidth;
@@ -37,6 +38,7 @@
 -(void)updatePosition {
     float position = self.containerWidth / self.sampler.bufferSize * self.sampler.index;
     [self setFrameOrigin:NSMakePoint(position, 0)];
+    [self.waveformView setNeedsDisplay:YES];
 }
 
 @end

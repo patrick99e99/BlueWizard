@@ -10,7 +10,6 @@
 		CD1680651AC77F7E009920C3 /* Filterer.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1680621AC77F7E009920C3 /* Filterer.m */; };
 		CD2570921E230A2900637C34 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CD2570911E230A2900637C34 /* Credits.rtf */; };
 		CD3B09141AAE416F00D54399 /* PitchEstimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3B09131AAE416F00D54399 /* PitchEstimator.m */; };
-		CD4663061BA52750009835D1 /* LargeWaveformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4663051BA52750009835D1 /* LargeWaveformViewController.m */; };
 		CD563B5E1AA16872001880B6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD563B5B1AA16872001880B6 /* AudioToolbox.framework */; };
 		CD563B5F1AA16872001880B6 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD563B5C1AA16872001880B6 /* AudioUnit.framework */; };
 		CD563B601AA16872001880B6 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD563B5D1AA16872001880B6 /* CoreAudio.framework */; };
@@ -60,8 +59,6 @@
 		CD2570911E230A2900637C34 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		CD3B09121AAE416F00D54399 /* PitchEstimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PitchEstimator.h; sourceTree = "<group>"; };
 		CD3B09131AAE416F00D54399 /* PitchEstimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PitchEstimator.m; sourceTree = "<group>"; };
-		CD4663041BA52750009835D1 /* LargeWaveformViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargeWaveformViewController.h; sourceTree = "<group>"; };
-		CD4663051BA52750009835D1 /* LargeWaveformViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargeWaveformViewController.m; sourceTree = "<group>"; };
 		CD4AC00F1AB1621400E57489 /* NotificationNames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationNames.h; sourceTree = "<group>"; };
 		CD4C2D901E9171860028727C /* ReflectorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReflectorTests.m; sourceTree = "<group>"; };
 		CD563B5B1AA16872001880B6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -317,8 +314,6 @@
 				CDBF22D91A99C917001E25AB /* AppDelegate.h */,
 				CDBF22DA1A99C917001E25AB /* AppDelegate.m */,
 				CDA1F7371A9AF2170011B4B5 /* Classes */,
-				CD4663041BA52750009835D1 /* LargeWaveformViewController.h */,
-				CD4663051BA52750009835D1 /* LargeWaveformViewController.m */,
 				CD79FAB51A9D2A0A008DE994 /* lib */,
 				CDBF22E31A99C917001E25AB /* Main.storyboard */,
 				CD7626961AA43673001E0A9E /* Media.xcassets */,
@@ -458,7 +453,6 @@
 				CD7626A21AA51275001E0A9E /* Autocorrelator.m in Sources */,
 				CD99A7AE1AA155FD003BC67E /* Sampler.m in Sources */,
 				CD1680651AC77F7E009920C3 /* Filterer.m in Sources */,
-				CD4663061BA52750009835D1 /* LargeWaveformViewController.m in Sources */,
 				CD7626C21AA85FB0001E0A9E /* RMSNormalizer.m in Sources */,
 				CD79FAB21A9C5677008DE994 /* HexByteBinaryEncoder.m in Sources */,
 				CD563B651AA2A1DF001880B6 /* Input.m in Sources */,
